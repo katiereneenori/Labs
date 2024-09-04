@@ -28,7 +28,16 @@ module ProgramCounter_tb();
 
 	initial begin
 	
-    /* Please fill in the implementation here... */
+    Address = 32'h00000000;
+        Reset = 1'b1;
+
+        #20 Reset = 1'b0; //reset after 20 ns
+
+        #20 Address = 32'h00000010;
+        #20 Address = 32'h00000020;
+        #20 Address = 32'h00000030;
+        
+        #20 $finish;
 	
 	end
 

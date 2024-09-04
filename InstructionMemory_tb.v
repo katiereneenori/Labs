@@ -20,7 +20,27 @@ module InstructionMemory_tb();
 
 	initial begin
 	
-    /* Please fill in the implementation here... */
+        //address = 0
+        Address = 32'd0;
+        #10;
+        $display("Address = %d, Instruction = %h", Address, Instruction);
+
+        //address = 4
+        Address = 32'd4;
+        #10;
+        $display("Address = %d, Instruction = %h", Address, Instruction);
+
+        //address = 8
+        Address = 32'd8;
+        #10;
+        $display("Address = %d, Instruction = %h", Address, Instruction);
+
+        //address = 12
+        Address = 32'd12;
+        #10;
+        $display("Address = %d, Instruction = %h", Address, Instruction);
+
+        $stop;
 	
 	end
 
