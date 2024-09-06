@@ -36,6 +36,7 @@ module ProgramCounter_tb();
         #20 Address = 32'h00000010;
         #20 Address = 32'h00000020;
         #20 Address = 32'h00000030;
+        #20 Reset   = 1'b1;
         
         #20 $finish;
 	

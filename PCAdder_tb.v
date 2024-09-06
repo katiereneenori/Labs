@@ -22,6 +22,28 @@ module PCAdder_tb();
 	
     /* Please fill in the implementation here... */
 	
+    //input 0
+    PCResult = 32'd0;
+    #10;
+    $display("PCResult = %d, PCAddResult = %d", PCResult, PCAddResult);
+    
+    //input 4
+    PCResult = 32'd4;
+    #10;
+    $display("PCResult = %d, PCAddResult = %d", PCResult, PCAddResult);
+	
+    //input 8
+    PCResult = 32'd8;
+    #10;
+    $display("PCResult = %d, PCAddResult = %d", PCResult, PCAddResult);
+	
+    //input 12
+    PCResult = 32'd12;
+    #10;
+    $display("PCResult = %d, PCAddResult = %d", PCResult, PCAddResult);
+    
+    $stop;
+    
 	end
 
 endmodule
