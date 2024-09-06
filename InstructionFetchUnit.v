@@ -39,6 +39,29 @@
 
 module InstructionFetchUnit(Instruction, Reset, Clk);
 
-    /* Please fill in the implementation here... */
+    input Reset, Clk;
+
+    output [31:0] Instruction;
+    
+    wire [31:0] PCResultWire;    //ProgramCounter output
+    wire [31:0] PCAddResultWire; //PCAdder output
+    
+    PCAdder Adder(
+        .PCResult(PCResultWire),
+        .PCAddResult(PCAddResultWire)
+    );
+    
+    ProgramCounter PC (
+        .Clk(Clk),                 //clock signal
+        .Reset(Reset),             //reset signal
+        .Address(PCAddResultWire), //Adder output wired to PC input
+        .PCResult(PCResultWire)    //PC Result wire
+    );
+    
+    InstructionMemory IM (
+        .Address(PCResultWire),   //PC output 
+        .Instruction(Instruction) //InstructionFetchUnit output
+    );
+
 endmodule
 

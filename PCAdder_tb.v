@@ -20,8 +20,6 @@ module PCAdder_tb();
 
 	initial begin
 	
-    /* Please fill in the implementation here... */
-	
     //input 0
     PCResult = 32'd0;
     #10;
