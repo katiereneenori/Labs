@@ -1,41 +1,53 @@
 `timescale 1ns / 1ps
 
 module TopModule(
-    input Clk,
-    input Reset,
-    output [6:0] Seg,
-    output [3:0] An,
-    output dp
+    input Clk,             // System clock
+    input Reset,           // Reset signal
+    output [6:0] out7,     // Segment outputs for the 7-segment display
+    output [3:0] en_out,   // Enable outputs for each of the 4 digits
+    output dp              // Decimal point (always off)
 );
 
-    wire [31:0] Instruction;
-    wire slowClk;
-    wire [15:0] DisplayData;
+    // Intermediate signals
+    wire [31:0] PCResultWire;       // ProgramCounter output
+    wire [31:0] PCAddResultWire;    // PCAdder output
+    wire [31:0] Instruction;        // Instruction from InstructionMemory
+    wire SlowClk;                   // Slow clock signal for 7-segment display
 
-
-    ClkDiv clkDivider(
+    // Clock Divider to generate a slower clock for the 7-segment display
+    ClkDiv clk_div (
         .Clk(Clk),
         .Reset(Reset),
-        .ClkOut(slowClk)
+        .ClkOut(SlowClk)
     );
 
-
-    InstructionFetchUnit IFU(
-        .Clk(Clk),
-        .Reset(Reset),
-        .Instruction(Instruction)
+    // Program Counter module
+    ProgramCounter PC (
+        .Clk(Clk),                // Clock signal
+        .Reset(Reset),            // Reset signal
+        .Address(PCAddResultWire),// Address from PCAdder
+        .PCResult(PCResultWire)   // Output to InstructionMemory
     );
 
+    // PC Adder module
+    PCAdder Adder (
+        .PCResult(PCResultWire),   // Input from ProgramCounter
+        .PCAddResult(PCAddResultWire)  // Output to ProgramCounter
+    );
 
-    assign DisplayData = Instruction[15:0];
+    // Instruction Memory module
+    InstructionMemory IM (
+        .Address(PCResultWire),   // Input from ProgramCounter
+        .Instruction(Instruction) // Output to One4DigitDisplay
+    );
 
-
-    One4DigitDisplay display(
-        .Clk(slowClk),
-        .NumberA(DisplayData),
-        .out7(Seg),
-        .en_out(An),
-        .dp(dp)
+    // Display the least significant 16 bits of the instruction on the 7-segment display
+    One4DigitDisplay display (
+        .Clk(SlowClk),             // Slower clock signal
+        .NumberA(Instruction[15:0]),// Lower 16 bits of the instruction
+        .out7(out7),               // Segment outputs for the 7-segment display
+        .en_out(en_out),           // Enable outputs for each of the 4 digits
+        .dp(dp)                    // Decimal point (always off)
     );
 
 endmodule
