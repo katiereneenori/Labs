@@ -15,7 +15,7 @@ module TopModule(
 
     ClkDiv clkDivider(
         .Clk(Clk),
-        .Rst(Reset),
+        .Reset(Reset),
         .ClkOut(slowClk)
     );
 
