@@ -1,9 +1,9 @@
 `timescale 1ns / 1ps
 
-module TopModule(Clk, Rst, en_out, out7);
+module TopModule(Clk, Reset, en_out, out7);
 
     input Clk;
-    input Rst;
+    input Reset;
     output [3:0] en_out;
     output [6:0] out7;
     
