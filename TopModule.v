@@ -24,18 +24,18 @@ module TopModule(Clk, Reset, en_out, out7);
     
     ClkDiv Clock(
         .Clk(Clk), //clock input from board
-        .Reset(Rst),
+        .Reset(Reset),
         .ClkOut(ClkOut)    //clock output to Clk
     );
     
     InstructionFetchUnit IFU (
-        .Reset(Rst),    
+        .Reset(Reset),    
         .Clk(ClkOut),      //clock input to IFU from ClkDiv
         .Instruction(InstructionWire)   //Instruction output
     );
     
     One4DigitDisplay display (
-        .Clk(ClkOut),
+        .Clk(Clk),
         .NumberA(InstructionWire),
         .out7(out7),
         .en_out(en_out)
