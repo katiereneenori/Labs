@@ -47,8 +47,8 @@ set_property PACKAGE_PIN V7 [get_ports dp]
 
 # Assigning pin for sending Reset signal to the circuit.
 # Corresponds to the center button of the 5 push buttons.
-set_property IOSTANDARD LVCMOS33 [get_ports {Reset}]
-set_property PACKAGE_PIN U18 [get_ports {Reset}]
+set_property IOSTANDARD LVCMOS33 [get_ports {Rst}]
+set_property PACKAGE_PIN U18 [get_ports {Rst}]
 
 
 ##This part is to assign pin numbers for input numbers
