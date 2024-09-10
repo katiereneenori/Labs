@@ -1,5 +1,17 @@
 `timescale 1ns / 1ps
 
+////////////////////////////////////////////////////////////////////////////////
+// Team Members: Katie Dionne & Tanner Shartel
+// Overall percent effort of each team member: 50%/50%
+//
+// Module - TopModule.v
+// Description - integrates clkdiv, IFU(programcounter, pcadder, instructionmemory),
+// and one4digitdisplay submodules to control operation and design
+//
+// ECE369A - Computer Architecture
+// Laboratory 1
+////////////////////////////////////////////////////////////////////////////////
+
 module TopModule(Clk, Reset, en_out, out7);
 
     input Clk;

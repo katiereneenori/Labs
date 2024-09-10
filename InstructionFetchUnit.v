@@ -1,11 +1,11 @@
 `timescale 1ns / 1ps
 
 ////////////////////////////////////////////////////////////////////////////////
-// Team Members:
-// Overall percent effort of each team meber: 
+// Team Members: Katie Dionne & Tanner Shartel
+// Overall percent effort of each team member: 50%/50%
 // 
 // ECE369A - Computer Architecture
-// Laboratory 3 (PostLab)
+// Laboratory 1
 // Module - InstructionFetchUnit.v
 // Description - Fetches the instruction from the instruction memory based on 
 //               the program counter (PC) value.

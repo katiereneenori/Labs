@@ -1,5 +1,15 @@
 `timescale 1ns / 1ps
 
+////////////////////////////////////////////////////////////////////////////////
+// Team Members: Katie Dionne & Tanner Shartel
+// Overall percent effort of each team member: 50%/50%
+//
+// Module - ClkDiv.v
+// Description - Clock devider to toggle clock signal at slower rate 
+// ECE369A - Computer Architecture
+// Laboratory 1
+////////////////////////////////////////////////////////////////////////////////
+
 module ClkDiv(Clk, Reset, ClkOut);
    input Clk, Reset;
    output reg ClkOut;

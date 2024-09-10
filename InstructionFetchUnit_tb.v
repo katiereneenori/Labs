@@ -1,23 +1,15 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 09/05/2024 09:39:15 PM
-// Design Name: 
-// Module Name: InstructionFetchUnit_tb
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
+// Team Members: Katie Dionne & Tanner Shartel
+// Overall percent effort of each team member: 50%/50%
+//
+// Module - InstructionFetchUnit_tb.v
+// Description - test functionality of IFU
+//
+// ECE369A - Computer Architecture
+// Laboratory 1
+////////////////////////////////////////////////////////////////////////////////
 
 
 module InstructionFetchUnit_tb();

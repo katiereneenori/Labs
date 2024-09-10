@@ -1,5 +1,17 @@
 `timescale 1ns / 1ps
 
+////////////////////////////////////////////////////////////////////////////////
+// Team Members: Katie Dionne & Tanner Shartel
+// Overall percent effort of each team member: 50%/50%
+//
+// Module - TopModule_tb.v
+// Description - Testbench for topmodule to verify reset and clock function 
+// and observe operation of proper behavior
+//
+// ECE369A - Computer Architecture
+// Laboratory 1
+////////////////////////////////////////////////////////////////////////////////
+
 module TopModule_tb;
 
     // Inputs to the TopModule

@@ -1,10 +1,14 @@
 `timescale 1ns / 1ps
 
 ////////////////////////////////////////////////////////////////////////////////
-// ECE369A - Computer Architecture
-// Laboratory 1 
+// Team Members: Katie Dionne & Tanner Shartel
+// Overall percent effort of each team member: 50%/50%
+//
 // Module - PCAdder_tb.v
-// Description - Test the 'PCAdder.v' module.
+// Description - test functionality of PCAdder
+//
+// ECE369A - Computer Architecture
+// Laboratory 1
 ////////////////////////////////////////////////////////////////////////////////
 
 module PCAdder_tb();

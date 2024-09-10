@@ -1,10 +1,14 @@
 `timescale 1ns / 1ps
 
 ////////////////////////////////////////////////////////////////////////////////
+// Team Members: Katie Dionne & Tanner Shartel
+// Overall percent effort of each team member: 50%/50%
+//
+// Module - ProgramCounter_tb.v
+// Description - test functionality of ProgramCounter
+//
 // ECE369A - Computer Architecture
 // Laboratory 1
-// Module - ProgramCounter_tb.v
-// Description - Test the 'ProgramCounter.v' module.
 ////////////////////////////////////////////////////////////////////////////////
 
 module ProgramCounter_tb(); 

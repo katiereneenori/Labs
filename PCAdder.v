@@ -1,8 +1,11 @@
 `timescale 1ns / 1ps
 
 ////////////////////////////////////////////////////////////////////////////////
+// Team Members: Katie Dionne & Tanner Shartel
+// Overall percent effort of each team member: 50%/50%
+//
 // ECE369A - Computer Architecture
-// Laboratory  
+// Laboratory 1
 // Module - PCAdder.v
 // Description - 32-Bit program counter (PC) adder.
 // 

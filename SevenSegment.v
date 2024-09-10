@@ -1,4 +1,17 @@
 `timescale 1ns / 1ps
+
+////////////////////////////////////////////////////////////////////////////////
+// Team Members: Katie Dionne & Tanner Shartel
+// Overall percent effort of each team member: 50%/50%(module included in 
+// project resources)
+//
+// Module - SevenSegment.v
+// Description - Controls 7 segment display and visualizes the lower 16 bits
+// of instruction fetched from memory
+// ECE369A - Computer Architecture
+// Laboratory 1
+////////////////////////////////////////////////////////////////////////////////
+
 module SevenSegment(numin, segout);
     input	[3:0] numin;
     output	reg [6:0] segout;    //segout[6] - seg_a, segout[5] - seg_b, segout[4] - seg_c,

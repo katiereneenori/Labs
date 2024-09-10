@@ -1,10 +1,14 @@
 `timescale 1ns / 1ps
 
 ////////////////////////////////////////////////////////////////////////////////
-// ECE369A - Computer Architecture
-// Laboratory 
+// Team Members: Katie Dionne & Tanner Shartel
+// Overall percent effort of each team member: 50%/50%
+//
 // Module - InstructionMemory_tb.v
-// Description - Test the 'InstructionMemory_tb.v' module.
+// Description - test functionality of InstructionMemory
+//
+// ECE369A - Computer Architecture
+// Laboratory 1
 ////////////////////////////////////////////////////////////////////////////////
 
 module InstructionMemory_tb(); 
