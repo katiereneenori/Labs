@@ -3,21 +3,19 @@
 module TopModule_tb;
 
     // Inputs to the TopModule
-    reg Clk;
-    reg Reset;
+    reg Clk, Reset;
+    
 
     // Outputs from the TopModule
     wire [6:0] out7;      // 7-segment display outputs
     wire [3:0] en_out;    // Enable outputs for 7-segment digits
-    wire dp;              // Decimal point output
 
     // Instantiate the TopModule
     TopModule uut (
         .Clk(Clk),
-        .Reset(Reset),
+        .Rst(Reset),
         .out7(out7),
-        .en_out(en_out),
-        .dp(dp)
+        .en_out(en_out)
     );
 
     // Clock Generation: 100 MHz clock (10 ns period)
@@ -52,8 +50,8 @@ module TopModule_tb;
 
     // Monitor output changes
     initial begin
-        $monitor("Time=%0d ns, Reset=%b, Clk=%b, out7=%b, en_out=%b, dp=%b", 
-                 $time, Reset, Clk, out7, en_out, dp);
+        $monitor("Time=%0d ns, Reset=%b, Clk=%b, out7=%b, en_out=%b", 
+                 $time, Reset, Clk, out7, en_out);
     end
 
 endmodule

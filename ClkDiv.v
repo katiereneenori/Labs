@@ -14,8 +14,7 @@ module ClkDiv(Clk, Reset, ClkOut);
          ClkInt <= 0;
       end
       else if (DivCnt == DivVal) begin
-         ClkOut <= ~ClkInt;
-         ClkInt <= ~ClkInt;
+         ClkOut <= ~ClkOut;
          DivCnt <= 0;
       end
       else begin
