@@ -64,8 +64,8 @@ module TopModule_tb;
 
     // Monitor output changes
 initial begin
-    $monitor("Time=%0d ns, Reset=%b, Clk=%b, PCResult=%h, Instruction=%h, out7=%b, en_out=%b, dp=%b", 
-             $time, Reset, Clk, uut.PCResultWire, uut.Instruction, out7, en_out, dp);
+    $monitor("Time=%0d ns, Reset=%b, Clk=%b, out7=%b, en_out=%b, dp=%b", 
+             $time, Reset, Clk, out7, en_out, dp);
 end
 
 

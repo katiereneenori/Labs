@@ -12,12 +12,13 @@
 // Laboratory 1
 ////////////////////////////////////////////////////////////////////////////////
 
-module TopModule(Clk, Reset, en_out, out7);
+module TopModule(Clk, Reset, en_out, out7, dp);
 
     input Clk;
     input Reset;
     output [3:0] en_out;
     output [6:0] out7;
+    output dp;
     
     (* mark_debug = "true" *) wire ClkOut;
     (* mark_debug = "true" *) wire [15:0] InstructionWire;
@@ -38,7 +39,8 @@ module TopModule(Clk, Reset, en_out, out7);
         .Clk(Clk),
         .NumberA(InstructionWire),
         .out7(out7),
-        .en_out(en_out)
+        .en_out(en_out),
+        .dp(dp)
     );
     
 endmodule
