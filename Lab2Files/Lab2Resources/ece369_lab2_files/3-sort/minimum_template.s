@@ -102,25 +102,10 @@ done:
 .globl MaxIndex
 
 MaxIndex:   
-    # Please fill in your implementation for 'MaxIndex' below this line !##########################   
-    lw      $t0, 0($a0)     # max = V[0]
-    addi    $t1, $0, 1      # i = 1
-    add     $t3, $0, 0      # max_idx = 0
+    # Please fill in your implementation for 'MaxIndex' below this line !##########################
+    # Your code begins
 
-loop_max:
-    bge     $t1, $a1, done_max  # if i >= n, done
-    mul     $t2, $t1, 4         # $t2 = $t1 * 4 (element size)
-    add     $t2, $t2, $a0       # $t2 = address of V[i]
-    lw      $t2, 0($t2)         # load V[i] into $t2
-    ble     $t2, $t0, next_max  # if V[i] <= max, skip
-    add     $t0, $t2, $0        # max = V[i]
-    add     $t3, $t1, $0        # max_idx = i
-next_max:
-    addi    $t1, $t1, 1         # i++
-    j       loop_max            # repeat loop
-done_max:
-    add     $v0, $t3, $0        # return max_idx
-    jr      $ra
+    # Your code ends
 
     
 #################### Sort function that sorts and prints the sorted array ##########################
@@ -155,17 +140,17 @@ sloop:
     
     # You will need 10-15 lines of code!
     # Your code begins
-    move    $t0, $v0            # [$t0=MaxIndex] MaxIndex ($v0), that needs to be swapped with index n - 1
-    mul     $t0, $t0, 4         # [$t0=4*$t0] Calculate the offset for MaxIndex
-    add     $t0, $t0, $a0       # [$t0=$t0+$a0] Calculate the address for V[MaxIndex]
-    lw      $t2, 0($t0)         # [$t2=V[$t0]] Load the value of memory address $t0 to $t2, $t2 = V[MaxIndex]
-    addi    $t1, $s0, -1        # [$t1=$s0-1] The index (n - 1) that will be swapped with MaxIndex
-    mul     $t1, $t1, 4         # [$t1=4*$t1] Calculate offset for index n - 1
-    add     $t1, $t1, $a0       # [$t1=$t1+$a0] Calculate the address for V[n - 1]
-    lw      $t3, 0($t1)         # [$t3=V[$t1]] Load the value of memory address $t1 to $t3, $t3 = V[n - 1]
-    sw      $t2, 0($t1)         # [V[$t1]=$t2] Store V[n-1] to be V[MaxIndex]
-    sw      $t3, 0($t0)         # [V[$t0]=$t3] Store V[MaxIndex] to be the original V[n - 1]
-    addi    $s0, $s0, -1        # [$s0=$s0-1] Len = Len - 1    
+            # [$t0=MaxIndex] MaxIndex ($v0), that needs to be swapped with index n - 1
+            # [$t0=4*$t0] Calculate the offset for MaxIndex
+            # [$t0=$t0+$a0] Calculate the address for V[MaxIndex]
+            # [$t2=V[$t0]] Load the value of memory address $t0 to $t2, $t2 = V[MaxIndex]
+            # [$t1=$s0-1] The index (n - 1) that will be swapped with MaxIndex
+            # [$t1=4*$t1] Calculate offset for index n - 1
+            # [$t1=$t1+$a0] Calculate the address for V[n - 1]
+            # [$t3=V[$t1]] Load the value of memory address $t1 to $t3, $t3 = V[n - 1]
+            # [V[$t1]=$t2] Store V[n-1] to be V[MaxIndex]
+            # [V[$t0]=$t3] Store V[MaxIndex] to be the original V[n - 1]
+            # [$s0=$s0-1] Len = Len - 1    
     # Your code ends
     j       sloop           # Jump back to sort loop
 
@@ -189,14 +174,14 @@ test:
     sw      $ra, 0($sp)         # Save return address
 
     jal    minimum             # call 'minimum' function
-    #jal    MaxIndex            # call 'MaxIndex' function
+#    jal    MaxIndex            # call 'MaxIndex' function
     jal    print_integer       # Jump to the routine that prints the index
    
 # Comment out minimum, MaxIndex and print_integer function calls and uncomment sort and 
 # print_sorted_array functions to test your sort routine.
 
-    #jal     sort                # Call sort function
-    #jal     print_array         # Call the function that prints the sorted array
+#    jal     sort                # Call sort function
+#    jal     print_array         # Call the function that prints the sorted array
 
 # Do not modify following lines
     lw      $ra, 0($sp)          # Restore return address
