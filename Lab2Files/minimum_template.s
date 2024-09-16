@@ -2,6 +2,7 @@
 # Max Score: 12 points
 #
 # Students: 
+# Tanner Shartel and Katie Dionne (50/50 effort)
 #
 # minimum.s 
 # Finds the index of the smallest element in an integer array
