@@ -16,7 +16,7 @@
 #
 # 2.   What are the values at location 'SUM' as the program executes?
 #
-# The values stored in 'SUM' are the intermediate sum values before the total sum is computed. 
+# SUM is initialized to 0 in the .data, and results in 1 after the program completes.
 #
 # 3.   Traverse the program in single-step mode. Write down the intermediate 
 #      values stored in register $s1 as the program progresses.
