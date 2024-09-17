@@ -29,7 +29,6 @@
 #
 
 	.text
-
 	.globl main
 
 main:	
@@ -40,14 +39,14 @@ main:
 
 loop:
 
-    lb      $t0, str($t1)	# fetch a character in 'str'
-	beqz    $t0, strEnd	    # if a null character is fetched, exit the loop
+    	lb      $t0, str($t1)	# fetch a character in 'str'
+	beqz    $t0, strEnd	# if a null character is fetched, exit the loop
 	bne     $t0, $t3, con   # branches to 'con' if registers $t0, and $t3 are not the same
-	add     $t2, $t2, 1	    # increment register $t2
+	add     $t2, $t2, 1	# increment register $t2
 
 con:	
 
-    add     $t1, $t1, 1	    # increase indexing register $t1 ERROR HERE, incorrect increment
+    	add     $t1, $t1, 1	# increase indexing register $t1 ERROR HERE, incorrect increment
 	j       loop	       	# continues the loop
 
 strEnd:
@@ -58,9 +57,9 @@ strEnd:
 
 	move    $a0, $t2        # move the integer to print from register $t2->$a0
 	li      $v0, 1	        # trap code, '1', refers to 'print_int' system call
-	syscall		            # execute the system call
+	syscall		        # execute the system call
 
-	la      $a0, endl	    # load $a0 with the address of the string, 'ans'
+	la      $a0, endl	# load $a0 with the address of the string, 'ans'
 	li      $v0, 4	        # trap code, '4', refers to 'print_string' system call
 	syscall                 # execute the system call
 

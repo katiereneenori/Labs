@@ -37,9 +37,9 @@ jr 	$ra
 ########################################################################
 .globl	test
 test:	
-addi	$sp, $sp, -4	# Make space on stack
+addi	$sp, $sp, -4		# Make space on stack
 sw	$ra, 0($sp)		# Save return address
-jal	tomato		# call function
+jal	tomato			# call function
 lw	$ra, 0($sp)		# Restore return address
 addi	$sp, $sp, 4		# Restore stack pointer
 jr 	$ra			# Return
@@ -53,11 +53,10 @@ main:	addi	$sp, $sp, -4	# Make space on stack
         li      $a2, 5		#set $a2 = 5
 	jal	test		#jump 
 #
-# after test v0 now contains sum of elements from list2
-# if they are >= 5 up to the 8th element which is index 7
-# which is 9(at i0) 5(at i1) 6(at i6) and 8(at i8)
-# 9 + 5 + 6 + 8 = 28
-# What is the value of $v0 at this point? (v0)= _ _ _ _ 28 _ _ _ _ #
+# after test v0 now contains sum of elements from list2 **fix**
+# if they are >= 5 up to the 8th element
+# 9 + 5 + 5 + 6 = 25
+# What is the value of $v0 at this point? (v0)= _ _ _ _ 25 _ _ _ _ #
 #
 	la	$a1, list1	# load base address of list1 to $a1
 	li	$a0, 13		#set $a0 = 13
@@ -66,8 +65,8 @@ main:	addi	$sp, $sp, -4	# Make space on stack
 # v0 after test contains the sum of elements in list1
 # if they are >=5 up to the 13th element at index 12
 # this is 9(at i0) 6(at i4) and 5(at i5)
-# 9 + 6 + 5 = 20
-# What is the value of $v0 at this point? (v0) = _ _ _ _ 20 _ _ _ _ #
+# 9 + 6 + 5 + 9 + 5 = 34
+# What is the value of $v0 at this point? (v0) = _ _ _ _ 34 _ _ _ _ #
 #
 # What does this code compute? Your answer HERE:_ _ _ see below _ _ #
 # this code computers the sum of elements in an array that are 
@@ -75,7 +74,7 @@ main:	addi	$sp, $sp, -4	# Make space on stack
 # up to specified($a0) number of elements
 #
 return:	
-li	$v0, 0		# Return value
+	li	$v0, 0			# Return value
 	lw	$ra, 0($sp)		# Restore return address
 	addi	$sp, $sp, 4		# Restore stack pointer
 	jr 	$ra			# Return	

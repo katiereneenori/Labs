@@ -189,15 +189,15 @@ test:
     addi    $sp, $sp, -4        # Make space on stack
     sw      $ra, 0($sp)         # Save return address
 
-    jal    minimum             # call 'minimum' function
+    #jal    minimum             # call 'minimum' function
     #jal    MaxIndex            # call 'MaxIndex' function
-    jal    print_integer       # Jump to the routine that prints the index
+    #jal    print_integer       # Jump to the routine that prints the index
    
 # Comment out minimum, MaxIndex and print_integer function calls and uncomment sort and 
 # print_sorted_array functions to test your sort routine.
 
-    #jal     sort                # Call sort function
-    #jal     print_array         # Call the function that prints the sorted array
+    jal     sort                # Call sort function
+    jal     print_array         # Call the function that prints the sorted array
 
 # Do not modify following lines
     lw      $ra, 0($sp)          # Restore return address
