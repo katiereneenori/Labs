@@ -1,8 +1,8 @@
 #  Fall 2024
-#  Team Members:    
-#  % Effort    :   
+#  Team Members: Katie Dionne and Tanner Shartel
+#  % Effort    :   50%/50%
 #
-# ECE369A,  
+# ECE369A (online)
 # 
 
 ########################################################################################################################
@@ -779,5 +779,202 @@ vbsme:
     li      $v0, 0              # reset $v0 and $V1
     li      $v1, 0
 
-    # insert your code here
-   
+# insert your code here
+
+##################
+
+    # Load dimensions from asize array
+    lw   $s0, 0($a0)    # Frame rows (i)
+    lw   $s1, 4($a0)    # Frame cols (j)
+    lw   $s2, 8($a0)    # Window rows (k)
+    lw   $s3, 12($a0)   # Window cols (l)
+
+    # Calculate maximum starting positions for the window
+    sub  $s4, $s0, $s2   # max_row = frame_rows - window_rows
+    sub  $s5, $s1, $s3   # max_col = frame_cols - window_cols
+
+    # Initialize min_sad to a large number
+    li   $s6, 0x7FFFFFFF   # min_sad
+
+    # Initialize spiral traversal boundaries
+    li   $t0, 0       # left
+    li   $t1, 0       # top
+    move $t2, $s5     # right
+    move $t3, $s4     # bottom
+
+Spiral_Loop:
+    # Check if traversal is complete
+    slt  $t6, $t2, $t0   # if right < left
+    bne  $t6, $zero, End_Spiral
+    slt  $t6, $t3, $t1   # if bottom < top
+    bne  $t6, $zero, End_Spiral
+
+    # Move Right
+    move $t4, $t0       # col = left
+    move $t5, $t1       # row = top
+Move_Right:
+    slt  $t6, $t4, $t2    # if col < right
+    beq  $t6, $zero, Move_Down
+
+    # Compute SAD at ($t5, $t4)
+    jal  Compute_SAD
+
+    addi $t4, $t4, 1     # col++
+    j    Move_Right
+
+    # Move Down
+Move_Down:
+    addi $t5, $t1, 1     # row = top + 1
+    move $t4, $t2        # col = right
+Move_Down_Loop:
+    slt  $t6, $t5, $t3   # if row < bottom
+    beq  $t6, $zero, Move_Left
+
+    # Compute SAD at ($t5, $t4)
+    jal  Compute_SAD
+
+    addi $t5, $t5, 1     # row++
+    j    Move_Down_Loop
+
+    # Move Left
+Move_Left:
+    addi $t4, $t2, -1    # col = right - 1
+    move $t5, $t3        # row = bottom
+Move_Left_Loop:
+    slt  $t6, $t0, $t4   # if left < col
+    beq  $t6, $zero, Move_Up
+
+    # Compute SAD at ($t5, $t4)
+    jal  Compute_SAD
+
+    addi $t4, $t4, -1    # col--
+    j    Move_Left_Loop
+
+    # Move Up
+Move_Up:
+    addi $t5, $t3, -1    # row = bottom - 1
+    move $t4, $t0        # col = left
+Move_Up_Loop:
+    slt  $t6, $t1, $t5   # if top < row
+    beq  $t6, $zero, Update_Boundaries
+
+    # Compute SAD at ($t5, $t4)
+    jal  Compute_SAD
+
+    addi $t5, $t5, -1    # row--
+    j    Move_Up_Loop
+
+Update_Boundaries:
+    # Update boundaries for next layer
+    addi $t0, $t0, 1     # left++
+    addi $t1, $t1, 1     # top++
+    addi $t2, $t2, -1    # right--
+    addi $t3, $t3, -1    # bottom--
+    j    Spiral_Loop
+
+End_Spiral:
+    jr   $ra             # Return from subroutine
+
+# Subroutine to compute SAD at position ($t5, $t4)
+Compute_SAD:
+    # Save return address and necessary registers
+    addi $sp, $sp, -32
+    sw   $ra, 28($sp)
+    sw   $t0, 24($sp)
+    sw   $t1, 20($sp)
+    sw   $t2, 16($sp)
+    sw   $t3, 12($sp)
+    sw   $t4, 8($sp)    # Save $t4 (col)
+    sw   $t5, 4($sp)    # Save $t5 (row)
+    sw   $s7, 0($sp)
+
+    # Copy $t4 and $t5 to $s7 and $s8
+    move $s7, $t4       # s7 = col (current column)
+    move $s8, $t5       # s8 = row (current row)
+
+    # Initialize sum to zero
+    li   $t6, 0          # sum = 0
+
+    # Initialize loop counters
+    li   $t7, 0          # i = 0 (window row index)
+
+SAD_Row_Loop:
+    slt  $t8, $t7, $s2   # if i < window_rows
+    beq  $t8, $zero, SAD_Done
+
+    # Calculate frame_row = row + i
+    add  $t9, $s8, $t7   # frame_row = current_row + i
+
+    # Initialize column counter
+    li   $t0, 0          # j = 0 (window col index)
+
+SAD_Col_Loop:
+    slt  $t8, $t0, $s3   # if j < window_cols
+    beq  $t8, $zero, SAD_Row_Done
+
+    # Calculate frame_col = col + j
+    add  $t1, $s7, $t0   # frame_col = current_col + j
+
+    # Calculate frame_index = frame_row * frame_cols + frame_col
+    mul  $t2, $t9, $s1   # frame_row * frame_cols
+    add  $t2, $t2, $t1   # frame_index = frame_row * frame_cols + frame_col
+
+    # Calculate window_index = i * window_cols + j
+    mul  $t3, $t7, $s3   # i * window_cols
+    add  $t3, $t3, $t0   # window_index = i * window_cols + j
+
+    # Calculate addresses
+    sll  $t10, $t2, 2    # frame_offset = frame_index * 4
+    add  $t10, $a1, $t10 # frame_addr = frame_base + frame_offset
+
+    sll  $t11, $t3, 2    # window_offset = window_index * 4
+    add  $t11, $a2, $t11 # window_addr = window_base + window_offset
+
+    # Load values
+    lw   $t2, 0($t10)    # frame_value
+    lw   $t3, 0($t11)    # window_value
+
+    # Compute absolute difference
+    sub  $t4, $t2, $t3
+
+    # Replace 'abs $t4, $t4' with proper code
+    bltz $t4, Make_Positive
+    j    Continue_Abs
+Make_Positive:
+    sub  $t4, $zero, $t4
+Continue_Abs:
+
+    # Accumulate sum
+    add  $t6, $t6, $t4
+
+    # Increment j
+    addi $t0, $t0, 1
+    j    SAD_Col_Loop
+
+SAD_Row_Done:
+    # Increment i
+    addi $t7, $t7, 1
+    j    SAD_Row_Loop
+
+SAD_Done:
+    # Compare with min_sad ($s6)
+    slt  $t8, $t6, $s6    # if sum < min_sad
+    beq  $t8, $zero, Restore_RA
+
+    # Update min_sad and coordinates
+    move $s6, $t6
+    move $v0, $s8         # min_row = current_row
+    move $v1, $s7         # min_col = current_col
+
+Restore_RA:
+    # Restore saved registers and return
+    lw   $s7, 0($sp)
+    lw   $t5, 4($sp)
+    lw   $t4, 8($sp)
+    lw   $t3, 12($sp)
+    lw   $t2, 16($sp)
+    lw   $t1, 20($sp)
+    lw   $t0, 24($sp)
+    lw   $ra, 28($sp)
+    addi $sp, $sp, 32
+    jr   $ra              # Return from Compute_SAD
