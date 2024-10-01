@@ -769,7 +769,7 @@ print_result:
 #   1st parameter (a0) address of the first element of the dimension info (address of asize[0])
 #   2nd parameter (a1) address of the first element of the frame array (address of frame[0][0])
 #   3rd parameter (a2) address of the first element of the window array (address of window[0][0])
-# Postconditions:	
+# Postconditions:   
 #   result (v0) x coordinate of the block in the frame with the minimum SAD
 #          (v1) y coordinate of the block in the frame with the minimum SAD
 
@@ -782,6 +782,9 @@ vbsme:
 # insert your code here
 
      ##################
+
+        addi $sp, $sp, -4
+        sw $ra, 0($sp)
 
         # Load dimensions from asize array
         lw   $s0, 0($a0)    # Frame rows (i)
@@ -799,9 +802,11 @@ vbsme:
         add $t0, $zero, $zero   # initial row index
         add $t1, $zero, $zero   # initial column index
         li $t9, 0x7FFFFFFF      # min_sad set to max 32 bit number
+        li $t6, -1
+        li $t7, -1
 
     
-    Traversal_Loop:
+Traversal_Loop:
     
     # Check termination condition
     bgt $s6, $s4, End_Traversal    # Left boundary > Right boundary
@@ -810,162 +815,193 @@ vbsme:
     # Move Right
         move $t0, $s7                  # Row index at top boundary
         move $t1, $s6                  # Column index starts at left boundary
+        jal Compute_SAD_Call
             Move_Right_Loop:
-                bgt $t1, $s4, Update_TopBoundary
-                jal Compute_SAD
-                addi $t1, $t1, 1
-                j Move_Right_Loop
+                bgt $t1, $s4, Update_TopBoundary  # Check if $t1 exceeds the right boundary
+                addi $t1, $t1, 1                   # Increment column index (move right)
+                ble $t1, $s4, Compute_SAD_Call     # Ensure $t1 is within bounds before calling Compute_SAD
+
+                j Move_Right_Loop                  # Repeat the loop to continue moving right
 
             Update_TopBoundary:
                 addi $s7, $s7, 1       # Move top boundary down
+                addi $t1, $t1, -1       # Move left 1
 
     # Move Down
         move $t0, $s7                      # Row index starts at new top boundary
-        addi $t1, $s4, 0                   # Column index at right boundary
+        #addi $t1, $s4, 0                   # Column index at right boundary
             Move_Down_Loop:
-                bgt $t0, $s5, Update_RightBoundary
-                jal Compute_SAD
-                addi $t0, $t0, 1
-                j Move_Down_Loop
+                bgt $t0, $s5, Update_RightBoundary  # Check if $t0 exceeds the bottom boundary
+                addi $t0, $t0, 1                   # Increment row index (move down)
+                ble $t0, $s5, Compute_SAD_Call     # Ensure $t0 is within bounds before calling Compute_SAD
+                j Move_Down_Loop                  # Repeat the loop to continue moving down
 
             Update_RightBoundary:
                 addi $s4, $s4, -1              # Move right boundary left
-
+                addi $t0, $t0, -1              # Move up 1 
+    
     # Move Left
-        addi $t0, $s5, 0               # Row index at bottom boundary
+        #addi $t0, $s5, 0               # Row index at bottom boundary
         move $t1, $s4                  # Column index starts at new right boundary
             Move_Left_Loop:
-                blt $t1, $s6, Update_BottomBoundary
-                jal Compute_SAD
-                addi $t1, $t1, -1
-                j Move_Left_Loop
+                blt $t1, $s6, Update_BottomBoundary  # Check if $t1 is below the left boundary
+                addi $t1, $t1, -1                   # Decrement column index (move left)
+                bge $t1, $s6, Compute_SAD_Call      # Ensure $t1 is within bounds before calling Compute_SAD
+                j Move_Left_Loop                   # Repeat the loop to continue moving left
 
             Update_BottomBoundary:
                 addi $s5, $s5, -1              # Move bottom boundary up
+                addi $t1, $t1, 1
 
     # Move Up
         move $t0, $s5                  # Row index starts at new bottom boundary
         move $t1, $s6                  # Column index at left boundary
             Move_Up_Loop:
-                blt $t0, $s7, Update_LeftBoundary
-                jal Compute_SAD
-                addi $t0, $t0, -1
-                j Move_Up_Loop
+                blt $t0, $s7, Update_LeftBoundary   # Check if $t0 exceeds the top boundary
+                addi $t0, $t0, -1                   # Decrement row index (move up)
+                bge $t0, $s7, Compute_SAD_Call      # Ensure $t0 is within bounds before calling Compute_SAD
+                j Move_Up_Loop                    # Repeat the loop to continue moving up
 
             Update_LeftBoundary:
                 addi $s6, $s6, 1               # Move left boundary right
+                addi $t0, $t0, 1
 
     j Traversal_Loop               # Repeat the loop
-    
-    End_Traversal:
-        jr   $ra             # Return from subroutine
 
-    # Subroutine to compute SAD at position ($t5, $t4)
-    
 
-    Compute_SAD:
-        # Save return address and necessary registers
-        addi $sp, $sp, -44
-        sw   $ra, 40($sp)
-        sw   $s0, 36($sp)
-        sw   $s1, 32($sp)
-        sw   $s2, 28($sp)
-        sw   $s3, 24($sp)
-        sw   $t4, 20($sp)    # Save $t4 (col)
-        sw   $t5, 16($sp)    # Save $t5 (row)
-        sw   $t6, 12($sp)
-        sw   $t7, 8($sp)
-        sw   $t8, 4($sp)
-        sw   $t9, 0($sp)
+Compute_SAD_Call:
+    # Call Compute_SAD when t0 and t1 are within bounds
+
+    addi $sp, $sp, -4
+    sw $t9, 0($sp)
+
+    jal Compute_SAD
+
+    lw $t8, 0($sp)
+    ble $t9, $t8, Update_Min
+    move $t9, $t8
+
+    addi $sp, $sp, 4
+    j Continue
+
+    Update_Min:
+        addi $sp, $sp, 4
+
+    Continue:
+
+    jr $ra           # Return to the main traversal loop
+
+End_Traversal:
+    move $v0, $t6
+    move $v1, $t7
+    lw      $ra, 0($sp)          # Restore return address
+    addi    $sp, $sp, 4          # Restore stack pointer
+    jr      $ra                  # Return from vbsme
+
+ Compute_SAD:
+    
+    # compute base address for frame location
+    li $t9, 0
+    mul $t3, $t0, $s1
+    add $t3, $t3, $t1
+    sll $t3, $t3, $t1
+    sll $t3, $t3, 2
+    add $t2, $a1, $t3   #$t3 stores base address offset within a1 (frame data)
+
+    mul $t3, $s2, $s3   # $t3 holds stack adjustment size for all vals in window
+    sll $t3, $t3, 2     
+    sub $sp, $sp, $t3   # make space for window size elements on stack
+
+    
+    li $t4, 0               # Set row loop counter to 0
+
+    Outer_Loop:
+        beq $t4, $s2, Done   # If t4 (row counter) reaches s2, we are done
+
+    
+        li $t5, 0           # Set column loop counter to 0
+
+        Inner_Loop:
+            beq $t5, $s3, Next_Row  # If t5 (column counter) reaches s3, go to the next row
+
+            # Load the value from the frame
+            lw $t6, 0($t2)        # Load value from the address in t2 (element from the frame)
         
-        # Copy $t4 and $t5 to $a0 and $a1
-        move $a0, $t5       # $a0 = row (current row)
-        move $a1, $t4       # $a1 = col (current column)
+            # Store the value on the stack
+            sw $t6, 0($sp)        # Store the value on the stack
+            addi $sp, $sp, -4       # Adjust the stack pointer to store the next element
+
+            # Move to the next element in the current row (move "right")
+            addi $t2, $t2, 4        # Move t2 to point to the next element in the row
+
+            addi $t5, $t5, 1        # Increment the column loop counter
+            j Inner_Loop         # Continue inner loop
+
+        Next_Row:
+        # After finishing a row, move t2 to the next row
+        mul $t7, $s1, 4            # t7 = 4 * s1 (size of one full row in bytes)
+        add $t2, $t2, $t7          # Move t2 to the next row (skip over remaining columns)
+
+        addi $t4, $t4, 1            # Increment the row loop counter
+        j Outer_Loop             # Continue outer loop
+
+    Done:
+
+    mul $t8, $s2, $s3
+    sll $t8, $t8, 2
+    add $t8, $a2, $t8
+    addi $t8, $t8, -4
+
+    li $t4, 0              # Set row loop counter to 0
+
+Second_Outer_Loop:
+    beq $t4, $s2, Second_Done   # If t4 (row counter) reaches s2, we are done
+
+    # Initialize column loop counter
+    li $t5, 0           # Set column loop counter to 0
+
+    Second_Inner_Loop:
+        beq $t5, $s3, Next_Second_Row  # If t5 (column counter) reaches s3, go to the next row
+
+        # Load the value from the stack (top element)
+        lw $t6, 4($sp)        # Load the value from the stack (reverse order)
         
-        # Initialize sum to zero
-        li   $t6, 0          # sum = 0
-        
-        # Initialize loop counters
-        li   $t7, 0          # i = 0 (window row index)
-        
-    SAD_Row_Loop:
-        slt  $t8, $t7, $s2   # if i < window_rows
-        beq  $t8, $zero, SAD_Done
-        
-        # Calculate frame_row = row + i
-        add  $t9, $a0, $t7   # frame_row = current_row + i
-        
-        # Initialize column counter
-        li   $t0, 0          # j = 0 (window col index)
-        
-    SAD_Col_Loop:
-        slt  $t8, $t0, $s3   # if j < window_cols
-        beq  $t8, $zero, SAD_Row_Done
-        
-        # Calculate frame_col = col + j
-        add  $t1, $a1, $t0   # frame_col = current_col + j
-        
-        # Calculate frame_index = frame_row * frame_cols + frame_col
-        mul  $t2, $t9, $s1   # frame_row * frame_cols
-        add  $t2, $t2, $t1   # frame_index = frame_row * frame_cols + frame_col
-        
-        # Calculate window_index = i * window_cols + j
-        mul  $t3, $t7, $s3   # i * window_cols
-        add  $t3, $t3, $t0   # window_index = i * window_cols + j
-        
-        # Calculate addresses
-        sll  $t10, $t2, 2    # frame_offset = frame_index * 4
-        add  $t10, $a1, $t10 # frame_addr = frame_base + frame_offset
-        
-        sll  $t11, $t3, 2    # window_offset = window_index * 4
-        add  $t11, $a2, $t11 # window_addr = window_base + window_offset
-        
-        # Load values
-        lw   $t2, 0($t10)    # frame_value
-        lw   $t3, 0($t11)    # window_value
-        
-        # Compute absolute difference
-        sub  $t4, $t2, $t3
-        bltz $t4, Make_Positive
-        j    Continue_Abs
-    Make_Positive:
-        sub  $t4, $zero, $t4
-    Continue_Abs:
-        
-        # Accumulate sum
-        add  $t6, $t6, $t4
-        
-        # Increment j
-        addi $t0, $t0, 1
-        j    SAD_Col_Loop
-        
-    SAD_Row_Done:
-        # Increment i
-        addi $t7, $t7, 1
-        j    SAD_Row_Loop
-        
-    SAD_Done:
-        # Compare with min_sad ($s4)
-        slt  $t8, $t6, $s4    # if sum < min_sad
-        beq  $t8, $zero, Restore_Registers
-        
-        # Update min_sad and coordinates
-        move $s4, $t6
-        move $v0, $a0         # min_row = current_row
-        move $v1, $a1         # min_col = current_col
-        
-    Restore_Registers:
-        # Restore saved registers and return
-        lw   $t9, 0($sp)
-        lw   $t8, 4($sp)
-        lw   $t7, 8($sp)
-        lw   $t6, 12($sp)
-        lw   $t5, 16($sp)
-        lw   $t4, 20($sp)
-        lw   $s3, 24($sp)
-        lw   $s2, 28($sp)
-        lw   $s1, 32($sp)
-        lw   $s0, 36($sp)
-        lw   $ra, 40($sp)
-        addi $sp, $sp, 44
-        jr   $ra              # Return from Compute_SAD
+        # Load the value from the window (a2), starting from the last element
+        lw $t7, 0($t8)        # Load value from the window (starting from the last element)
+
+        # Subtract the stack value from the window value
+        sub $t7, $t7, $t6      # t7 = window value - stack value
+
+        bltz $t7, Make_Positive
+        j Add_To_Sum
+
+        Make_Positive:
+            sub $t7, $zero, $t7
+
+        Add_To_Sum:
+            add $t9, $t9, $t7
+
+        # Restore stack space by moving the stack pointer
+        addi $sp, $sp, 4        # Increment the stack pointer to delete the top element
+
+        # Move to the previous element in the window
+        addi $t8, $t8, -4       # Decrement the pointer to move backward in the window
+
+        addi $t5, $t5, 1        # Increment the column loop counter
+        j Second_Inner_Loop  # Continue inner loop
+
+    Next_Second_Row:
+    # Move to the next row in the window
+    addi $t4, $t4, 1            # Increment the row loop counter
+    j Second_Outer_Loop      # Continue outer loop
+
+Second_Done:
+    jr $ra
+
+
+
+
+
+
+
+
