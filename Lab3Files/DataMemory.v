@@ -45,6 +45,24 @@ module DataMemory(Address, WriteData, Clk, MemWrite, MemRead, ReadData);
 
     output reg[31:0] ReadData; // Contents of memory location at Address
 
-    /* Please fill in the implementation here */
+	reg [31:0] memory [0:1023] // 1K memory declaration
+	
+	always @(posedge Clk) begin
+		if (MemWrite) begin
+			memory[Address[11:2]] <= WriteData;
+		end	
+	
+	end
+
+	always @(*) begin
+		if (MemRead) begin
+			ReadData = memory[Address[11:2]]; //Read data if MemRead is enabled
+		end	
+
+		else begin
+			ReadData = 0;	//output 0 if MemRead is disabled
+		end
+	end
+
 
 endmodule

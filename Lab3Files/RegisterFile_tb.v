@@ -23,7 +23,6 @@ module RegisterFile_tb();
 	wire [31:0] ReadData1;
 	wire [31:0] ReadData2;
 
-
 	RegisterFile u0(
 		.ReadRegister1(ReadRegister1), 
 		.ReadRegister2(ReadRegister2), 
@@ -41,9 +40,43 @@ module RegisterFile_tb();
 	end
 
 	initial begin
-	
-    /* Please fill in the implementation here... */
-	
+		// Test case 1: Write to register 5
+		RegWrite <= 1'b1;
+		WriteRegister <= 5'b00101;
+		WriteData <= 32'hAAAA_BBBB;
+		#20;  // Wait for a clock cycle
+
+		// Test case 2: Read from register 5
+		RegWrite <= 1'b0;
+		ReadRegister1 <= 5'b00101;
+		ReadRegister2 <= 5'b00101;
+		#20;  // Wait for a clock cycle
+
+		// Test case 3: Write to register 10
+		RegWrite <= 1'b1;
+		WriteRegister <= 5'b01010;
+		WriteData <= 32'h1234_5678;
+		#20;  // Wait for a clock cycle
+
+		// Test case 4: Read from register 10 and register 5
+		RegWrite <= 1'b0;
+		ReadRegister1 <= 5'b01010;
+		ReadRegister2 <= 5'b00101;
+		#20;  // Wait for a clock cycle
+
+		// Test case 5: Write to register 31
+		RegWrite <= 1'b1;
+		WriteRegister <= 5'b11111;
+		WriteData <= 32'hDEAD_BEEF;
+		#20;  // Wait for a clock cycle
+
+		// Test case 6: Read from register 31
+		RegWrite <= 1'b0;
+		ReadRegister1 <= 5'b11111;
+		ReadRegister2 <= 5'b11111;
+		#20;  // Wait for a clock cycle
+
+		$finish;
 	end
 
 endmodule
