@@ -7,12 +7,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 module SignExtension(in, out);
 
-    /* A 16-Bit input word */
+    // A 16-Bit input word 
     input [15:0] in;
     
-    /* A 32-Bit output word */
+    // A 32-Bit output word 
     output [31:0] out;
     
-    /* Fill in the implementation here ... */
+    always @(*) begin
+	if(in[15] == 1'b1) begin
+		out = {16'b1111111111111111, in};
+	end
+	else begin
+		out = {16'b0000000000000000, in};
+	end	
+    end	
 
 endmodule
