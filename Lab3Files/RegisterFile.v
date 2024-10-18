@@ -5,7 +5,7 @@
 // 
 //
 //
-// Student(s) Name and Last Name: FILL IN YOUR INFO HERE!
+// Student(s) Name and Last Name: Tanner Shartel and Katie Dionne (50%/50%)
 //
 //
 // Module - register_file.v
@@ -50,6 +50,51 @@
 
 module RegisterFile(ReadRegister1, ReadRegister2, WriteRegister, WriteData, RegWrite, Clk, ReadData1, ReadData2);
 
-	/* Please fill in the implementation here... */
+	input [4:0]  ReadRegister1;
+	input [4:0]  ReadRegister2;
+	input [4:0]  WriteRegister;
+	input [31:0] WriteData;
+
+	output [31:0] ReadData1;
+	output [31:0] ReadData2;
+	
+	input RegWrite;
+	input Clk;
+	
+	reg [31:0] registers [31:0] // initialize 32 32-bit registers
+
+	integer i;
+	initial begin 
+		for (i = 0; i < 32; i++) begin
+			registers[i] = 32'b0;
+		end
+		
+		//initialize all registers to 0
+	end
+	
+	always @(negedge Clk) begin
+		ReadData1 <= registers[ReadRegister1];
+		ReadData2 <= registers[ReadRegister2];
+
+		// output data at 'ReadRegister1/2' address location in registers
+		// at falling edge of the clock
+	end
+	
+	always @(posedge Clk) begin
+		if(RegWrite) begin
+			registers[WriteRegister] <= WriteData;
+		end
+
+		// write the data in 'WriteData' to the register at 'WriteRegister' address
+	end
 
 endmodule
+
+
+
+
+
+
+
+
+
