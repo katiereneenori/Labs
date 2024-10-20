@@ -30,12 +30,56 @@ module ALU32Bit(ALUControl, A, B, ALUResult, Zero);
 
 	input [3:0] ALUControl; // control bits for ALU operation
                                 // you need to adjust the bitwidth as needed
+				//
+				// for ISA: need:
+				// add, sub, set less than (compare), and, or, nor, xor, shift left, shift right, multiply
 	input [31:0] A, B;	    // inputs
 
 	output [31:0] ALUResult;	// answer
 	output Zero;	    // Zero=1 if ALUResult == 0
 
-    /* Please fill in the implementation here... */
+    always @(*) begin
+	case (ALUControl)
+		4'b0000: ALUResult = A + B; 	// Add
+		
+		4'b0001: ALUResult = A - B;	// Subtract
+		
+		4'b0010: begin				// Set less than
+				if (A < B) begin
+					ALUResult = 32'b1;
+				end
+				else begin
+					ALUResult = 32'b0;
+				end
+			 end
+		
+		4'b0011: ALUResult = A & B;		// AND
+		
+		4'b0100: ALUResult = A | B;		// OR
+		
+		4'b0101: ALUResult = ~(A | B);	// NOR
+		
+		4'b0110: ALUResult = A ^ B;		// XOR 
+		
+		4'b0111: ALUResult = B << A;	// Shif left (B Shifted left by A bits)
+		
+		4'b1000: ALUResult = B >> A;	// Shift right (B shifted A bits right)
+		
+		4'b1001: ALUResult = A * B;		// Multiply
+
+		default: ALUResult = 32'b0;		// default case 
+
+	endcase
+
+	if (ALUResult == 32'b0) begin
+		Zero = 1'b1;
+	end
+	
+	else begin
+		Zero = 1'b0;
+	end
+
+    end
 
 endmodule
 
