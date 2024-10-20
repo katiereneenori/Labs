@@ -42,17 +42,10 @@ module ALU32Bit(ALUControl, A, B, ALUResult, Zero);
 	case (ALUControl)
 		4'b0000: ALUResult = A + B; 	// Add
 		
-		4'b0001: ALUResult = A - B;	// Subtract
+		4'b0001: ALUResult = A - B;		// Subtract
 		
-		4'b0010: begin				// Set less than
-				if (A < B) begin
-					ALUResult = 32'b1;
-				end
-				else begin
-					ALUResult = 32'b0;
-				end
-			 end
-		
+		4'b0010: ALUResult = A * B;		// Multiply
+
 		4'b0011: ALUResult = A & B;		// AND
 		
 		4'b0100: ALUResult = A | B;		// OR
@@ -65,7 +58,50 @@ module ALU32Bit(ALUControl, A, B, ALUResult, Zero);
 		
 		4'b1000: ALUResult = B >> A;	// Shift right (B shifted A bits right)
 		
-		4'b1001: ALUResult = A * B;		// Multiply
+		4'b1001: begin					// Set less than
+				if (A < B) begin
+					ALUResult = 32'b1;
+				end
+				else begin
+					ALUResult = 32'b0;
+				end
+			 end
+
+		4'b1010: begin					// set greater than
+					if (A > B) begin
+						ALUResult = 32'b1;
+					end
+					else begin
+						ALUResult = 32'b0;
+					end
+				end
+
+		4'b1011: begin					// ALUResult is 1 if equal 0 if not equal
+					if (A == B) begin
+						ALUResult = 32'b1;
+					end
+					else begin
+						ALUResult = 32'b0;
+					end
+				end
+
+		4'b1100: begin					// A greater than or equal to B
+					if (A >= B) begin
+						ALUResult = 32'b1;
+					end
+					else begin
+						ALUResult = 32'b0;
+					end
+				end
+
+		4'b1101: begin					// A less than or equal to B
+					if (A <= B) begin
+						ALUResult = 32'b1;
+					end
+					else begin
+						ALUResult = 32'b0;
+					end
+				end
 
 		default: ALUResult = 32'b0;		// default case 
 
