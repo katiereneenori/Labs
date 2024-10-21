@@ -250,76 +250,76 @@ always @(*) begin
 				MemToReg = 1'b1;
 			end
 
-			// bgez
+			// bgez --
 			6'b000001: begin
-				ALUOp = 4'b0000;
-				ToBranch = 1'b0;
-				RegDst = 1'b1; 
-				ALUSrc = 1'b0;
-				RegWrite = 1'b1;
+				ALUOp = 4'b1110;
+				ToBranch = 1'b1;
+				RegDst = 1'b0;  // don't care
+				ALUSrc = 1'b0;  // don't care
+				RegWrite = 1'b0; 
 				MemWrite = 1'b0;
 				MemRead = 1'b0;
-				MemToReg = 1'b1;
+				MemToReg = 1'b1; // don't care
 			end
 
-			// beq
+			// beq --
 			6'b000100: begin
-				ALUOp = 4'b0000;
-				ToBranch = 1'b0;
-				RegDst = 1'b1; 
+				ALUOp = 4'b1011;
+				ToBranch = 1'b1;
+				RegDst = 1'b1; 	 // don't care
 				ALUSrc = 1'b0;
-				RegWrite = 1'b1;
+				RegWrite = 1'b0;
 				MemWrite = 1'b0;
 				MemRead = 1'b0;
-				MemToReg = 1'b1;
+				MemToReg = 1'b1; // don't care
 			end
 
-			// bne
+			// bne --
 			6'b000101: begin
-				ALUOp = 4'b0000;
-				ToBranch = 1'b0;
-				RegDst = 1'b1; 
-				ALUSrc = 1'b0;
-				RegWrite = 1'b1;
+				ALUOp = 4'b1111;
+				ToBranch = 1'b1;
+				RegDst = 1'b1; //don't care
+				ALUSrc = 1'b0; 
+				RegWrite = 1'b0;
 				MemWrite = 1'b0;
 				MemRead = 1'b0;
-				MemToReg = 1'b1;
+				MemToReg = 1'b1; // don't care
 			end
 
-			// bgtz
+			// bgtz --
 			6'b000111: begin
-				ALUOp = 4'b0000;
-				ToBranch = 1'b0;
-				RegDst = 1'b1; 
-				ALUSrc = 1'b0;
-				RegWrite = 1'b1;
+				ALUOp = 4'b1010;
+				ToBranch = 1'b1;
+				RegDst = 1'b1;   // don't care
+				ALUSrc = 1'b0;	
+				RegWrite = 1'b0;
 				MemWrite = 1'b0;
 				MemRead = 1'b0;
-				MemToReg = 1'b1;
+				MemToReg = 1'b1; // don't care
 			end
 
-			// blez
+			// blez --
 			6'b000110: begin
-				ALUOp = 4'b0000;
-				ToBranch = 1'b0;
-				RegDst = 1'b1; 
+				ALUOp = 4'b1101;
+				ToBranch = 1'b1;
+				RegDst = 1'b1;	// don't care 
 				ALUSrc = 1'b0;
-				RegWrite = 1'b1;
+				RegWrite = 1'b0;
 				MemWrite = 1'b0;
 				MemRead = 1'b0;
-				MemToReg = 1'b1;
+				MemToReg = 1'b1; // don't care
 			end
 
-			// bltz
+			// bltz --
 			6'b000001: begin
-				ALUOp = 4'b0000;
-				ToBranch = 1'b0;
-				RegDst = 1'b1; 
+				ALUOp = 4'b1001;
+				ToBranch = 1'b1;
+				RegDst = 1'b0; //don't care 
 				ALUSrc = 1'b0;
-				RegWrite = 1'b1;
+				RegWrite = 1'b0;
 				MemWrite = 1'b0;
 				MemRead = 1'b0;
-				MemToReg = 1'b1;
+				MemToReg = 1'b1; //don't care
 			end
 
 			// andi
