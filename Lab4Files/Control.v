@@ -51,9 +51,9 @@ always @(*) begin
 			MemToReg = 1'b1;
 		end
 
-		// sub
+		// sub --
 		6'b100010: begin
-			ALUOp = 4'b0000;
+			ALUOp = 4'b0001;
 			ToBranch = 1'b0;
 			RegDst = 1'b1; 
 			ALUSrc = 1'b0;
@@ -63,7 +63,7 @@ always @(*) begin
 			MemToReg = 1'b1;
 		end
 
-		// jr
+		// jr : possibly need to adjust datapath
 		6'b001000: begin
 			ALUOp = 4'b0000;
 			ToBranch = 1'b0;
@@ -75,9 +75,9 @@ always @(*) begin
 			MemToReg = 1'b1;
 		end
 
-		//and
+		// and --
 		6'100100: begin
-			ALUOp = 4'b0000;
+			ALUOp = 4'b0011;
 			ToBranch = 1'b0;
 			RegDst = 1'b1; 
 			ALUSrc = 1'b0;
@@ -87,8 +87,9 @@ always @(*) begin
 			MemToReg = 1'b1;
 		end
 
+		// or --
 		6'b100101: begin
-			ALUOp = 4'b0000;
+			ALUOp = 4'b0100;
 			ToBranch = 1'b0;
 			RegDst = 1'b1; 
 			ALUSrc = 1'b0;
@@ -98,9 +99,9 @@ always @(*) begin
 			MemToReg = 1'b1;
 		end
 
-		//nor
+		// nor --
 		6'b100111: begin
-			ALUOp = 4'b0000;
+			ALUOp = 4'b0101;
 			ToBranch = 1'b0;
 			RegDst = 1'b1; 
 			ALUSrc = 1'b0;
@@ -110,9 +111,9 @@ always @(*) begin
 			MemToReg = 1'b1;
 		end
 
-		//xor
+		//xor --
 		6'b100110: begin
-			ALUOp = 4'b0000;
+			ALUOp = 4'b0110;
 			ToBranch = 1'b0;
 			RegDst = 1'b1; 
 			ALUSrc = 1'b0;
@@ -122,19 +123,19 @@ always @(*) begin
 			MemToReg = 1'b1;
 		end
 
-		// sll
+		// sll (may need a mux into read register 1 port)
 		6'b000000: begin
 			ALUOp = 4'b0000;
 			ToBranch = 1'b0;
 			RegDst = 1'b1; 
-			ALUSrc = 1'b0;
+			ALUSrc = 1'b1;
 			RegWrite = 1'b1;
 			MemWrite = 1'b0;
 			MemRead = 1'b0;
 			MemToReg = 1'b1;
 		end
 
-		// srl
+		// srl (may need mux into read register 1 port)
 		6'b000010: begin
 			ALUOp = 4'b0000;
 			ToBranch = 1'b0;
@@ -146,9 +147,9 @@ always @(*) begin
 			MemToReg = 1'b1;
 		end
 
-		// slt
+		// slt --
 		6'b101010: begin
-			ALUOp = 4'b0000;
+			ALUOp = 4'b1001;
 			ToBranch = 1'b0;
 			RegDst = 1'b1; 
 			ALUSrc = 1'b0;
@@ -165,28 +166,28 @@ always @(*) begin
 
 		case (Instruction[31:26]) begin
 		
-			// addi
+			// addi --
 			6'b001000: begin
 				ALUOp = 4'b0000;
 				ToBranch = 1'b0;
-				RegDst = 1'b1; 
-				ALUSrc = 1'b0;
+				RegDst = 1'b0; //rt is destination
+				ALUSrc = 1'b1;
 				RegWrite = 1'b1;
 				MemWrite = 1'b0;
 				MemRead = 1'b0;
 				MemToReg = 1'b1;
 			end
 
-			// lw
+			// lw  (maybe have alu op that just pushes rs through)
 			6'b100011 begin
-				ALUOp = 4'b0000;
+				ALUOp = 4'b0000; // add 0
 				ToBranch = 1'b0;
-				RegDst = 1'b1; 
-				ALUSrc = 1'b0;
+				RegDst = 1'b0; 
+				ALUSrc = 1'b1;
 				RegWrite = 1'b1;
 				MemWrite = 1'b0;
-				MemRead = 1'b0;
-				MemToReg = 1'b1;
+				MemRead = 1'b1;
+				MemToReg = 1'b0;
 			end
 
 			// sw
@@ -195,8 +196,8 @@ always @(*) begin
 				ToBranch = 1'b0;
 				RegDst = 1'b1; 
 				ALUSrc = 1'b0;
-				RegWrite = 1'b1;
-				MemWrite = 1'b0;
+				RegWrite = 1'b0;
+				MemWrite = 1'b1;
 				MemRead = 1'b0;
 				MemToReg = 1'b1;
 			end
