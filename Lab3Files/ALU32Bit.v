@@ -28,7 +28,7 @@
 
 module ALU32Bit(ALUControl, A, B, ALUResult, Zero);
 
-	input [3:0] ALUControl; // control bits for ALU operation
+	input [4:0] ALUControl; // control bits for ALU operation
                                 // you need to adjust the bitwidth as needed
 				//
 				// for ISA: need:
@@ -40,70 +40,103 @@ module ALU32Bit(ALUControl, A, B, ALUResult, Zero);
 
     always @(*) begin
 	case (ALUControl)
-		4'b0000: ALUResult = A + B; 	// Add
+		5'b00000: ALUResult = A + B; 	// Add
 		
-		4'b0001: ALUResult = A - B;		// Subtract
+		5'b00001: ALUResult = A - B;		// Subtract
 		
-		4'b0010: ALUResult = A * B;		// Multiply
+		5'b00010: ALUResult = A * B;		// Multiply
 
-		4'b0011: ALUResult = A & B;		// AND
+		5'b00011: ALUResult = A & B;		// AND
 		
-		4'b0100: ALUResult = A | B;		// OR
+		5'b00100: ALUResult = A | B;		// OR
 		
-		4'b0101: ALUResult = ~(A | B);	// NOR
+		5'b00101: ALUResult = ~(A | B);	// NOR
 		
-		4'b0110: ALUResult = A ^ B;		// XOR 
+		5'b00110: ALUResult = A ^ B;		// XOR 
 		
-		4'b0111: ALUResult = B << A;	// Shif left (B Shifted left by A bits)
+		5'b00111: ALUResult = B << A;	// Shif left (B Shifted left by A bits)
 		
-		4'b1000: ALUResult = B >> A;	// Shift right (B shifted A bits right)
+		5'b01000: ALUResult = B >> A;	// Shift right (B shifted A bits right)
 		
-		4'b1001: begin					// Set less than
+		5'b01001: begin					// Set less than AND blez
 				if (A < B) begin
 					ALUResult = 32'b1;
+					Zero = 1;
 				end
 				else begin
 					ALUResult = 32'b0;
+					Zero = 0;
 				end
 			 end
 
-		4'b1010: begin					// set greater than
+		5'b01010: begin					// set greater than AND bgtz
 					if (A > B) begin
 						ALUResult = 32'b1;
+						Zero = 1;
 					end
 					else begin
 						ALUResult = 32'b0;
+						Zero = 0;
 					end
 				end
 
-		4'b1011: begin					// ALUResult is 1 if equal 0 if not equal
+		5'b01011: begin					// ALUResult is 0 if equal 1 if not equal
 					if (A == B) begin
-						ALUResult = 32'b1;
+						ALUResult = 32'b0;
 					end
 					else begin
-						ALUResult = 32'b0;
+						ALUResult = 32'b1
 					end
 				end
 
-		4'b1100: begin					// A greater than or equal to B
+		5'b01100: begin					// A greater than or equal to B
 					if (A >= B) begin
-						ALUResult = 32'b1;
+						ALUResult = 32'b0;
 					end
 					else begin
-						ALUResult = 32'b0;
+						ALUResult = 32'b1;
 					end
 				end
 
-		4'b1101: begin					// A less than or equal to B
+		5'b01101: begin					// A less than or equal to B
 					if (A <= B) begin
 						ALUResult = 32'b1;
+						Zero = 1;
 					end
 					else begin
 						ALUResult = 32'b0;
+						Zero = 0;
 					end
+				end
+
+		5'b01110: begin
+					if (A >= 0) begin
+						ALUResult = 0;  // bgez raises zero flag
+					end
+
+					else begin
+						ALUResult = 1;  
+					end
+				end
+
+		5'b01111: begin
+					if (A != B) begin
+						ALUResult = 1'b0;
+					end
+
+					else begin
+						ALUResult = 1'b1;
+					end
+				end
+
+		5'b10000: begin // just push through A input to output
+					ALUResult = A;
+					Zero = 1;
 				end
 
 		default: ALUResult = 32'b0;		// default case 
+
+		// a beq instruction can be done with subtract, and determine if output is 0, and branch if yes
 
 	endcase
 
