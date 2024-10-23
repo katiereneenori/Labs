@@ -1,13 +1,7 @@
 0.7
 2020.2
-Nov 18 2020
-09:47:47
-C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ALU32Bit.v,1729652384,verilog,,C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ALU32Bit_tb.v,,ALU32Bit,,,,,,,,
-C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ALU32Bit_tb.v,1729653281,verilog,,,,ALU32Bit_tb,,,,,,,,
-C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Control.v,1729652384,verilog,,C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sim_1/new/Control_tb.v,,Control,,,,,,,,
-C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/DataMemory.v,1729646831,verilog,,C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/DataMemory_tb.v,,DataMemory,,,,,,,,
-C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/DataMemory_tb.v,1729651615,verilog,,,,DataMemory_tb,,,,,,,,
-C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.sim/sim_1/behav/xsim/glbl.v,1605673889,verilog,,,,glbl,,,,,,,,
-C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sim_1/new/Control_tb.v,1729652212,verilog,,,,Control_tb,,,,,,,,
-C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/RegisterFile.v,1729652384,verilog,,C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/RegisterFile_tb.v,,RegisterFile,,,,,,,,
-C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/RegisterFile_tb.v,1729444341,verilog,,,,RegisterFile_tb,,,,,,,,
+Oct 14 2022
+05:20:55
+C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/DataMemory.v,1729682145,verilog,,C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/DataMemory_tb.v,,DataMemory,,,,,,,,
+C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/DataMemory_tb.v,1729681909,verilog,,,,DataMemory_tb,,,,,,,,
+C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/Lab4.sim/sim_1/behav/xsim/glbl.v,1729654687,verilog,,,,glbl,,,,,,,,

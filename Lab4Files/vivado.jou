@@ -1,0 +1,110 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Wed Oct 23 03:48:32 2024
+# Process ID: 14252
+# Current directory: C:/Users/tntta/Documents/GitHub/Labs/Lab4Files
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent12344 C:\Users\tntta\Documents\GitHub\Labs\Lab4Files\Lab4.xpr
+# Log file: C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/vivado.log
+# Journal file: C:/Users/tntta/Documents/GitHub/Labs/Lab4Files\vivado.jou
+# Running On: tanpc, OS: Windows, CPU Frequency: 4008 MHz, CPU Physical cores: 4, Host memory: 25732 MB
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/Lab4.xpr
+update_compile_order -fileset sources_1
+set_property is_enabled false [get_files  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/DataMemory.v]
+set_property is_enabled false [get_files  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/DataMemory_tb.v]
+set_property is_enabled true [get_files  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/DataMemory_tb.v]
+set_property is_enabled true [get_files  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/DataMemory.v]
+launch_simulation
+source DataMemory_tb.tcl
+relaunch_sim
+relaunch_sim
+relaunch_sim
+close_sim
+set_property is_enabled false [get_files  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/DataMemory.v]
+set_property is_enabled false [get_files  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/DataMemory_tb.v]
+close [ open C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v w ]
+add_files C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v
+set_property is_enabled true [get_files  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/ProgramCounter.v]
+update_compile_order -fileset sources_1
+set_property is_enabled true [get_files  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/PCAdder.v]
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+set_property is_enabled true [get_files  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/InstructionMemory.v]
+update_compile_order -fileset sources_1
+set_property is_enabled true [get_files  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/Mux32Bit2To1.v]
+update_compile_order -fileset sources_1
+add_files -norecurse C:/Users/tntta/Desktop/Lab4Project/Mux32Bit3To1.v
+update_compile_order -fileset sources_1
+export_ip_user_files -of_objects  [get_files C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/Mux32Bit2To1.v] -no_script -reset -force -quiet
+remove_files  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/Mux32Bit2To1.v
+add_files -norecurse C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/Mux32Bit3To1.v
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+export_ip_user_files -of_objects  [get_files C:/Users/tntta/Desktop/Lab4Project/Mux32Bit3To1.v] -no_script -reset -force -quiet
+remove_files  C:/Users/tntta/Desktop/Lab4Project/Mux32Bit3To1.v
+add_files -norecurse C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/Mux32Bit3To1.v
+add_files -norecurse C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/Mux32Bit2To1.v
+update_compile_order -fileset sources_1
+add_files -norecurse C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/-IF-ID_RegisterFile.v
+update_compile_order -fileset sources_1
+export_ip_user_files -of_objects  [get_files C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/-IF-ID_RegisterFile.v] -no_script -reset -force -quiet
+remove_files  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/-IF-ID_RegisterFile.v
+add_files -norecurse C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/-IF_ID_RegisterFile.v
+update_compile_order -fileset sources_1
+set_property is_enabled true [get_files  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/Control.v]
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+set_property is_enabled true [get_files  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/DataMemory.v]
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+set_property is_enabled true [get_files  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/RegisterFile.v]
+update_compile_order -fileset sources_1
+add_files -norecurse C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/5BitExtender.v
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+add_files -norecurse C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/ShiftLeft2.v
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+add_files -norecurse C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/SignExtension.v
+set_property is_enabled true [get_files  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/SignExtension.v]
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+add_files -norecurse C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/-ID_EX_RegisterFile.v
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+add_files -norecurse C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/Adder.v
+update_compile_order -fileset sources_1
+set_property is_enabled true [get_files  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/ALU32Bit.v]
+update_compile_order -fileset sources_1
+add_files -norecurse C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/-EX_MEM_RegisterFile.v
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+add_files -norecurse C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/AND_Gate.v
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+add_files -norecurse C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/-MEM_WB_RegisterFile.v
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+launch_runs impl_1 -jobs 4
+wait_on_run impl_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1

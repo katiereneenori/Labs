@@ -1,4 +1,0 @@
-INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/DataMemory.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module DataMemory
-INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/DataMemory_tb.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module DataMemory_tb

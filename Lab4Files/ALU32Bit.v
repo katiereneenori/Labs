@@ -28,60 +28,44 @@
 
 module ALU32Bit(ALUControl, A, B, ALUResult, Zero);
 
-	input [4:0] ALUControl; // control bits for ALU operation
-                                // you need to adjust the bitwidth as needed
-				//
-				// for ISA: need:
-				// add, sub, set less than (compare), and, or, nor, xor, shift left, shift right, multiply
-	input [31:0] A, B;	    // inputs
+	input [4:0] ALUControl;         // control bits for ALU operation
 
-	output reg [31:0] ALUResult;	// answer
-	output reg Zero;	    // Zero=1 if ALUResult == 0
+	input signed [31:0] A, B;	            // inputs to ALU
+
+	output reg signed [31:0] ALUResult;	// Result
+	output reg Zero;	            // Zero = 1 if ALUResult == 0
 
     always @(*) begin
     Zero = 0;
 	case (ALUControl)
 		5'b00000: ALUResult = A + B; 	// Add
 		
-		5'b00001: ALUResult = A - B;		// Subtract
+		5'b00001: ALUResult = A - B;	// Subtract
 		
-		5'b00010: ALUResult = A * B;		// Multiply
+		5'b00010: ALUResult = A * B;	// Multiply
 
-		5'b00011: ALUResult = A & B;		// AND
+		5'b00011: ALUResult = A & B;	// AND
 		
-		5'b00100: ALUResult = A | B;		// OR
+		5'b00100: ALUResult = A | B;	// OR
 		
 		5'b00101: ALUResult = ~(A | B);	// NOR
 		
-		5'b00110: ALUResult = A ^ B;		// XOR 
+		5'b00110: ALUResult = A ^ B;	// XOR 
 		
-		5'b00111: ALUResult = B << A;	// Shif left (B Shifted left by A bits)
+		5'b00111: ALUResult = B << A;	// Shift left (B Shifted left by A bits)
 		
 		5'b01000: ALUResult = B >> A;	// Shift right (B shifted A bits right)
 		
-		5'b01001: begin					// Set less than AND blez
+		5'b01001: begin			        // Set less than (slt & slti) ONLY
 				if (A < B) begin
 					ALUResult = 32'b1;
-					Zero = 1;
 				end
 				else begin
 					ALUResult = 32'b0;
-					Zero = 0;
 				end
 			 end
 
-		5'b01010: begin					// set greater than AND bgtz
-					if (A > B) begin
-						ALUResult = 32'b1;
-						Zero = 1;
-					end
-					else begin
-						ALUResult = 32'b0;
-						Zero = 0;
-					end
-				end
-
-		5'b01011: begin					// ALUResult is 0 if equal 1 if not equal
+		5'b01011: begin		            // beq
 					if (A == B) begin
 						ALUResult = 32'b0;
 					end
@@ -90,37 +74,17 @@ module ALU32Bit(ALUControl, A, B, ALUResult, Zero);
 					end
 				end
 
-		5'b01100: begin					// A greater than or equal to B
-					if (A >= B) begin
-						ALUResult = 32'b0;
-					end
-					else begin
-						ALUResult = 32'b1;
-					end
-				end
-
-		5'b01101: begin					// A less than or equal to B
-					if (A <= B) begin
-						ALUResult = 32'b1;
-						Zero = 1;
-					end
-					else begin
-						ALUResult = 32'b0;
-						Zero = 0;
-					end
-				end
-
-		5'b01110: begin
-					if (A >= 0) begin
-						ALUResult = 0;  // bgez raises zero flag
+		5'b01110: begin 	            //bltz
+					if (A < 0) begin
+						ALUResult = 1'b0; // raises zero flag, allowing branch 
 					end
 
 					else begin
-						ALUResult = 1;  
+						ALUResult = 1'b1;  
 					end
 				end
 
-		5'b01111: begin
+		5'b01111: begin 	            //bne
 					if (A != B) begin
 						ALUResult = 1'b0;
 					end
@@ -130,25 +94,59 @@ module ALU32Bit(ALUControl, A, B, ALUResult, Zero);
 					end
 				end
 
-		5'b10000: begin // just push through A input to output
+		5'b10000: begin //pass A and raise zero flag, used in jr instruction
 					ALUResult = A;
-					Zero = 1;
+					Zero = 1'b1;
+			end
+		
+		5'b10001: begin		            //blez
+				if (A <= 0) begin
+					ALUResult = 1'b0; //raise zero flag allowing branch
 				end
+				else begin
+					ALUResult = 1'b1; //do not raise zero flag
+				end
+			end
+		
+		5'b10010: begin		            //bgtz
+				if (A > 0) begin
+					ALUResult = 1'b0; //raise zero flag allowing branch
+				end
+				else begin
+					ALUResult = 1'b1; //do not raise zero flag
+				end
+			end
 
+		5'b10011: begin		            //bgez
+				if (A >= 0) begin
+					ALUResult = 1'b0; //raise zero flag allowing branch
+				end
+				else begin
+					ALUResult = 1'b1; //do not raise zero flag
+				end
+			end
+
+		5'b10100: begin               // jump address calculation
+                                      // A input = 32 bit PC output for the jump instruction (need most significant 4 bits)
+				                      // B input = 32 bit jump instruction LEFT SHIFTED twice (only care about least
+				                      // significant 26 bits of instruction)
+				
+				ALUResult = {A[31:28], B[27:0]};
+				Zero = 1'b1; // need PCSrc to accept ALUResult without equaling zero
+				
+			end
 		default: ALUResult = 32'b0;		// default case 
-
-		// a beq instruction can be done with subtract, and determine if output is 0, and branch if yes
 
 	endcase
 
-	if (ALUResult == 32'b0) begin
+	if ((ALUResult == 32'b0)) begin // zero flag indicates zero output for all except jump instructions
 		Zero = 1'b1;
 	end
 	
-	else begin
+	else if ((ALUControl != 5'b10100) && (ALUControl != 5'b10000)) begin
 		Zero = 1'b0;
 	end
-
+	
     end
 
 endmodule

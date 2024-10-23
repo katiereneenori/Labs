@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="impl_1" LaunchPart="xc7a35tlcpg236-2L" LaunchTime="1729693346">
+  <File Type="ROUTE-PWR" Name="TopDatapath_power_routed.rpt"/>
+  <File Type="PA-TCL" Name="TopDatapath.tcl"/>
+  <File Type="BITSTR-MMI" Name="TopDatapath.mmi"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="TopDatapath_methodology_drc_opted.rpt"/>
+  <File Type="INIT-TIMING" Name="TopDatapath_timing_summary_init.rpt"/>
+  <File Type="ROUTE-PWR-SUM" Name="TopDatapath_power_summary_routed.pb"/>
+  <File Type="REPORTS-TCL" Name="TopDatapath_reports.tcl"/>
+  <File Type="OPT-TIMING" Name="TopDatapath_timing_summary_opted.rpt"/>
+  <File Type="OPT-DCP" Name="TopDatapath_opt.dcp"/>
+  <File Type="OPT-DRC" Name="TopDatapath_drc_opted.rpt"/>
+  <File Type="OPT-HWDEF" Name="TopDatapath.hwdef"/>
+  <File Type="PWROPT-DCP" Name="TopDatapath_pwropt.dcp"/>
+  <File Type="PWROPT-DRC" Name="TopDatapath_drc_pwropted.rpt"/>
+  <File Type="PWROPT-TIMING" Name="TopDatapath_timing_summary_pwropted.rpt"/>
+  <File Type="PLACE-DCP" Name="TopDatapath_placed.dcp"/>
+  <File Type="PLACE-IO" Name="TopDatapath_io_placed.rpt"/>
+  <File Type="PLACE-CLK" Name="TopDatapath_clock_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL" Name="TopDatapath_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="TopDatapath_utilization_placed.pb"/>
+  <File Type="PLACE-CTRL" Name="TopDatapath_control_sets_placed.rpt"/>
+  <File Type="PLACE-SIMILARITY" Name="TopDatapath_incremental_reuse_placed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="TopDatapath_incremental_reuse_pre_placed.rpt"/>
+  <File Type="BG-BIN" Name="TopDatapath.bin"/>
+  <File Type="PLACE-TIMING" Name="TopDatapath_timing_summary_placed.rpt"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="TopDatapath_postplace_pwropt.dcp"/>
+  <File Type="BITSTR-MSK" Name="TopDatapath.msk"/>
+  <File Type="POSTPLACE-PWROPT-TIMING" Name="TopDatapath_timing_summary_postplace_pwropted.rpt"/>
+  <File Type="PHYSOPT-DCP" Name="TopDatapath_physopt.dcp"/>
+  <File Type="PHYSOPT-DRC" Name="TopDatapath_drc_physopted.rpt"/>
+  <File Type="BITSTR-RBT" Name="TopDatapath.rbt"/>
+  <File Type="PHYSOPT-TIMING" Name="TopDatapath_timing_summary_physopted.rpt"/>
+  <File Type="ROUTE-ERROR-DCP" Name="TopDatapath_routed_error.dcp"/>
+  <File Type="ROUTE-DCP" Name="TopDatapath_routed.dcp"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="TopDatapath_routed_bb.dcp"/>
+  <File Type="ROUTE-DRC" Name="TopDatapath_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-PB" Name="TopDatapath_drc_routed.pb"/>
+  <File Type="ROUTE-DRC-RPX" Name="TopDatapath_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="TopDatapath_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="TopDatapath_methodology_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="TopDatapath_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-PWR-RPX" Name="TopDatapath_power_routed.rpx"/>
+  <File Type="ROUTE-STATUS" Name="TopDatapath_route_status.rpt"/>
+  <File Type="ROUTE-STATUS-PB" Name="TopDatapath_route_status.pb"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="TopDatapath_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-TIMING-PB" Name="TopDatapath_timing_summary_routed.pb"/>
+  <File Type="ROUTE-TIMING-RPX" Name="TopDatapath_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-SIMILARITY" Name="TopDatapath_incremental_reuse_routed.rpt"/>
+  <File Type="ROUTE-CLK" Name="TopDatapath_clock_utilization_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW" Name="TopDatapath_bus_skew_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW-PB" Name="TopDatapath_bus_skew_routed.pb"/>
+  <File Type="ROUTE-BUS-SKEW-RPX" Name="TopDatapath_bus_skew_routed.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="TopDatapath_postroute_physopt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="TopDatapath_postroute_physopt_bb.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="TopDatapath_timing_summary_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="TopDatapath_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="TopDatapath_timing_summary_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="TopDatapath_bus_skew_postroute_physopted.rpt"/>
+  <File Type="BG-BIT" Name="TopDatapath.bit"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="TopDatapath_bus_skew_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="TopDatapath_bus_skew_postroute_physopted.rpx"/>
+  <File Type="BITSTR-NKY" Name="TopDatapath.nky"/>
+  <File Type="BITSTR-BMM" Name="TopDatapath_bd.bmm"/>
+  <File Type="PDI-FILE" Name="TopDatapath.pdi"/>
+  <File Type="RCFI_FILE" Name="TopDatapath.rcfi"/>
+  <File Type="CFI_FILE" Name="TopDatapath.cfi"/>
+  <File Type="RNPI_FILE" Name="TopDatapath.rnpi"/>
+  <File Type="NPI_FILE" Name="TopDatapath.npi"/>
+  <File Type="RBD_FILE" Name="TopDatapath.rbd"/>
+  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
+  <File Type="BITSTR-LTX" Name="TopDatapath.ltx"/>
+  <File Type="BITSTR-SYSDEF" Name="TopDatapath.sysdef"/>
+  <File Type="BG-BGN" Name="TopDatapath.bgn"/>
+  <File Type="BG-DRC" Name="TopDatapath.drc"/>
+  <File Type="RDI-RDI" Name="TopDatapath.vdi"/>
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <File Type="ROUTE-RQS" Name="TopDatapath_routed.rqs"/>
+  <File Type="POSTROUTE-PHYSOPT-RQS" Name="TopDatapath_postroute_physopted.rqs"/>
+  <File Type="ROUTE-RQS-RPT" Name="route_report_qor_suggestions_0.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-RQS-RPT" Name="postroute_physopt_report_qor_suggestions_0.rpt"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PPRDIR/-EX_MEM_RegisterFile.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/-ID_EX_RegisterFile.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/-IF_ID_RegisterFile.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/-MEM_WB_RegisterFile.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/5BitExtender.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/ALU32Bit.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/AND_Gate.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/Adder.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/Control.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/DataMemory.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/InstructionMemory.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/Mux32Bit2To1.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/Mux32Bit3To1.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/PCAdder.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/ProgramCounter.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/RegisterFile.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/ShiftLeft2.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/SignExtension.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/TopDatapath.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/InstructionFetchUnit.v">
+      <FileInfo>
+        <Attr Name="UserDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/One4DigitDisplay.v">
+      <FileInfo>
+        <Attr Name="UserDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/ClkDiv.v">
+      <FileInfo>
+        <Attr Name="UserDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/PC_MUX.v">
+      <FileInfo>
+        <Attr Name="UserDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/SevenSegment.v">
+      <FileInfo>
+        <Attr Name="UserDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/TopModule.v">
+      <FileInfo>
+        <Attr Name="UserDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="TopDatapath"/>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1">
+    <Filter Type="Utils"/>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2020"/>
+    <Step Id="init_design"/>
+    <Step Id="opt_design"/>
+    <Step Id="power_opt_design"/>
+    <Step Id="place_design"/>
+    <Step Id="post_place_power_opt_design"/>
+    <Step Id="phys_opt_design"/>
+    <Step Id="route_design"/>
+    <Step Id="post_route_phys_opt_design"/>
+    <Step Id="write_bitstream"/>
+  </Strategy>
+</GenRun>
