@@ -32,9 +32,50 @@ module DataMemory_tb();
 	end
 
 	initial begin
-	
-    /* Please fill in the implementation here... */
-	
+        // Initialize inputs
+        MemWrite <= 0;
+        MemRead <= 0;
+        Address <= 32'd0;
+        WriteData <= 32'd0;
+
+        // Wait for reset
+        #20;
+
+        // Test case 1: Write data to address 0x00000010
+        MemWrite <= 1;
+        Address <= 32'h00000010;
+        WriteData <= 32'hDEADBEEF;
+        #20;
+
+        // Disable write
+        MemWrite <= 0;
+
+        // Test case 2: Read data from address 0x00000010
+        MemRead <= 1;
+        Address <= 32'h00000010;
+        #20;
+
+        // Disable read
+        MemRead <= 0;
+
+        // Test case 3: Write data to address 0x00000020
+        MemWrite <= 1;
+        Address <= 32'h00000020;
+        WriteData <= 32'h12345678;
+        #20;
+
+        // Disable write
+        MemWrite <= 0;
+
+        // Test case 4: Read data from address 0x00000020
+        MemRead <= 1;
+        Address <= 32'h00000020;
+        #20;
+
+        // Disable read
+        MemRead <= 0;
+
+        $finish;
 	end
 
 endmodule

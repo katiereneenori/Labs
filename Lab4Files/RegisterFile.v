@@ -72,7 +72,7 @@ module RegisterFile(ReadRegister1, ReadRegister2, WriteRegister, WriteData, RegW
 		//initialize all registers to 0
 	end
 	
-	always @(negedge Clk) begin
+	always @(*) begin //using @(*) to avoid latches
 		ReadData1 = registers[ReadRegister1];
 		ReadData2 = registers[ReadRegister2];
 

@@ -39,6 +39,7 @@ module ALU32Bit(ALUControl, A, B, ALUResult, Zero);
 	output reg Zero;	    // Zero=1 if ALUResult == 0
 
     always @(*) begin
+    Zero = 0;
 	case (ALUControl)
 		5'b00000: ALUResult = A + B; 	// Add
 		

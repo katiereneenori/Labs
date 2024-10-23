@@ -11,7 +11,7 @@ module SignExtension(in, out);
     input [15:0] in;
     
     // A 32-Bit output word 
-    output [31:0] out;
+    output reg [31:0] out;
     
     always @(*) begin
 	if(in[15] == 1'b1) begin
