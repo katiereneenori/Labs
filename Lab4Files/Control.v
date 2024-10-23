@@ -33,8 +33,8 @@ module Control(Instruction, ALUOp, PCSrc, ToBranch, RegDst, ALUSrc, RegWrite, Me
 
 input [31:0] Instruction;
 
-output [4:0] ALUOp;
-output PCSrc, ToBranch, RegDst, ALUSrc, RegWrite, MemWrite, MemRead, MemToReg, ShiftA, MemByte, MemHalf, JorBranch;
+output reg [4:0] ALUOp;
+output reg PCSrc, ToBranch, RegDst, ALUSrc, RegWrite, MemWrite, MemRead, MemToReg, ShiftA, MemByte, MemHalf, JorBranch;
 
 always @(*) begin	
 	
@@ -92,7 +92,7 @@ always @(*) begin
 		end
 
 		// and --
-		6'100100: begin
+		6'b100100: begin
 			ALUOp = 5'b00011;
 			ToBranch = 1'b0;
 			RegDst = 1'b1; 
@@ -204,11 +204,12 @@ always @(*) begin
 		end
 
 	endcase
+end
 
 // I-Type and J-Type instructions
 	else begin
 
-		case (Instruction[31:26]) begin
+		case (Instruction[31:26])
 		
 			// addi --
 			6'b001000: begin
@@ -227,7 +228,7 @@ always @(*) begin
 			end
 
 			// lw --
-			6'b100011 begin
+			6'b100011: begin
 				ALUOp = 5'b00000; // add 0
 				ToBranch = 1'b0;
 				RegDst = 1'b0; 
@@ -516,7 +517,7 @@ always @(*) begin
 
 		endcase
 	end
-
+end
 
 
 endmodule
