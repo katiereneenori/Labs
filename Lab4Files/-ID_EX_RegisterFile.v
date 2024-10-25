@@ -9,7 +9,7 @@
 
 module ID_EX(inALUOp, inToBranch, inRegWrite, inMemWrite, inMemRead, inMemByte,
              inMemHalf,  inRegDst, inJalSel, inALUSrcA, inALUSrcB, inJorBranch, 
-             inMemToReg, inWire10, inWire16, inWire14, inWire9, inWire15, inWire17, 
+             inMemToReg, inWire10Upper, inWire10Lower, inWire16, inWire14, inWire9, inWire15, inWire17, 
              inWire18, inWire11Upper, inWire11Lower, outALUOp, outToBranch, outRegWrite,
              outMemWrite, outMemRead, outMemByte, outMemHalf,  outRegDst, outJalSel,
              outALUSrcA, outALUSrcB, outJorBranch, outMemToReg, outWire10Upper, outWire10Lower, outWire16, 
@@ -19,7 +19,7 @@ module ID_EX(inALUOp, inToBranch, inRegWrite, inMemWrite, inMemRead, inMemByte,
 input [4:0] inALUOp;
 input inToBranch, inRegWrite, inMemWrite, inMemRead, inMemByte, inMemHalf,  inRegDst, inJalSel, inJorBranch;
 input [1:0] inALUSrcA, inALUSrcB, inMemToReg;
-input [31:0] inWire10, inWire16, inWire14, inWire9, inWire15, inWire17, inWire18, inWire11Upper, inWire11Lower;
+input [31:0] inWire10Upper, inWire10Lower, inWire16, inWire14, inWire9, inWire15, inWire17, inWire18, inWire11Upper, inWire11Lower;
 
 input Clk, Reset;
 
@@ -67,8 +67,8 @@ output reg [31:0] outWire10Upper, outWire10Lower, outWire16, outWire14, outWire9
             outALUSrcB <= inALUSrcB;
             outJorBranch <= inJorBranch;
             outMemToReg <= inMemToReg;
-            outWire10Upper <= inWire10;
-            outWire10Lower <= inWire10;
+            outWire10Upper <= inWire10Upper;
+            outWire10Lower <= inWire10Lower;
             outWire16 <= inWire16;
             outWire14 <= inWire14;
             outWire9 <= inWire9;

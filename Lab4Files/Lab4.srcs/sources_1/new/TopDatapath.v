@@ -138,7 +138,8 @@ reg [31:0] returnAddr = 32'b00000000000000000000000000011111; // 32-bit represen
         .inMemWrite(MemWriteWire), .inMemRead(MemReadWire), .inMemByte(MemByteWire),
         .inMemHalf(MemHalfWire),  .inRegDst(RegDstWire), .inJalSel(JalSelWire), 
         .inALUSrcA(ALUSrcAWire), .inALUSrcB(ALUSrcBWire), .inJorBranch(JorBranch), 
-        .inMemToReg(MemToRegWire), .inWire10(wire10), .inWire16(wire16), 
+        .inMemToReg(MemToRegWire), .inWire10Upper(wire10_upper),
+        .inWire10Lower(wire10_lower), .inWire16(wire16), 
         .inWire14(wire14), .inWire9(wire9), .inWire15(wire15), .inWire17(wire17), 
         .inWire18(wire18), .inWire11Upper(wire11[20:16]), .inWire11Lower(wire11[15:11]), 
         .outALUOp(ALUOpWire1), .outToBranch(ToBranchWire1), .outRegWrite(RegWriteWire1),
@@ -177,7 +178,7 @@ reg [31:0] returnAddr = 32'b00000000000000000000000000011111; // 32-bit represen
         .inA(wire24),
         .inB(wire26),
         .inC(wire25),
-        .sel(ALUSrcB1),
+        .sel(ALUSrcBWire1),
         .out(wire32)
     );
     

@@ -80,13 +80,12 @@ module RegisterFile(ReadRegister1, ReadRegister2, WriteRegister, WriteData, RegW
 		// at falling edge of the clock
 	end
 	
-	always @(posedge Clk) begin
-		if(RegWrite) begin
-			registers[WriteRegister] <= WriteData;
-		end
-
-		// write the data in 'WriteData' to the register at 'WriteRegister' address
-	end
+    always @(posedge Clk) begin
+        if(RegWrite) begin
+            if (WriteRegister != 5'd0) // Register 0 is always 0 in MIPS
+                registers[WriteRegister] <= WriteData;
+        end
+    end
 
 endmodule
 
