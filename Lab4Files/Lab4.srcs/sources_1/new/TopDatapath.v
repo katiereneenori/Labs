@@ -37,11 +37,13 @@ wire ToBranchWire, RegWriteWire, MemWriteWire, MemReadWire, MemByteWire, MemHalf
 wire ToBranchWire1, RegWriteWire1, MemWriteWire1, MemReadWire1, MemByteWire1, MemHalfWire1, RegDstWire1, JalSelWire1, wire35, wire38, JorBranchWire1;
 wire ToBranchWire2, RegWriteWire2, MemWriteWire2, MemReadWire2, MemByteWire2, MemHalfWire2, RegDstWire2, JalSelWire2, JorBranchWire2;
 wire MemToRegWire3, JalSelWire3, RegWriteWire3;
-reg returnAddr = 5'b11111;
+reg [31:0] returnAddr = 32'b00000000000000000000000000011111; // 32-bit representation of 5'b11111
 
 // ------------------------Instruction Fetch Stage------------------------
 
     Mux32Bit2To1 JorBranchMux(
+        .Clk(Clk),
+        .Reset(Reset),
         .inA(wire6),
         .inB(wire7),
         .out(wire5),
@@ -49,6 +51,8 @@ reg returnAddr = 5'b11111;
         );
     
     Mux32Bit2To1 PCSrcMux( // 2x1 mux -- PCSrc control signal
+        .Clk(Clk),
+        .Reset(Reset),
         .inA(wire3),
         .inB(wire5),
         .sel(PCSrcWire)
@@ -140,7 +144,7 @@ reg returnAddr = 5'b11111;
         .outALUOp(ALUOpWire1), .outToBranch(ToBranchWire1), .outRegWrite(RegWriteWire1),
         .outMemWrite(MemWriteWire1), .outMemRead(MemReadWire1), .outMemByte(MemByteWire1), 
         .outMemHalf(MemHalfWire1),  .outRegDst(RegDstWire1), .outJalSel(JalSelWire1),
-        .outALUSrcA(ALUSrcAWire1), .outALUSrcB(ALUSrcBWire1), .outJorBranch(JorBranch1), 
+        .outALUSrcA(ALUSrcAWire1), .outALUSrcB(ALUSrcBWire1), .outJorBranch(JorBranchWire1), 
         .outMemToReg(MemToRegWire1), .outWire10Upper(wire19), .outWire10Lower(wire20), .outWire16(wire21), 
         .outWire14(wire22), .outWire9(wire23), .outWire15(wire24), .outWire17(wire25), 
         .outWire18(wire26), .outWire11Upper(wire27), .outWire11Lower(wire28)
@@ -158,14 +162,18 @@ reg returnAddr = 5'b11111;
     );
     
     Mux32Bit3To1 ALUSrcAMux(
+        .Clk(Clk),
+        .Reset(Reset),
         .inA(wire22),
         .inB(wire21),
         .inC(wire23),
-        .sel(ALUSrcA1),
+        .sel(ALUSrcAWire1),
         .out(wire31)
     );
     
     Mux32Bit3To1 ALUSrcBMux(
+        .Clk(Clk),
+        .Reset(Reset),
         .inA(wire24),
         .inB(wire26),
         .inC(wire25),
@@ -174,6 +182,8 @@ reg returnAddr = 5'b11111;
     );
     
     Mux32Bit2To1 RegDstMux(
+        .Clk(Clk),
+        .Reset(Reset),
         .inA(wire27),
         .inB(wire28),
         .sel(RegDst1),
@@ -217,7 +227,8 @@ reg returnAddr = 5'b11111;
     
             // ------------------------Write Back Stage------------------------
     MEM_WB(
-        .Clk(Clk), .Reset(Reset),
+        .Clk(Clk), 
+        .Reset(Reset),
         .inRegWrite(RegWriteWire2), 
         .inJalSel(JalSelWire2), 
         .inMemToReg(MemToRegWire2),  
@@ -235,6 +246,8 @@ reg returnAddr = 5'b11111;
     );
     
     Mux32Bit3To1 MemToRegMux(
+        .Clk(Clk),
+        .Reset(Reset),
         .inA(wire43),
         .inB(wire44),
         .inC(wire42),
@@ -243,6 +256,8 @@ reg returnAddr = 5'b11111;
     );
     
     Mux32Bit2To1 JalSelMux(
+        .Clk(Clk),
+        .Reset(Reset),
         .inA(wire45),
         .inB(returnAddr),
         .sel(JalSelWire3)
