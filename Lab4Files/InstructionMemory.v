@@ -49,12 +49,9 @@ module InstructionMemory(Address, Instruction);
     
     integer i;
     
-    initial begin
-        for (i=0;i<128;i=i+1) begin
-            memory[i] = i*3;
+        initial begin
+            $readmemh("C:\\Users\\tjwil\\Desktop\\ECE369A\\LabsRepo\\Labs\\Lab4Files\\out.mem", memory);
         end
-        
-    end
     
     always @(Address) begin
         Instruction = memory[Address[8:2]]; //fetch
