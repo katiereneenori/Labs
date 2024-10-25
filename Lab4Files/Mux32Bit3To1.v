@@ -7,7 +7,7 @@
 // Description - Performs signal multiplexing between 2 32-Bit words.
 ////////////////////////////////////////////////////////////////////////////////
 
-module Mux32Bit3To1(out, inA, inB, inC, sel);
+module Mux32Bit3To1(out, inA, inB, inC, sel, Clk, Reset);
 
     output reg [31:0] out;
     
@@ -15,19 +15,29 @@ module Mux32Bit3To1(out, inA, inB, inC, sel);
     input [31:0] inB;
     input [31:0] inC;
     input [1:0] sel;
+    
+    input Clk, Reset;
+    
+    reg [31:0] mux_out;
 
+    //using combinational logic to select the input
     always @(*) begin
-	if (sel == 2'b10) begin
-		out = inC;
-	end	
-
-	else if (sel == 2'b01) begin
-		out = inB; // if sel is 1, choose inB
-	end
-
-	else if (sel == 2'b00) begin
-		out = inA; 
-	end
+            case (sel)
+                2'b00: mux_out = inA;
+                2'b01: mux_out = inB;
+                2'b10: mux_out = inC;
+                default: mux_out = inA; //default to inA if undefined sel
+            endcase
+        end
+        
+        //using sequential logic to register the output
+            always @(posedge Clk or posedge Reset) begin
+        if (Reset) begin
+            out <= 32'b0;
+        end 
+        else begin
+            out <= mux_out;
+        end
     end
 
 endmodule
