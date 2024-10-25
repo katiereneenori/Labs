@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/Lab4.runs/synth_1/TopDatapath.tcl"
+  variable script "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.runs/synth_1/TopDatapath.tcl"
   variable category "vivado_synth"
 }
 
@@ -76,34 +76,34 @@ create_project -in_memory -part xc7a35tlcpg236-2L
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/Lab4.cache/wt [current_project]
-set_property parent.project_path C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/Lab4.xpr [current_project]
+set_property webtalk.parent_dir C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.cache/wt [current_project]
+set_property parent.project_path C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
-set_property ip_output_repo c:/Users/tntta/Documents/GitHub/Labs/Lab4Files/Lab4.cache/ip [current_project]
+set_property ip_output_repo c:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
-  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/-EX_MEM_RegisterFile.v
-  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/-ID_EX_RegisterFile.v
-  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/-IF_ID_RegisterFile.v
-  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/-MEM_WB_RegisterFile.v
-  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/5BitExtender.v
-  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/ALU32Bit.v
-  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/AND_Gate.v
-  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/Adder.v
-  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/Control.v
-  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/DataMemory.v
-  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/InstructionMemory.v
-  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/Mux32Bit2To1.v
-  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/Mux32Bit3To1.v
-  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/PCAdder.v
-  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/ProgramCounter.v
-  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/RegisterFile.v
-  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/ShiftLeft2.v
-  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/SignExtension.v
-  C:/Users/tntta/Documents/GitHub/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v
+  C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/-EX_MEM_RegisterFile.v
+  C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/-ID_EX_RegisterFile.v
+  C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/-IF_ID_RegisterFile.v
+  C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/-MEM_WB_RegisterFile.v
+  C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/5BitExtender.v
+  C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ALU32Bit.v
+  C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/AND_Gate.v
+  C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Adder.v
+  C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Control.v
+  C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/DataMemory.v
+  C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/InstructionMemory.v
+  C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Mux32Bit2To1.v
+  C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Mux32Bit3To1.v
+  C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/PCAdder.v
+  C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ProgramCounter.v
+  C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/RegisterFile.v
+  C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ShiftLeft2.v
+  C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/SignExtension.v
+  C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v
 }
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
