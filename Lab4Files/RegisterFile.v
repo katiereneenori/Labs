@@ -48,7 +48,7 @@
 // to allow for data multiplexing and setup time.
 ////////////////////////////////////////////////////////////////////////////////
 
-module RegisterFile(ReadRegister1, ReadRegister2, WriteRegister, WriteData, RegWrite, Clk, ReadData1, ReadData2);
+module RegisterFile(ReadRegister1, ReadRegister2, WriteRegister, WriteData, RegWrite, Clk, Reset, ReadData1, ReadData2);
 
 	input [4:0]  ReadRegister1;
 	input [4:0]  ReadRegister2;
@@ -59,7 +59,7 @@ module RegisterFile(ReadRegister1, ReadRegister2, WriteRegister, WriteData, RegW
 	output reg [31:0] ReadData2;
 	
 	input RegWrite;
-	input Clk;
+	input Clk, Reset;
 	
 	reg [31:0] registers [31:0]; // initialize 32 32-bit registers
 
@@ -72,13 +72,15 @@ module RegisterFile(ReadRegister1, ReadRegister2, WriteRegister, WriteData, RegW
 		//initialize all registers to 0
 	end
 	
-	always @(*) begin //using @(*) to avoid latches
-		ReadData1 = registers[ReadRegister1];
-		ReadData2 = registers[ReadRegister2];
-
-		// output data at 'ReadRegister1/2' address location in registers
-		// at falling edge of the clock
-	end
+    always @(posedge Clk or posedge Reset) begin
+        if (Reset) begin
+            ReadData1 <= 32'b0;
+            ReadData2 <= 32'b0;
+        end else begin
+            ReadData1 <= registers[ReadRegister1];
+            ReadData2 <= registers[ReadRegister2];
+        end
+    end
 	
     always @(posedge Clk) begin
         if(RegWrite) begin
@@ -88,12 +90,3 @@ module RegisterFile(ReadRegister1, ReadRegister2, WriteRegister, WriteData, RegW
     end
 
 endmodule
-
-
-
-
-
-
-
-
-

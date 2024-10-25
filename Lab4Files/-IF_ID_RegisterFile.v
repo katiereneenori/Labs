@@ -28,12 +28,3 @@ module IF_ID(inWire2, inWire3, inWire4, outWire2, outWire3, outWire4, Clk, Reset
     end
     
 endmodule
-
-
-
-
-
-
-
-
-

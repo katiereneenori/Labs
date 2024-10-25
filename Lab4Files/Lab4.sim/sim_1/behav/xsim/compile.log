@@ -38,5 +38,3 @@ INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/Labs
 INFO: [VRFC 10-311] analyzing module TopDatapath
 INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sim_1/new/TopDatapath_tb.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module TopDatapath_tb
-INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module glbl

@@ -39,13 +39,13 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
-module InstructionMemory(Address, Instruction); 
+module InstructionMemory(Address, Instruction);
 
     input [31:0] Address;        // Input Address 
 
     output reg [31:0] Instruction;    // Instruction at memory location Address
     
-    reg [31:0] memory[0:127]; //store instructions
+    reg [31:0] memory[0:1023]; //store instructions
     
     integer i;
     
@@ -54,7 +54,7 @@ module InstructionMemory(Address, Instruction);
         end
     
     always @(Address) begin
-        Instruction = memory[Address[8:2]]; //fetch
+        Instruction = memory[Address[11:2]]; //fetch
     end
     
 endmodule

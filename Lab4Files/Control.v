@@ -107,7 +107,7 @@ if (Instruction[31:26] == 6'b000000) begin
                     MemByte = 1'b0;         // not byte operation
                     MemHalf = 1'b0;         // not half-word operation
                     JorBranch = 1'b0;       // not a jump or branch
-		    JalSel = 1'b0;
+		            JalSel = 1'b0;
                 end
 
                 // jr --
@@ -124,7 +124,7 @@ if (Instruction[31:26] == 6'b000000) begin
                     MemByte = 1'b0;         // not byte operation
                     MemHalf = 1'b0;         // not half-word operation
                     JorBranch = 1'b1;       // use rs from alu output for PC input
-		    JalSel = 1'b0;
+		            JalSel = 1'b0;
                 end
                 
                 // and --
@@ -321,7 +321,7 @@ if (Instruction[31:26] == 6'b000000) begin
                     MemByte = 1'b1;         // access last byte only
                     MemHalf = 1'b0;         // not half-word
                     JorBranch = 1'b0;       // not a jump or branch
-		    JalSel = 1'b0;
+		            JalSel = 1'b0;
                 end
                 
                 // sb --
@@ -338,7 +338,7 @@ if (Instruction[31:26] == 6'b000000) begin
                     MemByte = 1'b1;         // write byte
                     MemHalf = 1'b0;         // not half-word
                     JorBranch = 1'b0;       // not a jump or branch
-		    JalSel = 1'b0;
+		            JalSel = 1'b0;
                 end
                 
                 // lh --
@@ -355,7 +355,7 @@ if (Instruction[31:26] == 6'b000000) begin
                     MemByte = 1'b0;         // not byte
                     MemHalf = 1'b1;         // access half-word
                     JorBranch = 1'b0;       // not a jump or branch
-		    JalSel = 1'b0;
+		            JalSel = 1'b0;
                 end
                 
                 // sh --
@@ -372,7 +372,7 @@ if (Instruction[31:26] == 6'b000000) begin
                     MemByte = 1'b0;         // not byte
                     MemHalf = 1'b1;         // write half-word
                     JorBranch = 1'b0;       // not a jump or branch
-		    JalSel = 1'b0;
+		            JalSel = 1'b0;
                 end
                 
                 // beq --
@@ -389,7 +389,7 @@ if (Instruction[31:26] == 6'b000000) begin
                     MemByte = 1'b0;         // not memory operation
                     MemHalf = 1'b0;         // not memory operation
                     JorBranch = 1'b0;       // not a jump, so PC+4 + (offset << 2) input to PC
-		    JalSel = 1'b0;
+		            JalSel = 1'b0;
                 end
                 
                 // bne --
@@ -406,7 +406,7 @@ if (Instruction[31:26] == 6'b000000) begin
                     MemByte = 1'b0;         // not memory operation
                     MemHalf = 1'b0;         // not memory operation
                     JorBranch = 1'b0;       // not a jump register
-		    JalSel = 1'b0;
+		            JalSel = 1'b0;
                 end
                 
                 // blez --
@@ -423,7 +423,7 @@ if (Instruction[31:26] == 6'b000000) begin
                     MemByte = 1'b0;         // not memory operation
                     MemHalf = 1'b0;         // not memory operation
                     JorBranch = 1'b0;       // choose branch, if condition met, pcsrc = 1 and branches, otherwise pc input is pc + 4
-		    JalSel = 1'b0;
+		            JalSel = 1'b0;
                 end
                 
                 // bgtz --
@@ -440,7 +440,7 @@ if (Instruction[31:26] == 6'b000000) begin
                     MemByte = 1'b0;         // not memory operation
                     MemHalf = 1'b0;         // not memory operation
                     JorBranch = 1'b0;       // not a jump register
-		    JalSel = 1'b0;
+		            JalSel = 1'b0;
                 end
                 
                 // bltz and bgez --
@@ -464,7 +464,7 @@ if (Instruction[31:26] == 6'b000000) begin
                     MemByte = 1'b0;         // not memory operation
                     MemHalf = 1'b0;         // not memory operation
                     JorBranch = 1'b0;       // not a jump register
-		    JalSel = 1'b0;
+	         	    JalSel = 1'b0;
                 end
                 
                 // andi --
@@ -481,7 +481,7 @@ if (Instruction[31:26] == 6'b000000) begin
                     MemByte = 1'b0;         // not memory operation
                     MemHalf = 1'b0;         // not memory operation
                     JorBranch = 1'b0;       // not a jump or branch
-		    JalSel = 1'b0;
+		            JalSel = 1'b0;
                 end
                 
                 // ori --
@@ -498,7 +498,7 @@ if (Instruction[31:26] == 6'b000000) begin
                     MemByte = 1'b0;         // not memory operation
                     MemHalf = 1'b0;         // not memory operation
                     JorBranch = 1'b0;       // not a jump or branch
-		    JalSel = 1'b0;
+	        	    JalSel = 1'b0;
                 end
                 
                 // xori --
@@ -515,7 +515,7 @@ if (Instruction[31:26] == 6'b000000) begin
                     MemByte = 1'b0;         // not memory operation
                     MemHalf = 1'b0;         // not memory operation
                     JorBranch = 1'b0;       // not a jump or branch
-		    JalSel = 1'b0;
+	                JalSel = 1'b0;
                 end
                 
                 // slti --
@@ -532,7 +532,7 @@ if (Instruction[31:26] == 6'b000000) begin
                     MemByte = 1'b0;         // not memory operation
                     MemHalf = 1'b0;         // not memory operation
                     JorBranch = 1'b0;       // not a jump or branch
-		    JalSel = 1'b0;
+	        	    JalSel = 1'b0;
                 end
                 
                 // j --
@@ -549,7 +549,7 @@ if (Instruction[31:26] == 6'b000000) begin
                     MemByte = 1'b0;         // not memory operation
                     MemHalf = 1'b0;         // not memory operation
                     JorBranch = 1'b1;       // take ALU output as PC input
-		    JalSel = 1'b0;
+		            JalSel = 1'b0;
                 end
                 
                 // jal --
@@ -566,7 +566,7 @@ if (Instruction[31:26] == 6'b000000) begin
                     MemByte = 1'b0;         // not memory operation
                     MemHalf = 1'b0;         // not memory operation
                     JorBranch = 1'b1;       // use alu output as pc input
-		    JalSel = 1'b1;		// only instruction to have this as 1
+		            JalSel = 1'b1;		// only instruction to have this as 1
                 end
                 
                 default: begin
@@ -582,7 +582,7 @@ if (Instruction[31:26] == 6'b000000) begin
         		MemByte = 1'b0;
         		MemHalf = 1'b0;
         		JorBranch = 1'b0;
-			JalSel = 1'b0;
+			    JalSel = 1'b0;
                 end
                 
             endcase

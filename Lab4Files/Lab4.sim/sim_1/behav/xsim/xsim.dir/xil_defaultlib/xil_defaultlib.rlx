@@ -3,7 +3,7 @@
 Oct 14 2022
 05:20:55
 C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/-EX_MEM_RegisterFile.v,1729890434,verilog,,C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/-ID_EX_RegisterFile.v,,EX_MEM,,,,,,,,
-C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/-ID_EX_RegisterFile.v,1729890285,verilog,,C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/-IF_ID_RegisterFile.v,,ID_EX,,,,,,,,
+C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/-ID_EX_RegisterFile.v,1729894057,verilog,,C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/-IF_ID_RegisterFile.v,,ID_EX,,,,,,,,
 C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/-IF_ID_RegisterFile.v,1729890161,verilog,,C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/-MEM_WB_RegisterFile.v,,IF_ID,,,,,,,,
 C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/-MEM_WB_RegisterFile.v,1729890530,verilog,,C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/5BitExtender.v,,MEM_WB,,,,,,,,
 C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/5BitExtender.v,1729786426,verilog,,C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ALU32Bit.v,,FiveBitExtender,,,,,,,,
