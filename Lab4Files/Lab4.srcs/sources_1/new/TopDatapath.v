@@ -20,12 +20,12 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module TopDatapath(Clk, Reset, out);
+module TopDatapath(Clk, Reset, PC_out, ALU_result_out, MemReadData_out);
 
 input Clk;
 input Reset;
 
-output reg out; // not even sure what is supposed to be output
+output [31:0] PC_out, ALU_result_out, MemReadData_out;
 
 wire [31:0] wire1, wire2, wire3, wire4, wire5, wire6, wire7, wire8, wire9, wire10, wire11, wire14, wire15, wire16,
             wire17, wire18, wire19, wire20, wire21, wire22, wire23, wire24, wire25, wire26, wire27, wire28, wire29,
@@ -72,6 +72,8 @@ reg returnAddr = 5'b11111;
         );
         
     IF_ID IF_IDRegFile(
+        .Clk(Clk),
+        .Reset(Reset),
         .inWire2(wire2),
         .inWire3(wire3),
         .inWire4(wire4),
@@ -126,6 +128,8 @@ reg returnAddr = 5'b11111;
     );
     
     ID_EX ID_EXRegFile(
+        .Clk(Clk),
+        .Reset(Reset),
         .inALUOp(ALUOpWire), .inToBranch(ToBranchWire), .inRegWrite(RegWriteWire), 
         .inMemWrite(MemWriteWire), .inMemRead(MemReadWire), .inMemByte(MemByteWire),
         .inMemHalf(MemHalfWire),  .inRegDst(RegDstWire), .inJalSel(JalSelWire), 
@@ -185,7 +189,7 @@ reg returnAddr = 5'b11111;
     );
     
     EX_MEM EX_MEMRegFile(
-         .inToBranch(ToBranchWire1), .inRegWrite(RegWriteWire1), .inMemWrite(MemWriteWire1), .inMemRead(MemReadWire1), .inMemByte(MemByteWire1),
+         .Clk(Clk), .Reset(Reset),.inToBranch(ToBranchWire1), .inRegWrite(RegWriteWire1), .inMemWrite(MemWriteWire1), .inMemRead(MemReadWire1), .inMemByte(MemByteWire1),
          .inMemHalf(MemHalfWire1), .inJalSel(JalSelWire1), .inJorBranch(JorBranchWire1), .inMemToReg(MemToRegWire1), .inWire19(wire19), 
          .inWire30(wire30), .inWire35(wire35), .inWire34(wire34), .inWire24(wire24), .inWire33(wire33), .outToBranch(ToBranchWire2), .outRegWrite(RegWriteWire2),
          .outMemWrite(MemWriteWire2), .outMemRead(MemReadWire2), .outMemByte(MemByteWire2), .outMemHalf(MemHalfWire2), .outJalSel(JalSelWire2),
@@ -213,6 +217,7 @@ reg returnAddr = 5'b11111;
     
             // ------------------------Write Back Stage------------------------
     MEM_WB(
+        .Clk(Clk), .Reset(Reset),
         .inRegWrite(RegWriteWire2), 
         .inJalSel(JalSelWire2), 
         .inMemToReg(MemToRegWire2),  

@@ -1,14 +1,10 @@
 Vivado Simulator v2022.2
 Copyright 1986-1999, 2001-2022 Xilinx, Inc. All Rights Reserved.
-Running: C:/Xilinx/Vivado/2022.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot DataMemory_tb_behav xil_defaultlib.DataMemory_tb xil_defaultlib.glbl -log elaborate.log 
+Running: C:/Xilinx/Vivado/2022.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot TopDatapath_tb_behav xil_defaultlib.TopDatapath_tb xil_defaultlib.glbl -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
-Completed static elaboration
-Starting simulation data flow analysis
-Completed simulation data flow analysis
-Time Resolution for simulation is 1ps
-Compiling module xil_defaultlib.DataMemory
-Compiling module xil_defaultlib.DataMemory_tb
-Compiling module xil_defaultlib.glbl
-Built simulation snapshot DataMemory_tb_behav
+ERROR: [VRFC 10-3180] cannot find port 'mem_read_data' on this module [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sim_1/new/TopDatapath_tb.v:42]
+ERROR: [VRFC 10-3180] cannot find port 'alu_result' on this module [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sim_1/new/TopDatapath_tb.v:41]
+ERROR: [VRFC 10-2538] module instantiation should have an instance name [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v:215]
+ERROR: [XSIM 43-3322] Static elaboration of top level Verilog design unit(s) in library work failed.

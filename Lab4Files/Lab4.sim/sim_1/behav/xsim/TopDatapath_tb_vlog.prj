@@ -1,0 +1,28 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../-EX_MEM_RegisterFile.v" \
+"../../../../-ID_EX_RegisterFile.v" \
+"../../../../-IF_ID_RegisterFile.v" \
+"../../../../-MEM_WB_RegisterFile.v" \
+"../../../../5BitExtender.v" \
+"../../../../ALU32Bit.v" \
+"../../../../AND_Gate.v" \
+"../../../../Adder.v" \
+"../../../../Control.v" \
+"../../../../DataMemory.v" \
+"../../../../InstructionMemory.v" \
+"../../../../Mux32Bit2To1.v" \
+"../../../../Mux32Bit3To1.v" \
+"../../../../PCAdder.v" \
+"../../../../ProgramCounter.v" \
+"../../../../RegisterFile.v" \
+"../../../../ShiftLeft2.v" \
+"../../../../SignExtension.v" \
+"../../../../Lab4.srcs/sources_1/new/TopDatapath.v" \
+"../../../../Lab4.srcs/sim_1/new/TopDatapath_tb.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
