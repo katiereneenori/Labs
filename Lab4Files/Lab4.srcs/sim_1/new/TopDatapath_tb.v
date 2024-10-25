@@ -60,18 +60,12 @@ module TopDatapath_tb;
         $readmemh("C:\\Users\\tjwil\\Desktop\\ECE369A\\LabsRepo\\Labs\\Lab4Files\\out.mem", uut.IM.memory);
     end
 
-    // Initialize Data Memory (Optional)
-    initial begin
-        // If DataMemory requires initialization, uncomment and modify as necessary
-        // $readmemh("data_memory.mem", uut.datamem.memory);
-    end
-
     // Monitor Key Signals
     initial begin
         $monitor("Time=%0dns | PC=%h | ALU=%h | MemReadData=%h",
-                 $time, out, alu_result, mem_read_data);
+                 $time, PC_out, ALU_result_out, MemReadData_out);
     end
-
+    
     // Simulation Duration and Termination
     initial begin
         #1000; // Run simulation for 1000 ns

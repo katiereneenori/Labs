@@ -52,7 +52,7 @@ always @(*) begin
         MemByte = 1'b0;
         MemHalf = 1'b0;
         JorBranch = 1'b0;
-	JalSel = 1'b0;
+	    JalSel = 1'b0;
 	
 if (Instruction[31:26] == 6'b000000) begin
 
@@ -179,7 +179,7 @@ if (Instruction[31:26] == 6'b000000) begin
                 end
                 
                 // xor --
-                6'b000110: begin
+                6'b100110: begin
                     ALUOp = 5'b00110;       // alu operation: xor
                     ToBranch = 1'b0;        // not a branch
                     RegDst = 1'b1;         // write to rd
@@ -511,7 +511,7 @@ if (Instruction[31:26] == 6'b000000) begin
                     RegWrite = 1'b1;        // enable register write
                     MemWrite = 1'b0;        // no memory write
                     MemRead = 1'b0;         // no memory read
-                    MemToReg = 2'b1;       // write alu result to register
+                    MemToReg = 2'b01;       // write alu result to register
                     MemByte = 1'b0;         // not memory operation
                     MemHalf = 1'b0;         // not memory operation
                     JorBranch = 1'b0;       // not a jump or branch
