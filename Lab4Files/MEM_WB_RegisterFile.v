@@ -14,14 +14,17 @@ module MEM_WB(
     input inJalSel,
     input [1:0] inMemToReg,
     input [31:0] inWire46, inWire8, inWire7,
+    input [31:0] inWriteData,      // Add this line
     input [4:0] inWire41,
+    input [4:0] inWriteRegister,   // Add this line
     output reg outRegWrite,
     output reg outJalSel,
     output reg [1:0] outMemToReg,
     output reg [31:0] outWire46, outWire8, outWire7,
-    output reg [4:0] outWire41
+    output reg [31:0] outWriteData,      // Add this line
+    output reg [4:0] outWire41,
+    output reg [4:0] outWriteRegister    // Add this line
 );
-
 
     always @(posedge Clk or posedge Reset) begin
         if (Reset) begin

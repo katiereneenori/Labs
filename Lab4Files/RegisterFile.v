@@ -75,6 +75,13 @@ module RegisterFile(ReadRegister1, ReadRegister2, WriteRegister, WriteData, RegW
     //combinational read logic
     assign ReadData1 = registers[ReadRegister1];
     assign ReadData2 = registers[ReadRegister2];
+    
+    always @(posedge Clk) begin
+        if (RegWrite && WriteRegister != 5'd0) begin
+            $display("Time %0t: Writing %h to Register %d", $time, WriteData, WriteRegister);
+        end
+    end
+
 
     // sequential write logic
     always @(posedge Clk) begin

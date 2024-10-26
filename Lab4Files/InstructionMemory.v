@@ -71,8 +71,6 @@ module InstructionMemory(Address, Instruction);
         //$readmemh("C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/out.mem", memory);
     end
     
-    
-    
     always @(*) begin
         Instruction = memory[Address[11:2]];
     end

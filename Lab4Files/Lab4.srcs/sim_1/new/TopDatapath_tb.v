@@ -32,19 +32,19 @@ module TopDatapath_tb;
     reg Reset;
 
     // ------------------------Outputs-----------------------
-    // No top-level outputs as per design adjustments
-
-    // ------------------------Internal Wires for Monitoring-----------------------
-    // Assuming wire2 is PCOut and wire13 is WriteDataOut
     wire [31:0] PCOut;
     wire [31:0] WriteDataOut;
+    wire [31:0] ReadDataOut1;
+    wire [31:0] ReadDataOut2;
 
     // Instantiate the Unit Under Test (UUT)
     TopDatapath uut (
         .Clk(Clk), 
         .Reset(Reset),
         .PCOut(PCOut),
-        .WriteDataOut(WriteDataOut)
+        .WriteDataOut(WriteDataOut),
+        .ReadDataOut1(ReadDataOut1),
+        .ReadDataOut2(ReadDataOut2)
     );
 
     // ------------------------Clock Generation------------------------
@@ -65,12 +65,10 @@ module TopDatapath_tb;
         // Wait for reset to be deasserted
         #15;
         // Display header
-        $display("Time\tPCOut\t\tInstruction\t\tWriteDataOut");
+        $display("Time\tPCOut\t\tInstruction\t\tWriteDataOut\tReadDataOut1\tReadDataOut2");
         // Monitor signals
-        $monitor("%0t\t%h\t%h\t%h", $time, PCOut, uut.wire11, WriteDataOut);
+        $monitor("%0t\t%h\t%h\t%h\t%h\t%h", $time, PCOut, uut.wire11, WriteDataOut, ReadDataOut1, ReadDataOut2);
     end
-
-
 
     // ------------------------Simulation Control------------------------
     initial begin
