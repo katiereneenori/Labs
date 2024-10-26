@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a35tlcpg236-2L" LaunchTime="1729804861">
+<GenRun Id="synth_1" LaunchPart="xc7a35tlcpg236-2L" LaunchTime="1729897591">
   <File Type="PA-TCL" Name="TopDatapath.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="TopDatapath_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="TopDatapath_reports.tcl"/>
   <File Type="RDS-RDS" Name="TopDatapath.vds"/>
   <File Type="RDS-UTIL" Name="TopDatapath_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="TopDatapath_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="TopDatapath.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="TopDatapath_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="TopDatapath_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PPRDIR/-EX_MEM_RegisterFile.v">
@@ -143,7 +146,7 @@
     </File>
     <File Path="$PPRDIR/InstructionFetchUnit.v">
       <FileInfo>
-        <Attr Name="UserDisabled" Val="1"/>
+        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -151,7 +154,7 @@
     </File>
     <File Path="$PPRDIR/One4DigitDisplay.v">
       <FileInfo>
-        <Attr Name="UserDisabled" Val="1"/>
+        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -159,7 +162,7 @@
     </File>
     <File Path="$PPRDIR/ClkDiv.v">
       <FileInfo>
-        <Attr Name="UserDisabled" Val="1"/>
+        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -167,7 +170,7 @@
     </File>
     <File Path="$PSRCDIR/sources_1/new/PC_MUX.v">
       <FileInfo>
-        <Attr Name="UserDisabled" Val="1"/>
+        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -175,7 +178,7 @@
     </File>
     <File Path="$PPRDIR/SevenSegment.v">
       <FileInfo>
-        <Attr Name="UserDisabled" Val="1"/>
+        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -197,6 +200,12 @@
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
     <Filter Type="Constrs"/>
+    <File Path="$PPRDIR/One4DigitDisplay.xdc">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
     <Config>
       <Option Name="ConstrsType" Val="XDC"/>
     </Config>

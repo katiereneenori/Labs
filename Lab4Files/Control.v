@@ -64,7 +64,7 @@ if (Instruction[31:26] == 6'b000000) begin
                     ALUOp = 5'b00000;       // alu operation: add
                     ToBranch = 1'b0;        // not a branch instruction (PCSrc remains zero)
                     RegDst = 1'b1;         // write to rd (r-type instruction)
-		    ALUSrcA = 2'b00;          // destination register not Instruction[10:6]
+		            ALUSrcA = 2'b00;          // destination register not Instruction[10:6]
                     ALUSrcB = 2'b00;          // alu input b comes from register rt
                     RegWrite = 1'b1;        // enable register write
                     MemWrite = 1'b0;        // no memory write
@@ -247,7 +247,18 @@ if (Instruction[31:26] == 6'b000000) begin
                 end
                 
                 default: begin
-                // set control signals to default values or handle errors
+                ToBranch = 1'b0;
+        		RegDst = 1'b0;
+        		ALUSrcA = 2'b00;
+        		ALUSrcB = 2'b00;
+        		RegWrite = 1'b0;
+        		MemWrite = 1'b0;
+        		MemRead = 1'b0;
+        		MemToReg = 2'b00;
+        		MemByte = 1'b0;
+        		MemHalf = 1'b0;
+        		JorBranch = 1'b0;
+			    JalSel = 1'b0;
                 end
                 
             endcase
@@ -570,19 +581,20 @@ if (Instruction[31:26] == 6'b000000) begin
                 end
                 
                 default: begin
-                // set control signals to default values or handle errors        ALUOp = 5'b00000;
-        		ToBranch = 1'b0;
-        		RegDst = 1'b0;
-        		ALUSrcA = 2'b00;
-        		ALUSrcB = 2'b00;
-        		RegWrite = 1'b0;
-        		MemWrite = 1'b0;
-        		MemRead = 1'b0;
-        		MemToReg = 2'b00;
-        		MemByte = 1'b0;
-        		MemHalf = 1'b0;
-        		JorBranch = 1'b0;
-			    JalSel = 1'b0;
+                // set control signals to default values or handle errors        
+                    ALUOp = 5'b00000;
+                    ToBranch = 1'b0;
+                    RegDst = 1'b0;
+                    ALUSrcA = 2'b00;
+                    ALUSrcB = 2'b00;
+                    RegWrite = 1'b0;
+                    MemWrite = 1'b0;
+                    MemRead = 1'b0;
+                    MemToReg = 2'b00;
+                    MemByte = 1'b0;
+                    MemHalf = 1'b0;
+                    JorBranch = 1'b0;
+                    JalSel = 1'b0;
                 end
                 
             endcase

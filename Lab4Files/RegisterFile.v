@@ -55,8 +55,8 @@ module RegisterFile(ReadRegister1, ReadRegister2, WriteRegister, WriteData, RegW
 	input [4:0]  WriteRegister;
 	input [31:0] WriteData;
 
-	output reg [31:0] ReadData1;
-	output reg [31:0] ReadData2;
+	output [31:0] ReadData1;
+	output [31:0] ReadData2;
 	
 	input RegWrite;
 	input Clk, Reset;
@@ -72,21 +72,14 @@ module RegisterFile(ReadRegister1, ReadRegister2, WriteRegister, WriteData, RegW
 		//initialize all registers to 0
 	end
 	
-    always @(posedge Clk or posedge Reset) begin
-        if (Reset) begin
-            ReadData1 <= 32'b0;
-            ReadData2 <= 32'b0;
-        end else begin
-            ReadData1 <= registers[ReadRegister1];
-            ReadData2 <= registers[ReadRegister2];
-        end
-    end
-	
-    always @(posedge Clk) begin
-        if(RegWrite) begin
-            if (WriteRegister != 5'd0) // Register 0 is always 0 in MIPS
-                registers[WriteRegister] <= WriteData;
-        end
-    end
+    //combinational read logic
+    assign ReadData1 = registers[ReadRegister1];
+    assign ReadData2 = registers[ReadRegister2];
 
+    // sequential write logic
+    always @(posedge Clk) begin
+        if (RegWrite && WriteRegister != 5'd0) begin
+            registers[WriteRegister] <= WriteData;
+        end
+    end
 endmodule

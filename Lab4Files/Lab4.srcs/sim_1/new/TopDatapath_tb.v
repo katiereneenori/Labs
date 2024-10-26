@@ -1,75 +1,81 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
 // 
-// Create Date: 10/25/2024 02:20:29 PM
+// Create Date: 10/25/2024 10:00:00 AM
 // Design Name: 
 // Module Name: TopDatapath_tb
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
 // Description: 
+//      Testbench for the TopDatapath module. This testbench generates a clock,
+//      applies a reset, and monitors internal signals to verify correct
+//      datapath functionality.
 // 
 // Dependencies: 
+//      TopDatapath.v
 // 
 // Revision:
-// Revision 0.01 - File Created
+//      Revision 0.01 - File Created
+// 
 // Additional Comments:
-// Testbench for TopDatapath Module
-// Simulates clock generation, reset application, memory initialization,
-// and monitors key outputs for verification.
-//////////////////////////////////////////////////////////////////////////////////
-
+// 
+////////////////////////////////////////////////////////////////////////////////
 
 module TopDatapath_tb;
 
-    // Inputs
+    // ------------------------Inputs------------------------
     reg Clk;
     reg Reset;
 
-    // Outputs
-    wire [31:0] out;             // PC Result
-    wire [31:0] alu_result;      // ALU Output
-    wire [31:0] mem_read_data;   // Data read from memory
+    // ------------------------Outputs-----------------------
+    // No top-level outputs as per design adjustments
 
-    // Instantiate the TopDatapath
+    // ------------------------Internal Wires for Monitoring-----------------------
+    // Assuming wire2 is PCOut and wire13 is WriteDataOut
+    wire [31:0] PCOut;
+    wire [31:0] WriteDataOut;
+
+    // Instantiate the Unit Under Test (UUT)
     TopDatapath uut (
-        .Clk(Clk),
+        .Clk(Clk), 
         .Reset(Reset),
-        .out(out),
-        .alu_result(alu_result),
-        .mem_read_data(mem_read_data)
+        .PCOut(PCOut),
+        .WriteDataOut(WriteDataOut)
     );
 
-    // Clock Generation: 100 MHz => 10 ns period
+    // ------------------------Clock Generation------------------------
     initial begin
         Clk = 0;
-        forever #5 Clk = ~Clk; // Toggle every 5 ns
+        forever #5 Clk = ~Clk; // Toggle clock every 5 ns for 100 MHz
     end
 
-    // Apply Reset: Assert reset at time 0, deassert after 20 ns
+    // ------------------------Reset Signal------------------------
     initial begin
         Reset = 1;
-        #20;
+        #10;             // Hold reset for 10 ns
         Reset = 0;
     end
 
-    // Initialize Instruction Memory
+    // ------------------------Monitoring Signals------------------------
     initial begin
-        $readmemh("C:\\Users\\tjwil\\Desktop\\ECE369A\\LabsRepo\\Labs\\Lab4Files\\out.mem", uut.IM.memory);
+        // Wait for reset to be deasserted
+        #15;
+        // Display header
+        $display("Time\tPCOut\t\tInstruction\t\tWriteDataOut");
+        // Monitor signals
+        $monitor("%0t\t%h\t%h\t%h", $time, PCOut, uut.wire11, WriteDataOut);
     end
 
-    // Monitor Key Signals
+
+
+    // ------------------------Simulation Control------------------------
     initial begin
-        $monitor("Time=%0dns | PC=%h | ALU=%h | MemReadData=%h",
-                 $time, PC_out, ALU_result_out, MemReadData_out);
-    end
-    
-    // Simulation Duration and Termination
-    initial begin
-        #1000; // Run simulation for 1000 ns
-        $finish;
+        #1000;           // Run simulation for 1000 ns
+        $stop;           // Stop simulation
     end
 
 endmodule

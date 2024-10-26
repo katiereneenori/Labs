@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-| Date         : Thu Oct 24 14:21:31 2024
+| Date         : Fri Oct 25 16:07:16 2024
 | Host         : DESKTOP-GAPP9NE running 64-bit major release  (build 9200)
 | Command      : report_utilization -file TopDatapath_utilization_synth.rpt -pb TopDatapath_utilization_synth.pb
 | Design       : TopDatapath
@@ -92,7 +92,7 @@ Warning! LUT value is adjusted to account for LUT combining.
 +-----------------------------+------+-------+------------+-----------+-------+
 |          Site Type          | Used | Fixed | Prohibited | Available | Util% |
 +-----------------------------+------+-------+------------+-----------+-------+
-| Bonded IOB                  |    1 |     0 |          0 |       106 |  0.94 |
+| Bonded IOB                  |   96 |     0 |          0 |       106 | 90.57 |
 | Bonded IPADs                |    0 |     0 |          0 |        10 |  0.00 |
 | Bonded OPADs                |    0 |     0 |          0 |         4 |  0.00 |
 | PHY_CONTROL                 |    0 |     0 |          0 |         5 |  0.00 |
@@ -151,7 +151,7 @@ Warning! LUT value is adjusted to account for LUT combining.
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| OBUFT    |    1 |                  IO |
+| OBUF     |   96 |                  IO |
 +----------+------+---------------------+
 
 

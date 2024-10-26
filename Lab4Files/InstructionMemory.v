@@ -49,12 +49,33 @@ module InstructionMemory(Address, Instruction);
     
     integer i;
     
-        initial begin
-            $readmemh("C:\\Users\\tjwil\\Desktop\\ECE369A\\LabsRepo\\Labs\\Lab4Files\\out.mem", memory);
+    initial begin
+        // Initialize all memory locations to zero
+        for (i = 0; i < 1024; i = i + 1) begin
+            memory[i] = 32'b0;
         end
-    
-    always @(Address) begin
-        Instruction = memory[Address[11:2]]; //fetch
+        
+        // Hard-coded instructions for testing
+        memory[0] = 32'h20080005; // addi $t0, $zero, 5       // $t0 = 5
+        memory[1] = 32'h2009000A; // addi $t1, $zero, 10      // $t1 = 10
+        memory[2] = 32'h01095020; // add $t2, $t0, $t1        // $t2 = $t0 + $t1
+        memory[3] = 32'hAC0A0000; // sw $t2, 0($zero)         // Memory[0] = $t2
+        memory[4] = 32'h8C0B0000; // lw $t3, 0($zero)         // $t3 = Memory[0]
+        memory[5] = 32'h016A5822; // sub $t3, $t3, $t2        // $t3 = $t3 - $t2
+        memory[6] = 32'h110B0002; // beq $t0, $t3, label      // Branch if $t0 == $t3
+        memory[7] = 32'h08000006; // j end                    // Jump to end
+        memory[8] = 32'h200C0001; // label: addi $t4, $zero, 1 // $t4 = 1
+        memory[9] = 32'hAC0C0004; // sw $t4, 4($zero)          // Memory[1] = $t4
+        
+        // Load instructions from file
+        //$readmemh("C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/out.mem", memory);
     end
+    
+    
+    
+    always @(*) begin
+        Instruction = memory[Address[11:2]];
+    end
+
     
 endmodule
