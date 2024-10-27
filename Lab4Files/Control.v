@@ -53,8 +53,24 @@ always @(*) begin
         MemHalf = 1'b0;
         JorBranch = 1'b0;
 	    JalSel = 1'b0;
+	    
+	    if (Instruction[31:0] == 32'd0) begin // nop
+            ALUOp = 5'b00000;
+            ToBranch = 1'b0;
+            RegDst = 1'b0;
+            ALUSrcA = 2'b00;
+            ALUSrcB = 2'b00;
+            RegWrite = 1'b0;
+            MemWrite = 1'b0;
+            MemRead = 1'b0;
+            MemToReg = 2'b00;
+            MemByte = 1'b0;
+            MemHalf = 1'b0;
+            JorBranch = 1'b0;
+            JalSel = 1'b0;
+	    end
 	
-if (Instruction[31:26] == 6'b000000) begin
+else if (Instruction[31:26] == 6'b000000) begin
 
             // r-type instructions
             case (Instruction[5:0])

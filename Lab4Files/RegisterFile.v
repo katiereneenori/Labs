@@ -55,8 +55,8 @@ module RegisterFile(ReadRegister1, ReadRegister2, WriteRegister, WriteData, RegW
 	input [4:0]  WriteRegister;
 	input [31:0] WriteData;
 
-	output [31:0] ReadData1;
-	output [31:0] ReadData2;
+	output reg [31:0] ReadData1;
+	output reg [31:0] ReadData2;
 	
 	input RegWrite;
 	input Clk, Reset;
@@ -73,8 +73,10 @@ module RegisterFile(ReadRegister1, ReadRegister2, WriteRegister, WriteData, RegW
 	end
 	
     //combinational read logic
-    assign ReadData1 = registers[ReadRegister1];
-    assign ReadData2 = registers[ReadRegister2];
+    always @(negedge Clk) begin // reads registers on falling edge of clock, so pipeline regfile has values to write
+    ReadData1 = registers[ReadRegister1];
+    ReadData2 = registers[ReadRegister2];
+    end
     
     always @(posedge Clk) begin
         if (RegWrite && WriteRegister != 5'd0) begin
@@ -84,7 +86,7 @@ module RegisterFile(ReadRegister1, ReadRegister2, WriteRegister, WriteData, RegW
 
 
     // sequential write logic
-    always @(posedge Clk) begin
+    always @(posedge Clk) begin // writes to registers on rising edge of the clock
         if (RegWrite && WriteRegister != 5'd0) begin
             registers[WriteRegister] <= WriteData;
         end
