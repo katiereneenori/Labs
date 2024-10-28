@@ -29,7 +29,7 @@
 module ALU32Bit(ALUControl, A, B, ALUResult, Zero);
 
 	input [4:0] ALUControl;         // control bits for ALU operation
-
+	
 	input signed [31:0] A, B;	            // inputs to ALU
 
 	output reg signed [31:0] ALUResult;	// Result
@@ -135,6 +135,12 @@ module ALU32Bit(ALUControl, A, B, ALUResult, Zero);
 				Zero = 1'b1; // need PCSrc to accept ALUResult without equaling zero
 				
 			end
+			
+		5'b10101: begin       // for jump, pass least 26 bits shifted left 2
+		        ALUResult = {4'b0000, B[27:0]};
+		        Zero = 1'b1;  // allow PCSrc to accept new branch
+		end
+		
 		default: ALUResult = 32'b0;		// default case 
 
 	endcase
@@ -143,7 +149,7 @@ module ALU32Bit(ALUControl, A, B, ALUResult, Zero);
 		Zero = 1'b1;
 	end
 	
-	else if ((ALUControl != 5'b10100) && (ALUControl != 5'b10000)) begin
+	else if ((ALUControl != 5'b10100) && (ALUControl != 5'b10000) &&(ALUControl != 5'b10101)) begin
 		Zero = 1'b0;
 	end
 	

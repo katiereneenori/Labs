@@ -8,11 +8,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 module Mux32Bit3To1(out, inA, inB, inC, sel);
-    output [31:0] out;
+    output reg [31:0] out;
     input [31:0] inA, inB, inC;
     input [1:0] sel;
 
-    assign out = (sel == 2'b00) ? inA :
-                 (sel == 2'b01) ? inB :
-                 (sel == 2'b10) ? inC : inA; // default to inA
+    always @(*) begin
+        if (sel == 2'b00)
+            out = inA;
+        else if (sel == 2'b01)
+            out = inB;
+        else if (sel == 2'b10)
+            out = inC;
+        else
+            out = inA; // default to inA
+    end
 endmodule

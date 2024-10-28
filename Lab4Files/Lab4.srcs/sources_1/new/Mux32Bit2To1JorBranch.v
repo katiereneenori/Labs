@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 10/25/2024 04:55:09 PM
+// Create Date: 10/28/2024 12:33:04 PM
 // Design Name: 
-// Module Name: Mux5Bit2To1
+// Module Name: Mux32Bit2To1JorBranch
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -19,15 +19,17 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module Mux5Bit2To1(out, inA, inB, sel);
-    output reg [4:0] out;
-    input [4:0] inA, inB;
-    input sel;
 
-    always @(*) begin
+module Mux32Bit2To1JorBranch(out, inA, inB, sel, Clk);
+    output reg [31:0] out;
+    input [31:0] inA, inB;
+    input sel;
+    input Clk;
+
+    always @(posedge Clk) begin
         if (sel) 
-            out = inB;
+            out <= inB;
         else 
-            out = inA;
+            out <= inA;
     end
 endmodule

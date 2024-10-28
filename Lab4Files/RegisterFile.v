@@ -69,11 +69,14 @@ module RegisterFile(ReadRegister1, ReadRegister2, WriteRegister, WriteData, RegW
 			registers[i] = 32'b0;
 		end
 		
+		//temp 
+		//registers[8] = 32'd5;
+		//registers[9] = 32'd9;
 		//initialize all registers to 0
 	end
 	
     //combinational read logic
-    always @(negedge Clk) begin // reads registers on falling edge of clock, so pipeline regfile has values to write
+    always @(posedge Clk) begin // reads registers on falling edge of clock, so pipeline regfile has values to write
     ReadData1 = registers[ReadRegister1];
     ReadData2 = registers[ReadRegister2];
     end

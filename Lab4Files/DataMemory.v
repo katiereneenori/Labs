@@ -89,7 +89,7 @@ module DataMemory(Address, WriteData, Clk, MemWrite, MemRead, ReadData, byte, ha
     end
 
     // memory read
-    always @(negedge Clk) begin
+    always @(*) begin
         if (MemRead) begin
             if ((!byte) && (!half)) begin
                 // load the full 32-bit word
