@@ -1,0 +1,86 @@
+# Ignore Vivado log and temporary files
+*.jou
+*.log
+*.str
+*.log.bak
+*.log.lck
+
+# Ignore Vivado project files and directories
+*.xpr
+*.cache/
+*.hw/
+*.ip_user_files/
+*.sim/
+*.runs/
+*.srcs/
+
+# Ignore generated output files
+*.bit
+*.bin
+*.ltx
+*.elf
+*.mem
+
+# Ignore synthesis and implementation reports
+*.html
+*.xml
+*.rpt
+*.txt
+
+# Ignore temporary files and user-specific settings
+*.wcfg
+*.pb
+*.data
+*.backup
+*.restore
+*.vcd
+*.wdb
+*.log
+*.drc
+*.bgn
+*.pwr
+*.twr
+*.prj
+
+# Ignore constraints database lock files
+*.lck
+
+# Ignore build directories that Vivado creates
+*/build/
+*/output/
+*/tmp/
+
+# Ignore files specific to certain Vivado setups
+*.xsa
+*.export/
+*.sysdef/
+*.dsa
+*.xci
+*.xco
+*.xise
+
+# Ignore simulation and synthesis folders
+sim/
+synth/
+
+# Keep specific source files and constraints files
+!.v
+!.xdc
+
+# Ignore user settings and workspace files
+*.hwh
+*.cfg
+*.xsettings
+*.ip_user_files/
+
+# Ignore backup and autosave files
+*~
+*.bak
+*.tmp
+
+# Ignore any other unwanted file formats
+*.log.bak
+*.jou.bak
+*.xsc
+*.xci
+*.xise
