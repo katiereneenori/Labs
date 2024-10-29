@@ -50,11 +50,7 @@ module InstructionMemory(Address, Instruction);
     integer i;
     
     initial begin
-        // Initialize all memory locations to zero
-        for (i = 0; i < 1024; i = i + 1) begin
-            memory[i] = 32'b0;
-        end
-        $readmemh("InstructionMemoryOut.mem", memory);
+        $readmemh("out.mem", memory);
     end
     
     always @(*) begin
