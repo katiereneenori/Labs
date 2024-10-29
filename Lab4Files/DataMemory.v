@@ -58,6 +58,7 @@ module DataMemory(Address, WriteData, Clk, MemWrite, MemRead, ReadData, byte, ha
 	   for(i = 0; i < 1024; i = i + 1) begin
 	       memory[i] = 32'b0;
 	   end
+	   $readmemh("DataMemoryOut.mem", memory);
 	end
 	
 // memory write 

@@ -22,15 +22,15 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module TopDatapath(Clk, Reset);// //PCOut, WriteDataOut, ReadDataOut1, ReadDataOut2);
+module TopDatapath(Clk, Reset, PCOut, WriteDataOut, ReadDataOut1, ReadDataOut2);// //
 
 input Clk;
 input Reset;
 
-//output [31:0] PCOut; // output program counter
-//output [31:0] WriteDataOut; // output WriteData to register file (WriteDataOut)
-//output [31:0] ReadDataOut1;  // Output ReadData1 from register file
-//output [31:0] ReadDataOut2;   // Output ReadData2 from register file
+output [31:0] PCOut; // output program counter
+output [31:0] WriteDataOut; // output WriteData to register file (WriteDataOut)
+output [31:0] ReadDataOut1;  // Output ReadData1 from register file
+output [31:0] ReadDataOut2;   // Output ReadData2 from register file
 
 // Internal Wires
 // 32-bit wires
@@ -58,10 +58,10 @@ wire JalSelWire3, RegWriteWire3;
 reg [4:0] returnAddr = 5'b11111;
 
 // Assign outputs
-//assign PCOut = wire2; // Connecting PCOut to wire2
-//assign WriteDataOut = wire13; // Connecting wire13 to WriteDataOut
-//assign ReadDataOut1 = wire14;
-//assign ReadDataOut2 = wire15;
+assign PCOut = wire2; // Connecting PCOut to wire2
+assign WriteDataOut = wire13; // Connecting wire13 to WriteDataOut
+assign ReadDataOut1 = wire14;
+assign ReadDataOut2 = wire15;
 
 // ------------------------Instruction Fetch Stage------------------------
 
