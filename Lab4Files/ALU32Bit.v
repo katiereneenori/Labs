@@ -2,7 +2,11 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 // ECE369 - Computer Architecture
+// Team Members: Katie Dionne & Tanner Shartel
+// Overall percent effort of each team member: 50%/50%
 // 
+// ECE369A - Computer Architecture
+// Laboratory 4
 // Module - ALU32Bit.v
 // Description - 32-Bit wide arithmetic logic unit (ALU).
 //

@@ -2,6 +2,11 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 // ECE369 - Computer Architecture
+// Team Members: Katie Dionne & Tanner Shartel
+// Overall percent effort of each team member: 50%/50%
+// 
+// ECE369A - Computer Architecture
+// Laboratory 4
 // Register file pipeline modified to match format of EX_MEM module
 // Transfers data from one side to the other to test single instructions
 ////////////////////////////////////////////////////////////////////////////////

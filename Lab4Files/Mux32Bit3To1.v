@@ -2,7 +2,11 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 // ECE369 - Computer Architecture
+// Team Members: Katie Dionne & Tanner Shartel
+// Overall percent effort of each team member: 50%/50%
 // 
+// ECE369A - Computer Architecture
+// Laboratory 4
 // Module - Mux32Bit3To1.v
 // Description - Performs signal multiplexing between 2 32-Bit words.
 ////////////////////////////////////////////////////////////////////////////////

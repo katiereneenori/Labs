@@ -1,8 +1,10 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Team Members: Katie Dionne & Tanner Shartel
+// Overall percent effort of each team member: 50%/50%
 // 
+// ECE369A - Computer Architecture
+// Laboratory 4
 // Create Date: 10/25/2024 04:55:09 PM
 // Design Name: 
 // Module Name: Mux5Bit2To1

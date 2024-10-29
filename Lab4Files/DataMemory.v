@@ -2,7 +2,10 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 // ECE369 - Computer Architecture
+// Team Members: Katie Dionne & Tanner Shartel
+// Overall percent effort of each team member: 50%/50%
 // 
+// Laboratory 4
 // Module - data_memory.v
 // Description - 32-Bit wide data memory.
 //

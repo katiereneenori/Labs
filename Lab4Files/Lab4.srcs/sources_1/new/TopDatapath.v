@@ -1,9 +1,11 @@
 `timescale 1ns / 1ps
 
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Team Members: Katie Dionne & Tanner Shartel
+// Overall percent effort of each team member: 50%/50%
 // 
+// ECE369A - Computer Architecture
+// Laboratory 4
 // Create Date: 10/23/2024 04:20:01 AM
 // Design Name: 
 // Module Name: TopDatapath
@@ -19,7 +21,6 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
-
 
 module TopDatapath(Clk, Reset);// //PCOut, WriteDataOut, ReadDataOut1, ReadDataOut2);
 

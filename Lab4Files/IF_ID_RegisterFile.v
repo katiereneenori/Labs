@@ -2,6 +2,11 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 // ECE369 - Computer Architecture
+// Team Members: Katie Dionne & Tanner Shartel
+// Overall percent effort of each team member: 50%/50%
+// 
+// ECE369A - Computer Architecture
+// Laboratory 4
 //Temporary placeholder for the register file pipeline
 //for now, this just transfers the data from one side to the other
 //in the hopes of testing out single instructions 

@@ -1,6 +1,10 @@
 `timescale 1ns / 1ps
 
-//AND Gate
+// Team Members: Katie Dionne & Tanner Shartel
+// Overall percent effort of each team member: 50%/50%
+// 
+// ECE369A - Computer Architecture
+// Laboratory 4
 
 module AND_Gate (inA, inB, out);
 
