@@ -13,7 +13,7 @@
 module ClkDiv(Clk, Reset, ClkOut);
    input Clk, Reset;
    output reg ClkOut;
-   parameter DivVal = 1; //do 1 for simulation from 50000000
+   parameter DivVal = 50000000; //do 1 for simulation from 50000000
    reg [25:0] DivCnt;
    reg ClkInt;
 
@@ -24,10 +24,13 @@ module ClkDiv(Clk, Reset, ClkOut);
          ClkInt <= 0;
       end
       else if (DivCnt == DivVal) begin
-         ClkOut <= ~ClkOut;
+            	ClkOut <= ~ClkInt;
+            	ClkInt <= ~ClkInt;
          DivCnt <= 0;
       end
       else begin
+                  	ClkOut <= ClkInt;
+            	ClkInt <= ClkInt;
          DivCnt <= DivCnt + 1;
       end
    end

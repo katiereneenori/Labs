@@ -22,19 +22,37 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module TopDatapath(Clk, Reset, PCOut, WriteDataOut, ReadDataOut1, ReadDataOut2);// //
+module TopDatapath(Clk, Reset,out7, en_out, dp);// //ReadDataOut1, ReadDataOut2
 
 input Clk;
 input Reset;
 
-output [31:0] PCOut; // output program counter
-output [31:0] WriteDataOut; // output WriteData to register file (WriteDataOut)
-output [31:0] ReadDataOut1;  // Output ReadData1 from register file
-output [31:0] ReadDataOut2;   // Output ReadData2 from register file
+wire [31:0] wire2, wire13;
+
+wire [15:0] Num;
+
+output [6:0] out7; //seg a, b, ... g
+output [3:0] en_out;
+output wire dp;
+
+wire ClkOut;
+
+ClkDiv m1(Clk, Reset, ClkOut);
+
+Mux2x1 m4(wire2[15:0], wire13[15:0], Num, ClkOut);
+
+Mux2x1 m5(0, 1, dp, ClkOut);
+
+One4DigitDisplay m2(Clk, Num, out7, en_out);
+
+// wire [31:0] PCOut; // output program counter
+// wire [31:0] WriteDataOut; // output WriteData to register file (WriteDataOut)
+//output [31:0] ReadDataOut1;  // Output ReadData1 from register file
+//output [31:0] ReadDataOut2;   // Output ReadData2 from register file
 
 // Internal Wires
 // 32-bit wires
-wire [31:0] wire1, wire2, wire3, wire4, wire5, wire6, wire7, wire8, wire9, wire10, wire11, wire13, wire14, wire15, wire16,
+wire [31:0] wire1, wire3, wire4, wire5, wire6, wire7, wire8, wire9, wire10, wire11, wire14, wire15, wire16,
             wire17, wire18, wire21, wire22, wire23, wire24, wire25, wire26, wire29,
             wire30, wire31, wire32, wire34, wire36, wire37, wire39, wire40, wire42,
             wire43, wire44, wire46, wire47, wire48; // Added wire46, wire47, wire48 for PC+4 propagation
@@ -53,15 +71,22 @@ wire [1:0] ALUSrcAWire, ALUSrcBWire, MemToRegWire, ALUSrcAWire1, ALUSrcBWire1, M
 wire ToBranchWire, RegWriteWire, MemWriteWire, MemReadWire, MemByteWire, MemHalfWire, RegDstWire, JalSelWire, PCSrcWire, JorBranchWire;
 wire ToBranchWire1, RegWriteWire1, MemWriteWire1, MemReadWire1, MemByteWire1, MemHalfWire1, RegDstWire1, JalSelWire1, JorBranchWire1;
 wire ToBranchWire2, RegWriteWire2, MemWriteWire2, MemReadWire2, MemByteWire2, MemHalfWire2, RegDstWire2, JalSelWire2, JorBranchWire2;
+
 wire JalSelWire3, RegWriteWire3;
 
 reg [4:0] returnAddr = 5'b11111;
 
 // Assign outputs
-assign PCOut = wire2; // Connecting PCOut to wire2
-assign WriteDataOut = wire13; // Connecting wire13 to WriteDataOut
-assign ReadDataOut1 = wire14;
-assign ReadDataOut2 = wire15;
+//assign PCOut = wire2; // Connecting PCOut to wire2
+//assign WriteDataOut = wire13; // Connecting wire13 to WriteDataOut
+//assign ReadDataOut1 = wire14;
+//assign ReadDataOut2 = wire15;
+
+//always @(wire2, wire13) 
+//    begin
+//        PCOutReg <= wire2;
+//        WriteDataOutReg <= wire13;
+//    end    
 
 // ------------------------Instruction Fetch Stage------------------------
 
