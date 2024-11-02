@@ -1,6 +1,6 @@
 
 *** Running vivado
-    with args -log TopDatapath.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source TopDatapath.tcl
+    with args -log TopDatapath_Board.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source TopDatapath_Board.tcl
 
 
 
@@ -9,82 +9,104 @@
   **** IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 
-source TopDatapath.tcl -notrace
-Command: synth_design -top TopDatapath -part xc7a35tlcpg236-2L
+source TopDatapath_Board.tcl -notrace
+Command: synth_design -top TopDatapath_Board -part xc7a35tcpg236-1
 Starting synth_design
-Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35tl'
-INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35tl'
-INFO: [Device 21-403] Loading part xc7a35tlcpg236-2L
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 22228
+INFO: [Synth 8-7075] Helper process launched with PID 24672
 INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [C:/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
-INFO: [Synth 8-11241] undeclared symbol 'JorBranch', assumed default net type 'wire' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v:145]
-INFO: [Synth 8-11241] undeclared symbol 'wire10_upper', assumed default net type 'wire' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v:146]
-INFO: [Synth 8-11241] undeclared symbol 'MemToRegWire2', assumed default net type 'wire' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v:211]
-INFO: [Synth 8-11241] undeclared symbol 'PCSrc', assumed default net type 'wire' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v:230]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1200.973 ; gain = 406.500
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1201.680 ; gain = 406.848
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'TopDatapath' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v:23]
-INFO: [Synth 8-6157] synthesizing module 'Mux32Bit2To1' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Mux32Bit2To1.v:10]
-INFO: [Synth 8-6155] done synthesizing module 'Mux32Bit2To1' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Mux32Bit2To1.v:10]
-WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v:58]
-WARNING: [Synth 8-7071] port 'out' of module 'Mux32Bit2To1' is unconnected for instance 'PCSrcMux' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v:58]
-WARNING: [Synth 8-7023] instance 'PCSrcMux' of module 'Mux32Bit2To1' has 6 connections declared, but only 5 given [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v:58]
+INFO: [Synth 8-6157] synthesizing module 'TopDatapath_Board' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath_Board.v:39]
+INFO: [Synth 8-6157] synthesizing module 'ClkDiv' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ClkDiv.v:13]
+INFO: [Synth 8-6155] done synthesizing module 'ClkDiv' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ClkDiv.v:13]
+INFO: [Synth 8-6157] synthesizing module 'Mux2x1' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Mux2x1.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'Mux2x1' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Mux2x1.v:23]
+WARNING: [Synth 8-689] width (16) of port connection 'Out' does not match port width (32) of module 'Mux2x1' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath_Board.v:52]
+WARNING: [Synth 8-689] width (1) of port connection 'Out' does not match port width (32) of module 'Mux2x1' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath_Board.v:54]
+INFO: [Synth 8-6157] synthesizing module 'One4DigitDisplay' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.v:19]
+INFO: [Synth 8-6157] synthesizing module 'SevenSegment' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/SevenSegment.v:15]
+INFO: [Synth 8-226] default block is never used [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/SevenSegment.v:21]
+INFO: [Synth 8-6155] done synthesizing module 'SevenSegment' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/SevenSegment.v:15]
+INFO: [Synth 8-226] default block is never used [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.v:115]
+WARNING: [Synth 8-567] referenced signal 'firstdigitA' should be on the sensitivity list [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.v:114]
+WARNING: [Synth 8-567] referenced signal 'seconddigitA' should be on the sensitivity list [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.v:114]
+WARNING: [Synth 8-567] referenced signal 'thirddigitA' should be on the sensitivity list [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.v:114]
+WARNING: [Synth 8-567] referenced signal 'forthdigitA' should be on the sensitivity list [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.v:114]
+INFO: [Synth 8-6155] done synthesizing module 'One4DigitDisplay' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.v:19]
+INFO: [Synth 8-6157] synthesizing module 'TopDatapath' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v:25]
+INFO: [Synth 8-6157] synthesizing module 'Mux32Bit2To1' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Mux32Bit2To1.v:14]
+INFO: [Synth 8-6155] done synthesizing module 'Mux32Bit2To1' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Mux32Bit2To1.v:14]
 INFO: [Synth 8-6157] synthesizing module 'ProgramCounter' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ProgramCounter.v:30]
 INFO: [Synth 8-6155] done synthesizing module 'ProgramCounter' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ProgramCounter.v:30]
 INFO: [Synth 8-6157] synthesizing module 'PCAdder' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/PCAdder.v:25]
 INFO: [Synth 8-6155] done synthesizing module 'PCAdder' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/PCAdder.v:25]
 INFO: [Synth 8-6157] synthesizing module 'InstructionMemory' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/InstructionMemory.v:42]
-INFO: [Synth 8-3876] $readmem data file 'C:\Users\tjwil\Desktop\ECE369A\LabsRepo\Labs\Lab4Files\out.mem' is read successfully [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/InstructionMemory.v:53]
+INFO: [Synth 8-3876] $readmem data file 'out.mem' is read successfully [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/InstructionMemory.v:53]
 INFO: [Synth 8-6155] done synthesizing module 'InstructionMemory' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/InstructionMemory.v:42]
-INFO: [Synth 8-6157] synthesizing module 'IF_ID' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/-IF_ID_RegisterFile.v:10]
-INFO: [Synth 8-6155] done synthesizing module 'IF_ID' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/-IF_ID_RegisterFile.v:10]
-INFO: [Synth 8-6157] synthesizing module 'Control' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Control.v:32]
-INFO: [Synth 8-6155] done synthesizing module 'Control' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Control.v:32]
+INFO: [Synth 8-6157] synthesizing module 'IF_ID' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/IF_ID_RegisterFile.v:15]
+INFO: [Synth 8-6155] done synthesizing module 'IF_ID' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/IF_ID_RegisterFile.v:15]
+INFO: [Synth 8-6157] synthesizing module 'Control' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Control.v:36]
+INFO: [Synth 8-6155] done synthesizing module 'Control' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Control.v:36]
 INFO: [Synth 8-6157] synthesizing module 'RegisterFile' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/RegisterFile.v:51]
 INFO: [Synth 8-6155] done synthesizing module 'RegisterFile' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/RegisterFile.v:51]
-WARNING: [Synth 8-7071] port 'Reset' of module 'RegisterFile' is unconnected for instance 'Registers' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v:113]
-WARNING: [Synth 8-7023] instance 'Registers' of module 'RegisterFile' has 9 connections declared, but only 8 given [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v:113]
-INFO: [Synth 8-6157] synthesizing module 'FiveBitExtender' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/5BitExtender.v:8]
-INFO: [Synth 8-6155] done synthesizing module 'FiveBitExtender' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/5BitExtender.v:8]
+INFO: [Synth 8-6157] synthesizing module 'FiveBitExtender' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/5BitExtender.v:12]
+INFO: [Synth 8-6155] done synthesizing module 'FiveBitExtender' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/5BitExtender.v:12]
 INFO: [Synth 8-6157] synthesizing module 'ShiftLeft2' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ShiftLeft2.v:21]
 INFO: [Synth 8-6155] done synthesizing module 'ShiftLeft2' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ShiftLeft2.v:21]
-INFO: [Synth 8-6157] synthesizing module 'SignExtension' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/SignExtension.v:8]
-INFO: [Synth 8-6155] done synthesizing module 'SignExtension' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/SignExtension.v:8]
-INFO: [Synth 8-6157] synthesizing module 'ID_EX' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/-ID_EX_RegisterFile.v:10]
-INFO: [Synth 8-6155] done synthesizing module 'ID_EX' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/-ID_EX_RegisterFile.v:10]
-WARNING: [Synth 8-7071] port 'inWire10Lower' of module 'ID_EX' is unconnected for instance 'ID_EXRegFile' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v:139]
-WARNING: [Synth 8-7071] port 'inWire16' of module 'ID_EX' is unconnected for instance 'ID_EXRegFile' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v:139]
-WARNING: [Synth 8-7023] instance 'ID_EXRegFile' of module 'ID_EX' has 48 connections declared, but only 46 given [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v:139]
+INFO: [Synth 8-6157] synthesizing module 'SignExtension' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/SignExtension.v:12]
+INFO: [Synth 8-6155] done synthesizing module 'SignExtension' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/SignExtension.v:12]
+INFO: [Synth 8-6157] synthesizing module 'ID_EX' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:15]
+INFO: [Synth 8-6155] done synthesizing module 'ID_EX' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:15]
 INFO: [Synth 8-6157] synthesizing module 'Adder' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Adder.v:22]
 INFO: [Synth 8-6155] done synthesizing module 'Adder' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Adder.v:22]
-INFO: [Synth 8-6157] synthesizing module 'Mux32Bit3To1' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Mux32Bit3To1.v:10]
-INFO: [Synth 8-6155] done synthesizing module 'Mux32Bit3To1' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Mux32Bit3To1.v:10]
-INFO: [Synth 8-6157] synthesizing module 'ALU32Bit' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ALU32Bit.v:29]
-INFO: [Synth 8-6155] done synthesizing module 'ALU32Bit' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ALU32Bit.v:29]
-INFO: [Synth 8-6157] synthesizing module 'EX_MEM' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/-EX_MEM_RegisterFile.v:10]
-INFO: [Synth 8-6155] done synthesizing module 'EX_MEM' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/-EX_MEM_RegisterFile.v:10]
-WARNING: [Synth 8-689] width (1) of port connection 'outMemToReg' does not match port width (2) of module 'EX_MEM' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v:211]
-WARNING: [Synth 8-689] width (1) of port connection 'outWire35' does not match port width (32) of module 'EX_MEM' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v:211]
-INFO: [Synth 8-6157] synthesizing module 'DataMemory' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/DataMemory.v:38]
-INFO: [Synth 8-6155] done synthesizing module 'DataMemory' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/DataMemory.v:38]
-INFO: [Synth 8-6157] synthesizing module 'AND_Gate' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/AND_Gate.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'AND_Gate' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/AND_Gate.v:5]
-INFO: [Synth 8-6157] synthesizing module 'MEM_WB' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/-MEM_WB_RegisterFile.v:10]
-INFO: [Synth 8-6155] done synthesizing module 'MEM_WB' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/-MEM_WB_RegisterFile.v:10]
-WARNING: [Synth 8-689] width (1) of port connection 'outMemToReg' does not match port width (2) of module 'MEM_WB' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v:242]
-WARNING: [Synth 8-689] width (5) of port connection 'out' does not match port width (32) of module 'Mux32Bit3To1' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v:259]
-WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v:263]
-WARNING: [Synth 8-7071] port 'out' of module 'Mux32Bit2To1' is unconnected for instance 'JalSelMux' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v:263]
-WARNING: [Synth 8-7023] instance 'JalSelMux' of module 'Mux32Bit2To1' has 6 connections declared, but only 5 given [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v:263]
-INFO: [Synth 8-6155] done synthesizing module 'TopDatapath' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v:23]
-WARNING: [Synth 8-3848] Net wire1 in module/entity TopDatapath does not have driver. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v:30]
-WARNING: [Synth 8-3848] Net JorBranch in module/entity TopDatapath does not have driver. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v:145]
-WARNING: [Synth 8-3848] Net wire10_upper in module/entity TopDatapath does not have driver. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v:146]
-WARNING: [Synth 8-3848] Net wire12 in module/entity TopDatapath does not have driver. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v:34]
-WARNING: [Synth 8-3848] Net PCSrcWire in module/entity TopDatapath does not have driver. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v:36]
+INFO: [Synth 8-6157] synthesizing module 'Mux32Bit3To1' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Mux32Bit3To1.v:14]
+INFO: [Synth 8-6155] done synthesizing module 'Mux32Bit3To1' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Mux32Bit3To1.v:14]
+INFO: [Synth 8-6157] synthesizing module 'Mux5Bit2To1' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/Mux5Bit2To1.v:24]
+INFO: [Synth 8-6155] done synthesizing module 'Mux5Bit2To1' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/Mux5Bit2To1.v:24]
+INFO: [Synth 8-6157] synthesizing module 'ALU32Bit' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ALU32Bit.v:33]
+INFO: [Synth 8-6155] done synthesizing module 'ALU32Bit' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ALU32Bit.v:33]
+INFO: [Synth 8-6157] synthesizing module 'EX_MEM' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/EX_MEM_RegisterFile.v:15]
+INFO: [Synth 8-6155] done synthesizing module 'EX_MEM' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/EX_MEM_RegisterFile.v:15]
+WARNING: [Synth 8-689] width (1) of port connection 'outWire35' does not match port width (32) of module 'EX_MEM' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v:289]
+WARNING: [Synth 8-689] width (5) of port connection 'outWire33' does not match port width (32) of module 'EX_MEM' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v:289]
+INFO: [Synth 8-6157] synthesizing module 'DataMemory' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/DataMemory.v:41]
+INFO: [Synth 8-6155] done synthesizing module 'DataMemory' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/DataMemory.v:41]
+INFO: [Synth 8-6157] synthesizing module 'AND_Gate' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/AND_Gate.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'AND_Gate' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/AND_Gate.v:9]
+INFO: [Synth 8-6157] synthesizing module 'MEM_WB' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/MEM_WB_RegisterFile.v:10]
+INFO: [Synth 8-6155] done synthesizing module 'MEM_WB' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/MEM_WB_RegisterFile.v:10]
+INFO: [Synth 8-6155] done synthesizing module 'TopDatapath' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v:25]
+WARNING: [Synth 8-689] width (16) of port connection 'wire2' does not match port width (32) of module 'TopDatapath' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath_Board.v:58]
+WARNING: [Synth 8-689] width (16) of port connection 'wire13' does not match port width (32) of module 'TopDatapath' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath_Board.v:58]
+INFO: [Synth 8-6155] done synthesizing module 'TopDatapath_Board' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath_Board.v:39]
+WARNING: [Synth 8-6014] Unused sequential element FiveBitRegs_reg[2] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:36]
+WARNING: [Synth 8-6014] Unused sequential element FiveBitRegs_reg[1] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:36]
+WARNING: [Synth 8-6014] Unused sequential element FiveBitRegs_reg[0] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:36]
+WARNING: [Synth 8-6014] Unused sequential element OneBitRegs_reg[8] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:39]
+WARNING: [Synth 8-6014] Unused sequential element OneBitRegs_reg[7] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:39]
+WARNING: [Synth 8-6014] Unused sequential element OneBitRegs_reg[6] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:39]
+WARNING: [Synth 8-6014] Unused sequential element OneBitRegs_reg[5] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:39]
+WARNING: [Synth 8-6014] Unused sequential element OneBitRegs_reg[4] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:39]
+WARNING: [Synth 8-6014] Unused sequential element OneBitRegs_reg[3] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:39]
+WARNING: [Synth 8-6014] Unused sequential element OneBitRegs_reg[2] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:39]
+WARNING: [Synth 8-6014] Unused sequential element OneBitRegs_reg[1] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:39]
+WARNING: [Synth 8-6014] Unused sequential element OneBitRegs_reg[0] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:39]
+WARNING: [Synth 8-6014] Unused sequential element TwoBitRegs_reg[2] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:48]
+WARNING: [Synth 8-6014] Unused sequential element TwoBitRegs_reg[1] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:48]
+WARNING: [Synth 8-6014] Unused sequential element TwoBitRegs_reg[0] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:48]
+WARNING: [Synth 8-6014] Unused sequential element ThirtyTwoBitRegs_reg[6] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:51]
+WARNING: [Synth 8-6014] Unused sequential element ThirtyTwoBitRegs_reg[5] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:51]
+WARNING: [Synth 8-6014] Unused sequential element ThirtyTwoBitRegs_reg[4] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:51]
+WARNING: [Synth 8-6014] Unused sequential element ThirtyTwoBitRegs_reg[3] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:51]
+WARNING: [Synth 8-6014] Unused sequential element ThirtyTwoBitRegs_reg[2] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:51]
+WARNING: [Synth 8-6014] Unused sequential element ThirtyTwoBitRegs_reg[1] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:51]
+WARNING: [Synth 8-6014] Unused sequential element ThirtyTwoBitRegs_reg[0] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:51]
 WARNING: [Synth 8-7129] Port Address[31] in module DataMemory is either unconnected or has no load
 WARNING: [Synth 8-7129] Port Address[30] in module DataMemory is either unconnected or has no load
 WARNING: [Synth 8-7129] Port Address[29] in module DataMemory is either unconnected or has no load
@@ -105,21 +127,8 @@ WARNING: [Synth 8-7129] Port Address[15] in module DataMemory is either unconnec
 WARNING: [Synth 8-7129] Port Address[14] in module DataMemory is either unconnected or has no load
 WARNING: [Synth 8-7129] Port Address[13] in module DataMemory is either unconnected or has no load
 WARNING: [Synth 8-7129] Port Address[12] in module DataMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Instruction[25] in module Control is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Instruction[24] in module Control is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Instruction[23] in module Control is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Instruction[22] in module Control is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Instruction[21] in module Control is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Instruction[15] in module Control is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Instruction[14] in module Control is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Instruction[13] in module Control is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Instruction[12] in module Control is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Instruction[11] in module Control is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Instruction[10] in module Control is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Instruction[9] in module Control is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Instruction[8] in module Control is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Instruction[7] in module Control is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Instruction[6] in module Control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Reset in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Reset in module RegisterFile is either unconnected or has no load
 WARNING: [Synth 8-7129] Port Address[31] in module InstructionMemory is either unconnected or has no load
 WARNING: [Synth 8-7129] Port Address[30] in module InstructionMemory is either unconnected or has no load
 WARNING: [Synth 8-7129] Port Address[29] in module InstructionMemory is either unconnected or has no load
@@ -143,125 +152,53 @@ WARNING: [Synth 8-7129] Port Address[12] in module InstructionMemory is either u
 WARNING: [Synth 8-7129] Port Address[1] in module InstructionMemory is either unconnected or has no load
 WARNING: [Synth 8-7129] Port Address[0] in module InstructionMemory is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1296.762 ; gain = 502.289
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1298.305 ; gain = 503.473
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1296.762 ; gain = 502.289
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1298.305 ; gain = 503.473
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1296.762 ; gain = 502.289
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1298.305 ; gain = 503.473
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.047 . Memory (MB): peak = 1296.762 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.036 . Memory (MB): peak = 1298.305 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
 Parsing XDC File [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc]
-WARNING: [Vivado 12-584] No ports matched 'en_out[0]'. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:11]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:11]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'en_out[0]'. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:12]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:12]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'en_out[1]'. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:13]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:13]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'en_out[1]'. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:14]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:14]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'en_out[2]'. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:15]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:15]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'en_out[2]'. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:16]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:16]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'en_out[3]'. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:17]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:17]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'en_out[3]'. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:18]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:18]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'out7[6]'. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:29]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:29]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'out7[6]'. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:30]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:30]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'out7[5]'. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:31]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:31]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'out7[5]'. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:32]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:32]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'out7[4]'. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:33]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:33]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'out7[4]'. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:34]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:34]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'out7[3]'. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:35]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:35]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'out7[3]'. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:36]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:36]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'out7[2]'. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:37]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:37]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'out7[2]'. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:38]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:38]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'out7[1]'. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:39]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:39]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'out7[1]'. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:40]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:40]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'out7[0]'. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:41]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:41]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'out7[0]'. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:42]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:42]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'dp'. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:45]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:45]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'dp'. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:46]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc:46]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
 Finished Parsing XDC File [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc]
-INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/TopDatapath_propImpl.xdc].
-Resolution: To avoid this warning, move constraints listed in [.Xil/TopDatapath_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/TopDatapath_Board_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/TopDatapath_Board_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1354.375 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1363.684 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1354.375 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1363.684 ; gain = 0.000
 INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [C:/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1354.375 ; gain = 559.902
+Finished Constraint Validation : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1363.684 ; gain = 568.852
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
-Loading part: xc7a35tlcpg236-2L
+Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1354.375 ; gain = 559.902
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1363.684 ; gain = 568.852
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1354.375 ; gain = 559.902
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1363.684 ; gain = 568.852
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-327] inferring latch for variable 'ReadData_reg' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/DataMemory.v:96]
+WARNING: [Synth 8-327] inferring latch for variable 'ReadData_reg' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/DataMemory.v:100]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1354.375 ; gain = 559.902
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1363.684 ; gain = 568.852
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -270,13 +207,15 @@ Detailed RTL Component Info :
 +---Adders : 
 	   2 Input   32 Bit       Adders := 2     
 	   3 Input   32 Bit       Adders := 1     
+	   2 Input   26 Bit       Adders := 1     
 +---XORs : 
 	   2 Input     32 Bit         XORs := 1     
 +---Registers : 
-	               32 Bit    Registers := 33    
-	                5 Bit    Registers := 1     
+	               32 Bit    Registers := 22    
+	               26 Bit    Registers := 1     
+	                5 Bit    Registers := 4     
 	                2 Bit    Registers := 5     
-	                1 Bit    Registers := 19    
+	                1 Bit    Registers := 20    
 +---Multipliers : 
 	              32x32  Multipliers := 1     
 +---RAMs : 
@@ -287,15 +226,16 @@ Detailed RTL Component Info :
 	 243 Input   32 Bit        Muxes := 1     
 	   4 Input   32 Bit        Muxes := 4     
 	   8 Input   32 Bit        Muxes := 1     
+	   2 Input   26 Bit        Muxes := 1     
 	  12 Input    5 Bit        Muxes := 1     
-	   2 Input    5 Bit        Muxes := 2     
+	   2 Input    5 Bit        Muxes := 5     
 	  20 Input    5 Bit        Muxes := 1     
+	   4 Input    4 Bit        Muxes := 2     
 	  20 Input    2 Bit        Muxes := 3     
-	   2 Input    2 Bit        Muxes := 6     
+	   2 Input    2 Bit        Muxes := 9     
+	   2 Input    1 Bit        Muxes := 16    
 	  12 Input    1 Bit        Muxes := 3     
-	   2 Input    1 Bit        Muxes := 6     
-	  20 Input    1 Bit        Muxes := 8     
-	  19 Input    1 Bit        Muxes := 1     
+	  20 Input    1 Bit        Muxes := 9     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -344,21 +284,6 @@ WARNING: [Synth 8-7129] Port Address[15] in module DataMemory is either unconnec
 WARNING: [Synth 8-7129] Port Address[14] in module DataMemory is either unconnected or has no load
 WARNING: [Synth 8-7129] Port Address[13] in module DataMemory is either unconnected or has no load
 WARNING: [Synth 8-7129] Port Address[12] in module DataMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Instruction[25] in module Control is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Instruction[24] in module Control is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Instruction[23] in module Control is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Instruction[22] in module Control is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Instruction[21] in module Control is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Instruction[15] in module Control is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Instruction[14] in module Control is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Instruction[13] in module Control is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Instruction[12] in module Control is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Instruction[11] in module Control is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Instruction[10] in module Control is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Instruction[9] in module Control is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Instruction[8] in module Control is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Instruction[7] in module Control is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Instruction[6] in module Control is either unconnected or has no load
 WARNING: [Synth 8-7129] Port Address[31] in module InstructionMemory is either unconnected or has no load
 WARNING: [Synth 8-7129] Port Address[30] in module InstructionMemory is either unconnected or has no load
 WARNING: [Synth 8-7129] Port Address[29] in module InstructionMemory is either unconnected or has no load
@@ -367,46 +292,43 @@ WARNING: [Synth 8-7129] Port Address[27] in module InstructionMemory is either u
 WARNING: [Synth 8-7129] Port Address[26] in module InstructionMemory is either unconnected or has no load
 WARNING: [Synth 8-7129] Port Address[25] in module InstructionMemory is either unconnected or has no load
 WARNING: [Synth 8-7129] Port Address[24] in module InstructionMemory is either unconnected or has no load
-INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Synth 8-6851] RAM (datamem/memory_reg) has partial Byte Wide Write Enable pattern, however no output register found in fanout of RAM. Recommended to use supported Byte Wide Write Enable template. 
-WARNING: [Synth 8-3332] Sequential element (datamem/ReadData_reg[31]) is unused and will be removed from module TopDatapath.
-WARNING: [Synth 8-3332] Sequential element (datamem/ReadData_reg[30]) is unused and will be removed from module TopDatapath.
-WARNING: [Synth 8-3332] Sequential element (datamem/ReadData_reg[29]) is unused and will be removed from module TopDatapath.
-WARNING: [Synth 8-3332] Sequential element (datamem/ReadData_reg[28]) is unused and will be removed from module TopDatapath.
-WARNING: [Synth 8-3332] Sequential element (datamem/ReadData_reg[27]) is unused and will be removed from module TopDatapath.
-WARNING: [Synth 8-3332] Sequential element (datamem/ReadData_reg[26]) is unused and will be removed from module TopDatapath.
-WARNING: [Synth 8-3332] Sequential element (datamem/ReadData_reg[25]) is unused and will be removed from module TopDatapath.
-WARNING: [Synth 8-3332] Sequential element (datamem/ReadData_reg[24]) is unused and will be removed from module TopDatapath.
-WARNING: [Synth 8-3332] Sequential element (datamem/ReadData_reg[23]) is unused and will be removed from module TopDatapath.
-WARNING: [Synth 8-3332] Sequential element (datamem/ReadData_reg[22]) is unused and will be removed from module TopDatapath.
-WARNING: [Synth 8-3332] Sequential element (datamem/ReadData_reg[21]) is unused and will be removed from module TopDatapath.
-WARNING: [Synth 8-3332] Sequential element (datamem/ReadData_reg[20]) is unused and will be removed from module TopDatapath.
-WARNING: [Synth 8-3332] Sequential element (datamem/ReadData_reg[19]) is unused and will be removed from module TopDatapath.
-WARNING: [Synth 8-3332] Sequential element (datamem/ReadData_reg[18]) is unused and will be removed from module TopDatapath.
-WARNING: [Synth 8-3332] Sequential element (datamem/ReadData_reg[17]) is unused and will be removed from module TopDatapath.
-WARNING: [Synth 8-3332] Sequential element (datamem/ReadData_reg[16]) is unused and will be removed from module TopDatapath.
-WARNING: [Synth 8-3332] Sequential element (datamem/ReadData_reg[15]) is unused and will be removed from module TopDatapath.
-WARNING: [Synth 8-3332] Sequential element (datamem/ReadData_reg[14]) is unused and will be removed from module TopDatapath.
-WARNING: [Synth 8-3332] Sequential element (datamem/ReadData_reg[13]) is unused and will be removed from module TopDatapath.
-WARNING: [Synth 8-3332] Sequential element (datamem/ReadData_reg[12]) is unused and will be removed from module TopDatapath.
-WARNING: [Synth 8-3332] Sequential element (datamem/ReadData_reg[11]) is unused and will be removed from module TopDatapath.
-WARNING: [Synth 8-3332] Sequential element (datamem/ReadData_reg[10]) is unused and will be removed from module TopDatapath.
-WARNING: [Synth 8-3332] Sequential element (datamem/ReadData_reg[9]) is unused and will be removed from module TopDatapath.
-WARNING: [Synth 8-3332] Sequential element (datamem/ReadData_reg[8]) is unused and will be removed from module TopDatapath.
-WARNING: [Synth 8-3332] Sequential element (datamem/ReadData_reg[7]) is unused and will be removed from module TopDatapath.
-WARNING: [Synth 8-3332] Sequential element (datamem/ReadData_reg[6]) is unused and will be removed from module TopDatapath.
-WARNING: [Synth 8-3332] Sequential element (datamem/ReadData_reg[5]) is unused and will be removed from module TopDatapath.
-WARNING: [Synth 8-3332] Sequential element (datamem/ReadData_reg[4]) is unused and will be removed from module TopDatapath.
-WARNING: [Synth 8-3332] Sequential element (datamem/ReadData_reg[3]) is unused and will be removed from module TopDatapath.
-WARNING: [Synth 8-3332] Sequential element (datamem/ReadData_reg[2]) is unused and will be removed from module TopDatapath.
-WARNING: [Synth 8-3332] Sequential element (datamem/ReadData_reg[1]) is unused and will be removed from module TopDatapath.
-WARNING: [Synth 8-3332] Sequential element (datamem/ReadData_reg[0]) is unused and will be removed from module TopDatapath.
+WARNING: [Synth 8-7129] Port Address[23] in module InstructionMemory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Address[22] in module InstructionMemory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Address[21] in module InstructionMemory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Address[20] in module InstructionMemory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Address[19] in module InstructionMemory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Address[18] in module InstructionMemory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Address[17] in module InstructionMemory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Address[16] in module InstructionMemory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Address[15] in module InstructionMemory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Address[14] in module InstructionMemory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Address[13] in module InstructionMemory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Address[12] in module InstructionMemory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Address[11] in module InstructionMemory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Address[10] in module InstructionMemory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Address[1] in module InstructionMemory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Address[0] in module InstructionMemory is either unconnected or has no load
+INFO: [Synth 8-6851] RAM (m3/datamem/memory_reg) has partial Byte Wide Write Enable pattern, however no output register found in fanout of RAM. Recommended to use supported Byte Wide Write Enable template. 
+INFO: [Synth 8-3971] The signal "TopDatapath_Board/m3/Registers/registers_reg" was recognized as a true dual port RAM template.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1354.375 ; gain = 559.902
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 1363.684 ; gain = 568.852
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
+
+Block RAM: Preliminary Mapping Report (see note below)
+-------NONE-------
+Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
+
+Distributed RAM: Preliminary Mapping Report (see note below)
++------------------+-----------------------+-----------+----------------------+------------------+
+|Module Name       | RTL Object            | Inference | Size (Depth x Width) | Primitives       | 
++------------------+-----------------------+-----------+----------------------+------------------+
+|TopDatapath_Board | m3/datamem/memory_reg | Implied   | 1 K x 32             | RAM256X1S x 128  | 
++------------------+-----------------------+-----------+----------------------+------------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
 
 DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
 +------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
@@ -426,19 +348,38 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1354.375 ; gain = 559.902
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:32 ; elapsed = 00:00:32 . Memory (MB): peak = 1363.684 ; gain = 568.852
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1354.375 ; gain = 559.902
+Finished Timing Optimization : Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 1412.090 ; gain = 617.258
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Final Mapping Report
+-------NONE-------
+
+Distributed RAM: Final Mapping Report
++------------------+-----------------------+-----------+----------------------+------------------+
+|Module Name       | RTL Object            | Inference | Size (Depth x Width) | Primitives       | 
++------------------+-----------------------+-----------+----------------------+------------------+
+|TopDatapath_Board | m3/datamem/memory_reg | Implied   | 1 K x 32             | RAM256X1S x 128  | 
++------------------+-----------------------+-----------+----------------------+------------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
+INFO: [Synth 8-7052] The timing for the instance m3/Registers/registers_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance m3/Registers/registers_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1354.375 ; gain = 559.902
+Finished Technology Mapping : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 1449.277 ; gain = 654.445
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -456,41 +397,51 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:27 ; elapsed = 00:00:29 . Memory (MB): peak = 1354.375 ; gain = 559.902
+Finished IO Insertion : Time (s): cpu = 00:00:41 ; elapsed = 00:00:41 . Memory (MB): peak = 1464.113 ; gain = 669.281
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:27 ; elapsed = 00:00:29 . Memory (MB): peak = 1354.375 ; gain = 559.902
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:41 ; elapsed = 00:00:41 . Memory (MB): peak = 1464.113 ; gain = 669.281
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:27 ; elapsed = 00:00:29 . Memory (MB): peak = 1354.375 ; gain = 559.902
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:41 ; elapsed = 00:00:41 . Memory (MB): peak = 1464.113 ; gain = 669.281
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:27 ; elapsed = 00:00:29 . Memory (MB): peak = 1354.375 ; gain = 559.902
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:41 ; elapsed = 00:00:41 . Memory (MB): peak = 1464.113 ; gain = 669.281
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:27 ; elapsed = 00:00:29 . Memory (MB): peak = 1354.375 ; gain = 559.902
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:41 ; elapsed = 00:00:41 . Memory (MB): peak = 1464.145 ; gain = 669.312
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:27 ; elapsed = 00:00:29 . Memory (MB): peak = 1354.375 ; gain = 559.902
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:41 ; elapsed = 00:00:41 . Memory (MB): peak = 1464.145 ; gain = 669.312
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
 ---------------------------------------------------------------------------------
+
+DSP Final Report (the ' indicates corresponding REG is set)
++------------+--------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name | DSP Mapping  | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------+--------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|ALU32Bit    | A*B          | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|ALU32Bit    | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|ALU32Bit    | PCIN>>17+A*B | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
++------------+--------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
 
 Report BlackBoxes: 
 +-+--------------+----------+
@@ -499,31 +450,50 @@ Report BlackBoxes:
 +-+--------------+----------+
 
 Report Cell Usage: 
-+------+-----+------+
-|      |Cell |Count |
-+------+-----+------+
-|1     |OBUF |    96|
-+------+-----+------+
++------+----------+------+
+|      |Cell      |Count |
++------+----------+------+
+|1     |BUFG      |     3|
+|2     |CARRY4    |    54|
+|3     |DSP48E1   |     3|
+|4     |LUT1      |     5|
+|5     |LUT2      |    99|
+|6     |LUT3      |    38|
+|7     |LUT4      |   151|
+|8     |LUT5      |   226|
+|9     |LUT6      |   480|
+|10    |MUXF7     |     2|
+|11    |RAM256X1S |   128|
+|12    |RAMB18E1  |     2|
+|13    |FDCE      |   412|
+|14    |FDRE      |   194|
+|15    |LDC       |    32|
+|16    |IBUF      |     2|
+|17    |OBUF      |    12|
++------+----------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:27 ; elapsed = 00:00:29 . Memory (MB): peak = 1354.375 ; gain = 559.902
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:41 ; elapsed = 00:00:41 . Memory (MB): peak = 1464.145 ; gain = 669.312
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 93 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:19 ; elapsed = 00:00:27 . Memory (MB): peak = 1354.375 ; gain = 502.289
-Synthesis Optimization Complete : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1354.375 ; gain = 559.902
+Synthesis finished with 0 errors, 0 critical warnings and 46 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:33 ; elapsed = 00:00:39 . Memory (MB): peak = 1464.145 ; gain = 603.934
+Synthesis Optimization Complete : Time (s): cpu = 00:00:41 ; elapsed = 00:00:41 . Memory (MB): peak = 1464.145 ; gain = 669.312
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1354.375 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.032 . Memory (MB): peak = 1476.211 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 221 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1354.375 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1479.871 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
-No Unisim elements were transformed.
+  A total of 160 instances were transformed.
+  LDC => LDCE: 32 instances
+  RAM256X1S => RAM256X1S (MUXF7(x2), MUXF8, RAMS64E(x4)): 128 instances
 
-Synth Design complete, checksum: 7d9da27b
+Synth Design complete, checksum: 339e24a6
 INFO: [Common 17-83] Releasing license: Synthesis
-60 Infos, 178 Warnings, 24 Critical Warnings and 0 Errors encountered.
+74 Infos, 122 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:31 ; elapsed = 00:00:34 . Memory (MB): peak = 1354.375 ; gain = 959.023
-INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
-INFO: [Common 17-1381] The checkpoint 'C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.runs/synth_1/TopDatapath.dcp' has been generated.
-INFO: [runtcl-4] Executing : report_utilization -file TopDatapath_utilization_synth.rpt -pb TopDatapath_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Fri Oct 25 16:07:16 2024...
+synth_design: Time (s): cpu = 00:00:44 ; elapsed = 00:00:46 . Memory (MB): peak = 1479.871 ; gain = 1084.629
+INFO: [Common 17-1381] The checkpoint 'C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.runs/synth_1/TopDatapath_Board.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file TopDatapath_Board_utilization_synth.rpt -pb TopDatapath_Board_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sat Nov  2 11:32:46 2024...
