@@ -42,8 +42,8 @@ module TopDatapath_tb;
     TopDatapath uut (
         .Clk(Clk), 
         .Reset(Reset),
-        .PCOutReg(PCOut),
-        .WriteDataOutReg(WriteDataOut)
+        .wire2(PCOut),
+        .wire13(WriteDataOut)
 //        .ReadDataOut1(ReadDataOut1),
 //        .ReadDataOut2(ReadDataOut2)
     );
@@ -61,20 +61,5 @@ module TopDatapath_tb;
         Reset = 0;
     end
 
-    // ------------------------Monitoring Signals------------------------
-    initial begin
-        // Wait for reset to be deasserted
-        #15;
-        // Display header
-        $display("Time\tPCOut\t\tInstruction\t\tWriteDataOut\t");
-        // Monitor signals
-        $monitor("%0t\t%h\t%h\t%h\t%h\t%h", $time, PCOut, uut.wire11, WriteDataOut); //ReadDataOut1, ReadDataOut2
-    end
-
-    // ------------------------Simulation Control------------------------
-    initial begin
-        #1000;           // Run simulation for 1000 ns
-        $stop;           // Stop simulation
-    end
 
 endmodule

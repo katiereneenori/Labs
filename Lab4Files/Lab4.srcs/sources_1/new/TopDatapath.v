@@ -22,28 +22,27 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module TopDatapath(Clk, Reset,out7, en_out, dp);// //ReadDataOut1, ReadDataOut2
+module TopDatapath(Clk, Reset, wire2, wire13);// //ReadDataOut1, ReadDataOut2
 
 input Clk;
 input Reset;
 
-wire [31:0] wire2, wire13;
+// wire [15:0] Num;
+output [31:0] wire2, wire13;
 
-wire [15:0] Num;
+// output [6:0] out7; //seg a, b, ... g
+// output [3:0] en_out;
+//  wire dp;
 
-output [6:0] out7; //seg a, b, ... g
-output [3:0] en_out;
-output wire dp;
+// wire ClkOut;
 
-wire ClkOut;
+// ClkDiv m1(Clk, Reset, ClkOut);
 
-ClkDiv m1(Clk, Reset, ClkOut);
+// Mux2x1 m4(wire2[15:0], wire13[15:0], Num, ClkOut);
 
-Mux2x1 m4(wire2[15:0], wire13[15:0], Num, ClkOut);
+// Mux2x1 m5(0, 1, dp, ClkOut);
 
-Mux2x1 m5(0, 1, dp, ClkOut);
-
-One4DigitDisplay m2(Clk, Num, out7, en_out);
+// One4DigitDisplay m2(Clk, Num, out7, en_out);
 
 // wire [31:0] PCOut; // output program counter
 // wire [31:0] WriteDataOut; // output WriteData to register file (WriteDataOut)

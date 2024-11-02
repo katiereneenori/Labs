@@ -6,6 +6,8 @@ INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/Labs
 INFO: [VRFC 10-311] analyzing module AND_Gate
 INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Adder.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module Adder
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ClkDiv.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ClkDiv
 INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Control.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module Control
 INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/DataMemory.v" into library xil_defaultlib
@@ -16,6 +18,8 @@ INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/Labs
 INFO: [VRFC 10-311] analyzing module ID_EX
 INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/IF_ID_RegisterFile.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module IF_ID
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/InstructionFetchUnit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module InstructionFetchUnit
 INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/InstructionMemory.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module InstructionMemory
 INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/MEM_WB_RegisterFile.v" into library xil_defaultlib
@@ -26,17 +30,47 @@ INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/Labs
 INFO: [VRFC 10-311] analyzing module Mux32Bit3To1
 INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/Mux5Bit2To1.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module Mux5Bit2To1
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/One4DigitDisplay.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module One4DigitDisplay
 INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/PCAdder.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module PCAdder
 INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ProgramCounter.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module ProgramCounter
 INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/RegisterFile.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module RegisterFile
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/SevenSegment.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module SevenSegment
 INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ShiftLeft2.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module ShiftLeft2
 INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/SignExtension.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module SignExtension
 INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module TopDatapath
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath_Board.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module TopDatapath_Board
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Mux2x1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Mux2x1
 INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sim_1/new/TopDatapath_tb.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module TopDatapath_tb
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/DataMemory_tb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module DataMemory_tb
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/RegisterFile_tb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module RegisterFile_tb
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ALU32Bit_tb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ALU32Bit_tb
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sim_1/new/Control_tb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Control_tb
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/InstructionMemory_tb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module InstructionMemory_tb
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/PCAdder_tb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PCAdder_tb
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/InstructionFetchUnit_tb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module InstructionFetchUnit_tb
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ProgramCounter_tb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ProgramCounter_tb
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/TopModule_tb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module TopModule_tb
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Mux32Bit2To1_tb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Mux32Bit2To1_tb
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/SignExtension_tb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module SignExtension_tb

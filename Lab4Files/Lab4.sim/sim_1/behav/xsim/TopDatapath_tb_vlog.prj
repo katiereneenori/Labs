@@ -4,23 +4,40 @@ verilog xil_defaultlib  \
 "../../../../ALU32Bit.v" \
 "../../../../AND_Gate.v" \
 "../../../../Adder.v" \
+"../../../../ClkDiv.v" \
 "../../../../Control.v" \
 "../../../../DataMemory.v" \
 "../../../../EX_MEM_RegisterFile.v" \
 "../../../../ID_EX_RegisterFile.v" \
 "../../../../IF_ID_RegisterFile.v" \
+"../../../../InstructionFetchUnit.v" \
 "../../../../InstructionMemory.v" \
 "../../../../MEM_WB_RegisterFile.v" \
 "../../../../Mux32Bit2To1.v" \
 "../../../../Mux32Bit3To1.v" \
 "../../../../Lab4.srcs/sources_1/new/Mux5Bit2To1.v" \
+"../../../../One4DigitDisplay.v" \
 "../../../../PCAdder.v" \
 "../../../../ProgramCounter.v" \
 "../../../../RegisterFile.v" \
+"../../../../SevenSegment.v" \
 "../../../../ShiftLeft2.v" \
 "../../../../SignExtension.v" \
 "../../../../Lab4.srcs/sources_1/new/TopDatapath.v" \
+"../../../../Lab4.srcs/sources_1/new/TopDatapath_Board.v" \
+"../../../../Mux2x1.v" \
 "../../../../Lab4.srcs/sim_1/new/TopDatapath_tb.v" \
+"../../../../DataMemory_tb.v" \
+"../../../../RegisterFile_tb.v" \
+"../../../../ALU32Bit_tb.v" \
+"../../../../Lab4.srcs/sim_1/new/Control_tb.v" \
+"../../../../InstructionMemory_tb.v" \
+"../../../../PCAdder_tb.v" \
+"../../../../InstructionFetchUnit_tb.v" \
+"../../../../ProgramCounter_tb.v" \
+"../../../../TopModule_tb.v" \
+"../../../../Mux32Bit2To1_tb.v" \
+"../../../../SignExtension_tb.v" \
 
 # compile glbl module
 verilog xil_defaultlib "glbl.v"
