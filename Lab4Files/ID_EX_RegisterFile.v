@@ -32,6 +32,57 @@ module ID_EX(
     // registers are stored in the order they are declared abov
     
     always @(posedge Clk or posedge Reset) begin
+    if (Reset) begin
+        outALUOp     <= 5'd0;
+        outWire27    <= 5'd0;
+        outWire28    <= 5'd0;
+        outToBranch  <= 1'b0;
+        outRegWrite  <= 1'b0;
+        outMemWrite  <= 1'b0;
+        outMemRead   <= 1'b0;
+        outMemByte   <= 1'b0;
+        outMemHalf   <= 1'b0;
+        outRegDst    <= 1'b0;
+        outJalSel    <= 1'b0;
+        outJorBranch <= 1'b0;
+        outALUSrcA   <= 2'b00;
+        outALUSrcB   <= 2'b00;
+        outMemToReg  <= 2'b00;
+        outWire10    <= 32'd0;
+        outWire14    <= 32'd0;
+        outWire9     <= 32'd0;
+        outWire15    <= 32'd0;
+        outWire16    <= 32'd0;
+        outWire17    <= 32'd0;
+        outWire18    <= 32'd0;
+    end else begin
+        outALUOp     <= inALUOp;
+        outWire27    <= inWire27;
+        outWire28    <= inWire28;
+        outToBranch  <= inToBranch;
+        outRegWrite  <= inRegWrite;
+        outMemWrite  <= inMemWrite;
+        outMemRead   <= inMemRead;
+        outMemByte   <= inMemByte;
+        outMemHalf   <= inMemHalf;
+        outRegDst    <= inRegDst;
+        outJalSel    <= inJalSel;
+        outJorBranch <= inJorBranch;
+        outALUSrcA   <= inALUSrcA;
+        outALUSrcB   <= inALUSrcB;
+        outMemToReg  <= inMemToReg;
+        outWire10    <= inWire10;
+        outWire14    <= inWire14;
+        outWire9     <= inWire9;
+        outWire15    <= inWire15;
+        outWire16    <= inWire16;
+        outWire17    <= inWire17;
+        outWire18    <= inWire18;
+    end
+end
+
+    
+ /*   always @(posedge Clk or posedge Reset) begin
         if (Reset) begin // set all intermediate registers to zero if reset is high
             FiveBitRegs[0] <= 5'd0;
             FiveBitRegs[1] <= 5'd0;
@@ -82,7 +133,9 @@ module ID_EX(
         end
     end
     
-    always @(negedge Clk) begin
+    */
+    
+    /* always @(negedge Clk) begin
             outALUOp <= inALUOp;
             outToBranch <= inToBranch;
             outRegWrite <= inRegWrite;
@@ -106,6 +159,8 @@ module ID_EX(
             outWire27 <= inWire27;
             outWire28 <= inWire28;
     end
+    
+    */
 
     /*always @(posedge Clk or posedge Reset) begin
         if (Reset) begin

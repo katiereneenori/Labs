@@ -26,9 +26,12 @@ module PCAdder(PCResult, PCAddResult);
 
     input [31:0] PCResult;
 
-    output [31:0] PCAddResult;
+    output reg [31:0] PCAddResult;
     
-    assign PCAddResult = PCResult + 4; //hard-wired incrementor
+    always @(PCResult)
+        begin
+            PCAddResult <= PCResult + 32'h00000004;
+        end
 
 endmodule
 

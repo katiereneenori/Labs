@@ -17,10 +17,10 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t
 INFO: [Device 21-403] Loading part xc7a35tcpg236-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 24672
+INFO: [Synth 8-7075] Helper process launched with PID 25744
 INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [C:/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1201.680 ; gain = 406.848
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1202.340 ; gain = 407.340
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'TopDatapath_Board' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath_Board.v:39]
 INFO: [Synth 8-6157] synthesizing module 'ClkDiv' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ClkDiv.v:13]
@@ -85,28 +85,28 @@ INFO: [Synth 8-6155] done synthesizing module 'TopDatapath' (0#1) [C:/Users/tjwi
 WARNING: [Synth 8-689] width (16) of port connection 'wire2' does not match port width (32) of module 'TopDatapath' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath_Board.v:58]
 WARNING: [Synth 8-689] width (16) of port connection 'wire13' does not match port width (32) of module 'TopDatapath' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath_Board.v:58]
 INFO: [Synth 8-6155] done synthesizing module 'TopDatapath_Board' (0#1) [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.srcs/sources_1/new/TopDatapath_Board.v:39]
-WARNING: [Synth 8-6014] Unused sequential element FiveBitRegs_reg[2] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:36]
-WARNING: [Synth 8-6014] Unused sequential element FiveBitRegs_reg[1] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:36]
-WARNING: [Synth 8-6014] Unused sequential element FiveBitRegs_reg[0] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:36]
-WARNING: [Synth 8-6014] Unused sequential element OneBitRegs_reg[8] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:39]
-WARNING: [Synth 8-6014] Unused sequential element OneBitRegs_reg[7] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:39]
-WARNING: [Synth 8-6014] Unused sequential element OneBitRegs_reg[6] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:39]
-WARNING: [Synth 8-6014] Unused sequential element OneBitRegs_reg[5] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:39]
-WARNING: [Synth 8-6014] Unused sequential element OneBitRegs_reg[4] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:39]
-WARNING: [Synth 8-6014] Unused sequential element OneBitRegs_reg[3] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:39]
-WARNING: [Synth 8-6014] Unused sequential element OneBitRegs_reg[2] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:39]
-WARNING: [Synth 8-6014] Unused sequential element OneBitRegs_reg[1] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:39]
-WARNING: [Synth 8-6014] Unused sequential element OneBitRegs_reg[0] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:39]
-WARNING: [Synth 8-6014] Unused sequential element TwoBitRegs_reg[2] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:48]
-WARNING: [Synth 8-6014] Unused sequential element TwoBitRegs_reg[1] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:48]
-WARNING: [Synth 8-6014] Unused sequential element TwoBitRegs_reg[0] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:48]
-WARNING: [Synth 8-6014] Unused sequential element ThirtyTwoBitRegs_reg[6] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:51]
-WARNING: [Synth 8-6014] Unused sequential element ThirtyTwoBitRegs_reg[5] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:51]
-WARNING: [Synth 8-6014] Unused sequential element ThirtyTwoBitRegs_reg[4] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:51]
-WARNING: [Synth 8-6014] Unused sequential element ThirtyTwoBitRegs_reg[3] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:51]
-WARNING: [Synth 8-6014] Unused sequential element ThirtyTwoBitRegs_reg[2] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:51]
-WARNING: [Synth 8-6014] Unused sequential element ThirtyTwoBitRegs_reg[1] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:51]
-WARNING: [Synth 8-6014] Unused sequential element ThirtyTwoBitRegs_reg[0] was removed.  [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:51]
+WARNING: [Synth 8-3848] Net outALUOp in module/entity ID_EX does not have driver. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:21]
+WARNING: [Synth 8-3848] Net outToBranch in module/entity ID_EX does not have driver. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:22]
+WARNING: [Synth 8-3848] Net outRegWrite in module/entity ID_EX does not have driver. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:22]
+WARNING: [Synth 8-3848] Net outMemWrite in module/entity ID_EX does not have driver. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:22]
+WARNING: [Synth 8-3848] Net outMemRead in module/entity ID_EX does not have driver. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:22]
+WARNING: [Synth 8-3848] Net outMemByte in module/entity ID_EX does not have driver. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:22]
+WARNING: [Synth 8-3848] Net outMemHalf in module/entity ID_EX does not have driver. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:22]
+WARNING: [Synth 8-3848] Net outRegDst in module/entity ID_EX does not have driver. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:22]
+WARNING: [Synth 8-3848] Net outJalSel in module/entity ID_EX does not have driver. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:22]
+WARNING: [Synth 8-3848] Net outJorBranch in module/entity ID_EX does not have driver. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:22]
+WARNING: [Synth 8-3848] Net outALUSrcA in module/entity ID_EX does not have driver. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:23]
+WARNING: [Synth 8-3848] Net outALUSrcB in module/entity ID_EX does not have driver. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:23]
+WARNING: [Synth 8-3848] Net outMemToReg in module/entity ID_EX does not have driver. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:23]
+WARNING: [Synth 8-3848] Net outWire10 in module/entity ID_EX does not have driver. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:24]
+WARNING: [Synth 8-3848] Net outWire14 in module/entity ID_EX does not have driver. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:24]
+WARNING: [Synth 8-3848] Net outWire9 in module/entity ID_EX does not have driver. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:24]
+WARNING: [Synth 8-3848] Net outWire15 in module/entity ID_EX does not have driver. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:24]
+WARNING: [Synth 8-3848] Net outWire16 in module/entity ID_EX does not have driver. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:24]
+WARNING: [Synth 8-3848] Net outWire17 in module/entity ID_EX does not have driver. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:24]
+WARNING: [Synth 8-3848] Net outWire18 in module/entity ID_EX does not have driver. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:24]
+WARNING: [Synth 8-3848] Net outWire27 in module/entity ID_EX does not have driver. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:25]
+WARNING: [Synth 8-3848] Net outWire28 in module/entity ID_EX does not have driver. [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/ID_EX_RegisterFile.v:25]
 WARNING: [Synth 8-7129] Port Address[31] in module DataMemory is either unconnected or has no load
 WARNING: [Synth 8-7129] Port Address[30] in module DataMemory is either unconnected or has no load
 WARNING: [Synth 8-7129] Port Address[29] in module DataMemory is either unconnected or has no load
@@ -127,43 +127,100 @@ WARNING: [Synth 8-7129] Port Address[15] in module DataMemory is either unconnec
 WARNING: [Synth 8-7129] Port Address[14] in module DataMemory is either unconnected or has no load
 WARNING: [Synth 8-7129] Port Address[13] in module DataMemory is either unconnected or has no load
 WARNING: [Synth 8-7129] Port Address[12] in module DataMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Reset in module ID_EX is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Reset in module RegisterFile is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[31] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[30] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[29] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[28] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[27] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[26] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[25] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[24] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[23] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[22] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[21] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[20] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[19] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[18] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[17] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[16] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[15] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[14] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[13] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[12] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[1] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[0] in module InstructionMemory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outALUOp[4] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outALUOp[3] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outALUOp[2] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outALUOp[1] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outALUOp[0] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outToBranch in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outRegWrite in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outMemWrite in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outMemRead in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outMemByte in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outMemHalf in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outRegDst in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outJalSel in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outJorBranch in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outALUSrcA[1] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outALUSrcA[0] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outALUSrcB[1] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outALUSrcB[0] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outMemToReg[1] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outMemToReg[0] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire10[31] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire10[30] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire10[29] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire10[28] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire10[27] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire10[26] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire10[25] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire10[24] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire10[23] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire10[22] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire10[21] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire10[20] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire10[19] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire10[18] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire10[17] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire10[16] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire10[15] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire10[14] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire10[13] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire10[12] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire10[11] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire10[10] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire10[9] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire10[8] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire10[7] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire10[6] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire10[5] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire10[4] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire10[3] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire10[2] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire10[1] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire10[0] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire14[31] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire14[30] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire14[29] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire14[28] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire14[27] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire14[26] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire14[25] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire14[24] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire14[23] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire14[22] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire14[21] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire14[20] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire14[19] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire14[18] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire14[17] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire14[16] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire14[15] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire14[14] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire14[13] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire14[12] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire14[11] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire14[10] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire14[9] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire14[8] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire14[7] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire14[6] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire14[5] in module ID_EX is either unconnected or has no load
+WARNING: [Synth 8-7129] Port outWire14[4] in module ID_EX is either unconnected or has no load
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1298.305 ; gain = 503.473
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1297.551 ; gain = 502.551
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1298.305 ; gain = 503.473
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1297.551 ; gain = 502.551
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1298.305 ; gain = 503.473
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1297.551 ; gain = 502.551
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.036 . Memory (MB): peak = 1298.305 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.034 . Memory (MB): peak = 1297.551 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -174,31 +231,31 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/TopDatapath_Board_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1363.684 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1407.676 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1363.684 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1407.676 ; gain = 0.000
 INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [C:/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1363.684 ; gain = 568.852
+Finished Constraint Validation : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1407.676 ; gain = 612.676
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1363.684 ; gain = 568.852
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1407.676 ; gain = 612.676
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1363.684 ; gain = 568.852
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1407.676 ; gain = 612.676
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-327] inferring latch for variable 'ReadData_reg' [C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/DataMemory.v:100]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1363.684 ; gain = 568.852
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1407.676 ; gain = 612.676
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -211,11 +268,11 @@ Detailed RTL Component Info :
 +---XORs : 
 	   2 Input     32 Bit         XORs := 1     
 +---Registers : 
-	               32 Bit    Registers := 22    
+	               32 Bit    Registers := 15    
 	               26 Bit    Registers := 1     
-	                5 Bit    Registers := 4     
-	                2 Bit    Registers := 5     
-	                1 Bit    Registers := 20    
+	                5 Bit    Registers := 1     
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 11    
 +---Multipliers : 
 	              32x32  Multipliers := 1     
 +---RAMs : 
@@ -264,71 +321,46 @@ DSP Report: operator ALUResult0 is absorbed into DSP ALUResult0.
 DSP Report: Generating DSP ALUResult0, operation Mode is: (PCIN>>17)+A*B.
 DSP Report: operator ALUResult0 is absorbed into DSP ALUResult0.
 DSP Report: operator ALUResult0 is absorbed into DSP ALUResult0.
-WARNING: [Synth 8-7129] Port Address[31] in module DataMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[30] in module DataMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[29] in module DataMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[28] in module DataMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[27] in module DataMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[26] in module DataMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[25] in module DataMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[24] in module DataMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[23] in module DataMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[22] in module DataMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[21] in module DataMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[20] in module DataMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[19] in module DataMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[18] in module DataMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[17] in module DataMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[16] in module DataMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[15] in module DataMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[14] in module DataMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[13] in module DataMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[12] in module DataMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[31] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[30] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[29] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[28] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[27] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[26] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[25] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[24] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[23] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[22] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[21] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[20] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[19] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[18] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[17] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[16] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[15] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[14] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[13] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[12] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[11] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[10] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[1] in module InstructionMemory is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Address[0] in module InstructionMemory is either unconnected or has no load
+WARNING: [Synth 8-6014] Unused sequential element Registers/registers_reg was removed. 
 INFO: [Synth 8-6851] RAM (m3/datamem/memory_reg) has partial Byte Wide Write Enable pattern, however no output register found in fanout of RAM. Recommended to use supported Byte Wide Write Enable template. 
-INFO: [Synth 8-3971] The signal "TopDatapath_Board/m3/Registers/registers_reg" was recognized as a true dual port RAM template.
+WARNING: [Synth 8-3332] Sequential element (m3/datamem/ReadData_reg[31]) is unused and will be removed from module TopDatapath_Board.
+WARNING: [Synth 8-3332] Sequential element (m3/datamem/ReadData_reg[30]) is unused and will be removed from module TopDatapath_Board.
+WARNING: [Synth 8-3332] Sequential element (m3/datamem/ReadData_reg[29]) is unused and will be removed from module TopDatapath_Board.
+WARNING: [Synth 8-3332] Sequential element (m3/datamem/ReadData_reg[28]) is unused and will be removed from module TopDatapath_Board.
+WARNING: [Synth 8-3332] Sequential element (m3/datamem/ReadData_reg[27]) is unused and will be removed from module TopDatapath_Board.
+WARNING: [Synth 8-3332] Sequential element (m3/datamem/ReadData_reg[26]) is unused and will be removed from module TopDatapath_Board.
+WARNING: [Synth 8-3332] Sequential element (m3/datamem/ReadData_reg[25]) is unused and will be removed from module TopDatapath_Board.
+WARNING: [Synth 8-3332] Sequential element (m3/datamem/ReadData_reg[24]) is unused and will be removed from module TopDatapath_Board.
+WARNING: [Synth 8-3332] Sequential element (m3/datamem/ReadData_reg[23]) is unused and will be removed from module TopDatapath_Board.
+WARNING: [Synth 8-3332] Sequential element (m3/datamem/ReadData_reg[22]) is unused and will be removed from module TopDatapath_Board.
+WARNING: [Synth 8-3332] Sequential element (m3/datamem/ReadData_reg[21]) is unused and will be removed from module TopDatapath_Board.
+WARNING: [Synth 8-3332] Sequential element (m3/datamem/ReadData_reg[20]) is unused and will be removed from module TopDatapath_Board.
+WARNING: [Synth 8-3332] Sequential element (m3/datamem/ReadData_reg[19]) is unused and will be removed from module TopDatapath_Board.
+WARNING: [Synth 8-3332] Sequential element (m3/datamem/ReadData_reg[18]) is unused and will be removed from module TopDatapath_Board.
+WARNING: [Synth 8-3332] Sequential element (m3/datamem/ReadData_reg[17]) is unused and will be removed from module TopDatapath_Board.
+WARNING: [Synth 8-3332] Sequential element (m3/datamem/ReadData_reg[16]) is unused and will be removed from module TopDatapath_Board.
+WARNING: [Synth 8-3332] Sequential element (m3/datamem/ReadData_reg[15]) is unused and will be removed from module TopDatapath_Board.
+WARNING: [Synth 8-3332] Sequential element (m3/datamem/ReadData_reg[14]) is unused and will be removed from module TopDatapath_Board.
+WARNING: [Synth 8-3332] Sequential element (m3/datamem/ReadData_reg[13]) is unused and will be removed from module TopDatapath_Board.
+WARNING: [Synth 8-3332] Sequential element (m3/datamem/ReadData_reg[12]) is unused and will be removed from module TopDatapath_Board.
+WARNING: [Synth 8-3332] Sequential element (m3/datamem/ReadData_reg[11]) is unused and will be removed from module TopDatapath_Board.
+WARNING: [Synth 8-3332] Sequential element (m3/datamem/ReadData_reg[10]) is unused and will be removed from module TopDatapath_Board.
+WARNING: [Synth 8-3332] Sequential element (m3/datamem/ReadData_reg[9]) is unused and will be removed from module TopDatapath_Board.
+WARNING: [Synth 8-3332] Sequential element (m3/datamem/ReadData_reg[8]) is unused and will be removed from module TopDatapath_Board.
+WARNING: [Synth 8-3332] Sequential element (m3/datamem/ReadData_reg[7]) is unused and will be removed from module TopDatapath_Board.
+WARNING: [Synth 8-3332] Sequential element (m3/datamem/ReadData_reg[6]) is unused and will be removed from module TopDatapath_Board.
+WARNING: [Synth 8-3332] Sequential element (m3/datamem/ReadData_reg[5]) is unused and will be removed from module TopDatapath_Board.
+WARNING: [Synth 8-3332] Sequential element (m3/datamem/ReadData_reg[4]) is unused and will be removed from module TopDatapath_Board.
+WARNING: [Synth 8-3332] Sequential element (m3/datamem/ReadData_reg[3]) is unused and will be removed from module TopDatapath_Board.
+WARNING: [Synth 8-3332] Sequential element (m3/datamem/ReadData_reg[2]) is unused and will be removed from module TopDatapath_Board.
+WARNING: [Synth 8-3332] Sequential element (m3/datamem/ReadData_reg[1]) is unused and will be removed from module TopDatapath_Board.
+WARNING: [Synth 8-3332] Sequential element (m3/datamem/ReadData_reg[0]) is unused and will be removed from module TopDatapath_Board.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 1363.684 ; gain = 568.852
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1407.676 ; gain = 612.676
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
-
-Block RAM: Preliminary Mapping Report (see note below)
--------NONE-------
-Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
-
-Distributed RAM: Preliminary Mapping Report (see note below)
-+------------------+-----------------------+-----------+----------------------+------------------+
-|Module Name       | RTL Object            | Inference | Size (Depth x Width) | Primitives       | 
-+------------------+-----------------------+-----------+----------------------+------------------+
-|TopDatapath_Board | m3/datamem/memory_reg | Implied   | 1 K x 32             | RAM256X1S x 128  | 
-+------------------+-----------------------+-----------+----------------------+------------------+
-
-Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
 
 DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
 +------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
@@ -348,38 +380,19 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:32 ; elapsed = 00:00:32 . Memory (MB): peak = 1363.684 ; gain = 568.852
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1407.676 ; gain = 612.676
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 1412.090 ; gain = 617.258
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Start ROM, RAM, DSP, Shift Register and Retiming Reporting
----------------------------------------------------------------------------------
-
-Block RAM: Final Mapping Report
--------NONE-------
-
-Distributed RAM: Final Mapping Report
-+------------------+-----------------------+-----------+----------------------+------------------+
-|Module Name       | RTL Object            | Inference | Size (Depth x Width) | Primitives       | 
-+------------------+-----------------------+-----------+----------------------+------------------+
-|TopDatapath_Board | m3/datamem/memory_reg | Implied   | 1 K x 32             | RAM256X1S x 128  | 
-+------------------+-----------------------+-----------+----------------------+------------------+
-
----------------------------------------------------------------------------------
-Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+Finished Timing Optimization : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1407.676 ; gain = 612.676
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-7052] The timing for the instance m3/Registers/registers_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance m3/Registers/registers_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 1449.277 ; gain = 654.445
+Finished Technology Mapping : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1407.676 ; gain = 612.676
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -397,51 +410,41 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:41 ; elapsed = 00:00:41 . Memory (MB): peak = 1464.113 ; gain = 669.281
+Finished IO Insertion : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1407.676 ; gain = 612.676
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:41 ; elapsed = 00:00:41 . Memory (MB): peak = 1464.113 ; gain = 669.281
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1407.676 ; gain = 612.676
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:41 ; elapsed = 00:00:41 . Memory (MB): peak = 1464.113 ; gain = 669.281
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1407.676 ; gain = 612.676
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:41 ; elapsed = 00:00:41 . Memory (MB): peak = 1464.113 ; gain = 669.281
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1407.676 ; gain = 612.676
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:41 ; elapsed = 00:00:41 . Memory (MB): peak = 1464.145 ; gain = 669.312
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1407.676 ; gain = 612.676
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:41 ; elapsed = 00:00:41 . Memory (MB): peak = 1464.145 ; gain = 669.312
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1407.676 ; gain = 612.676
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
 ---------------------------------------------------------------------------------
-
-DSP Final Report (the ' indicates corresponding REG is set)
-+------------+--------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|Module Name | DSP Mapping  | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
-+------------+--------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|ALU32Bit    | A*B          | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|ALU32Bit    | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|ALU32Bit    | PCIN>>17+A*B | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-+------------+--------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-
 
 Report BlackBoxes: 
 +-+--------------+----------+
@@ -450,50 +453,42 @@ Report BlackBoxes:
 +-+--------------+----------+
 
 Report Cell Usage: 
-+------+----------+------+
-|      |Cell      |Count |
-+------+----------+------+
-|1     |BUFG      |     3|
-|2     |CARRY4    |    54|
-|3     |DSP48E1   |     3|
-|4     |LUT1      |     5|
-|5     |LUT2      |    99|
-|6     |LUT3      |    38|
-|7     |LUT4      |   151|
-|8     |LUT5      |   226|
-|9     |LUT6      |   480|
-|10    |MUXF7     |     2|
-|11    |RAM256X1S |   128|
-|12    |RAMB18E1  |     2|
-|13    |FDCE      |   412|
-|14    |FDRE      |   194|
-|15    |LDC       |    32|
-|16    |IBUF      |     2|
-|17    |OBUF      |    12|
-+------+----------+------+
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |     1|
+|2     |CARRY4 |    16|
+|3     |LUT1   |     3|
+|4     |LUT2   |    31|
+|5     |LUT4   |     5|
+|6     |LUT5   |     8|
+|7     |LUT6   |     6|
+|8     |FDCE   |    41|
+|9     |FDRE   |    20|
+|10    |IBUF   |     2|
+|11    |OBUF   |    12|
++------+-------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:41 ; elapsed = 00:00:41 . Memory (MB): peak = 1464.145 ; gain = 669.312
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1407.676 ; gain = 612.676
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 46 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:33 ; elapsed = 00:00:39 . Memory (MB): peak = 1464.145 ; gain = 603.934
-Synthesis Optimization Complete : Time (s): cpu = 00:00:41 ; elapsed = 00:00:41 . Memory (MB): peak = 1464.145 ; gain = 669.312
+Synthesis finished with 0 errors, 0 critical warnings and 79 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:18 ; elapsed = 00:00:25 . Memory (MB): peak = 1407.676 ; gain = 502.551
+Synthesis Optimization Complete : Time (s): cpu = 00:00:26 ; elapsed = 00:00:28 . Memory (MB): peak = 1407.676 ; gain = 612.676
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.032 . Memory (MB): peak = 1476.211 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 221 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1407.676 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 16 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1479.871 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1407.676 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 160 instances were transformed.
-  LDC => LDCE: 32 instances
-  RAM256X1S => RAM256X1S (MUXF7(x2), MUXF8, RAMS64E(x4)): 128 instances
+No Unisim elements were transformed.
 
-Synth Design complete, checksum: 339e24a6
+Synth Design complete, checksum: 8f53ae4c
 INFO: [Common 17-83] Releasing license: Synthesis
-74 Infos, 122 Warnings, 0 Critical Warnings and 0 Errors encountered.
+72 Infos, 167 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:44 ; elapsed = 00:00:46 . Memory (MB): peak = 1479.871 ; gain = 1084.629
+synth_design: Time (s): cpu = 00:00:30 ; elapsed = 00:00:32 . Memory (MB): peak = 1407.676 ; gain = 1012.805
 INFO: [Common 17-1381] The checkpoint 'C:/Users/tjwil/Desktop/ECE369A/LabsRepo/Labs/Lab4Files/Lab4.runs/synth_1/TopDatapath_Board.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file TopDatapath_Board_utilization_synth.rpt -pb TopDatapath_Board_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sat Nov  2 11:32:46 2024...
+INFO: [Common 17-206] Exiting Vivado at Sat Nov  2 11:49:04 2024...
