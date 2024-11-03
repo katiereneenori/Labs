@@ -1,191 +1,191 @@
 00000000    //                              main:        nop
-00004020    //              main:           nop          loop:       add      $t0, $zero, $zero
+00004020    //              main:           nop          loop:       add      $t0, $zero, $zero; $t0 = 0
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
-20090006    //                              nop          addi        $t1, $zero, 6
+20090006    //                              nop          addi        $t1, $zero, 6; $t1 = 6
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
-200a000a    //                              nop          addi        $t2, $zero, 10
+200a000a    //                              nop          addi        $t2, $zero, 10; $t2 = 10
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
-01095020    //                              nop          add         $t2, $t0, $t1
+01095020    //                              nop          add         $t2, $t0, $t1; $t2 = $t0 + $t1 = 0 + 6 = 6
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
-012a5822    //                              nop          sub         $t3, $t1, $t2
+012a5822    //                              nop          sub         $t3, $t1, $t2; $t3 = $t1 - $t2 = 6 - 6 = 0
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
-000b6040    //                              nop          sll         $t4, $t3, 3
+000b6040    //                              nop          sll         $t4, $t3, 3; $t4 = $t3 << 3 = 0 << 3 = 0
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
-018b7022    //                              nop          srl         $t5, $t4, 2
+018b7022    //                              nop          srl         $t5, $t4, 2; $t5 = $t4 >> 2 = 0 >> 2 = 0
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
-71095002    //                              nop          mul         $t2, $t0, $t1
+71095002    //                              nop          mul         $t2, $t0, $t1; $t2 = $t0 * $t1 = 0 * 6 = 0
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
-012c5824    //                              nop          and         $t3, $t1, $t4
+012c5824    //                              nop          and         $t3, $t1, $t4; $t3 = $t1 & $t4 = 6 & 0 = 0
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
-312c00ff    //                              nop          andi        $t3, $t1, 0xFF
+312c00ff    //                              nop          andi        $t3, $t1, 0xFF; $t3 = $t1 & 0xFF = 6 & 255 = 6
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
-014d6025    //                              nop          or          $t4, $t2, $t3
+014d6025    //                              nop          or          $t4, $t2, $t3; $t4 = $t2 | $t3 = 0 | 6 = 6
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
-354d00ff    //                              nop          ori         $t5, $t4, 0xFF
+354d00ff    //                              nop          ori         $t5, $t4, 0xFF; $t5 = $t4 | 0xFF = 6 | 255 = 255
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
-016e5026    //                              nop          xor         $t2, $t3, $t4
+016e5026    //                              nop          xor         $t2, $t3, $t4; $t2 = $t3 ^ $t4 = 6 ^ 6 = 0
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
-396f00ff    //                              nop          xori        $t3, $t2, 0xFF
+396f00ff    //                              nop          xori        $t3, $t2, 0xFF; $t3 = $t2 ^ 0xFF = 0 ^ 255 = 255
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
-01ac5827    //                              nop          nor         $t3, $t2, $t4
+01ac5827    //                              nop          nor         $t3, $t2, $t4; $t3 = ~($t2 | $t4) = ~(0 | 6) = -7
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
-8d0b0000    //                              nop          lw          $t3, 0($t0)
+8d0b0000    //                              nop          lw          $t3, 0($t0); Load word from address $t0 + 0 to $t3
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
-ad0c0004    //                              nop          sw          $t4, 4($t0)
+ad0c0004    //                              nop          sw          $t4, 4($t0); Store $t4 at address $t0 + 4
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
-a10d0008    //                              nop          sb          $t5, 8($t0)
+a10d0008    //                              nop          sb          $t5, 8($t0); Store byte of $t5 at address $t0 + 8
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
-840e000c    //                              nop          lh          $t6, 12($t0)
+840e000c    //                              nop          lh          $t6, 12($t0); Load halfword from address $t0 + 12 to $t6
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
-a50e0010    //                              nop          sh          $t6, 16($t0)
+a50e0010    //                              nop          sh          $t6, 16($t0); Store halfword of $t6 at address $t0 + 16
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
-810f0014    //                              nop          lb          $t7, 20($t0)
+810f0014    //                              nop          lb          $t7, 20($t0); Load byte from address $t0 + 20 to $t7
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
-014b602a    //                              nop          slt         $t4, $t2, $t3
+014b602a    //                              nop          slt         $t4, $t2, $t3; $t4 = ($t2 < $t3) ? 1 : 0 = 1
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
-294f0005    //                              nop          slti        $t7, $t2, 5
+294f0005    //                              nop          slti        $t7, $t2, 5; $t7 = ($t2 < 5) ? 1 : 0 = 1
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
-06200002    //                              nop          bgez        $s1, Label1
+06200002    //                              nop          bgez        $s1, Label1; Branch if $s1 >= 0
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
-11000002    //                              nop          beq         $t0, $zero, Label2
+11000002    //                              nop          beq         $t0, $zero, Label2; Branch if $t0 == 0
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
-15000002    //                              nop          bne         $t0, $zero, Label3
+15000002    //                              nop          bne         $t0, $zero, Label3; Branch if $t0 != 0
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
-1d200002    //                              nop          bgtz        $t1, Label4
+1d200002    //                              nop          bgtz        $t1, Label4; Branch if $t1 > 0
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
-19a00002    //                              nop          blez        $t5, Label5
+19a00002    //                              nop          blez        $t5, Label5; Branch if $t5 <= 0
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
-05800002    //                              nop          bltz        $t4, Label6
+05800002    //                              nop          bltz        $t4, Label6; Branch if $t4 < 0
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
-0800000a    //                              nop          j           Label
+0800000a    //                              nop          j           Label; Unconditional jump
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
-03e00008    //                              nop          jr          $ra
+03e00008    //                              nop          jr          $ra; Jump to return address in $ra
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
-0c00000d    //                              nop          jal         Label
+0c00000d    //                              nop          jal         Label; Jump and link (store return address in $ra)
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop
 00000000    //                              nop                      nop

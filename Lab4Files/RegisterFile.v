@@ -59,10 +59,8 @@ module RegisterFile(
             if (WriteRegister != 5'd0) begin
                 // Write to register if it's not $zero
                 registers[WriteRegister] <= WriteData;
-                $display("Time %0t: Writing %h to Register %d", $time, WriteData, WriteRegister);
             end else begin
                 // Attempted write to $zero is ignored
-                $display("Time %0t: Attempted write to $zero ignored.", $time);
             end
         end
     end
