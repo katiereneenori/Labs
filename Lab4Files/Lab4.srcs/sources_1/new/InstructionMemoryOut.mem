@@ -1,161 +1,193 @@
 00000000    //                              main:        nop
 00004020    //              main:           nop          loop:       add      $t0, $zero, $zero
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
 20090006    //                              nop          addi        $t1, $zero, 6
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
 200a000a    //                              nop          addi        $t2, $zero, 10
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
 01095020    //                              nop          add         $t2, $t0, $t1
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
 012a5822    //                              nop          sub         $t3, $t1, $t2
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
 000b6040    //                              nop          sll         $t4, $t3, 3
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
 018b7022    //                              nop          srl         $t5, $t4, 2
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
 71095002    //                              nop          mul         $t2, $t0, $t1
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
 012c5824    //                              nop          and         $t3, $t1, $t4
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
 312c00ff    //                              nop          andi        $t3, $t1, 0xFF
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
 014d6025    //                              nop          or          $t4, $t2, $t3
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
 354d00ff    //                              nop          ori         $t5, $t4, 0xFF
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
 016e5026    //                              nop          xor         $t2, $t3, $t4
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
 396f00ff    //                              nop          xori        $t3, $t2, 0xFF
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
 01ac5827    //                              nop          nor         $t3, $t2, $t4
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
 8d0b0000    //                              nop          lw          $t3, 0($t0)
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
 ad0c0004    //                              nop          sw          $t4, 4($t0)
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
 a10d0008    //                              nop          sb          $t5, 8($t0)
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
 840e000c    //                              nop          lh          $t6, 12($t0)
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
 a50e0010    //                              nop          sh          $t6, 16($t0)
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
 810f0014    //                              nop          lb          $t7, 20($t0)
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
 014b602a    //                              nop          slt         $t4, $t2, $t3
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
 294f0005    //                              nop          slti        $t7, $t2, 5
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
 06200002    //                              nop          bgez        $s1, Label1
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
 11000002    //                              nop          beq         $t0, $zero, Label2
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
 15000002    //                              nop          bne         $t0, $zero, Label3
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
 1d200002    //                              nop          bgtz        $t1, Label4
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
 19a00002    //                              nop          blez        $t5, Label5
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
 05800002    //                              nop          bltz        $t4, Label6
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
 0800000a    //                              nop          j           Label
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
 03e00008    //                              nop          jr          $ra
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
 0c00000d    //                              nop          jal         Label
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
-            //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
+00000000    //                              nop                      nop
