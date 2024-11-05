@@ -1,27 +1,9 @@
 `timescale 1ns / 1ps
 
 ////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 10/25/2024 10:00:00 AM
-// Design Name: 
-// Module Name: TopDatapath_tb
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-//      Testbench for the TopDatapath module. This testbench generates a clock,
-//      applies a reset, and monitors internal signals to verify correct
-//      datapath functionality.
-// 
-// Dependencies: 
-//      TopDatapath.v
-// 
-// Revision:
-//      Revision 0.01 - File Created
-// 
-// Additional Comments:
+// Team Members: Katie Dionne & Tanner Shartel
+// Overall percent effort of each team member: 50%/50%
+//
 // 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -32,8 +14,8 @@ module TopDatapath_tb;
     reg Reset;
 
     // ------------------------Outputs-----------------------
-    wire [31:0] PCOut;
-    wire [31:0] WriteDataOut;
+    wire [31:0] wire2;
+    wire [31:0] wire13;
 
  //   wire [31:0] ReadDataOut1;
  //   wire [31:0] ReadDataOut2;
@@ -42,24 +24,32 @@ module TopDatapath_tb;
     TopDatapath uut (
         .Clk(Clk), 
         .Reset(Reset),
-        .wire2(PCOut),
-        .wire13(WriteDataOut)
+        .wire2(wire2),
+        .wire13(wire13)
 //        .ReadDataOut1(ReadDataOut1),
 //        .ReadDataOut2(ReadDataOut2)
     );
-
-    // ------------------------Clock Generation------------------------
+// Clock Generation
     initial begin
         Clk = 0;
-        forever #5 Clk = ~Clk; // Toggle clock every 5 ns for 100 MHz
+        forever #5 Clk = ~Clk; // Toggle clock every 5 ns (100 MHz clock)
     end
 
-    // ------------------------Reset Signal------------------------
+    // Reset Signal Generation
     initial begin
         Reset = 1;
-        #10;             // Hold reset for 10 ns
+        #10;          // Hold reset high for 10 ns
         Reset = 0;
     end
 
+    // Simulation Control
+    initial begin
+        // Monitor the outputs
+        $monitor("Time: %0dns, wire2 (PCOut): 0x%08h, wire13 (WriteDataOut): %0d", $time, wire2, wire13);
+
+        // Run the simulation for a specified time
+        #1000;        // Adjust the simulation time as needed
+        $finish;
+    end
 
 endmodule
