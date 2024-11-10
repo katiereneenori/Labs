@@ -30,6 +30,19 @@ input Reset;
 // wire [15:0] Num;
 output [31:0] wire2, wire13;
 
+// Wires for Hazard Detection Unit
+wire HDU_PCWrite;
+wire HDU_IF_ID_Write;
+wire HDU_ControlHazard;
+
+// From IF_ID pipeline register
+wire [4:0] IF_ID_RegisterRs = wire11[25:21]; // Rs field of instruction in IF_ID
+wire [4:0] IF_ID_RegisterRt = wire11[20:16]; // Rt field of instruction in IF_ID
+
+// From ID_EX pipeline register
+wire ID_EX_MemRead = MemReadWire1;      // MemRead signal from ID_EX
+wire [4:0] ID_EX_RegisterRt = wire27;   // Rt field from ID_EX
+
 // output [6:0] out7; //seg a, b, ... g
 // output [3:0] en_out;
 //  wire dp;
@@ -87,6 +100,16 @@ reg [4:0] returnAddr = 5'b11111;
 //        WriteDataOutReg <= wire13;
 //    end    
 
+HazardDetectionUnit HDU (
+    .ID_EX_MemRead(ID_EX_MemRead),
+    .ID_EX_RegisterRt(ID_EX_RegisterRt),
+    .IF_ID_RegisterRs(IF_ID_RegisterRs),
+    .IF_ID_RegisterRt(IF_ID_RegisterRt),
+    .PCWrite(HDU_PCWrite),
+    .IF_ID_Write(HDU_IF_ID_Write),
+    .ControlHazard(HDU_ControlHazard)
+);
+
 // ------------------------Instruction Fetch Stage------------------------
 
     Mux32Bit2To1 JorBranchMux(
@@ -107,7 +130,8 @@ reg [4:0] returnAddr = 5'b11111;
         .Address(wire1), 
         .PCResult(wire2), 
         .Reset(Reset), 
-        .Clk(Clk)
+        .Clk(Clk),
+        .PCWrite(HDU_PCWrite)
         );
         
     PCAdder PCAdd( // provides PC + 4
@@ -128,13 +152,15 @@ reg [4:0] returnAddr = 5'b11111;
         .inWire4(wire4),
         .outWire2(wire9),
         .outWire3(wire10),
-        .outWire4(wire11)
+        .outWire4(wire11),
+        .IF_ID_Write(HDU_IF_ID_Write)
     );
     
 // ------------------------Instruction Decode Stage------------------------ 
 
     Control Controller(
         .Instruction(wire11), 
+        .ControlHazard(HDU_ControlHazard),
         .ALUOp(ALUOpWire), 
         .ToBranch(ToBranchWire), 
         .RegDst(RegDstWire), 

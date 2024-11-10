@@ -12,11 +12,13 @@
 //in the hopes of testing out single instructions 
 ////////////////////////////////////////////////////////////////////////////////
 
-module IF_ID(inWire2, inWire3, inWire4, outWire2, outWire3, outWire4, Clk, Reset);
+module IF_ID(inWire2, inWire3, inWire4, outWire2, outWire3, outWire4, Clk, Reset, IF_ID_Write);
 
     input [31:0] inWire2, inWire3, inWire4;
     
     input Clk, Reset;
+    
+    input IF_ID_Write;
     
     output reg [31:0] outWire2, outWire3, outWire4;
     
@@ -29,10 +31,17 @@ module IF_ID(inWire2, inWire3, inWire4, outWire2, outWire3, outWire4, Clk, Reset
         outWire4 <= 32'd0;
         end 
         
-        else begin
+        else if (IF_ID_Write) begin
         outWire2 <= inWire2;
         outWire3 <= inWire3;
         outWire4 <= inWire4;
+        
+        end else begin
+            // Hold the values (stall)
+        outWire2 <= outWire2;
+        outWire3 <= outWire3;
+        outWire4 <= outWire4;
+        
         end
     end
    

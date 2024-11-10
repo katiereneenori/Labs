@@ -33,6 +33,7 @@
 
 module Control(
     input [31:0] Instruction,
+    input ControlHazard,
     output reg [4:0] ALUOp,
     output reg ToBranch,
     output reg RegDst,
@@ -63,9 +64,11 @@ module Control(
         MemHalf = 1'b0;
         JorBranch = 1'b0;
         JalSel = 1'b0;
+        
+        if (ControlHazard) begin
 
         // Check for NOP instruction (encoded as all zeros)
-        if (Instruction == 32'b0) begin
+        end else if (Instruction == 32'b0) begin
             // NOP detected; ensure no operation occurs
             // All control signals remain at their default safe values
             // RegWrite, MemWrite, MemRead are deasserted
