@@ -49,6 +49,8 @@ module Control(
     output reg JalSel
 );
 
+    reg stallCount;
+    
     always @(*) begin
         // Default values to prevent latches and unintended operations
         ALUOp = 5'b00000;
@@ -64,15 +66,20 @@ module Control(
         MemHalf = 1'b0;
         JorBranch = 1'b0;
         JalSel = 1'b0;
+        stallCount = 0;
         
         if (ControlHazard) begin
-
-        // Check for NOP instruction (encoded as all zeros)
-        end else if (Instruction == 32'b0) begin
+            stallCount = 1;
+        end 
+        else if (stallCount) begin
+            stallCount = 0;
+        end
+        else if (Instruction == 32'b0) begin
             // NOP detected; ensure no operation occurs
             // All control signals remain at their default safe values
             // RegWrite, MemWrite, MemRead are deasserted
-        end else if (Instruction[31:26] == 6'b000000) begin
+        end 
+        else if (Instruction[31:26] == 6'b000000) begin
             // R-type instructions
             case (Instruction[5:0])
                 // ADD

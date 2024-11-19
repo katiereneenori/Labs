@@ -38,9 +38,11 @@ wire HDU_ControlHazard;
 // From IF_ID pipeline register
 wire [4:0] IF_ID_RegisterRs = wire11[25:21]; // Rs field of instruction in IF_ID
 wire [4:0] IF_ID_RegisterRt = wire11[20:16]; // Rt field of instruction in IF_ID
+wire [4:0] EX_MEM_RegisterRt = wire41;
 
 // From ID_EX pipeline register
 wire ID_EX_MemRead = MemReadWire1;      // MemRead signal from ID_EX
+wire EX_MEM_MemRead = MemReadWire2;
 wire [4:0] ID_EX_RegisterRt = wire27;   // Rt field from ID_EX
 
 // output [6:0] out7; //seg a, b, ... g
@@ -105,8 +107,10 @@ HazardDetectionUnit HDU (
     .ID_EX_RegisterRt(ID_EX_RegisterRt),
     .IF_ID_RegisterRs(IF_ID_RegisterRs),
     .IF_ID_RegisterRt(IF_ID_RegisterRt),
+    .EX_MEM_RegisterRt(EX_MEM_RegisterRt),
     .PCWrite(HDU_PCWrite),
     .IF_ID_Write(HDU_IF_ID_Write),
+    .EX_MEM_MemRead(EX_MEM_MemRead),
     .ControlHazard(HDU_ControlHazard)
 );
 

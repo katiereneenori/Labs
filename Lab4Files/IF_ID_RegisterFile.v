@@ -15,36 +15,38 @@
 module IF_ID(inWire2, inWire3, inWire4, outWire2, outWire3, outWire4, Clk, Reset, IF_ID_Write);
 
     input [31:0] inWire2, inWire3, inWire4;
-    
     input Clk, Reset;
-    
     input IF_ID_Write;
-    
     output reg [31:0] outWire2, outWire3, outWire4;
-    
-    reg [31:0] itmdtRegs [2:0]; //3 registers to store intermediate pipeline values
-    
-  always @(posedge Clk or posedge Reset) begin
-        if (Reset == 1) begin // reset all intermediate values to 0 if reset is high
-        outWire2 <= 32'd0;
-        outWire3 <= 32'd0;
-        outWire4 <= 32'd0;
-        end 
-        
-        else if (IF_ID_Write) begin
-        outWire2 <= inWire2;
-        outWire3 <= inWire3;
-        outWire4 <= inWire4;
-        
-        end else begin
+
+    reg [1:0] stall_counter; // Counter to track stall cycles
+
+    always @(posedge Clk or posedge Reset) begin
+        if (Reset) begin // Reset condition
+            outWire2 <= 32'd0;
+            outWire3 <= 32'd0;
+            outWire4 <= 32'd0;
+            stall_counter <= 2'b00;
+        end else if (stall_counter > 0) begin
+            stall_counter <= stall_counter - 1;
             // Hold the values (stall)
-        outWire2 <= outWire2;
-        outWire3 <= outWire3;
-        outWire4 <= outWire4;
-        
+            outWire2 <= outWire2;
+            outWire3 <= outWire3;
+            outWire4 <= outWire4;
+        end else if (~IF_ID_Write) begin
+            stall_counter <= 2'b10; // Initiate 2-cycle stall
+            // Hold the values (stall)
+            outWire2 <= outWire2;
+            outWire3 <= outWire3;
+            outWire4 <= outWire4;
+        end else begin
+            // Normal operation
+            outWire2 <= inWire2;
+            outWire3 <= inWire3;
+            outWire4 <= inWire4;
         end
     end
-   
+endmodule
  /*   
     always @(negedge Clk) begin // make intermediate values available on falling edge of clock
         outWire2 <= inWire2;
@@ -71,4 +73,3 @@ module IF_ID(inWire2, inWire3, inWire4, outWire2, outWire3, outWire4, Clk, Reset
     
     */
     
-endmodule
