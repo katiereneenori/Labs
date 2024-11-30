@@ -31,21 +31,14 @@ module ProgramCounter(Address, PCResult, Reset, Clk, PCWrite);
     input [31:0] Address;
     input Reset, Clk, PCWrite;
     output reg [31:0] PCResult;
-
-    reg [1:0] stall_counter; // Counter to track stall cycles
-
+    
     always @(posedge Clk or posedge Reset) begin
         if (Reset) begin
             PCResult <= 32'b0;
-            stall_counter <= 2'b00;
-        end else if (stall_counter > 0) begin
-            stall_counter <= stall_counter - 1;
-            PCResult <= PCResult; // Hold the value (stall)
-        end else if (~PCWrite) begin
-            stall_counter <= 2'b10; // Initiate 2-cycle stall
-            PCResult <= PCResult;   // Hold the value (stall)
+        end else if (PCWrite) begin
+            PCResult <= Address;
         end else begin
-            PCResult <= Address;    // Normal operation
+            PCResult <= PCResult; // Hold the value (stall)
         end
     end
 endmodule

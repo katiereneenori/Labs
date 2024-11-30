@@ -49,16 +49,17 @@ module DataMemory(Address, WriteData, Clk, MemWrite, MemRead, ReadData, byte, ha
 
     output reg[31:0] ReadData; // Contents of memory location at Address
 
-	reg [31:0] memory [0:1023]; // 1K memory declaration
+    reg [31:0] memory [0:8191]; // 8K memory declaration
+
 	
 	integer i;
 	
 	// initialize all to 0
 	initial begin
-	   for(i = 0; i < 1024; i = i + 1) begin
+	   for (i = 0; i < 8192; i = i + 1) begin
 	       memory[i] = 32'b0;
 	   end
-//	   $readmemh("out.mem", memory);
+//	       $readmemh("Data_Memory.mem", memory);
 	end
 	
 // memory write 
@@ -66,27 +67,27 @@ module DataMemory(Address, WriteData, Clk, MemWrite, MemRead, ReadData, byte, ha
         if (MemWrite) begin
             if ((!byte) && (!half)) begin
                 // store the full 32-bit word
-                memory[Address[11:2]] <= WriteData;
+                memory[Address[14:2]] <= WriteData;
             end
             
             else if (half && !byte) begin
                 // store the lower or upper 16 bits (store half)
                 if (Address[1] == 1'b0) begin
                     // store half in lower 16 bits of the word
-                    memory[Address[11:2]] <= {memory[Address[11:2]][31:16], WriteData[15:0]};
+                    memory[Address[14:2]] <= {memory[Address[14:2]][31:16], WriteData[15:0]};
                 end else begin
                     // store half in upper 16 bits of the word
-                    memory[Address[11:2]] <= {WriteData[15:0], memory[Address[11:2]][15:0]};
+                    memory[Address[14:2]] <= {WriteData[15:0], memory[Address[14:2]][15:0]};
                 end
             end
             
             else if (byte && !half) begin
                 // store only a single byte
                 case (Address[1:0]) // select which byte to store
-                    2'b00: memory[Address[11:2]] <= {memory[Address[11:2]][31:8], WriteData[7:0]};
-                    2'b01: memory[Address[11:2]] <= {memory[Address[11:2]][31:16], WriteData[7:0], memory[Address[11:2]][7:0]};
-                    2'b10: memory[Address[11:2]] <= {memory[Address[11:2]][31:24], WriteData[7:0], memory[Address[11:2]][15:0]};
-                    2'b11: memory[Address[11:2]] <= {WriteData[7:0], memory[Address[11:2]][23:0]};
+                    2'b00: memory[Address[14:2]] <= {memory[Address[14:2]][31:8], WriteData[7:0]};
+                    2'b01: memory[Address[14:2]] <= {memory[Address[14:2]][31:16], WriteData[7:0], memory[Address[14:2]][7:0]};
+                    2'b10: memory[Address[14:2]] <= {memory[Address[14:2]][31:24], WriteData[7:0], memory[Address[14:2]][15:0]};
+                    2'b11: memory[Address[14:2]] <= {WriteData[7:0], memory[Address[14:2]][23:0]};
                 endcase
             end
         end
@@ -97,27 +98,27 @@ module DataMemory(Address, WriteData, Clk, MemWrite, MemRead, ReadData, byte, ha
         if (MemRead) begin
             if ((!byte) && (!half)) begin
                 // load the full 32-bit word
-                ReadData = memory[Address[11:2]];
+                ReadData = memory[Address[14:2]];
             end
             
             else if (half && !byte) begin
                 // load the halfword and sign extend
                 if (Address[1] == 1'b0) begin
                     // load lower 16 bits and sign extend
-                    ReadData = {{16{memory[Address[11:2]][15]}}, memory[Address[11:2]][15:0]};
+                    ReadData = {{16{memory[Address[14:2]][15]}}, memory[Address[14:2]][15:0]};
                 end else begin
                     // load upper 16 bits and sign extend
-                    ReadData = {{16{memory[Address[11:2]][31]}}, memory[Address[11:2]][31:16]};
+                    ReadData = {{16{memory[Address[14:2]][31]}}, memory[Address[14:2]][31:16]};
                 end
             end
             
             else if (byte && !half) begin
                 // Load the byte and sign extend
                 case (Address[1:0])
-                    2'b00: ReadData = {{24{memory[Address[11:2]][7]}}, memory[Address[11:2]][7:0]};
-                    2'b01: ReadData = {{24{memory[Address[11:2]][15]}}, memory[Address[11:2]][15:8]};
-                    2'b10: ReadData = {{24{memory[Address[11:2]][23]}}, memory[Address[11:2]][23:16]};
-                    2'b11: ReadData = {{24{memory[Address[11:2]][31]}}, memory[Address[11:2]][31:24]};
+                    2'b00: ReadData = {{24{memory[Address[14:2]][7]}}, memory[Address[14:2]][7:0]};
+                    2'b01: ReadData = {{24{memory[Address[14:2]][15]}}, memory[Address[14:2]][15:8]};
+                    2'b10: ReadData = {{24{memory[Address[14:2]][23]}}, memory[Address[14:2]][23:16]};
+                    2'b11: ReadData = {{24{memory[Address[14:2]][31]}}, memory[Address[14:2]][31:24]};
                 endcase
             end
         end else begin

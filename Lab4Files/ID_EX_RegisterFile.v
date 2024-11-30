@@ -18,6 +18,17 @@ module ID_EX(
     input [1:0] inALUSrcA, inALUSrcB, inMemToReg,
     input [31:0] inWire10, inWire14, inWire9, inWire15, inWire16, inWire17, inWire18,
     input Clk, Reset,
+    
+    input [31:0] inInstruction,
+    output reg [31:0] outInstruction,
+    
+    // Add the jump address to the inputs and outputs
+    input [31:0] inJumpAddress,
+    output reg [31:0] outJumpAddress,
+    
+    input [1:0] inPCSrcSel,
+    output reg [1:0] outPCSrcSel,
+
     output reg [4:0] outALUOp,
     output reg outToBranch, outRegWrite, outMemWrite, outMemRead, outMemByte, outMemHalf, outRegDst, outJalSel, outJorBranch,
     output reg [1:0] outALUSrcA, outALUSrcB, outMemToReg,
@@ -55,6 +66,9 @@ module ID_EX(
         outWire16    <= 32'd0;
         outWire17    <= 32'd0;
         outWire18    <= 32'd0;
+        outInstruction <= 32'd0;
+        outJumpAddress <= 32'd0;
+        outPCSrcSel <= 2'd0;
     end else begin
         outALUOp     <= inALUOp;
         outWire27    <= inWire27;
@@ -78,6 +92,9 @@ module ID_EX(
         outWire16    <= inWire16;
         outWire17    <= inWire17;
         outWire18    <= inWire18;
+        outInstruction <= inInstruction;
+        outJumpAddress <= inJumpAddress;
+        outPCSrcSel <= inPCSrcSel;
     end
 end
 

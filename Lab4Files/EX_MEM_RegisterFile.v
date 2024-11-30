@@ -15,12 +15,16 @@
 module EX_MEM (
     input inToBranch, inRegWrite, inMemWrite, inMemRead, inMemByte, inMemHalf, inJalSel, inJorBranch,
     input [1:0] inMemToReg,
-    input [31:0] inWire46, inWire30, inWire34, inWire24, inWire33,
+//    input [31:0] inWire46, inWire30, inWire34, inWire24, inWire33,
+    input [31:0] inWire46, inWire30, inWire34, inWire24,
     input Clk, Reset,
     input inWire35,
+    input [4:0] inWire33,      // Change from [31:0] to [4:0]
     output reg outToBranch, outRegWrite, outMemWrite, outMemRead, outMemByte, outMemHalf, outJalSel, outJorBranch,
     output reg [1:0] outMemToReg,
-    output reg [31:0] outWire46, outWire30, outWire35, outWire34, outWire24, outWire33
+    output reg [31:0] outWire46, outWire30, outWire35, outWire34, outWire24,
+    output reg [4:0] outWire33 // Change from [31:0] to [4:0]
+//    output reg [31:0] outWire46, outWire30, outWire35, outWire34, outWire24, outWire33
 );
 
    // reg OneBitRegs [7:0];        // 8 1-bit intermediate registers
@@ -44,7 +48,7 @@ module EX_MEM (
             outWire35     <= 32'd0;
             outWire34     <= 32'd0;
             outWire24     <= 32'd0;
-            outWire33     <= 32'd0;
+            outWire33     <= 5'd0;
         end else begin
             // Register inputs
             outToBranch   <= inToBranch;

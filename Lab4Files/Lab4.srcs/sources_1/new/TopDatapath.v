@@ -22,28 +22,21 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module TopDatapath(Clk, Reset, wire2, wire13);// //ReadDataOut1, ReadDataOut2
+module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);// //ReadDataOut1, ReadDataOut2
 
 input Clk;
 input Reset;
 
 // wire [15:0] Num;
 output [31:0] wire2, wire13;
+output [31:0] v0, v1;
 
 // Wires for Hazard Detection Unit
 wire HDU_PCWrite;
 wire HDU_IF_ID_Write;
 wire HDU_ControlHazard;
 
-// From IF_ID pipeline register
-wire [4:0] IF_ID_RegisterRs = wire11[25:21]; // Rs field of instruction in IF_ID
-wire [4:0] IF_ID_RegisterRt = wire11[20:16]; // Rt field of instruction in IF_ID
-wire [4:0] EX_MEM_RegisterRt = wire41;
-
-// From ID_EX pipeline register
-wire ID_EX_MemRead = MemReadWire1;      // MemRead signal from ID_EX
-wire EX_MEM_MemRead = MemReadWire2;
-wire [4:0] ID_EX_RegisterRt = wire27;   // Rt field from ID_EX
+wire [31:0] ForwardedA, ForwardedB;
 
 // output [6:0] out7; //seg a, b, ... g
 // output [3:0] en_out;
@@ -70,6 +63,11 @@ wire [31:0] wire1, wire3, wire4, wire5, wire6, wire7, wire8, wire9, wire10, wire
             wire17, wire18, wire21, wire22, wire23, wire24, wire25, wire26, wire29,
             wire30, wire31, wire32, wire34, wire36, wire37, wire39, wire40, wire42,
             wire43, wire44, wire46, wire47, wire48; // Added wire46, wire47, wire48 for PC+4 propagation
+            
+// Inputs for the ALUSrcBMux
+wire [31:0] immediateValue; // This should be the immediate field or instruction word
+wire [31:0] zeroValue = 32'b0; // For default or unused input
+wire [31:0] jumpAddress;
                 
 // 1-bit wires
 wire wire35, wire38;
@@ -81,6 +79,8 @@ wire [4:0] ALUOpWire, ALUOpWire1;
 // 2-bit wires
 wire [1:0] ALUSrcAWire, ALUSrcBWire, MemToRegWire, ALUSrcAWire1, ALUSrcBWire1, MemToRegWire1, MemToRegWire2, MemToRegWire3;
 
+wire [1:0] PCSrcSel;
+
 // 1-bit control signals
 wire ToBranchWire, RegWriteWire, MemWriteWire, MemReadWire, MemByteWire, MemHalfWire, RegDstWire, JalSelWire, PCSrcWire, JorBranchWire;
 wire ToBranchWire1, RegWriteWire1, MemWriteWire1, MemReadWire1, MemByteWire1, MemHalfWire1, RegDstWire1, JalSelWire1, JorBranchWire1;
@@ -88,7 +88,20 @@ wire ToBranchWire2, RegWriteWire2, MemWriteWire2, MemReadWire2, MemByteWire2, Me
 
 wire JalSelWire3, RegWriteWire3;
 
+
+// From IF_ID pipeline register
+wire [4:0] IF_ID_RegisterRs = wire11[25:21]; // Rs field of instruction in IF_ID
+wire [4:0] IF_ID_RegisterRt = wire11[20:16]; // Rt field of instruction in IF_ID
+//wire [4:0] EX_MEM_RegisterRt = wire41;
+
+// From ID_EX pipeline register
+wire ID_EX_MemRead = MemReadWire1;      // MemRead signal from ID_EX
+//wire EX_MEM_MemRead = MemReadWire2;
+wire [4:0] ID_EX_RegisterRt = wire27;   // Rt field from ID_EX
+
 reg [4:0] returnAddr = 5'b11111;
+
+assign jumpAddress = {wire9[31:28], wire11[25:0], 2'b00}; // wire9 is PCResult from IF_ID
 
 // Assign outputs
 //assign PCOut = wire2; // Connecting PCOut to wire2
@@ -102,17 +115,38 @@ reg [4:0] returnAddr = 5'b11111;
 //        WriteDataOutReg <= wire13;
 //    end    
 
-HazardDetectionUnit HDU (
-    .ID_EX_MemRead(ID_EX_MemRead),
-    .ID_EX_RegisterRt(ID_EX_RegisterRt),
-    .IF_ID_RegisterRs(IF_ID_RegisterRs),
-    .IF_ID_RegisterRt(IF_ID_RegisterRt),
-    .EX_MEM_RegisterRt(EX_MEM_RegisterRt),
-    .PCWrite(HDU_PCWrite),
-    .IF_ID_Write(HDU_IF_ID_Write),
-    .EX_MEM_MemRead(EX_MEM_MemRead),
-    .ControlHazard(HDU_ControlHazard)
+// Hazard Detection Unit
+    HazardDetectionUnit HDU (
+        .ID_EX_MemRead(ID_EX_MemRead),
+        .ID_EX_RegisterRt(ID_EX_RegisterRt),
+        .IF_ID_RegisterRs(IF_ID_RegisterRs),
+        .IF_ID_RegisterRt(IF_ID_RegisterRt),
+        .PCWrite(HDU_PCWrite),
+        .IF_ID_Write(HDU_IF_ID_Write),
+        .ControlHazard(HDU_ControlHazard)
+    );
+    
+    ForwardingUnit FU (
+        .ID_EX_RegisterRs(wire27), // Assuming wire27 is Rs
+        .ID_EX_RegisterRt(wire28), // Assuming wire28 is Rt
+        .EX_MEM_RegisterRd(wire41), // Destination register from EX/MEM
+        .MEM_WB_RegisterRd(wire45), // Destination register from MEM/WB
+        .EX_MEM_RegWrite(RegWriteWire2),
+        .MEM_WB_RegWrite(RegWriteWire3),
+        .ForwardA(ForwardA),
+        .ForwardB(ForwardB)
 );
+
+    // Select the correct data for ALU inputs
+    assign ForwardedA = (ForwardA == 2'b00) ? wire22 :  // From ID/EX
+                        (ForwardA == 2'b10) ? wire7 :   // From EX/MEM
+                        (ForwardA == 2'b01) ? wire13 :  // From MEM/WB
+                        wire22;  // Default to ID/EX
+    
+    assign ForwardedB = (ForwardB == 2'b00) ? wire24 :
+                        (ForwardB == 2'b10) ? wire7 :
+                        (ForwardB == 2'b01) ? wire13 :
+                        wire24;
 
 // ------------------------Instruction Fetch Stage------------------------
 
@@ -122,13 +156,24 @@ HazardDetectionUnit HDU (
         .out(wire5),
         .sel(JorBranchWire2)
         );
+
+
+    // New PCSrcMux with 3 inputs
+    Mux32Bit3To1 PCSrcMux(
+        .inA(wire3),               // PC + 4
+        .inB(wire6),               // Branch target address from EX stage
+        .inC(jumpAddress_ID_EX),   // Jump address from ID/EX pipeline register
+        .sel(PCSrcSel),
+        .out(wire1)
+    );
+
     
-    Mux32Bit2To1 PCSrcMux( // 2x1 mux -- PCSrc control signal
-        .inA(wire3),
-        .inB(wire5),
-        .out(wire1),
-        .sel(PCSrcWire)
-        );
+//    Mux32Bit2To1 PCSrcMux( // 2x1 mux -- PCSrc control signal
+//        .inA(wire3),
+//        .inB(wire5),
+//        .out(wire1),
+//        .sel(PCSrcWire)
+//        );
     
     ProgramCounter PC(
         .Address(wire1), 
@@ -189,7 +234,9 @@ HazardDetectionUnit HDU (
         .Clk(Clk),
         .Reset(Reset), 
         .ReadData1(wire14), 
-        .ReadData2(wire15)
+        .ReadData2(wire15),
+        .v0_reg(v0),   // Connect v0_reg from RegisterFile to v0 output
+        .v1_reg(v1)    // Connect v1_reg from RegisterFile to v1 output
     );
     
     FiveBitExtender FiveExtend(
@@ -226,6 +273,7 @@ HazardDetectionUnit HDU (
         .inALUSrcB(ALUSrcBWire), 
         .inJorBranch(JorBranchWire), 
         .inMemToReg(MemToRegWire), 
+        .inJumpAddress(jumpAddress),
         // Data signals
         .inWire16(wire16), 
         .inWire14(wire14), 
@@ -236,7 +284,10 @@ HazardDetectionUnit HDU (
         .inWire10(wire10),  // Pass the full PC+4
     .inWire27(wire11[20:16]),  // rt
     .inWire28(wire11[15:11]),  // rd
+    .inPCSrcSel(PCSrcSel),
         // Outputs
+        .outPCSrcSel(PCSrcSel_ID_EX),
+        .outJumpAddress(jumpAddress_ID_EX),
         .outALUOp(ALUOpWire1), 
         .outToBranch(ToBranchWire1), 
         .outRegWrite(RegWriteWire1),
@@ -282,13 +333,22 @@ HazardDetectionUnit HDU (
         .out(wire31)
     );
     
-    Mux32Bit3To1 ALUSrcBMux(
-        .inA(wire24),
-        .inB(wire26),
-        .inC(wire25),
+     Mux32Bit4To1 ALUSrcBMux(
+        .inA(wire24),       // ReadData2
+        .inB(wire26),       // Sign-extended immediate
+        .inC(wire25),       // Shifted immediate (if needed)
+        .inD(wire17),       // Instruction word or immediate for 'jal'
         .sel(ALUSrcBWire1),
         .out(wire32)
-    );
+    );   
+    
+//    Mux32Bit3To1 ALUSrcBMux(
+//        .inA(wire24),
+//        .inB(wire26),
+//        .inC(wire25),
+//        .sel(ALUSrcBWire1),
+//       .out(wire32)
+//    );
     
     Mux5Bit2To1 RegDstMux(
         .inA(wire27),
@@ -299,8 +359,8 @@ HazardDetectionUnit HDU (
     
     ALU32Bit ALU(
         .ALUControl(ALUOpWire1),
-        .A(wire31),
-        .B(wire32),
+        .A(ForwardedA),
+        .B(ForwardedB),
         .ALUResult(wire34),
         .Zero(wire35)
     );

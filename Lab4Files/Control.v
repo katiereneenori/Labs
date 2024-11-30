@@ -46,10 +46,11 @@ module Control(
     output reg MemByte,
     output reg MemHalf,
     output reg JorBranch,
-    output reg JalSel
+    output reg JalSel,
+    output reg [1:0] PCSrcSel
 );
 
-    reg stallCount;
+//    reg stallCount;
     
     always @(*) begin
         // Default values to prevent latches and unintended operations
@@ -66,20 +67,39 @@ module Control(
         MemHalf = 1'b0;
         JorBranch = 1'b0;
         JalSel = 1'b0;
-        stallCount = 0;
+ //       stallCount = 0;
         
-        if (ControlHazard) begin
-            stallCount = 1;
-        end 
-        else if (stallCount) begin
-            stallCount = 0;
-        end
-        else if (Instruction == 32'b0) begin
+       if (ControlHazard) begin
+       
+        // Set all control signals to zero
+        ALUOp = 5'b00000;
+        ToBranch = 1'b0;
+        RegDst = 1'b0;
+        ALUSrcA = 2'b00;
+        ALUSrcB = 2'b00;
+        RegWrite = 1'b0;
+        MemWrite = 1'b0;
+        MemRead = 1'b0;
+        MemToReg = 2'b01;
+        MemByte = 1'b0;
+        MemHalf = 1'b0;
+        JorBranch = 1'b0;
+        JalSel = 1'b0;
+  //          stallCount = 1;
+     //   end 
+  //      else if (stallCount) begin
+   //         stallCount = 0;
+ //       end
+  //      else if (Instruction == 32'b0) begin
             // NOP detected; ensure no operation occurs
             // All control signals remain at their default safe values
             // RegWrite, MemWrite, MemRead are deasserted
-        end 
-        else if (Instruction[31:26] == 6'b000000) begin
+ //       end 
+ // end else if (Instruction == 32'b0) begin
+ 
+ //       else if (Instruction[31:26] == 6'b000000) begin
+ 
+    end else if (Instruction[31:26] == 6'b000000) begin
             // R-type instructions
             case (Instruction[5:0])
                 // ADD
@@ -322,6 +342,8 @@ module Control(
                     ALUSrcA = 2'b10;  // PC
                     ALUSrcB = 2'b11;  // jump address
                     JorBranch = 1'b1;
+                    PCSrcSel = 2'b10;  // Select jump address
+                    RegWrite = 1'b0;
                 end
                 // JAL
                 6'b000011: begin
@@ -333,6 +355,7 @@ module Control(
                     MemToReg = 2'b10;  // PC+4
                     JalSel = 1'b1;      // Write to $ra
                     JorBranch = 1'b1;
+                    PCSrcSel = 2'b10;  // Select jump address
                 end
                 default: begin
                     // Unsupported I-type or J-type instruction
