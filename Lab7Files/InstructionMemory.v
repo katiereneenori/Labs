@@ -50,7 +50,7 @@ module InstructionMemory(Address, Instruction);
     integer i;
     
     initial begin
-        $readmemh("Instruction_Memory.mem", memory);
+        $readmemh("Instruction_MemoryTest.mem", memory);
     end
     
     always @(*) begin

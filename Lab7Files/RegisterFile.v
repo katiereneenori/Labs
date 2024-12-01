@@ -34,10 +34,15 @@ module RegisterFile(
     input Clk,
     input Reset,
     output reg [31:0] ReadData1,
-    output reg [31:0] ReadData2
+    output reg [31:0] ReadData2,
+    output wire [31:0] v0_reg,
+    output wire [31:0] v1_reg
 );
 
     reg [31:0] registers [31:0]; // 32 registers, each 32 bits wide
+    
+    assign v0_reg = registers[2];  // $v0 is register 2
+    assign v1_reg = registers[3];  // $v1 is register 3
 
     integer i;
     initial begin
@@ -45,12 +50,19 @@ module RegisterFile(
         for (i = 0; i < 32; i = i + 1) begin
             registers[i] = 32'b0;
         end
+        
+        registers[29] = 8191 * 4;
+        
     end
 
     // Combinational read logic
     always @(*) begin
         ReadData1 = registers[ReadRegister1];
         ReadData2 = registers[ReadRegister2];
+    end
+    
+    always @(Reset) begin
+        registers[29] = 8191 * 4;
     end
 
     // Sequential write logic

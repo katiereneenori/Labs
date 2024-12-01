@@ -22,26 +22,21 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module TopDatapath(Clk, Reset, wire2, wire13);// //ReadDataOut1, ReadDataOut2
+module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);// //ReadDataOut1, ReadDataOut2
 
 input Clk;
 input Reset;
 
 // wire [15:0] Num;
 output [31:0] wire2, wire13;
+output [31:0] v0, v1;
 
 // Wires for Hazard Detection Unit
 wire HDU_PCWrite;
 wire HDU_IF_ID_Write;
 wire HDU_ControlHazard;
 
-// From IF_ID pipeline register
-wire [4:0] IF_ID_RegisterRs = wire11[25:21]; // Rs field of instruction in IF_ID
-wire [4:0] IF_ID_RegisterRt = wire11[20:16]; // Rt field of instruction in IF_ID
 
-// From ID_EX pipeline register
-wire ID_EX_MemRead = MemReadWire1;      // MemRead signal from ID_EX
-wire [4:0] ID_EX_RegisterRt = wire27;   // Rt field from ID_EX
 
 // output [6:0] out7; //seg a, b, ... g
 // output [3:0] en_out;
@@ -87,6 +82,14 @@ wire ToBranchWire2, RegWriteWire2, MemWriteWire2, MemReadWire2, MemByteWire2, Me
 wire JalSelWire3, RegWriteWire3;
 
 reg [4:0] returnAddr = 5'b11111;
+
+// From IF_ID pipeline register
+wire [4:0] IF_ID_RegisterRs = wire11[25:21]; // Rs field of instruction in IF_ID
+wire [4:0] IF_ID_RegisterRt = wire11[20:16]; // Rt field of instruction in IF_ID
+
+// From ID_EX pipeline register
+wire ID_EX_MemRead = MemReadWire1;      // MemRead signal from ID_EX
+wire [4:0] ID_EX_RegisterRt = wire27;   // Rt field from ID_EX
 
 // Assign outputs
 //assign PCOut = wire2; // Connecting PCOut to wire2
@@ -185,7 +188,9 @@ HazardDetectionUnit HDU (
         .Clk(Clk),
         .Reset(Reset), 
         .ReadData1(wire14), 
-        .ReadData2(wire15)
+        .ReadData2(wire15),
+        .v0_reg(v0),   // Connect v0_reg from RegisterFile to v0 output
+        .v1_reg(v1)    // Connect v1_reg from RegisterFile to v1 output
     );
     
     FiveBitExtender FiveExtend(

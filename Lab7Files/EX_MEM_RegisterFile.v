@@ -18,9 +18,10 @@ module EX_MEM (
     input [31:0] inWire46, inWire30, inWire34, inWire24, inWire33,
     input Clk, Reset,
     input inWire35,
-    output reg outToBranch, outRegWrite, outMemWrite, outMemRead, outMemByte, outMemHalf, outJalSel, outJorBranch,
+    output reg outToBranch, outRegWrite, outMemWrite, outMemRead, outMemByte, outMemHalf, outJalSel, outJorBranch, outWire35, outWire33,
     output reg [1:0] outMemToReg,
-    output reg [31:0] outWire46, outWire30, outWire35, outWire34, outWire24, outWire33
+    output reg [31:0] outWire46, outWire30, outWire34, outWire24
+//    output reg [31:0] outWire46, outWire30, outWire35, outWire34, outWire24, outWire33
 );
 
    // reg OneBitRegs [7:0];        // 8 1-bit intermediate registers
