@@ -45,15 +45,13 @@ module RegisterFile(
     assign v1_reg = registers[3];  // $v1 is register 3
 
     integer i;
-    initial begin
+//   initial begin
         // Initialize all registers to zero
-        for (i = 0; i < 32; i = i + 1) begin
-            registers[i] = 32'b0;
-        end
-        
-        registers[29] = 8191 * 4;
-        
-    end
+//       for (i = 0; i < 32; i = i + 1) begin
+//            registers[i] = 32'b0;
+//        end       
+//       registers[29] = 8191 * 4;       
+//   end
 
     // Combinational read logic
     always @(*) begin
@@ -61,20 +59,39 @@ module RegisterFile(
         ReadData2 = registers[ReadRegister2];
     end
     
-    always @(Reset) begin
-        registers[29] = 8191 * 4;
-    end
-
-    // Sequential write logic
-    always @(posedge Clk) begin
-        if (RegWrite) begin
+        // Sequential write logic with integrated reset
+    always @(posedge Clk or posedge Reset) begin
+        if (Reset) begin
+            // Initialize all registers to zero, except $sp (register 29)
+            for (i = 0; i < 32; i = i + 1) begin
+                if (i == 29)
+                    registers[i] <= 8191 * 4; // Initialize $sp
+                else
+                    registers[i] <= 32'b0;    // Initialize other registers to zero
+            end
+        end
+        else if (RegWrite) begin
             if (WriteRegister != 5'd0) begin
                 // Write to register if it's not $zero
                 registers[WriteRegister] <= WriteData;
-            end else begin
-                // Attempted write to $zero is ignored
             end
+            // Attempted write to $zero is ignored
         end
     end
+    
+    
+ //   always @(posedge Clk or posedge Reset) begin
+ //       if (Reset) begin
+ //           // Initialize $sp to 8191 * 4
+ //           registers[29] <= 8191 * 4;
+ //       end
+ //       else if (RegWrite) begin
+ //           if (WriteRegister != 5'd0) begin
+ //               // Write to register if it's not $zero
+ //               registers[WriteRegister] <= WriteData;
+ //           end
+ //           // Attempted write to $zero is ignored
+ //       end
+ //    end
 
 endmodule

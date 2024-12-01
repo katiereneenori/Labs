@@ -28,7 +28,7 @@
 //all you need to do is give an address as input and read the contents of the 
 //address on your output port. 
 // 
-//Using a 32bit address you will index into the memory, output the contents of that specific 
+//Using a 32bit address you will indexa into the memory, output the contents of that specific 
 //address. for data memory we are using 1K word of storage space. for the instruction memory 
 //you may assume smaller size for practical purpose. you can use 128 words as the size and 
 //hardcode the values.  in this case you need 7 bits to index into the memory. 
@@ -39,23 +39,31 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
-module InstructionMemory(Address, Instruction);
+module InstructionMemory(Address, Instruction); 
 
-    input [31:0] Address;        // Input Address 
+    input [31:0] Address;           // Input Address 
+    output reg [31:0] Instruction;  // Instruction read from memory
 
-    output reg [31:0] Instruction;    // Instruction at memory location Address
-    
-    reg [31:0] memory[0:1023]; //store instructions
-    
+    reg [31:0] memory [0:8191];    // 8K memory declaration
+
     integer i;
     
+    // Assign all bits of Address[31:0] to a wire to utilize them
+    wire [31:0] Address_used = Address;
+    assign Address_used = Address_used;
+    
+    // Initialize memory
     initial begin
+        for (i = 0; i < 8192; i = i + 1) begin
+            memory[i] = 32'b0;
+        end
         $readmemh("Instruction_MemoryTest.mem", memory);
     end
-    
+
+    // Instruction read
     always @(*) begin
-        Instruction = memory[Address[11:2]];
+        Instruction = memory[Address[14:2]];
     end
 
-    
 endmodule
+

@@ -22,8 +22,8 @@
 
 
 module HazardDetectionUnit(
-    input       ID_EX_MemRead,
-    input [4:0] ID_EX_RegisterRt,
+    input       ID_EX_RegWrite,
+    input [4:0] ID_EX_RegisterRd,
     input [4:0] IF_ID_RegisterRs,
     input [4:0] IF_ID_RegisterRt,
     output      PCWrite,
@@ -31,9 +31,9 @@ module HazardDetectionUnit(
     output      ControlHazard
 );
 
-assign ControlHazard = ID_EX_MemRead && 
-                       ((ID_EX_RegisterRt == IF_ID_RegisterRs) || 
-                        (ID_EX_RegisterRt == IF_ID_RegisterRt));
+assign ControlHazard = ID_EX_RegWrite && (ID_EX_RegisterRd != 0) &&
+                       ((ID_EX_RegisterRd == IF_ID_RegisterRs) || 
+                        (ID_EX_RegisterRd == IF_ID_RegisterRt));
 
 assign PCWrite = ~ControlHazard;
 assign IF_ID_Write = ~ControlHazard;

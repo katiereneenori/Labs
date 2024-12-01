@@ -51,8 +51,11 @@ module DataMemory(Address, WriteData, Clk, MemWrite, MemRead, ReadData, byte, ha
 
     reg [31:0] memory [0:8191]; // 8K memory declaration
 
-	
 	integer i;
+	
+    // Assign all bits of Address[31:0] to a wire to utilize them
+    wire [31:0] Address_used = Address;
+    assign Address_used = Address_used;
 	
 	// initialize all to 0
 	initial begin
@@ -62,28 +65,26 @@ module DataMemory(Address, WriteData, Clk, MemWrite, MemRead, ReadData, byte, ha
 	       $readmemh("Data_Memory.mem", memory);
 	end
 	
-// memory write 
+    // Memory write 
     always @(posedge Clk) begin
         if (MemWrite) begin
             if ((!byte) && (!half)) begin
-                // store the full 32-bit word
+                // Store the full 32-bit word
                 memory[Address[14:2]] <= WriteData;
             end
-            
             else if (half && !byte) begin
-                // store the lower or upper 16 bits (store half)
+                // Store half-word
                 if (Address[1] == 1'b0) begin
-                    // store half in lower 16 bits of the word
+                    // Lower 16 bits
                     memory[Address[14:2]] <= {memory[Address[14:2]][31:16], WriteData[15:0]};
                 end else begin
-                    // store half in upper 16 bits of the word
+                    // Upper 16 bits
                     memory[Address[14:2]] <= {WriteData[15:0], memory[Address[14:2]][15:0]};
                 end
             end
-            
             else if (byte && !half) begin
-                // store only a single byte
-                case (Address[1:0]) // select which byte to store
+                // Store byte
+                case (Address[1:0])
                     2'b00: memory[Address[14:2]] <= {memory[Address[14:2]][31:8], WriteData[7:0]};
                     2'b01: memory[Address[14:2]] <= {memory[Address[14:2]][31:16], WriteData[7:0], memory[Address[14:2]][7:0]};
                     2'b10: memory[Address[14:2]] <= {memory[Address[14:2]][31:24], WriteData[7:0], memory[Address[14:2]][15:0]};
@@ -93,27 +94,25 @@ module DataMemory(Address, WriteData, Clk, MemWrite, MemRead, ReadData, byte, ha
         end
     end
 
-    // memory read
+    // Memory read
     always @(*) begin
         if (MemRead) begin
             if ((!byte) && (!half)) begin
-                // load the full 32-bit word
+                // Load the full 32-bit word
                 ReadData = memory[Address[14:2]];
             end
-            
             else if (half && !byte) begin
-                // load the halfword and sign extend
+                // Load half-word with sign extension
                 if (Address[1] == 1'b0) begin
-                    // load lower 16 bits and sign extend
+                    // Lower 16 bits
                     ReadData = {{16{memory[Address[14:2]][15]}}, memory[Address[14:2]][15:0]};
                 end else begin
-                    // load upper 16 bits and sign extend
+                    // Upper 16 bits
                     ReadData = {{16{memory[Address[14:2]][31]}}, memory[Address[14:2]][31:16]};
                 end
             end
-            
             else if (byte && !half) begin
-                // Load the byte and sign extend
+                // Load byte with sign extension
                 case (Address[1:0])
                     2'b00: ReadData = {{24{memory[Address[14:2]][7]}}, memory[Address[14:2]][7:0]};
                     2'b01: ReadData = {{24{memory[Address[14:2]][15]}}, memory[Address[14:2]][15:8]};

@@ -65,10 +65,22 @@ module Control(
         JorBranch = 1'b0;
         JalSel = 1'b0;
         
-        if (ControlHazard) begin
-
-        // Check for NOP instruction (encoded as all zeros)
-        end else if (Instruction == 32'b0) begin
+    if (ControlHazard) begin
+        // Hazard detected: Insert a bubble by setting control signals to zero
+        ALUOp = 5'b00000;
+        ToBranch = 1'b0;
+        RegDst = 1'b0;
+        ALUSrcA = 2'b00;
+        ALUSrcB = 2'b00;
+        RegWrite = 1'b0;
+        MemWrite = 1'b0;
+        MemRead = 1'b0;
+        MemToReg = 2'b01;
+        MemByte = 1'b0;
+        MemHalf = 1'b0;
+        JorBranch = 1'b0;
+        JalSel = 1'b0;  // Explicitly reset JalSel
+    end else if (Instruction == 32'b0) begin
             // NOP detected; ensure no operation occurs
             // All control signals remain at their default safe values
             // RegWrite, MemWrite, MemRead are deasserted
@@ -158,7 +170,7 @@ module Control(
                 // JR
                 6'b001000: begin
                     ALUOp = 5'b10000;
-                    ToBranch = 1'b1;
+                    ToBranch = 1'b0;
                     ALUSrcA = 2'b00;  // rs
                     JorBranch = 1'b1;
                 end
@@ -193,6 +205,7 @@ module Control(
                     ALUSrcA = 2'b00;
                     ALUSrcB = 2'b01;
                     RegWrite = 1'b1;
+                    MemToReg = 2'b01;
                 end
                 // XORI
                 6'b001110: begin
@@ -311,7 +324,7 @@ module Control(
                 // J
                 6'b000010: begin
                     ALUOp = 5'b10100;
-                    ToBranch = 1'b1;
+                    ToBranch = 1'b0;
                     ALUSrcA = 2'b10;  // PC
                     ALUSrcB = 2'b11;  // jump address
                     JorBranch = 1'b1;
@@ -319,7 +332,7 @@ module Control(
                 // JAL
                 6'b000011: begin
                     ALUOp = 5'b10100;
-                    ToBranch = 1'b1;
+                    ToBranch = 1'b0;
                     ALUSrcA = 2'b10;
                     ALUSrcB = 2'b11;
                     RegWrite = 1'b1;

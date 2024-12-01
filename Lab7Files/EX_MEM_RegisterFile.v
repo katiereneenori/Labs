@@ -15,11 +15,15 @@
 module EX_MEM (
     input inToBranch, inRegWrite, inMemWrite, inMemRead, inMemByte, inMemHalf, inJalSel, inJorBranch,
     input [1:0] inMemToReg,
-    input [31:0] inWire46, inWire30, inWire34, inWire24, inWire33,
+//    input [31:0] inWire46, inWire30, inWire34, inWire24, inWire33,
+    input [31:0] inWire46, inWire30, inWire34, inWire24,
+    input [4:0] inWire33,
     input Clk, Reset,
     input inWire35,
-    output reg outToBranch, outRegWrite, outMemWrite, outMemRead, outMemByte, outMemHalf, outJalSel, outJorBranch, outWire35, outWire33,
+    output reg outToBranch, outRegWrite, outMemWrite, outMemRead, outMemByte, outMemHalf, outJalSel, outJorBranch, outWire35,
+//    output reg outToBranch, outRegWrite, outMemWrite, outMemRead, outMemByte, outMemHalf, outJalSel, outJorBranch, outWire35, outWire33,
     output reg [1:0] outMemToReg,
+    output reg [4:0] outWire33,
     output reg [31:0] outWire46, outWire30, outWire34, outWire24
 //    output reg [31:0] outWire46, outWire30, outWire35, outWire34, outWire24, outWire33
 );
