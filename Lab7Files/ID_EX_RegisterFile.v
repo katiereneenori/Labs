@@ -17,7 +17,7 @@ module ID_EX(
     input inToBranch, inRegWrite, inMemWrite, inMemRead, inMemByte, inMemHalf, inRegDst, inJalSel, inJorBranch,
     input [1:0] inALUSrcA, inALUSrcB, inMemToReg,
     input [31:0] inWire10, inWire14, inWire9, inWire15, inWire16, inWire17, inWire18,
-    input Clk, Reset,
+    input Clk, Reset, Flush,
     output reg [4:0] outALUOp,
     output reg outToBranch, outRegWrite, outMemWrite, outMemRead, outMemByte, outMemHalf, outRegDst, outJalSel, outJorBranch,
     output reg [1:0] outALUSrcA, outALUSrcB, outMemToReg,
@@ -32,7 +32,7 @@ module ID_EX(
     // registers are stored in the order they are declared abov
     
     always @(posedge Clk or posedge Reset) begin
-    if (Reset) begin
+    if (Reset || Flush) begin
         outALUOp     <= 5'd0;
         outWire27    <= 5'd0;
         outWire28    <= 5'd0;

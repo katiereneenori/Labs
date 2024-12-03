@@ -170,7 +170,7 @@ module Control(
                 // JR
                 6'b001000: begin
                     ALUOp = 5'b10000;
-                    ToBranch = 1'b0;
+                    ToBranch = 1'b1;
                     ALUSrcA = 2'b00;  // rs
                     JorBranch = 1'b1;
                 end
@@ -324,15 +324,15 @@ module Control(
                 // J
                 6'b000010: begin
                     ALUOp = 5'b10100;
-                    ToBranch = 1'b0;
+                    ToBranch = 1'b1;
                     ALUSrcA = 2'b10;  // PC
-                    ALUSrcB = 2'b11;  // jump address
+                    ALUSrcB = 2'b10;  // jump address
                     JorBranch = 1'b1;
                 end
                 // JAL
                 6'b000011: begin
                     ALUOp = 5'b10100;
-                    ToBranch = 1'b0;
+                    ToBranch = 1'b1;
                     ALUSrcA = 2'b10;
                     ALUSrcB = 2'b11;
                     RegWrite = 1'b1;

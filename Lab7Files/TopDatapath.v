@@ -44,7 +44,7 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
     wire [31:0] AddressMasked;
 
     // 1-bit wires
-    wire wire35, wire38;
+    wire wire35, wire38, toFlush;
 
     // 5-bit wires
     wire [4:0] wire12, wire27, wire28, wire33, wire41, wire45, wire49;
@@ -189,6 +189,9 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
     assign MemHalfMuxed   = HDU_ControlHazard ? 1'b0     : MemHalfWire;
     assign JorBranchMuxed = HDU_ControlHazard ? 1'b0     : JorBranchWire;
     assign JalSelMuxed    = HDU_ControlHazard ? 1'b0     : JalSelWire;
+    
+    // branch hazard flush
+    assign toFlush = (wire35 && ToBranchWire1);
 
     RegisterFile Registers(
         .ReadRegister1(wire11[25:21]),
@@ -277,7 +280,8 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
         .outWire17(wire25),
         .outWire18(wire26),
         .outWire27(wire27),        // rt
-        .outWire28(wire28)         // rd
+        .outWire28(wire28),         // rd
+        .Flush(toFlush)     // flush subsequent instruction when branching dependency
     );
 
     // ------------------------Execution Stage------------------------
