@@ -20,10 +20,13 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
 module HazardDetectionUnit(
     input       ID_EX_RegWrite,
     input [4:0] ID_EX_RegisterRd,
+    input       EX_MEM_RegWrite,
+    input [4:0] EX_MEM_RegisterRd,
+    input       MEM_WB_RegWrite,
+    input [4:0] MEM_WB_RegisterRd,
     input [4:0] IF_ID_RegisterRs,
     input [4:0] IF_ID_RegisterRt,
     output      PCWrite,
@@ -31,11 +34,25 @@ module HazardDetectionUnit(
     output      ControlHazard
 );
 
-assign ControlHazard = ID_EX_RegWrite && (ID_EX_RegisterRd != 0) &&
-                       ((ID_EX_RegisterRd == IF_ID_RegisterRs) || 
-                        (ID_EX_RegisterRd == IF_ID_RegisterRt));
+    wire hazard_ID_EX;
+    wire hazard_EX_MEM;
+    wire hazard_MEM_WB;
 
-assign PCWrite = ~ControlHazard;
-assign IF_ID_Write = ~ControlHazard;
+    assign hazard_ID_EX = ID_EX_RegWrite && (ID_EX_RegisterRd != 0) &&
+                          ((ID_EX_RegisterRd == IF_ID_RegisterRs) ||
+                           (ID_EX_RegisterRd == IF_ID_RegisterRt));
+
+    assign hazard_EX_MEM = EX_MEM_RegWrite && (EX_MEM_RegisterRd != 0) &&
+                           ((EX_MEM_RegisterRd == IF_ID_RegisterRs) ||
+                            (EX_MEM_RegisterRd == IF_ID_RegisterRt));
+
+    assign hazard_MEM_WB = MEM_WB_RegWrite && (MEM_WB_RegisterRd != 0) &&
+                           ((MEM_WB_RegisterRd == IF_ID_RegisterRs) ||
+                            (MEM_WB_RegisterRd == IF_ID_RegisterRt));
+
+    assign ControlHazard = hazard_ID_EX || hazard_EX_MEM || hazard_MEM_WB;
+
+    assign PCWrite = ~ControlHazard;
+    assign IF_ID_Write = ~ControlHazard;
 
 endmodule
