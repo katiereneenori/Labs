@@ -23,7 +23,7 @@ module IF_ID(
     output reg [31:0] outWire3,
     output reg [31:0] outWire4
 );
-
+    
     always @(posedge Clk or posedge Reset) begin
         if (Reset) begin
             outWire2 <= 32'd0;

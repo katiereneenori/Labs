@@ -78,6 +78,8 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
     // From MEM_WB pipeline register
     wire [4:0] MEM_WB_RegisterRd = wire45;       // Destination register from MEM_WB
     wire MEM_WB_RegWrite = RegWriteWire3;        // RegWrite signal from MEM_WB
+    
+    //wire [5:0] OpCode = wire11[31:26];
 
     // Hazard Detection Unit instantiation
     HazardDetectionUnit HDU (
@@ -92,6 +94,7 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
         .PCWrite(HDU_PCWrite),
         .IF_ID_Write(HDU_IF_ID_Write),
         .ControlHazard(HDU_ControlHazard)
+        //.OpCode(OpCode)
     );
 
     // ------------------------Instruction Fetch Stage------------------------
