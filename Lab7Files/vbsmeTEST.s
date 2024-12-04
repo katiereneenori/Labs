@@ -808,7 +808,7 @@ vbsme:
     sub     $s5, $s0, $s2       # Bottom boundary s5 = frame_rows - window_rows
 
     # Initialize
-    li $s8, 9999
+    li $30, 9999
     li $t0, 0
     li $t1, 0
     li $s6, 0
@@ -968,11 +968,11 @@ Next_Row:
 
 Compute_SAD_Done:
     # Compare current SAD with minimum SAD, update if necessary
-    blt     $t8, $s8, Update_Min_Sad    # If current SAD < min_sad, update min_sad and coordinates
+    blt     $t8, $30, Update_Min_Sad    # If current SAD < min_sad, update min_sad and coordinates
     jr      $ra                         # Else, return
 
 Update_Min_Sad:
-    move    $s8, $t8                   # Update min_sad to current SAD
+    move    $30, $t8                   # Update min_sad to current SAD
     move    $v0, $t0                   # Update best X-coordinate to current column index
     move    $v1, $t1                   # Update best Y-coordinate to current row index
     jr      $ra                        # Return from subroutine
