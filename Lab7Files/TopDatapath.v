@@ -212,10 +212,10 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
         .out(wire16)
     );
 
-    ShiftLeft2 Shift1(
+    /*ShiftLeft2 Shift1(
         .toShift(wire11),
         .shiftedResult(wire17)
-    );
+    );*/
 
     SignExtension SE(
         .in(wire11[15:0]),
@@ -253,7 +253,8 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
         .inWire14(wire14),
         .inWire9(wire9),
         .inWire15(wire15),
-        .inWire17(wire17),
+        //.inWire17(wire17),
+        .inWire17(wire11),
         .inWire18(wire18),
         .inWire10(wire10),          // Pass the full PC+4
         .inWire27(wire11[20:16]),   // rt

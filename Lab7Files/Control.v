@@ -334,7 +334,7 @@ module Control(
                     ALUOp = 5'b10100;
                     ToBranch = 1'b1;
                     ALUSrcA = 2'b10;
-                    ALUSrcB = 2'b11;
+                    ALUSrcB = 2'b10;
                     RegWrite = 1'b1;
                     MemToReg = 2'b10;  // PC+4
                     JalSel = 1'b1;      // Write to $ra
