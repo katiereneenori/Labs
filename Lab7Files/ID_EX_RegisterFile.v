@@ -31,7 +31,122 @@ module ID_EX(
     reg [31:0] ThirtyTwoBitRegs [6:0]; //7 32-bit intermediate registers
     // registers are stored in the order they are declared abov
     
+    
+    reg [1:0] i; // 2-bit counter for flushing 3 instructions
+
     always @(posedge Clk or posedge Reset) begin
+        if (Reset) begin
+            // Reset outputs and counter
+            outALUOp     <= 5'd0;
+            outWire27    <= 5'd0;
+            outWire28    <= 5'd0;
+            outToBranch  <= 1'b0;
+            outRegWrite  <= 1'b0;
+            outMemWrite  <= 1'b0;
+            outMemRead   <= 1'b0;
+            outMemByte   <= 1'b0;
+            outMemHalf   <= 1'b0;
+            outRegDst    <= 1'b0;
+            outJalSel    <= 1'b0;
+            outJorBranch <= 1'b0;
+            outALUSrcA   <= 2'b00;
+            outALUSrcB   <= 2'b00;
+            outMemToReg  <= 2'b00;
+            outWire10    <= 32'd0;
+            outWire14    <= 32'd0;
+            outWire9     <= 32'd0;
+            outWire15    <= 32'd0;
+            outWire16    <= 32'd0;
+            outWire17    <= 32'd0;
+            outWire18    <= 32'd0;
+            i <= 2'd0;
+        end else if (Flush || i != 0) begin
+            // Flush logic
+            outALUOp     <= 5'd0;
+            outWire27    <= 5'd0;
+            outWire28    <= 5'd0;
+            outToBranch  <= 1'b0;
+            outRegWrite  <= 1'b0;
+            outMemWrite  <= 1'b0;
+            outMemRead   <= 1'b0;
+            outMemByte   <= 1'b0;
+            outMemHalf   <= 1'b0;
+            outRegDst    <= 1'b0;
+            outJalSel    <= 1'b0;
+            outJorBranch <= 1'b0;
+            outALUSrcA   <= 2'b00;
+            outALUSrcB   <= 2'b00;
+            outMemToReg  <= 2'b00;
+            outWire10    <= 32'd0;
+            outWire14    <= 32'd0;
+            outWire9     <= 32'd0;
+            outWire15    <= 32'd0;
+            outWire16    <= 32'd0;
+            outWire17    <= 32'd0;
+            outWire18    <= 32'd0;
+
+            // Increment or reset the flush counter
+            if (i < 3)
+                i <= i + 1;
+            else
+                i <= 0;
+        end else if (inWire17[31:26] == 6'b000011 || // jal
+                     inWire17[31:26] == 6'b000010 || // j
+                     (inWire17[31:26] == 6'b000000 && inWire17[5:0] == 6'b001000)) begin // jr
+            // Detect jal, j, or jr: Pass through the instruction and set the flush counter
+            outALUOp     <= inALUOp;
+            outWire27    <= inWire27;
+            outWire28    <= inWire28;
+            outToBranch  <= inToBranch;
+            outRegWrite  <= inRegWrite;
+            outMemWrite  <= inMemWrite;
+            outMemRead   <= inMemRead;
+            outMemByte   <= inMemByte;
+            outMemHalf   <= inMemHalf;
+            outRegDst    <= inRegDst;
+            outJalSel    <= inJalSel;
+            outJorBranch <= inJorBranch;
+            outALUSrcA   <= inALUSrcA;
+            outALUSrcB   <= inALUSrcB;
+            outMemToReg  <= inMemToReg;
+            outWire10    <= inWire10;
+            outWire14    <= inWire14;
+            outWire9     <= inWire9;
+            outWire15    <= inWire15;
+            outWire16    <= inWire16;
+            outWire17    <= inWire17;
+            outWire18    <= inWire18;
+
+            i <= 1; // Start flushing next cycle
+        end else begin
+            // Normal operation: Pass through inputs to outputs
+            outALUOp     <= inALUOp;
+            outWire27    <= inWire27;
+            outWire28    <= inWire28;
+            outToBranch  <= inToBranch;
+            outRegWrite  <= inRegWrite;
+            outMemWrite  <= inMemWrite;
+            outMemRead   <= inMemRead;
+            outMemByte   <= inMemByte;
+            outMemHalf   <= inMemHalf;
+            outRegDst    <= inRegDst;
+            outJalSel    <= inJalSel;
+            outJorBranch <= inJorBranch;
+            outALUSrcA   <= inALUSrcA;
+            outALUSrcB   <= inALUSrcB;
+            outMemToReg  <= inMemToReg;
+            outWire10    <= inWire10;
+            outWire14    <= inWire14;
+            outWire9     <= inWire9;
+            outWire15    <= inWire15;
+            outWire16    <= inWire16;
+            outWire17    <= inWire17;
+            outWire18    <= inWire18;
+        end
+    end
+    /*always @(posedge Clk or posedge Reset) begin
+    
+    
     if (Reset || Flush) begin
         outALUOp     <= 5'd0;
         outWire27    <= 5'd0;
@@ -79,7 +194,7 @@ module ID_EX(
         outWire17    <= inWire17;
         outWire18    <= inWire18;
     end
-end
+end*/
 
     
  /*   always @(posedge Clk or posedge Reset) begin

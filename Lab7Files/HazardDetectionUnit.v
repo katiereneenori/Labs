@@ -29,6 +29,7 @@ module HazardDetectionUnit(
     input [4:0] MEM_WB_RegisterRd,
     input [4:0] IF_ID_RegisterRs,
     input [4:0] IF_ID_RegisterRt,
+    //input [5:0] OpCode,
     output      PCWrite,
     output      IF_ID_Write,
     output      ControlHazard
@@ -41,14 +42,17 @@ module HazardDetectionUnit(
     assign hazard_ID_EX = ID_EX_RegWrite && (ID_EX_RegisterRd != 0) &&
                           ((ID_EX_RegisterRd == IF_ID_RegisterRs) ||
                            (ID_EX_RegisterRd == IF_ID_RegisterRt));
+                           //|| (OpCode == 6'b000011);
 
     assign hazard_EX_MEM = EX_MEM_RegWrite && (EX_MEM_RegisterRd != 0) &&
                            ((EX_MEM_RegisterRd == IF_ID_RegisterRs) ||
                             (EX_MEM_RegisterRd == IF_ID_RegisterRt));
+                            //|| (OpCode == 6'b000011);
 
     assign hazard_MEM_WB = MEM_WB_RegWrite && (MEM_WB_RegisterRd != 0) &&
                            ((MEM_WB_RegisterRd == IF_ID_RegisterRs) ||
                             (MEM_WB_RegisterRd == IF_ID_RegisterRt));
+                            //|| (OpCode == 6'b000011);
 
     assign ControlHazard = hazard_ID_EX || hazard_EX_MEM || hazard_MEM_WB;
 
