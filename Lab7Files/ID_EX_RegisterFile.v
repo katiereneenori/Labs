@@ -32,7 +32,7 @@ module ID_EX(
     // registers are stored in the order they are declared abov
     
     
-    reg [1:0] i; // 2-bit counter for flushing 3 instructions
+    /*reg [1:0] i; // 2-bit counter for flushing 3 instructions
 
     always @(posedge Clk or posedge Reset) begin
         if (Reset) begin
@@ -143,8 +143,8 @@ module ID_EX(
             outWire17    <= inWire17;
             outWire18    <= inWire18;
         end
-    end
-    /*always @(posedge Clk or posedge Reset) begin
+    end*/
+    always @(posedge Clk or posedge Reset) begin
     
     
     if (Reset || Flush) begin
@@ -194,7 +194,7 @@ module ID_EX(
         outWire17    <= inWire17;
         outWire18    <= inWire18;
     end
-end*/
+end
 
     
  /*   always @(posedge Clk or posedge Reset) begin
