@@ -19,13 +19,14 @@ module IF_ID(
     input [31:0] inWire2,
     input [31:0] inWire3,
     input [31:0] inWire4,
+    input        Flush1, Flush2,
     output reg [31:0] outWire2,
     output reg [31:0] outWire3,
     output reg [31:0] outWire4
 );
     
     always @(posedge Clk or posedge Reset) begin
-        if (Reset) begin
+        if (Reset || Flush1) begin
             outWire2 <= 32'd0;
             outWire3 <= 32'd0;
             outWire4 <= 32'd0;

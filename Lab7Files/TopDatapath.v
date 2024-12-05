@@ -39,7 +39,7 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
     wire [31:0] wire1, wire3, wire4, wire5, wire6, wire7, wire8, wire9, wire10, wire11, wire14, wire15, wire16,
                 wire17, wire18, wire21, wire22, wire23, wire24, wire25, wire26, wire29,
                 wire30, wire31, wire32, wire34, wire36, wire37, wire39, wire40, wire42,
-                wire43, wire44, wire46, wire47, wire48; // Added wire46, wire47, wire48 for PC+4 propagation
+                wire43, wire44, wire46, wire47, wire48, JAddressWire; // Added wire46, wire47, wire48 for PC+4 propagation
 
     wire [31:0] AddressMasked;
 
@@ -54,8 +54,8 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
     wire [1:0] ALUSrcAWire, ALUSrcBWire, MemToRegWire, ALUSrcAWire1, ALUSrcBWire1, MemToRegWire1, MemToRegWire2, MemToRegWire3;
 
     // 1-bit control signals
-    wire ToBranchWire, RegWriteWire, MemWriteWire, MemReadWire, MemByteWire, MemHalfWire, RegDstWire, JalSelWire, PCSrcWire, JorBranchWire;
-    wire ToBranchWire1, RegWriteWire1, MemWriteWire1, MemReadWire1, MemByteWire1, MemHalfWire1, RegDstWire1, JalSelWire1, JorBranchWire1;
+    wire ToBranchWire, RegWriteWire, MemWriteWire, MemReadWire, MemByteWire, MemHalfWire, RegDstWire, JalSelWire, PCSrcWire, JorBranchWire, JSrcWire, JRSelectWire;
+    wire ToBranchWire1, RegWriteWire1, MemWriteWire1, MemReadWire1, MemByteWire1, MemHalfWire1, RegDstWire1, JalSelWire1, JorBranchWire1, JSrcWire1;
     wire ToBranchWire2, RegWriteWire2, MemWriteWire2, MemReadWire2, MemByteWire2, MemHalfWire2, RegDstWire2, JalSelWire2, JorBranchWire2;
 
     wire JalSelWire3, RegWriteWire3;
@@ -99,18 +99,20 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
 
     // ------------------------Instruction Fetch Stage------------------------
 
-    Mux32Bit2To1 JorBranchMux(
+    /*Mux32Bit2To1 JorBranchMux(
         .inA(wire6),
         .inB(wire7),
         .out(wire5),
         .sel(JorBranchWire2)
-    );
+    );*/
 
-    Mux32Bit2To1 PCSrcMux( // 2x1 mux -- PCSrc control signal
+    Mux3To1PCSrc PCSrcMux( // 3x1 mux -- PCSrc and JSrc control signal
         .inA(wire3),
-        .inB(wire5),
+        .inB(wire6),
+        .inC(JAddressWire),
         .out(wire1),
-        .sel(PCSrcWire)
+        .sel1(PCSrcWire),
+        .sel2(JSrcWire)
     );
 
     ProgramCounter PC(
@@ -140,7 +142,9 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
         .inWire4(wire4),
         .outWire2(wire9),
         .outWire3(wire10),
-        .outWire4(wire11)
+        .outWire4(wire11),
+        .Flush1(JSrcWire),
+        .Flush2(JSrcWire1)
     );
 
     // ------------------------Instruction Decode Stage------------------------
@@ -160,7 +164,9 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
         .MemByte(MemByteWire),
         .MemHalf(MemHalfWire),
         .JorBranch(JorBranchWire),
-        .JalSel(JalSelWire)
+        .JalSel(JalSelWire),
+        .JSrc(JSrcWire),
+        .JRSelect(JRSelectWire)
     );
 
     // Wires for control signals after hazard Muxes
@@ -214,15 +220,24 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
         .in(wire11[10:6]),
         .out(wire16)
     );
-
-    /*ShiftLeft2 Shift1(
-        .toShift(wire11),
-        .shiftedResult(wire17)
-    );*/
-
+    
     SignExtension SE(
         .in(wire11[15:0]),
         .out(wire18)
+    );
+
+    ShiftLeft2 Shift1(
+        .toShift(wire11),
+        .shiftedResult(wire17)
+    );
+    
+    PrependPC PrependPC(
+    .LeftShiftedAddress(wire17),
+    .PC4Sig(wire11),
+    .out(JAddressWire),
+    .sel(JRSelectWire),
+    .RegAddress(wire14)
+    //.AddressToAdd(wire2)
     );
 
     // Modified to compute ID_EX_RegisterRd for HDU
@@ -285,7 +300,9 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
         .outWire18(wire26),
         .outWire27(wire27),        // rt
         .outWire28(wire28),         // rd
-        .Flush(toFlush)     // flush subsequent instruction when branching dependency
+        .Flush(toFlush),     // flush subsequent instruction when branching dependency
+        .JSrc1(JSrcWire),
+        .outJSrc1(JSrcWire1)
     );
 
     // ------------------------Execution Stage------------------------

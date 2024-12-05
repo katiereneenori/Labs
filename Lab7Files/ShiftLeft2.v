@@ -24,7 +24,7 @@ module ShiftLeft2(toShift, shiftedResult);
 
     output [31:0] shiftedResult;
     
-    assign shiftedResult = toShift << 2;
+    assign shiftedResult = {4'b0000, toShift[25:0], 2'b00};
 
 endmodule
 
