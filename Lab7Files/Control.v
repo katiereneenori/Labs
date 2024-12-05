@@ -46,7 +46,9 @@ module Control(
     output reg MemByte,
     output reg MemHalf,
     output reg JorBranch,
-    output reg JalSel
+    output reg JalSel,
+    output reg JSrc,
+    output reg JRSelect
 );
 
     always @(*) begin
@@ -64,6 +66,9 @@ module Control(
         MemHalf = 1'b0;
         JorBranch = 1'b0;
         JalSel = 1'b0;
+        JSrc = 1'b0;
+        JRSelect = 1'b0;
+
         
     if (ControlHazard) begin
         // Hazard detected: Insert a bubble by setting control signals to zero
@@ -80,6 +85,8 @@ module Control(
         MemHalf = 1'b0;
         JorBranch = 1'b0;
         JalSel = 1'b0;  // Explicitly reset JalSel
+        JSrc = 1'b0;
+        JRSelect = 1'b0;
     end else if (Instruction == 32'b0) begin
             // NOP detected; ensure no operation occurs
             // All control signals remain at their default safe values
@@ -170,9 +177,12 @@ module Control(
                 // JR
                 6'b001000: begin
                     ALUOp = 5'b10000;
-                    ToBranch = 1'b1;
+                    //ToBranch = 1'b1;
                     ALUSrcA = 2'b00;  // rs
                     JorBranch = 1'b1;
+                    JSrc = 1'b1;
+                    JRSelect = 1'b1;
+                    
                 end
                 default: begin
                     // Unsupported R-type instruction
@@ -324,21 +334,23 @@ module Control(
                 // J
                 6'b000010: begin
                     ALUOp = 5'b10100;
-                    ToBranch = 1'b1;
+                    //ToBranch = 1'b1;
                     ALUSrcA = 2'b10;  // PC
                     ALUSrcB = 2'b10;  // jump address
                     JorBranch = 1'b1;
+                    JSrc = 1'b1;
                 end
                 // JAL
                 6'b000011: begin
                     ALUOp = 5'b10100;
-                    ToBranch = 1'b1;
+                    //ToBranch = 1'b1;
                     ALUSrcA = 2'b10;
                     ALUSrcB = 2'b10;
                     RegWrite = 1'b1;
                     MemToReg = 2'b10;  // PC+4
                     JalSel = 1'b1;      // Write to $ra
                     JorBranch = 1'b1;
+                    JSrc = 1'b1;
                 end
                 default: begin
                     // Unsupported I-type or J-type instruction

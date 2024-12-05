@@ -17,9 +17,9 @@ module ID_EX(
     input inToBranch, inRegWrite, inMemWrite, inMemRead, inMemByte, inMemHalf, inRegDst, inJalSel, inJorBranch,
     input [1:0] inALUSrcA, inALUSrcB, inMemToReg,
     input [31:0] inWire10, inWire14, inWire9, inWire15, inWire16, inWire17, inWire18,
-    input Clk, Reset, Flush,
+    input Clk, Reset, Flush, JSrc1,
     output reg [4:0] outALUOp,
-    output reg outToBranch, outRegWrite, outMemWrite, outMemRead, outMemByte, outMemHalf, outRegDst, outJalSel, outJorBranch,
+    output reg outToBranch, outRegWrite, outMemWrite, outMemRead, outMemByte, outMemHalf, outRegDst, outJalSel, outJorBranch, outJSrc1,
     output reg [1:0] outALUSrcA, outALUSrcB, outMemToReg,
     output reg [31:0] outWire10, outWire14, outWire9, outWire15, outWire16, outWire17, outWire18,
     output reg [4:0] outWire27, outWire28
@@ -31,6 +31,7 @@ module ID_EX(
     reg [31:0] ThirtyTwoBitRegs [6:0]; //7 32-bit intermediate registers
     // registers are stored in the order they are declared abov
     
+<<<<<<< HEAD
     
     reg [1:0] i; // 2-bit counter for flushing 3 instructions
 
@@ -145,6 +146,9 @@ module ID_EX(
         end
     end
     /*always @(posedge Clk or posedge Reset) begin
+=======
+    always @(posedge Clk or posedge Reset) begin
+>>>>>>> f46f4c6a5d5b09ddf67eba800e6ecf5a1a41c3a1
     
     
     if (Reset || Flush) begin
@@ -170,6 +174,7 @@ module ID_EX(
         outWire16    <= 32'd0;
         outWire17    <= 32'd0;
         outWire18    <= 32'd0;
+        outJSrc1     <= 1'b0;
     end else begin
         outALUOp     <= inALUOp;
         outWire27    <= inWire27;
@@ -193,6 +198,7 @@ module ID_EX(
         outWire16    <= inWire16;
         outWire17    <= inWire17;
         outWire18    <= inWire18;
+        outJSrc1     <= JSrc1;
     end
 end*/
 

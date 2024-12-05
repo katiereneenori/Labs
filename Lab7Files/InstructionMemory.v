@@ -57,8 +57,14 @@ module InstructionMemory(Address, Instruction);
         for (i = 0; i < 8192; i = i + 1) begin
             memory[i] = 32'b0;
         end
+<<<<<<< HEAD
 //        $readmemh("private_instruction_memory_lab6.mem", memory);       
         $readmemh("Instruction_Memory.mem", memory);
+=======
+      //$readmemh("private_instruction_memory_lab6.mem", memory);       
+       $readmemh("Instruction_MemoryTest.mem", memory);
+       //$readmemh("Test.mem", memory);
+>>>>>>> f46f4c6a5d5b09ddf67eba800e6ecf5a1a41c3a1
     end
 
     // Instruction read
