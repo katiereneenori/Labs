@@ -62,13 +62,8 @@ module DataMemory(Address, WriteData, Clk, MemWrite, MemRead, ReadData, byte, ha
 	   for (i = 0; i < 8192; i = i + 1) begin
 	       memory[i] = 32'b0;
 	   end
-<<<<<<< HEAD
 //	       $readmemh("private_data_memory_lab6.mem", memory);	   
 	       $readmemh("Data_Memory.mem", memory);
-=======
-       //$readmemh("private_data_memory_lab6.mem", memory);	   
-       $readmemh("Data_Memory.mem", memory);
->>>>>>> f46f4c6a5d5b09ddf67eba800e6ecf5a1a41c3a1
 	end
 	
     // Memory write 

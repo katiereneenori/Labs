@@ -31,8 +31,6 @@ module ID_EX(
     reg [31:0] ThirtyTwoBitRegs [6:0]; //7 32-bit intermediate registers
     // registers are stored in the order they are declared abov
     
-<<<<<<< HEAD
-    
     reg [1:0] i; // 2-bit counter for flushing 3 instructions
 
     always @(posedge Clk or posedge Reset) begin
