@@ -29,7 +29,7 @@ module ClkDiv(Clk, Reset, ClkOut);
          DivCnt <= 0;
       end
       else begin
-                  	ClkOut <= ClkInt;
+                ClkOut <= ClkInt;
             	ClkInt <= ClkInt;
          DivCnt <= DivCnt + 1;
       end

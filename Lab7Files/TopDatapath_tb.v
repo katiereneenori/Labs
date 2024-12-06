@@ -68,8 +68,11 @@ module TopDatapath_tb;
 
         // Monitor specific signals using hierarchical references
         // Monitor PC, Instruction, WriteData, v0, v1, and $ra (registers[31])
-        $monitor("Time: %0dns | PC: 0x%08h | Instruction: 0x%08h | WriteData: 0x%08h | v0: 0x%08h | v1: 0x%08h | $ra: 0x%08h",
-                 $time, wire2, uut.IM.Instruction, wire13, v0, v1, uut.Registers.registers[31]);
+$monitor("Time: %0dns | PC: 0x%08h | Instruction: 0x%08h | WriteData: 0x%08h | v0: 0x%08h | v1: 0x%08h | $ra: 0x%08h | ALUOp: %b | PCWrite: %b | IF_ID_Write: %b",
+         $time, wire2, uut.IM.Instruction, wire13, v0, v1, uut.Registers.registers[31], 
+         uut.ID_EXRegFile.outALUOp, uut.HDU_PCWrite, uut.HDU_IF_ID_Write);
+//        $monitor("Time: %0dns | PC: 0x%08h | Instruction: 0x%08h | WriteData: 0x%08h | v0: 0x%08h | v1: 0x%08h | $ra: 0x%08h",
+//                 $time, wire2, uut.IM.Instruction, wire13, v0, v1, uut.Registers.registers[31]);
 
         // Optional: Display all registers at every positive clock edge
         /*
