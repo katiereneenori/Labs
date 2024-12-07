@@ -54,11 +54,11 @@ module InstructionMemory(Address, Instruction);
     
     // Initialize memory
     initial begin
-        for (i = 0; i < 8192; i = i + 1) begin
+        for (i = 0; i < 8191; i = i + 1) begin
             memory[i] = 32'b0;
         end
         
-//        $readmemh("private_instruction_memory_lab6.mem", memory);       
+//        $readmemh("private_instruction_memory.mem", memory);       
         $readmemh("Instruction_Memory.mem", memory);
         
     end

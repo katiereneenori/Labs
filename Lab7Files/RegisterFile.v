@@ -59,17 +59,28 @@ module RegisterFile(
         ReadData2 = registers[ReadRegister2];
     end
     
-        // Sequential write logic with integrated reset
+//    initial begin   
+//          registers[29] <= 9000 * 4; // Initialize $sp
+//          registers[0] <= 32'b0;    // Initialize other registers to zero
+//    end
     always @(posedge Clk or posedge Reset) begin
         if (Reset) begin
-            // Initialize all registers to zero, except $sp (register 29)
             for (i = 0; i < 32; i = i + 1) begin
                 if (i == 29)
                     registers[i] <= 8191 * 4; // Initialize $sp
                 else
                     registers[i] <= 32'b0;    // Initialize other registers to zero
             end
-        end
+            end
+    
+        // Sequential write logic with integrated reset
+//    always @(posedge Clk or posedge Reset) begin
+//        if (Reset) begin
+            // Initialize all registers to zero, except $sp (register 29)
+//            for (i = 0; i < 32; i = i + 1) begin
+//                if (i == 29)
+
+ //       end
         else if (RegWrite) begin
             if (WriteRegister != 5'd0) begin
                 // Write to register if it's not $zero

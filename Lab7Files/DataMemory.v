@@ -49,7 +49,7 @@ module DataMemory(Address, WriteData, Clk, MemWrite, MemRead, ReadData, byte, ha
 
     output reg[31:0] ReadData; // Contents of memory location at Address
 
-    reg [31:0] memory [0:8191]; // 8K memory declaration
+    reg [31:0] memory [0:9000]; // 8K memory declaration
 
 	integer i;
 	
@@ -59,10 +59,12 @@ module DataMemory(Address, WriteData, Clk, MemWrite, MemRead, ReadData, byte, ha
 	
 	// initialize all to 0
 	initial begin
-	   for (i = 0; i < 8192; i = i + 1) begin
+	   for (i = 0; i < 9000; i = i + 1) begin
 	       memory[i] = 32'b0;
 	   end
-//	       $readmemh("private_data_memory_lab6.mem", memory);	   
+	   
+	   
+//	       $readmemh("private_data_memory.mem", memory);	   
 	       $readmemh("Data_Memory.mem", memory);
 	end
 	
