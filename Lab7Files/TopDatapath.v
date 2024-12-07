@@ -318,10 +318,18 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
         .AddResult(wire30)
     );
 
+//    Mux32Bit3To1 ALUSrcAMux(
+//        .inA(wire22),
+//        .inB(wire21),
+//        .inC(wire23),
+//        .sel(ALUSrcAWire1),
+//        .out(wire31)
+//    );
+
     Mux32Bit3To1 ALUSrcAMux(
         .inA(wire22),
-        .inB(wire21),
-        .inC(wire23),
+        .inB(wire24),
+        .inC(wire21),
         .sel(ALUSrcAWire1),
         .out(wire31)
     );
