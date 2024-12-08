@@ -155,7 +155,7 @@ module Control(
                     ALUOp = 5'b00111;
                     RegDst = 1'b1;
                     ALUSrcA = 2'b01;  // rt
-                    ALUSrcB = 2'b10;  // shamt
+                    ALUSrcB = 2'b00;  // shamt changed from 10 to 00
                     RegWrite = 1'b1;
                 end
                 // SRL

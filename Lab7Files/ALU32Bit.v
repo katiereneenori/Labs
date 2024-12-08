@@ -55,7 +55,7 @@ module ALU32Bit(
 
             5'b00110: ALUResult = A ^ B;    // XOR
 
-            5'b00111: ALUResult = A << B[4:0]; // Shift Left Logical
+            5'b00111: ALUResult = B << A[4:0]; // Shift Left Logical
 
             5'b01000: ALUResult = A >> B[4:0]; // Shift Right Logical
 
