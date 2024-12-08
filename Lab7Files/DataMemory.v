@@ -64,8 +64,8 @@ module DataMemory(Address, WriteData, Clk, MemWrite, MemRead, ReadData, byte, ha
 	   end
 	   
 	   
-	       $readmemh("private_data_memory_lab6.mem", memory);	   
-//	       $readmemh("Data_Memory.mem", memory);
+//	       $readmemh("private_data_memory_lab6.mem", memory);	   
+	       $readmemh("Data_Memory.mem", memory);
 	end
 	
     // Memory write 

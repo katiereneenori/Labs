@@ -85,7 +85,7 @@ module ID_EX(
             outWire18    <= 32'd0;
 
             // Increment or reset the flush counter
-            if (i < 3)
+            if (i < 2)
                 i <= i + 1;
             else
                 i <= 0;
