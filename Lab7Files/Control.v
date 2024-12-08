@@ -297,7 +297,7 @@ module Control(
                 end
                 // BNE
                 6'b000101: begin
-                    ALUOp = 5'b00001;  // SUBTRACT
+                    ALUOp = 5'b01111;  // BNE
                     ToBranch = 1'b1;
                     ALUSrcA = 2'b00;
                     ALUSrcB = 2'b00;

@@ -232,12 +232,12 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
     );
     
     PrependPC PrependPC(
-    .LeftShiftedAddress(wire17),
-    .PC4Sig(wire11),
-    .out(JAddressWire),
-    .sel(JRSelectWire),
-    .RegAddress(wire14)
-    //.AddressToAdd(wire2)
+        .LeftShiftedAddress(wire17),
+        .PC4Sig(wire11),
+        .out(JAddressWire),
+        .sel(JRSelectWire),
+        .RegAddress(wire14)
+        //.AddressToAdd(wire2)
     );
 
     // Modified to compute ID_EX_RegisterRd for HDU
@@ -271,8 +271,8 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
         .inWire14(wire14),
         .inWire9(wire9),
         .inWire15(wire15),
-        //.inWire17(wire17),
         .inWire17(wire11),
+        //.inWire17(wire18),
         .inWire18(wire18),
         .inWire10(wire10),          // Pass the full PC+4
         .inWire27(wire11[20:16]),   // rt
@@ -318,21 +318,21 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
         .AddResult(wire30)
     );
 
-//    Mux32Bit3To1 ALUSrcAMux(
-//        .inA(wire22),
-//        .inB(wire21),
-//        .inC(wire23),
-//        .sel(ALUSrcAWire1),
-//        .out(wire31)
-//    );
-
     Mux32Bit3To1 ALUSrcAMux(
         .inA(wire22),
-        .inB(wire24),
-        .inC(wire21),
+        .inB(wire21),
+        .inC(wire23),
         .sel(ALUSrcAWire1),
         .out(wire31)
     );
+
+//    Mux32Bit3To1 ALUSrcAMux(
+//        .inA(wire22),
+//        .inB(wire24),
+//        .inC(wire21),
+//        .sel(ALUSrcAWire1),
+//        .out(wire31)
+//    );
 
     Mux32Bit3To1 ALUSrcBMux(
         .inA(wire24),

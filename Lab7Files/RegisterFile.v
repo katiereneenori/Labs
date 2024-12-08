@@ -67,7 +67,7 @@ module RegisterFile(
         if (Reset) begin
             for (i = 0; i < 32; i = i + 1) begin
                 if (i == 29)
-                    registers[i] <= 8191 * 4; // Initialize $sp
+                    registers[i] <= 9000 * 4; // Initialize $sp
                 else
                     registers[i] <= 32'b0;    // Initialize other registers to zero
             end

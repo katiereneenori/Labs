@@ -11,14 +11,13 @@
 // Target Devices: 
 // Tool Versions: 
 // Description: 
-//      Testbench for the TopDatapath module. This testbench monitors the PC,
-//      current instruction, WriteData, and all registers (registers[31:0]).
-//      It generates a clock, applies a reset, and observes the behavior over time.
+//      Enhanced Testbench for the TopDatapath module. This version monitors the PC,
+//      current instruction, WriteData, and registers (registers[31:0]) in signed decimal.
 //
 // Dependencies: 
 //
 // Revision: 
-// Revision 0.01 - File Created
+// Revision 0.05 - Changed register output format to signed decimal
 // Additional Comments: 
 //
 ////////////////////////////////////////////////////////////////////////////////
@@ -66,27 +65,32 @@ module TopDatapath_tb;
         $dumpfile("TopDatapath_tb.vcd"); // Name of the dump file
         $dumpvars(0, TopDatapath_tb);    // Dump all variables in the testbench hierarchy
 
-        // Monitor specific signals using hierarchical references
-        // Monitor PC, Instruction, WriteData, v0, v1, and $ra (registers[31])
-$monitor("Time: %0dns | PC: 0x%08h | Instruction: 0x%08h | WriteData: 0x%08h | v0: 0x%08h | v1: 0x%08h | $ra: 0x%08h | ALUOp: %b | PCWrite: %b | IF_ID_Write: %b",
-         $time, wire2, uut.IM.Instruction, wire13, v0, v1, uut.Registers.registers[31], 
-         uut.ID_EXRegFile.outALUOp, uut.HDU_PCWrite, uut.HDU_IF_ID_Write);
-//        $monitor("Time: %0dns | PC: 0x%08h | Instruction: 0x%08h | WriteData: 0x%08h | v0: 0x%08h | v1: 0x%08h | $ra: 0x%08h",
-//                 $time, wire2, uut.IM.Instruction, wire13, v0, v1, uut.Registers.registers[31]);
-
-        // Optional: Display all registers at every positive clock edge
-        /*
-        integer i;
-        always @(posedge Clk) begin
-            for (i = 0; i < 32; i = i + 1) begin
-                $display("Time: %0dns | Register[%0d]: 0x%08h", $time, i, uut.Registers.registers[i]);
-            end
-        end
-        */
-
-        // Run the simulation for a specified duration
-        #5000;        // Run simulation for 500,000 ns (500 us)
+        // Enhanced Monitoring for PC, Instruction, and WriteData
+        $monitor(
+            "Time: %0dns | PC: %0d | Instruction: 0x%08h | WriteData: %0d", 
+            $time, wire2, uut.IM.Instruction, $signed(wire13)
+        );
+        
+        // End Simulation after a fixed time
+        #25000;        // Run simulation for 25,000 ns
         $finish;
+    end
+
+    always @(posedge Clk) begin
+        // Check if a register write is occurring
+        if (uut.Registers.RegWrite) begin
+            // Display the register number and its new signed value
+            $display("Time: %0dns | Register[%0d] <= %0d", 
+                     $time, 
+                     uut.Registers.WriteRegister, 
+                     $signed(uut.Registers.registers[uut.Registers.WriteRegister]));
+        end
+    end
+
+    // Control Signal Monitoring
+    always @(posedge Clk) begin
+        $display("Time: %0dns | ALUOp: %b | PCWrite: %b | IF_ID_Write: %b", 
+                 $time, uut.ID_EXRegFile.outALUOp, uut.HDU_PCWrite, uut.HDU_IF_ID_Write);
     end
 
 endmodule
