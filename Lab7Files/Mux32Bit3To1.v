@@ -11,19 +11,19 @@
 // Description - Performs signal multiplexing between 2 32-Bit words.
 ////////////////////////////////////////////////////////////////////////////////
 
-module Mux32Bit3To1(out, inA, inB, inC, sel);
-    output reg [31:0] out;
-    input [31:0] inA, inB, inC;
-    input [1:0] sel;
-
+module Mux32Bit3To1(
+    input [31:0] inA,
+    input [31:0] inB,
+    input [31:0] inC,
+    input [1:0] sel,
+    output reg [31:0] out
+);
     always @(*) begin
-        if (sel == 2'b00)
-            out = inA;
-        else if (sel == 2'b01)
-            out = inB;
-        else if (sel == 2'b10)
-            out = inC;
-        else
-            out = inA; // default to inA
+        case(sel)
+            2'b00: out = inA;
+            2'b01: out = inB;
+            2'b10: out = inC;
+            default: out = 32'b0;
+        endcase
     end
 endmodule

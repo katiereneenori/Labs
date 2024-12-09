@@ -500,7 +500,7 @@ main:
     la      $a2, window1    # 3rd parameter: address of window1[0] 
    
     jal     vbsme           # call function
-#    jal     print_result    # print results to console
+    jal     print_result    # print results to console
     
     ############################################################
     # End of test 1   
@@ -513,7 +513,7 @@ main:
     la      $a2, window2    # 3rd parameter: address of window2[0] 
    
     jal     vbsme           # call function
-#    jal     print_result    # print results to console
+    jal     print_result    # print results to console
     ############################################################
     # End of test 2   
                     
@@ -525,7 +525,7 @@ main:
     la      $a2, window3    # 3rd parameter: address of window3[0] 
 
     jal     vbsme           # call function
-#    jal     print_result    # print results to console 
+    jal     print_result    # print results to console 
     ############################################################
     # End of test 3   
       
@@ -537,7 +537,7 @@ main:
     la      $a2, window4    # 3rd parameter: address of window4[0] 
 
     jal     vbsme           # call function
-#    jal     print_result    # print results to console
+    jal     print_result    # print results to console
     ############################################################
     # End of test 4   
    
@@ -549,7 +549,7 @@ main:
     la      $a2, window5    # 3rd parameter: address of window5[0] 
 
     jal     vbsme           # call function
-#    jal     print_result    # print results to console
+    jal     print_result    # print results to console
     ############################################################
     # End of test 5
 
@@ -561,7 +561,7 @@ main:
     la      $a2, window6    # 3rd parameter: address of window6[0] 
 
     jal     vbsme           # call function
-#    jal     print_result    # print results to console
+    jal     print_result    # print results to console
     ############################################################
     # End of test 6
    
@@ -573,7 +573,7 @@ main:
     la      $a2, window7    # 3rd parameter: address of window7[0] 
 
     jal     vbsme           # call function
-#    jal     print_result    # print results to console
+    jal     print_result    # print results to console
     ############################################################
     # End of test 7   
    
@@ -585,7 +585,7 @@ main:
     la      $a2, window8    # 3rd parameter: address of window8[0] 
 
     jal     vbsme           # call function
-#    jal     print_result    # print results to console
+    jal     print_result    # print results to console
     ############################################################
     # End of test 8   
    
@@ -597,7 +597,7 @@ main:
     la      $a2, window9    # 3rd parameter: address of window9[0] 
 
     jal     vbsme           # call function
-#    jal     print_result    # print results to console
+    jal     print_result    # print results to console
     ############################################################
     # End of test 9      
    
@@ -609,7 +609,7 @@ main:
     la      $a2, window10       # 3rd parameter: address of window10[0]   
 
     jal     vbsme               # call function
-#    jal     print_result        # print results to console
+    jal     print_result        # print results to console
     ############################################################
     # End of test 10  
    
@@ -621,7 +621,7 @@ main:
     la      $a2, window11    # 3rd parameter: address of window11[0]   
 
     jal     vbsme           # call function
-#    jal     print_result    # print results to console
+    jal     print_result    # print results to console
     ############################################################
     # End of test 11  
    
@@ -633,7 +633,7 @@ main:
     la      $a2, window12    # 3rd parameter: address of window12[0]   
 
     jal     vbsme           # call function
-#    jal     print_result    # print results to console
+    jal     print_result    # print results to console
     ############################################################
     # End of test 12  
    
@@ -645,7 +645,7 @@ main:
     la      $a2, window13    # 3rd parameter: address of window13[0]   
 
     jal     vbsme           # call function
-#    jal     print_result    # print results to console
+    jal     print_result    # print results to console
     ############################################################
     # End of test 13  
    
@@ -657,7 +657,7 @@ main:
     la      $a2, window14    # 3rd parameter: address of window14[0]   
 
     jal     vbsme           # call function
-#    jal     print_result    # print results to console
+    jal     print_result    # print results to console
     ############################################################
     # End of test 14     
    
@@ -666,34 +666,34 @@ main:
     jr      $ra                 # Return
 
 ################### Print Result ####################################
-#print_result:
-#    # Printing $v0
-#    add     $a0, $v0, $zero     # Load $v0 for printing
-#    li      $v0, 1              # Load the system call numbers
-#    syscall
-#   
-#    # Print newline.
-#    la      $a0, newline          # Load value for printing
-#    li      $v0, 4                # Load the system call numbers
-#    syscall
-#   
-#    # Printing $v1
-#    add     $a0, $v1, $zero      # Load $v1 for printing
-#    li      $v0, 1                # Load the system call numbers
-#    syscall
-#
-#    # Print newline.
-#    la      $a0, newline          # Load value for printing
-#    li      $v0, 4                # Load the system call numbers
-#    syscall
-#   
-#    # Print newline.
-#    la      $a0, newline          # Load value for printing
-#    li      $v0, 4                # Load the system call numbers
-#    syscall
-#   
-#    jr      $ra                   #function return
-#
+print_result:
+    # Printing $v0
+    add     $a0, $v0, $zero     # Load $v0 for printing
+    li      $v0, 1              # Load the system call numbers
+    syscall
+   
+    # Print newline.
+    la      $a0, newline          # Load value for printing
+    li      $v0, 4                # Load the system call numbers
+    syscall
+   
+    # Printing $v1
+    add     $a0, $v1, $zero      # Load $v1 for printing
+    li      $v0, 1                # Load the system call numbers
+    syscall
+
+    # Print newline.
+    la      $a0, newline          # Load value for printing
+    li      $v0, 4                # Load the system call numbers
+    syscall
+   
+    # Print newline.
+    la      $a0, newline          # Load value for printing
+    li      $v0, 4                # Load the system call numbers
+    syscall
+   
+    jr      $ra                   #function return
+
 #####################################################################
 ### vbsme
 #####################################################################
