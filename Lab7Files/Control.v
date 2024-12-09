@@ -184,6 +184,10 @@ module Control(
                     JRSelect = 1'b1;
                     
                 end
+                
+
+                
+                
                 default: begin
                     // Unsupported R-type instruction
                     // All control signals remain at default values
@@ -351,6 +355,38 @@ module Control(
                     JalSel = 1'b1;      // Write to $ra
                     JorBranch = 1'b1;
                     JSrc = 1'b1;
+                end
+                
+                //custom opcode for bge
+                6'b110000: begin
+                    ALUOp = 5'b10101;  
+                    ToBranch = 1'b1;
+                    ALUSrcA = 2'b00;
+                    ALUSrcB = 2'b00;
+                end
+                
+                //custom opcode for ble
+                6'b110001: begin
+                    ALUOp = 5'b10110;  
+                    ToBranch = 1'b1;
+                    ALUSrcA = 2'b00;
+                    ALUSrcB = 2'b00;                
+                end
+                
+                //custom opcode for blt
+                6'b110011: begin
+                    ALUOp = 5'b10111; 
+                    ToBranch = 1'b1;
+                    ALUSrcA = 2'b00;
+                    ALUSrcB = 2'b00;                
+                end
+                
+                //custom opcode for bgt
+                6'b110100: begin
+                    ALUOp = 5'b11000;
+                    ToBranch = 1'b1;
+                    ALUSrcA = 2'b00;
+                    ALUSrcB = 2'b00;                
                 end
                 default: begin
                     // Unsupported I-type or J-type instruction

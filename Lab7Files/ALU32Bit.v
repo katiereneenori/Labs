@@ -41,10 +41,13 @@ module ALU32Bit(
     always @(*) begin
         Zero = 1'b0;
         case (ALUControl)
-            5'b00000: ALUResult = A + B;    // Add
-
-            5'b00001: ALUResult = A - B;    // Subtract
-
+            5'b00000: begin ALUResult = A + B;
+                Zero = 1'b1;    // Add
+                    end
+            5'b00001: begin ALUResult = A - B;    // Subtract
+                Zero = 1'b1;
+                    end
+                    
             5'b00010: ALUResult = A * B;    // Multiply
 
             5'b00011: ALUResult = A & B;    // AND
@@ -57,7 +60,7 @@ module ALU32Bit(
 
             5'b00111: ALUResult = B << A[4:0]; // Shift Left Logical
 
-            5'b01000: ALUResult = A >> B[4:0]; // Shift Right Logical
+            5'b01000: ALUResult = B >> A[4:0]; // Shift Right Logical
 
             5'b01001: ALUResult = (A < B) ? 32'b1 : 32'b0; // Set Less Than
 
@@ -81,7 +84,23 @@ module ALU32Bit(
                 ALUResult = {A[31:28], B[25:0], 2'b00};
                 Zero = 1'b1;
             end
+            
+5'b10101: begin // bge (Branch if Greater or Equal)
+    ALUResult = (A >= B) ? 32'b0 : 32'b1;
+end
 
+5'b10110: begin // ble (Branch if Less or Equal)
+    ALUResult = (A <= B) ? 32'b0 : 32'b1;
+end
+
+5'b10111: begin // blt (Branch if Less Than)
+    ALUResult = (A < B) ? 32'b0 : 32'b1;
+end
+
+5'b11000: begin // bgt (Branch if Greater Than)
+    ALUResult = (A > B) ? 32'b0 : 32'b1;
+end    
+            
             default: ALUResult = 32'b0;
         endcase
 
