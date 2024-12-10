@@ -49,26 +49,24 @@ module DataMemory(Address, WriteData, Clk, MemWrite, MemRead, ReadData, byte, ha
 
     output reg[31:0] ReadData; // Contents of memory location at Address
 
-    reg [31:0] memory [0:9000]; // 8K memory declaration
+    reg [31:0] memory [0:8191]; // 8K = 8192 words
 
 	integer i;
 	
     // Assign all bits of Address[31:0] to a wire to utilize them
     wire [31:0] Address_used = Address;
     assign Address_used = Address_used;
-	
-	// initialize all to 0
-	initial begin
-	   for (i = 0; i < 9000; i = i + 1) begin
-	       memory[i] = 32'b0;
-	   end
-	   
-	   
-//	       $readmemh("private_data_memory_lab6.mem", memory);	   
-	       $readmemh("Data_Memory.mem", memory);
-//        $readmemh("DM_Pseudo.mem", memory);
-	end
-	
+    
+    initial begin
+        for (i = 0; i < 8192; i = i + 1) begin
+            memory[i] = 32'b0;
+        end
+    
+        // Load data from your Data_Memory.mem file. Ensure it has <= 8192 lines.
+       //         $readmemh("private_data_memory_lab6.mem", memory); 
+       $readmemh("Data_Memory.mem", memory);
+    end
+
     // Memory write 
     always @(posedge Clk) begin
         if (MemWrite) begin

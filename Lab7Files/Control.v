@@ -7,28 +7,6 @@
 //
 // Module - Control.v
 // Description - Control module for the datapath.
-//
-// INPUTS:-
-// Instruction: 32-bit instruction.
-//
-// OUTPUTS:-
-// ALUOp: Determines the operation of the ALU.
-// ToBranch: Control signal for branching.
-// RegDst: Determines the destination register for writes.
-// ALUSrcA: Selects the ALU A input source.
-// ALUSrcB: Selects the ALU B input source.
-// RegWrite: Enables/disables register write.
-// MemWrite: Enables/disables memory write.
-// MemRead: Enables/disables memory read.
-// MemToReg: Selects the data source for writing to the register file.
-// MemByte: Determines if memory access is byte-wide.
-// MemHalf: Determines if memory access is half-word-wide.
-// JorBranch: Selects the source for the next PC value.
-// JalSel: Selects the destination register for JAL instruction.
-//
-// FUNCTIONALITY:-
-// Given an instruction, the module sets the control signals required by the datapath
-// to correctly execute the instruction.
 ////////////////////////////////////////////////////////////////////////////////
 
 module Control(
@@ -52,7 +30,7 @@ module Control(
 );
 
     always @(*) begin
-        // Default values to prevent latches and unintended operations
+        // Default values
         ALUOp = 5'b00000;
         ToBranch = 1'b0;
         RegDst = 1'b0;
@@ -61,7 +39,7 @@ module Control(
         RegWrite = 1'b0;
         MemWrite = 1'b0;
         MemRead = 1'b0;
-        MemToReg = 2'b01;  // Default to ALU result
+        MemToReg = 2'b01; 
         MemByte = 1'b0;
         MemHalf = 1'b0;
         JorBranch = 1'b0;
@@ -69,37 +47,35 @@ module Control(
         JSrc = 1'b0;
         JRSelect = 1'b0;
 
-        
-    if (ControlHazard) begin
-        // Hazard detected: Insert a bubble by setting control signals to zero
-        ALUOp = 5'b00000;
-        ToBranch = 1'b0;
-        RegDst = 1'b0;
-        ALUSrcA = 2'b00;
-        ALUSrcB = 2'b00;
-        RegWrite = 1'b0;
-        MemWrite = 1'b0;
-        MemRead = 1'b0;
-        MemToReg = 2'b01;
-        MemByte = 1'b0;
-        MemHalf = 1'b0;
-        JorBranch = 1'b0;
-        JalSel = 1'b0;  // Explicitly reset JalSel
-        JSrc = 1'b0;
-        JRSelect = 1'b0;
-    end else if (Instruction == 32'b0) begin
-            // NOP detected; ensure no operation occurs
-            // All control signals remain at their default safe values
-            // RegWrite, MemWrite, MemRead are deasserted
+
+        if (ControlHazard) begin
+            // Hazard detected: Insert a bubble by setting control signals to zero
+            ALUOp = 5'b00000;
+            ToBranch = 1'b0;
+            RegDst = 1'b0;
+            ALUSrcA = 2'b00;
+            ALUSrcB = 2'b00;
+            RegWrite = 1'b0;
+            MemWrite = 1'b0;
+            MemRead = 1'b0;
+            MemToReg = 2'b01;
+            MemByte = 1'b0;
+            MemHalf = 1'b0;
+            JorBranch = 1'b0;
+            JalSel = 1'b0;
+            JSrc = 1'b0;
+            JRSelect = 1'b0;
+        end else if (Instruction == 32'b0) begin
+            // NOP
         end else if (Instruction[31:26] == 6'b000000) begin
-            // R-type instructions
+            // R-type
             case (Instruction[5:0])
                 // ADD
                 6'b100000: begin
                     ALUOp = 5'b00000;
                     RegDst = 1'b1;
-                    ALUSrcA = 2'b00;  // rs
-                    ALUSrcB = 2'b00;  // rt
+                    ALUSrcA = 2'b00;
+                    ALUSrcB = 2'b00;
                     RegWrite = 1'b1;
                 end
                 // SUB
@@ -154,16 +130,16 @@ module Control(
                 6'b000000: begin
                     ALUOp = 5'b00111;
                     RegDst = 1'b1;
-                    ALUSrcA = 2'b01;  // rt
-                    ALUSrcB = 2'b00;  // shamt changed from 10 to 00
+                    ALUSrcA = 2'b01;  
+                    ALUSrcB = 2'b00;
                     RegWrite = 1'b1;
                 end
                 // SRL
                 6'b000010: begin
                     ALUOp = 5'b01000;
                     RegDst = 1'b1;
-                    ALUSrcA = 2'b01;  // rt
-                    ALUSrcB = 2'b10;  // shamt
+                    ALUSrcA = 2'b01;
+                    ALUSrcB = 2'b10;
                     RegWrite = 1'b1;
                 end
                 // SLT
@@ -177,31 +153,24 @@ module Control(
                 // JR
                 6'b001000: begin
                     ALUOp = 5'b10000;
-                    //ToBranch = 1'b1;
-                    ALUSrcA = 2'b00;  // rs
+                    ALUSrcA = 2'b00;
                     JorBranch = 1'b1;
                     JSrc = 1'b1;
                     JRSelect = 1'b1;
-                    
                 end
-                
-
-                
-                
                 default: begin
                     // Unsupported R-type instruction
-                    // All control signals remain at default values
                 end
             endcase
         end else begin
-            // I-type and J-type instructions
+            // I-type and J-type instruction
             case (Instruction[31:26])
                 // ADDI
                 6'b001000: begin
                     ALUOp = 5'b00000;
-                    RegDst = 1'b0;  // rt
-                    ALUSrcA = 2'b00;  // rs
-                    ALUSrcB = 2'b01;  // immediate
+                    RegDst = 1'b0;
+                    ALUSrcA = 2'b00;
+                    ALUSrcB = 2'b01;
                     RegWrite = 1'b1;
                 end
                 // ANDI
@@ -239,35 +208,35 @@ module Control(
                 end
                 // LW
                 6'b100011: begin
-                    ALUOp = 5'b00000;  // ADD
+                    ALUOp = 5'b00000;
                     RegDst = 1'b0;
                     ALUSrcA = 2'b00;
                     ALUSrcB = 2'b01;
                     RegWrite = 1'b1;
                     MemRead = 1'b1;
-                    MemToReg = 2'b00;  // Memory data
+                    MemToReg = 2'b00;
                 end
                 // SW
                 6'b101011: begin
-                    ALUOp = 5'b00000;  // ADD
+                    ALUOp = 5'b00000;
                     ALUSrcA = 2'b00;
                     ALUSrcB = 2'b01;
                     MemWrite = 1'b1;
                 end
                 // LB
                 6'b100000: begin
-                    ALUOp = 5'b00000;  // ADD
+                    ALUOp = 5'b00000; 
                     RegDst = 1'b0;
                     ALUSrcA = 2'b00;
                     ALUSrcB = 2'b01;
                     RegWrite = 1'b1;
                     MemRead = 1'b1;
-                    MemToReg = 2'b00;  // Memory data
+                    MemToReg = 2'b00;
                     MemByte = 1'b1;
                 end
                 // SB
                 6'b101000: begin
-                    ALUOp = 5'b00000;  // ADD
+                    ALUOp = 5'b00000;
                     ALUSrcA = 2'b00;
                     ALUSrcB = 2'b01;
                     MemWrite = 1'b1;
@@ -275,7 +244,7 @@ module Control(
                 end
                 // LH
                 6'b100001: begin
-                    ALUOp = 5'b00000;  // ADD
+                    ALUOp = 5'b00000;
                     RegDst = 1'b0;
                     ALUSrcA = 2'b00;
                     ALUSrcB = 2'b01;
@@ -286,7 +255,7 @@ module Control(
                 end
                 // SH
                 6'b101001: begin
-                    ALUOp = 5'b00000;  // ADD
+                    ALUOp = 5'b00000;
                     ALUSrcA = 2'b00;
                     ALUSrcB = 2'b01;
                     MemWrite = 1'b1;
@@ -294,106 +263,105 @@ module Control(
                 end
                 // BEQ
                 6'b000100: begin
-                    ALUOp = 5'b00001;  // SUBTRACT
+                    ALUOp = 5'b00001;
                     ToBranch = 1'b1;
                     ALUSrcA = 2'b00;
                     ALUSrcB = 2'b00;
                 end
                 // BNE
                 6'b000101: begin
-                    ALUOp = 5'b01111;  // BNE
+                    ALUOp = 5'b01111;
                     ToBranch = 1'b1;
                     ALUSrcA = 2'b00;
                     ALUSrcB = 2'b00;
                 end
                 // BGTZ
                 6'b000111: begin
-                    ALUOp = 5'b10010;  // BGTZ operation code
+                    ALUOp = 5'b10010;
                     ToBranch = 1'b1;
-                    ALUSrcA = 2'b00;    // rs
-                    ALUSrcB = 2'b11;    // Zero
+                    ALUSrcA = 2'b00;
+                    ALUSrcB = 2'b11;
                 end
                 // BLEZ
                 6'b000110: begin
-                    ALUOp = 5'b10001;  // BLEZ operation code
+                    ALUOp = 5'b10001;
                     ToBranch = 1'b1;
-                    ALUSrcA = 2'b00;    // rs
-                    ALUSrcB = 2'b11;    // Zero
+                    ALUSrcA = 2'b00;
+                    ALUSrcB = 2'b11;
                 end
                 // BLTZ and BGEZ (opcode 6'b000001)
                 6'b000001: begin
                     ToBranch = 1'b1;
-                    ALUSrcA = 2'b00;  // rs
-                    ALUSrcB = 2'b11;  // Zero
+                    ALUSrcA = 2'b00;
+                    ALUSrcB = 2'b11;
                     if (Instruction[20:16] == 5'b00000) begin
-                        // BLTZ
-                        ALUOp = 5'b01110;  // BLTZ operation code
+                        ALUOp = 5'b01110;
                     end else if (Instruction[20:16] == 5'b00001) begin
-                        // BGEZ
-                        ALUOp = 5'b10011;  // BGEZ operation code
-                    end else begin
-                        // Unsupported branch type
+                        ALUOp = 5'b10011;
                     end
                 end
                 // J
                 6'b000010: begin
                     ALUOp = 5'b10100;
-                    //ToBranch = 1'b1;
-                    ALUSrcA = 2'b10;  // PC
-                    ALUSrcB = 2'b10;  // jump address
+                    ALUSrcA = 2'b10;
+                    ALUSrcB = 2'b10;
                     JorBranch = 1'b1;
                     JSrc = 1'b1;
                 end
                 // JAL
                 6'b000011: begin
                     ALUOp = 5'b10100;
-                    //ToBranch = 1'b1;
                     ALUSrcA = 2'b10;
                     ALUSrcB = 2'b10;
                     RegWrite = 1'b1;
-                    MemToReg = 2'b10;  // PC+4
-                    JalSel = 1'b1;      // Write to $ra
+                    MemToReg = 2'b10;
+                    JalSel = 1'b1;
                     JorBranch = 1'b1;
                     JSrc = 1'b1;
                 end
-                
                 //custom opcode for bge
                 6'b110000: begin
-                    ALUOp = 5'b10101;  
+                    ALUOp = 5'b10101;
                     ToBranch = 1'b1;
                     ALUSrcA = 2'b00;
                     ALUSrcB = 2'b00;
                 end
-                
                 //custom opcode for ble
                 6'b110001: begin
-                    ALUOp = 5'b10110;  
+                    ALUOp = 5'b10110;
                     ToBranch = 1'b1;
                     ALUSrcA = 2'b00;
-                    ALUSrcB = 2'b00;                
+                    ALUSrcB = 2'b00;
                 end
-                
                 //custom opcode for blt
                 6'b110011: begin
-                    ALUOp = 5'b10111; 
+                    ALUOp = 5'b10111;
                     ToBranch = 1'b1;
                     ALUSrcA = 2'b00;
-                    ALUSrcB = 2'b00;                
+                    ALUSrcB = 2'b00;
                 end
-                
                 //custom opcode for bgt
                 6'b110100: begin
                     ALUOp = 5'b11000;
                     ToBranch = 1'b1;
                     ALUSrcA = 2'b00;
-                    ALUSrcB = 2'b00;                
+                    ALUSrcB = 2'b00;
                 end
                 default: begin
                     // Unsupported I-type or J-type instruction
-                    // All control signals remain at default values
                 end
             endcase
         end
     end
 
 endmodule
+
+//                // ADDU (ADDED SUPPORT)
+//                6'b100001: begin
+//                    // Treat addu like add (no overflow difference here)
+//                    ALUOp = 5'b00000; 
+//                    RegDst = 1'b1;
+//                    ALUSrcA = 2'b00;
+//                    ALUSrcB = 2'b00;
+//                    RegWrite = 1'b1;
+//                end

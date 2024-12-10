@@ -44,7 +44,8 @@ module InstructionMemory(Address, Instruction);
     input [31:0] Address;           // Input Address 
     output reg [31:0] Instruction;  // Instruction read from memory
 
-    reg [31:0] memory [0:8191];    // 8K memory declaration
+    reg [31:0] memory [0:8191]; // 8K = 8192 words
+
 
     integer i;
     
@@ -54,13 +55,13 @@ module InstructionMemory(Address, Instruction);
     
     // Initialize memory
     initial begin
-        for (i = 0; i < 8191; i = i + 1) begin
+        for (i = 0; i < 8192; i = i + 1) begin
             memory[i] = 32'b0;
         end
 
       
-   //     $readmemh("private_instruction_memory_lab6.mem", memory);       
-        $readmemh("Instruction_Memory.mem", memory);
+       //$readmemh("private_instruction_memory_lab6.mem", memory);       
+       $readmemh("Instruction_Memory.mem", memory);
      //           $readmemh("IM_pseudo.mem", memory);
 
         

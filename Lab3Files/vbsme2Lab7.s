@@ -489,10 +489,23 @@ newline: .asciiz     "\n"
 
 .globl main
 
-main: 
+main:
+
     addi    $sp, $sp, -4    # Make space on stack
     sw      $ra, 0($sp)     # Save return address
          
+    # Start test 0
+    ############################################################
+    la      $a0, asize0     # 1st parameter: address of asize0[0]
+    la      $a1, frame0     # 2nd parameter: address of frame0[0]
+    la      $a2, window0    # 3rd parameter: address of window0[0] 
+   
+    jal     vbsme           # call function
+#    jal     print_result    # print results to console
+    
+    ############################################################
+    # End of test 1   
+
     # Start test 1 
     ############################################################
     la      $a0, asize1     # 1st parameter: address of asize1[0]
@@ -666,7 +679,7 @@ main:
     jr      $ra                 # Return
 
 ################### Print Result ####################################
-#print_result:
+# print_result:
 #    # Printing $v0
 #    add     $a0, $v0, $zero     # Load $v0 for printing
 #    li      $v0, 1              # Load the system call numbers
@@ -697,7 +710,6 @@ main:
 #####################################################################
 ### vbsme
 #####################################################################
-
 
 # vbsme.s 
 # motion estimation is a routine in h.264 video codec that 
@@ -763,203 +775,185 @@ main:
 .text
 .globl  vbsme
 
-# Your program must follow circular search pattern.  
+vbsme:
 
-# Preconditions:
-#   1st parameter (a0) address of the first element of the dimension info (address of asize[0])
-#   2nd parameter (a1) address of the first element of the frame array (address of frame[0][0])
-#   3rd parameter (a2) address of the first element of the window array (address of window[0][0])
-# Postconditions:   
-#   result (v0) x coordinate of the block in the frame with the minimum SAD
-#          (v1) y coordinate of the block in the frame with the minimum SAD
-
-vbsme:  
-
-    li      $v0, 0              # Reset $v0 and $v1 (Set x-coordinate to 0)
-    li      $v1, 0      # Set y-coordinate to 0
-
-# insert your code here
+    li      $v0, 0          # Reset $v0 and $v1 (Set x-coordinate to 0)
+    li      $v1, 0          # Set y-coordinate to 0
 
     # Saving registers and allocating stack space
-    addi    $sp, $sp, -4       # Make space on stack
-    sw      $ra, 0($sp)         # Save return address
+    addi    $sp, $sp, -4
+    sw      $ra, 0($sp)      # Save return address
 
     # Load dimensions from asize array
-    lw      $s0, 0($a0)         # Frame rows (i)
-    lw      $s1, 4($a0)         # Frame cols (j)
-    lw      $s2, 8($a0)         # Window rows (k)
-    lw      $s3, 12($a0)        # Window cols (l)
+    lw      $s0, 0($a0)      # Frame rows (i)
+    lw      $s1, 4($a0)      # Frame cols (j)
+    lw      $s2, 8($a0)      # Window rows (k)
+    lw      $s3, 12($a0)     # Window cols (l)
 
     # Load boundaries to calculate within the frame
-    sub     $s4, $s1, $s3       # Right boundary s4 = frame_cols - window_cols
-    sub     $s5, $s0, $s2       # Bottom boundary s5 = frame_rows - window_rows
+    sub     $s4, $s1, $s3    # Right boundary s4 = frame_cols - window_cols
+    sub     $s5, $s0, $s2    # Bottom boundary s5 = frame_rows - window_rows
 
     # Initialize
-    li $30, 9999
+    li $a3, 9999    # use $a3 to store min SAD (instead of $30)
     li $t0, 0
     li $t1, 0
     li $s6, 0
     li $s7, 0
 
-
 Traversal_Loop:
-    
-    # Check termination condition
-    bgt $s6, $s4, End_Traversal                     # Left boundary > Right boundary
-    bgt $s7, $s5, End_Traversal                     # Top boundary > Bottom boundary
+    # Check termination conditions: if s6 > s4 or s7 > s5 then end
+    slt $t9, $s4, $s6
+    bne $t9, $zero, End_Traversal
+
+    slt $t9, $s5, $s7
+    bne $t9, $zero, End_Traversal
 
     # Move Right
-        jal Compute_SAD_CallR                       # call Compute_SAD for 0,0
-            Move_Right_Loop:
-                bgt $t1, $s4, Update_TopBoundary    # Check if $t1 exceeds the right boundary
-                addi $t1, $t1, 1                    # Increment column index (move right)
-                
-                ble $t1, $s4, Compute_SAD_CallR     # Ensure $t1 is within bounds before calling Compute_SAD
-                
-                Right:
-                j Move_Right_Loop                   # Repeat the loop to continue moving right
+    jal Compute_SAD_CallR
 
-            Update_TopBoundary:
-                addi $s7, $s7, 1                    # Move top boundary down
-                addi $t1, $t1, -1                   # correct overstep
+Move_Right_Loop:
+    slt $t9, $s4, $t1
+    bne $t9, $zero, Update_TopBoundary
+
+    addi $t1, $t1, 1      # Increment column index (move right)
+    slt $t9, $s4, $t1
+    beq $t9, $zero, Compute_SAD_CallR
+
+Right:
+    j Move_Right_Loop
+
+Update_TopBoundary:
+    addi $s7, $s7, 1      # Move top boundary down
+    addi $t1, $t1, -1     # correct overstep
 
     # Move Down
-            Move_Down_Loop:
-                bgt $t0, $s5, Update_RightBoundary  # Check if $t0 exceeds the bottom boundary
-                addi $t0, $t0, 1                    # Increment row index (move down)
-                
-                ble $t0, $s5, Compute_SAD_CallD     # Ensure $t0 is within bounds before calling Compute_SAD
-                
-                Down:
-                j Move_Down_Loop                    # Repeat the loop to continue moving down
+Move_Down_Loop:
+    slt $t9, $s5, $t0
+    bne $t9, $zero, Update_RightBoundary
 
-            Update_RightBoundary:
-                addi $s4, $s4, -1                   # Move right boundary left
-                addi $t0, $t0, -1                   # correct overstep
-    
+    addi $t0, $t0, 1      # Increment row index (move down)
+    slt $t9, $s5, $t0
+    beq $t9, $zero, Compute_SAD_CallD
+
+Down:
+    j Move_Down_Loop
+
+Update_RightBoundary:
+    addi $s4, $s4, -1     # Move right boundary left
+    addi $t0, $t0, -1     # correct overstep
+
     # Move Left
-            Move_Left_Loop:
-                blt $t1, $s6, Update_BottomBoundary # Check if $t1 is below the left boundary
-                addi $t1, $t1, -1                   # Decrement column index (move left)
-                
-                bge $t1, $s6, Compute_SAD_CallL     # Ensure $t1 is within bounds before calling Compute_SAD
-                
-                Left:
-                j Move_Left_Loop                    # Repeat the loop to continue moving left
+Move_Left_Loop:
+    slt $t9, $t1, $s6
+    bne $t9, $zero, Update_BottomBoundary
 
-            Update_BottomBoundary:
-                addi $s5, $s5, -1                   # Move bottom boundary up
-                addi $t1, $t1, 1                    # correct overstep
+    addi $t1, $t1, -1     # Decrement column index (move left)
+    slt $t9, $t1, $s6
+    beq $t9, $zero, Compute_SAD_CallL
+
+Left:
+    j Move_Left_Loop
+
+Update_BottomBoundary:
+    addi $s5, $s5, -1     # Move bottom boundary up
+    addi $t1, $t1, 1      # correct overstep
 
     # Move Up
-            Move_Up_Loop:
-                blt $t0, $s7, Update_LeftBoundary   # Check if $t0 exceeds the top boundary
-                addi $t0, $t0, -1                   # Decrement row index (move up)
-                
-                bge $t0, $s7, Compute_SAD_CallU     # Ensure $t0 is within bounds before calling Compute_SAD
-                
-                Up:
-                j Move_Up_Loop                      # Repeat the loop to continue moving up
+Move_Up_Loop:
+    slt $t9, $t0, $s7
+    bne $t9, $zero, Update_LeftBoundary
 
-            Update_LeftBoundary:
-                addi $s6, $s6, 1                    # Move left boundary right
-                addi $t0, $t0, 1                    # correct overstep
+    addi $t0, $t0, -1     # Decrement row index (move up)
+    slt $t9, $t0, $s7
+    beq $t9, $zero, Compute_SAD_CallU
 
-    j Traversal_Loop                                # Repeat the loop
+Up:
+    j Move_Up_Loop
+
+Update_LeftBoundary:
+    addi $s6, $s6, 1      # Move left boundary right
+    addi $t0, $t0, 1      # correct overstep
+
+    j Traversal_Loop
 
 
 Compute_SAD_CallR:
-    # Call Compute_SAD when t0 and t1 are within bounds
-
     jal Compute_SAD
-
-    j Right  
+    j Right
 
 Compute_SAD_CallD:
-    # Call Compute_SAD when t0 and t1 are within bounds
-
     jal Compute_SAD
-
     j Down
 
 Compute_SAD_CallL:
-    # Call Compute_SAD when t0 and t1 are within bounds
-
     jal Compute_SAD
-
     j Left
 
 Compute_SAD_CallU:
-    # Call Compute_SAD when t0 and t1 are within bounds
-
     jal Compute_SAD
-
     j Up
 
 
 End_Traversal:
-    lw      $ra, 0($sp)          # Restore return address
-    addi    $sp, $sp, 4          # Restore stack pointer
-    jr      $ra                  # Return from vbsme
+    lw      $ra, 0($sp)         # Restore return address
+    addi    $sp, $sp, 4         # Restore stack pointer
+    syscall                     # Exit the program
 
 Compute_SAD:
-    move    $t8, $zero                # Initialize current SAD to 0
+    move    $t8, $zero           # Initialize current SAD to 0
 
     # Calculate address of current frame
-    mul     $t6, $t0, $s1             # Calculate the row offset t0 * frame_cols
-    add     $t6, $t6, $t1             # Add column offset: t0 * frame_cols + t1
-    sll     $t6, $t6, 2               # Multiply by 4 (word size) to get byte offset
-    add     $t2, $a1, $t6             # Compute address of frame [t0][t1]
+    mul     $t6, $t0, $s1
+    add     $t6, $t6, $t1
+    sll     $t6, $t6, 2
+    add     $t2, $a1, $t6        # frame_ptr = &frame[t0][t1]
 
     # Initialize window pointer
-    move    $t3, $a2                  # Set window pointer to the base address of the window
+    move    $t3, $a2             # Set window pointer
 
-    # Initialize window row index
-    move    $t4, $zero                # Initialze window row index to 0
+    move    $t4, $zero           # window row index = 0
 
 Compute_SAD_Row_Loop:
-    bge     $t4, $s2, Compute_SAD_Done  # If row index >= window rows, we're done
+    slt $t9, $t4, $s2
+    beq $t9, $zero, Compute_SAD_Done
 
-    # Initialize window column index
-    move    $t5, $zero                # Initialze column index to 0
+    move    $t5, $zero           # column index = 0
 
 Compute_SAD_Col_Loop:
-    bge     $t5, $s3, Next_Row        # If col index >= window cols, move to next row
+    slt $t9, $t5, $s3
+    beq $t9, $zero, Next_Row
 
-    # Load values from frame and window
-    lw      $t6, 0($t2)               # Load frame value into $t6
-    lw      $t7, 0($t3)               # Load window value into $t7
+    lw      $t6, 0($t2)          # frame val
+    lw      $t7, 0($t3)          # window val
 
-    # Calculate absolute difference
-    sub     $t6, $t6, $t7             # Calculate difference, $t6 = frame - window
-    bgez    $t6, Add_To_Sum           # If the difference is >=0 the skip 
-    sub     $t6, $zero, $t6           # Else take the two's complement to get abs value, $t6 = -($t6)
+    sub     $t6, $t6, $t7
+    bgez    $t6, Add_To_Sum
+    sub     $t6, $zero, $t6
 
 Add_To_Sum:
-    add     $t8, $t8, $t6             # Add absolute difference to SAD
+    add     $t8, $t8, $t6
 
-    # Increment pointers and indices
-    addi    $t2, $t2, 4               # Move to next element in frame
-    addi    $t3, $t3, 4               # Move to next element in window
-    addi    $t5, $t5, 1               # Increment column index
-    j       Compute_SAD_Col_Loop      # Repeat column loop for the current row
+    addi    $t2, $t2, 4
+    addi    $t3, $t3, 4
+    addi    $t5, $t5, 1
+    j       Compute_SAD_Col_Loop
 
 Next_Row:
-    # Adjust frame pointer to the start of the next window row
-    sll     $t6, $s1, 2               # Calculate frame row size in bytes: frame_cols * 4
-    sll     $t7, $s3, 2               # Calculate window row size in bytes: window_cols * 4
-    sub     $t6, $t6, $t7             # Calculate offset to move to next window row: (frame_cols - window_cols) * 4
-    add     $t2, $t2, $t6             # Update frame_ptr to start of next window row
-    addi    $t4, $t4, 1               # Increment row index
-    j       Compute_SAD_Row_Loop      # Repeat row loop for the next window row
+    sll     $t6, $s1, 2          # frame_cols * 4
+    sll     $t7, $s3, 2          # window_cols * 4
+    sub     $t6, $t6, $t7        # (frame_cols - window_cols)*4
+    add     $t2, $t2, $t6
+    addi    $t4, $t4, 1
+    j       Compute_SAD_Row_Loop
 
 Compute_SAD_Done:
-    # Compare current SAD with minimum SAD, update if necessary
-    blt     $t8, $30, Update_Min_Sad    # If current SAD < min_sad, update min_sad and coordinates
-    jr      $ra                         # Else, return
+    slt $t9, $t8, $a3
+    bne $t9, $zero, Update_Min_Sad
+    jr      $ra
 
 Update_Min_Sad:
-    move    $30, $t8                   # Update min_sad to current SAD
-    move    $v0, $t0                   # Update best X-coordinate to current column index
-    move    $v1, $t1                   # Update best Y-coordinate to current row index
-    jr      $ra                        # Return from subroutine
+    move    $a3, $t8
+    move    $v0, $t0
+    move    $v1, $t1
+    jr      $ra

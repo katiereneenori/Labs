@@ -61,36 +61,13 @@ module TopDatapath_tb;
 
     // Simulation Control and Monitoring
     initial begin
-        // Initialize waveform dump
-        $dumpfile("TopDatapath_tb.vcd"); // Name of the dump file
-        $dumpvars(0, TopDatapath_tb);    // Dump all variables in the testbench hierarchy
-
-        // Enhanced Monitoring for PC, Instruction, and WriteData
         $monitor(
             "Time: %0dns | PC: %0d | Instruction: 0x%08h | WriteData: %0d", 
             $time, wire2, uut.IM.Instruction, $signed(wire13)
         );
         
-        // End Simulation after a fixed time
         #25000;        // Run simulation for 25,000 ns
         $finish;
-    end
-
-    always @(posedge Clk) begin
-        // Check if a register write is occurring
-        if (uut.Registers.RegWrite) begin
-            // Display the register number and its new signed value
-            $display("Time: %0dns | Register[%0d] <= %0d", 
-                     $time, 
-                     uut.Registers.WriteRegister, 
-                     $signed(uut.Registers.registers[uut.Registers.WriteRegister]));
-        end
-    end
-
-    // Control Signal Monitoring
-    always @(posedge Clk) begin
-        $display("Time: %0dns | ALUOp: %b | PCWrite: %b | IF_ID_Write: %b", 
-                 $time, uut.ID_EXRegFile.outALUOp, uut.HDU_PCWrite, uut.HDU_IF_ID_Write);
     end
 
 endmodule

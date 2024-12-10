@@ -19,7 +19,7 @@ module IF_ID(
     input [31:0] inWire2,
     input [31:0] inWire3,
     input [31:0] inWire4,
-    input        Flush1, Flush2,
+    input        Flush1,
     output reg [31:0] outWire2,
     output reg [31:0] outWire3,
     output reg [31:0] outWire4

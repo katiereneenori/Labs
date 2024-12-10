@@ -33,6 +33,9 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
     wire HDU_PCWrite;
     wire HDU_IF_ID_Write;
     wire HDU_ControlHazard;
+    
+        wire [1:0] ForwardA, ForwardB;
+        wire [31:0] ForwardedA, ForwardedB;
 
     // Internal Wires
     // 32-bit wires
@@ -49,6 +52,9 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
     // 5-bit wires
     wire [4:0] wire12, wire27, wire28, wire33, wire41, wire45, wire49;
     wire [4:0] ALUOpWire, ALUOpWire1;
+    
+        // Add a zero operand wire
+    wire [31:0] zeroOperand = 32'b0;
 
     // 2-bit wires
     wire [1:0] ALUSrcAWire, ALUSrcBWire, MemToRegWire, ALUSrcAWire1, ALUSrcBWire1, MemToRegWire1, MemToRegWire2, MemToRegWire3;
@@ -79,6 +85,8 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
     wire [4:0] MEM_WB_RegisterRd = wire45;       // Destination register from MEM_WB
     wire MEM_WB_RegWrite = RegWriteWire3;        // RegWrite signal from MEM_WB
     
+        wire [31:0] PCPlus8 = wire48 + 32'd4; // wire48 holds PC+4
+    
     //wire [5:0] OpCode = wire11[31:26];
 
     // Hazard Detection Unit instantiation
@@ -96,6 +104,7 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
         .ControlHazard(HDU_ControlHazard)
         //.OpCode(OpCode)
     );
+    
 
     // ------------------------Instruction Fetch Stage------------------------
 
@@ -136,16 +145,16 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
     IF_ID IF_IDRegFile(
         .Clk(Clk),
         .Reset(Reset),
-        .IF_ID_Write(HDU_IF_ID_Write), // Modified to include IF_ID_Write from HDU
+        .IF_ID_Write(HDU_IF_ID_Write),
         .inWire2(wire2),
         .inWire3(wire3),
         .inWire4(wire4),
         .outWire2(wire9),
         .outWire3(wire10),
         .outWire4(wire11),
-        .Flush1(JSrcWire),
-        .Flush2(JSrcWire1)
+        .Flush1(JSrcWire)
     );
+    
 
     // ------------------------Instruction Decode Stage------------------------
 
@@ -247,7 +256,7 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
         .sel(RegDstWire1),  // RegDst control signal from ID_EX
         .out(ID_EX_RegisterRd)
     );
-
+    
     // Modified to pass control signals with hazard handling
     ID_EX ID_EXRegFile(
         .Clk(Clk),
@@ -271,8 +280,8 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
         .inWire14(wire14),
         .inWire9(wire9),
         .inWire15(wire15),
-        .inWire17(wire11),
         //.inWire17(wire18),
+        .inWire17(wire11),
         .inWire18(wire18),
         .inWire10(wire10),          // Pass the full PC+4
         .inWire27(wire11[20:16]),   // rt
@@ -304,7 +313,7 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
         .JSrc1(JSrcWire),
         .outJSrc1(JSrcWire1)
     );
-    
+
 
     // ------------------------Execution Stage------------------------
 
@@ -318,15 +327,61 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
         .inB(wire29),
         .AddResult(wire30)
     );
-
-    Mux32Bit3To1 ALUSrcAMux(
-        .inA(wire22),
+        
+    // Forwarding Mux for A
+    Mux3To1 ForwardA_Mux(
+        .sel(ForwardA),
+        .in0(wire22),
+        .in1(wire13),
+        .in2(wire7),
+        .out(ForwardedA)
+    );
+    
+    // Forwarding Mux for B
+    Mux3To1 ForwardB_Mux(
+        .sel(ForwardB),
+        .in0(wire24),
+        .in1(wire13),
+        .in2(wire7),
+        .out(ForwardedB)
+    );
+    
+    Mux32Bit4To1 ALUSrcAMux(
+        .inA(ForwardedA),   // replaced wire22 with ForwardedA
         .inB(wire21),
         .inC(wire23),
+        .inD(zeroOperand),
         .sel(ALUSrcAWire1),
         .out(wire31)
     );
+    
+    Mux32Bit4To1 ALUSrcBMux(
+        .inA(ForwardedB),   // replaced wire24 with ForwardedB
+        .inB(wire26),
+        .inC(wire21),
+        .inD(zeroOperand),
+        .sel(ALUSrcBWire1),
+        .out(wire32)
+    );
 
+//    Mux32Bit4To1 ALUSrcAMux(
+//        .inA(wire22),
+//        .inB(wire21),
+//        .inC(wire23),
+//        .inD(zeroOperand), // ALUSrcB = 11 (explicit zero)
+//        .sel(ALUSrcAWire1),
+//        .out(wire31)
+//    );
+    
+//    Mux32Bit4To1 ALUSrcBMux(
+//        .inA(wire24),     // ALUSrcB = 00
+//        .inB(wire26),     // ALUSrcB = 01
+//        .inC(wire25),     // ALUSrcB = 10
+//        .inD(zeroOperand), // ALUSrcB = 11 (explicit zero)
+//        .sel(ALUSrcBWire1),
+//        .out(wire32)
+//    );
+    
 //    Mux32Bit3To1 ALUSrcAMux(
 //        .inA(wire22),
 //        .inB(wire24),
@@ -335,13 +390,13 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
 //        .out(wire31)
 //    );
 
-    Mux32Bit3To1 ALUSrcBMux(
-        .inA(wire24),
-        .inB(wire26),
-        .inC(wire25),
-        .sel(ALUSrcBWire1),
-        .out(wire32)
-    );
+//    Mux32Bit3To1 ALUSrcBMux(
+//        .inA(wire24),
+//        .inB(wire26),
+//        .inC(wire25),
+//        .sel(ALUSrcBWire1),
+//        .out(wire32)
+//    );
 
     Mux5Bit2To1 RegDstMux(
         .inA(wire27),
@@ -441,12 +496,22 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
         .out(wire49)             // Output to RegisterFile.WriteRegister
     );
 
-    // Updated MemToRegMux to use full PC+4 (wire48)
-    Mux32Bit3To1 MemToRegMux(
+//   // Updated MemToRegMux to use full PC+4 (wire48)
+//    Mux32Bit4To1 MemToRegMux(
+//        .inA(wire43),    // From memory
+//        .inB(wire44),    // From ALU result
+//        .inC(PCPlus8),   // PC+8 for jal
+//        .inD(zeroOperand),
+//        .sel(MemToRegWire3),
+//        .out(wire13)
+//    );
+
+    Mux32Bit4To1 MemToRegMux(
         .inA(wire43),    // Data from memory (lw)
         .inB(wire44),    // ALU result
         .inC(wire48),    // PC+4 for jal
         .out(wire13),    // WriteData
+        .inD(zeroOperand), // ALUSrcB = 11 (explicit zero)
         .sel(MemToRegWire3)
     );
 
@@ -455,6 +520,17 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
         .inB(returnAddr),
         .sel(JalSelWire3),
         .out(wire12)
+    );
+
+    ForwardingUnit FU(
+        .EX_MEM_RegWrite(RegWriteWire2),
+        .EX_MEM_RegisterRd(wire41),
+        .MEM_WB_RegWrite(RegWriteWire3),
+        .MEM_WB_RegisterRd(wire45),
+        .ID_EX_RegisterRs(ID_EX_RegisterRs),
+        .ID_EX_RegisterRt(wire27),
+        .ForwardA(ForwardA),
+        .ForwardB(ForwardB)
     );
 
 endmodule
