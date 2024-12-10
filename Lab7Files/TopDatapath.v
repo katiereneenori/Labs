@@ -233,7 +233,7 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
     
     PrependPC PrependPC(
         .LeftShiftedAddress(wire17),
-        .PC4Sig(wire11),
+        .PC4Sig(wire10),
         .out(JAddressWire),
         .sel(JRSelectWire),
         .RegAddress(wire14)

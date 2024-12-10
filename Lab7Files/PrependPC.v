@@ -1,16 +1,15 @@
 `timescale 1ns / 1ps
 
-
-
 module PrependPC(
     input [31:0] LeftShiftedAddress,
     input [31:0] PC4Sig,
     input [31:0] RegAddress,
     input sel,
     //input [31:0] AddressToAdd,
-    output reg [31:0] out
+    output reg [31:0] out    
     );
     
+//    reg [27:0] leftByFour;
     
     always @(*) begin
         if(sel == 0) begin
