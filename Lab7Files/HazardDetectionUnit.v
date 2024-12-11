@@ -5,25 +5,28 @@
 
 module HazardDetectionUnit(
     input        ID_EX_MemRead,
-    input  [4:0] ID_EX_RegisterRt,
-    input  [4:0] IF_ID_RegisterRs,
-    input  [4:0] IF_ID_RegisterRt,
+    input [4:0]  ID_EX_RegisterRt,
+    input [4:0]  IF_ID_RegisterRs,
+    input [4:0]  IF_ID_RegisterRt,
+    // New inputs:
+    input        BranchTaken,   // From EX stage: indicates a taken branch
+    input        JumpTaken,     // From ID stage: indicates a jump instruction
     output       PCWrite,
     output       IF_ID_Write,
-    output       ControlHazard
+    output       Flush1
 );
 
-    // Detect a load-use hazard:
-    // If the current instruction in ID/EX is a load (ID_EX_MemRead == 1)
-    // and the following instruction in IF/ID needs the loaded register (check Rs or Rt),
-    // then we must stall.
-    wire load_use_hazard;
-    assign load_use_hazard = ID_EX_MemRead && 
-                             ((ID_EX_RegisterRt == IF_ID_RegisterRs) ||
-                              (ID_EX_RegisterRt == IF_ID_RegisterRt));
+    // Existing load-use hazard detection
+    wire load_use_hazard = ID_EX_MemRead &&
+                           ((ID_EX_RegisterRt == IF_ID_RegisterRs) ||
+                            (ID_EX_RegisterRt == IF_ID_RegisterRt));
 
-    assign PCWrite       = ~load_use_hazard;
-    assign IF_ID_Write   = ~load_use_hazard;
-    assign ControlHazard = load_use_hazard;
+    // New control hazard detection:
+    wire control_hazard = BranchTaken || JumpTaken;
+
+    assign PCWrite     = ~load_use_hazard; // no control hazard influence here
+    assign IF_ID_Write = ~load_use_hazard; // no control hazard influence here
+    assign Flush1      = control_hazard;   // Flush when branch/jump taken
+    
 
 endmodule

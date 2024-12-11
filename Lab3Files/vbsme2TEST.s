@@ -17,17 +17,6 @@
 # window: search window with k*l number of pixel values
 #
 # $v0 is for row / $v1 is for column
-
-# test 0 For the 4x4 frame size and 2X2 window size
-# small size for validation and debugging purpose
-# The result should be 0, 2
-asize0:  .word    4,  4,  2, 2    #i, j, k, l
-frame0:  .word    0,  0,  1,  2, 
-         .word    0,  0,  3,  4
-         .word    0,  0,  0,  0
-         .word    0,  0,  0,  0, 
-window0: .word    1,  2, 
-         .word    3,  4, 
 # test 1 For the 16X16 frame size and 4X4 window size
 # The result should be 12, 12
 asize1:  .word    16, 16, 4, 4    #i, j, k, l
@@ -480,427 +469,220 @@ window14:   .word    9, 9, 9, 9,
          
 newline: .asciiz     "\n" 
 
-
 ########################################################################################################################
 ### main
 ########################################################################################################################
 
-.text
+        .text
+        .globl main
 
-.globl main
-
+# main:
 main:
+        addi    $sp, $sp, -4       # 0x23bdfffc
+        sw      $ra, 0($sp)        # 0xafbf0000
+        ori     $a0, $zero, 96     # 0x34040060
+        ori     $a1, $zero, 112    # 0x34050070
+        ori     $a2, $zero, 1136   # 0x34060470
+        jal     vbsme               # 0x0c00004a
+        nop                         # 0x00000000
+        ori     $a0, $zero, 1200   # 0x340404b0
+        ori     $a1, $zero, 1216   # 0x340504c0
+        ori     $a2, $zero, 2240   # 0x340608c0
+        jal     vbsme
+        nop
+        ori     $a0, $zero, 2368   # 0x34040940
+        ori     $a1, $zero, 2384   # 0x34050950
+        ori     $a2, $zero, 3408   # 0x34060d50
+        jal     vbsme
+        nop
+        ori     $a0, $zero, 3536   # 0x34040dd0
+        ori     $a1, $zero, 3552   # 0x34050de0
+        ori     $a2, $zero, 4576   # 0x340611e0
+        jal     vbsme
+        nop
+        ori     $a0, $zero, 4640   # 0x34041220
+        ori     $a1, $zero, 4656   # 0x34051230
+        ori     $a2, $zero, 8752   # 0x34062230
+        jal     vbsme
+        nop
+        ori     $a0, $zero, 9264   # 0x34042430
+        ori     $a1, $zero, 9280   # 0x34052440
+        ori     $a2, $zero, 13376  # 0x34063440
+        jal     vbsme
+        nop
+        ori     $a0, $zero, 13440  # 0x34043480
+        ori     $a1, $zero, 13456  # 0x34053490
+        ori     $a2, $zero, 17552  # 0x34064490
+        jal     vbsme
+        nop
+        ori     $a0, $zero, 17680  # 0x34044510
+        ori     $a1, $zero, 17696  # 0x34054520
+        ori     $a2, $zero, 18720  # 0x34064920
+        jal     vbsme
+        nop
+        ori     $a0, $zero, 18848  # 0x340449a0
+        ori     $a1, $zero, 18864  # 0x340549b0
+        ori     $a2, $zero, 19888  # 0x34064db0
+        jal     vbsme
+        nop
+        ori     $a0, $zero, 19952  # 0x34044df0
+        ori     $a1, $zero, 19968  # 0x34054e00
+        ori     $a2, $zero, 20992  # 0x34065200
+        jal     vbsme
+        nop
+        ori     $a0, $zero, 21248  # 0x34045300
+        ori     $a1, $zero, 21264  # 0x34055310
+        ori     $a2, $zero, 25360  # 0x34066310
+        jal     vbsme
+        nop
+        ori     $a0, $zero, 26384  # 0x34046710
+        ori     $a1, $zero, 26400  # 0x34056720
+        ori     $a2, $zero, 27424  # 0x34066b20
+        jal     vbsme
+        nop
+        ori     $a0, $zero, 27488  # 0x34046b60
+        ori     $a1, $zero, 27504  # 0x34056b70
+        ori     $a2, $zero, 31600  # 0x34067b70
+        jal     vbsme
+        nop
+        ori     $a0, $zero, 31664  # 0x34047bb0
+        ori     $a1, $zero, 31680  # 0x34057bc0
+        ori     $a2, $zero, 31744  # 0x34067c00
+        jal     vbsme
+        nop
+        j       end_program          # 0x08000048
+        nop                         # 0x00000000
 
-    addi    $sp, $sp, -4    # Make space on stack
-    sw      $ra, 0($sp)     # Save return address
-         
-    # Start test 0
-    ############################################################
-    la      $a0, asize0     # 1st parameter: address of asize0[0]
-    la      $a1, frame0     # 2nd parameter: address of frame0[0]
-    la      $a2, window0    # 3rd parameter: address of window0[0] 
-   
-    jal     vbsme           # call function
-    jal     print_result    # print results to console
-    
-    ############################################################
-    # End of test 1   
+end_program:
+    j end_program
+    nop
 
-    # Start test 1 
-    ############################################################
-    la      $a0, asize1     # 1st parameter: address of asize1[0]
-    la      $a1, frame1     # 2nd parameter: address of frame1[0]
-    la      $a2, window1    # 3rd parameter: address of window1[0] 
-   
-    jal     vbsme           # call function
-    jal     print_result    # print results to console
-    
-    ############################################################
-    # End of test 1   
-
-   
-    # Start test 2 
-    ############################################################
-    la      $a0, asize2     # 1st parameter: address of asize2[0]
-    la      $a1, frame2     # 2nd parameter: address of frame2[0]
-    la      $a2, window2    # 3rd parameter: address of window2[0] 
-   
-    jal     vbsme           # call function
-    jal     print_result    # print results to console
-    ############################################################
-    # End of test 2   
-                    
-               
-    # Start test 3
-    ############################################################
-    la      $a0, asize3     # 1st parameter: address of asize3[0]
-    la      $a1, frame3     # 2nd parameter: address of frame3[0]
-    la      $a2, window3    # 3rd parameter: address of window3[0] 
-
-    jal     vbsme           # call function
-    jal     print_result    # print results to console 
-    ############################################################
-    # End of test 3   
-      
-      
-    # Start test 4 
-    ############################################################
-    la      $a0, asize4     # 1st parameter: address of asize4[0]
-    la      $a1, frame4     # 2nd parameter: address of frame4[0]
-    la      $a2, window4    # 3rd parameter: address of window4[0] 
-
-    jal     vbsme           # call function
-    jal     print_result    # print results to console
-    ############################################################
-    # End of test 4   
-   
-   
-    # Start test 5
-    ############################################################
-    la      $a0, asize5     # 1st parameter: address of asize5[0]
-    la      $a1, frame5     # 2nd parameter: address of frame5[0]
-    la      $a2, window5    # 3rd parameter: address of window5[0] 
-
-    jal     vbsme           # call function
-    jal     print_result    # print results to console
-    ############################################################
-    # End of test 5
-
-   
-    # Start test 6 
-    ############################################################
-    la      $a0, asize6     # 1st parameter: address of asize6[0]
-    la      $a1, frame6     # 2nd parameter: address of frame6[0]
-    la      $a2, window6    # 3rd parameter: address of window6[0] 
-
-    jal     vbsme           # call function
-    jal     print_result    # print results to console
-    ############################################################
-    # End of test 6
-   
-
-    # Start test 7
-    ############################################################
-    la      $a0, asize7     # 1st parameter: address of asize7[0]
-    la      $a1, frame7     # 2nd parameter: address of frame7[0]
-    la      $a2, window7    # 3rd parameter: address of window7[0] 
-
-    jal     vbsme           # call function
-    jal     print_result    # print results to console
-    ############################################################
-    # End of test 7   
-   
-
-    # Start test 8 
-    ############################################################
-    la      $a0, asize8     # 1st parameter: address of asize8[0]
-    la      $a1, frame8     # 2nd parameter: address of frame8[0]
-    la      $a2, window8    # 3rd parameter: address of window8[0] 
-
-    jal     vbsme           # call function
-    jal     print_result    # print results to console
-    ############################################################
-    # End of test 8   
-   
-   
-    # Start test 9 
-    ############################################################
-    la      $a0, asize9     # 1st parameter: address of asize9[0]
-    la      $a1, frame9     # 2nd parameter: address of frame9[0]
-    la      $a2, window9    # 3rd parameter: address of window9[0] 
-
-    jal     vbsme           # call function
-    jal     print_result    # print results to console
-    ############################################################
-    # End of test 9      
-   
-   
-    # Start test 10 
-    ############################################################
-    la      $a0, asize10        # 1st parameter: address of asize10[0]
-    la      $a1, frame10        # 2nd parameter: address of frame10[0]
-    la      $a2, window10       # 3rd parameter: address of window10[0]   
-
-    jal     vbsme               # call function
-    jal     print_result        # print results to console
-    ############################################################
-    # End of test 10  
-   
-   
-    # Start test 11
-    ############################################################
-    la      $a0, asize11     # 1st parameter: address of asize11[0]
-    la      $a1, frame11     # 2nd parameter: address of frame11[0]
-    la      $a2, window11    # 3rd parameter: address of window11[0]   
-
-    jal     vbsme           # call function
-    jal     print_result    # print results to console
-    ############################################################
-    # End of test 11  
-   
-
-    # Start test 12
-    ############################################################
-    la      $a0, asize12     # 1st parameter: address of asize12[0]
-    la      $a1, frame12     # 2nd parameter: address of frame12[0]
-    la      $a2, window12    # 3rd parameter: address of window12[0]   
-
-    jal     vbsme           # call function
-    jal     print_result    # print results to console
-    ############################################################
-    # End of test 12  
-   
-
-    # Start test 13
-    ############################################################
-    la      $a0, asize13     # 1st parameter: address of asize13[0]
-    la      $a1, frame13     # 2nd parameter: address of frame13[0]
-    la      $a2, window13    # 3rd parameter: address of window13[0]   
-
-    jal     vbsme           # call function
-    jal     print_result    # print results to console
-    ############################################################
-    # End of test 13  
-   
-   
-    # Start test 14
-    ############################################################
-    la      $a0, asize14     # 1st parameter: address of asize14[0]
-    la      $a1, frame14     # 2nd parameter: address of frame14[0]
-    la      $a2, window14    # 3rd parameter: address of window14[0]   
-
-    jal     vbsme           # call function
-    jal     print_result    # print results to console
-    ############################################################
-    # End of test 14     
-   
-    lw      $ra, 0($sp)         # Restore return address
-    addi    $sp, $sp, 4         # Restore stack pointer
-    jr      $ra                 # Return
-
-################### Print Result ####################################
-print_result:
-    # Printing $v0
-    add     $a0, $v0, $zero     # Load $v0 for printing
-    li      $v0, 1              # Load the system call numbers
-    syscall
-   
-    # Print newline.
-    la      $a0, newline          # Load value for printing
-    li      $v0, 4                # Load the system call numbers
-    syscall
-   
-    # Printing $v1
-    add     $a0, $v1, $zero      # Load $v1 for printing
-    li      $v0, 1                # Load the system call numbers
-    syscall
-
-    # Print newline.
-    la      $a0, newline          # Load value for printing
-    li      $v0, 4                # Load the system call numbers
-    syscall
-   
-    # Print newline.
-    la      $a0, newline          # Load value for printing
-    li      $v0, 4                # Load the system call numbers
-    syscall
-   
-    jr      $ra                   #function return
-
-#####################################################################
-### vbsme
-#####################################################################
-
-.text
-.globl vbsme
-
+# vbsme:
 vbsme:
-    # Set $v0 and $v1 to 0 (initial coordinates)
-    ori     $v0, $zero, 0        # $v0 = 0
-    ori     $v1, $zero, 0        # $v1 = 0
+        ori     $v0, $zero, 0       # 0x34020000
+        ori     $v1, $zero, 0       # 0x34030000
+        ori     $s0, $zero, 0       # 0x34100000
+        ori     $s1, $zero, 0       # 0x34110000
+        lw      $t0, 8($a0)         # 0x8c880008
+        lw      $t1, 12($a0)        # 0x8c89000c
+        ori     $s2, $zero, 0       # 0x34120000
+        lw      $s3, 0($a0)         # 0x8c930000
+        sub     $s3, $s3, $t0       # 0x02689822
+        lw      $s4, 4($a0)         # 0x8c940004
+        sub     $s4, $s4, $t1       # 0x0289a022
+        ori     $s5, $zero, 0       # 0x34150000
+        ori     $s6, $zero, 32767   # 0x34167fff
+        add     $s7, $s6, $zero     # 0x02c0b820
+        addi    $sp, $sp, -4        # 0x23bdfffc
+        sw      $ra, 0($sp)         # 0xafbf0000
+outer_loop: # 0x0272082a
+        slt     $at, $s3, $s2
+        bne     $at, $zero, exit_VBSME
+        nop
+        slt     $at, $s4, $s5
+        bne     $at, $zero, exit_VBSME
+        nop
+top_loop: # 0x0291082a
+        slt     $at, $s4, $s1
+        bne     $at, $zero, exit_top
+        nop
+        jal     SAD
+        lw      $t0, 4($a0)
+        j       top_loop
+        addi    $s1, $s1, 1
+exit_top:
+        addi    $s2, $s2, 1
+        addi    $s0, $s0, 1
+        addi    $s1, $s1, -1
+right_loop: # 0x0270082a
+        slt     $at, $s3, $s0
+        bne     $at, $zero, exit_right
+        nop
+        jal     SAD
+        lw      $t0, 4($a0)
+        j       right_loop
+        addi    $s0, $s0, 1
+exit_right:
+        addi    $s4, $s4, -1
+        addi    $s0, $s0, -1
+        addi    $s1, $s1, -1
+bottom_loop: # 0x0235082a
+        slt     $at, $s1, $s5
+        bne     $at, $zero, exit_bottom
+        nop
+        jal     SAD
+        lw      $t0, 4($a0)
+        j       bottom_loop
+        addi    $s1, $s1, -1
+exit_bottom:
+        addi    $s3, $s3, -1
+        addi    $s0, $s0, -1
+        addi    $s1, $s1, 1
+left_loop: # 0x0212082a
+        slt     $at, $s0, $s2
+        bne     $at, $zero, exit_left
+        nop
+        jal     SAD
+        lw      $t0, 4($a0)
+        j       left_loop
+        addi    $s0, $s0, -1
+exit_left:
+        addi    $s5, $s5, 1
+        addi    $s0, $s0, 1
+        j       outer_loop
+        addi    $s1, $s1, 1
+exit_VBSME:
+        lw      $ra, 0($sp)
+        jr      $ra
+        addi    $sp, $sp, 4
 
-    # Save return address and allocate stack space
-    addi    $sp, $sp, -4
-    sw      $ra, 0($sp)          # Save return address
-
-    # Load frame and window dimensions from asize
-    lw      $s0, 0($a0)          # s0 = frame_rows
-    lw      $s1, 4($a0)          # s1 = frame_cols
-    lw      $s2, 8($a0)          # s2 = window_rows
-    lw      $s3, 12($a0)         # s3 = window_cols
-
-    # Calculate boundaries
-    sub     $s4, $s1, $s3        # s4 = frame_cols - window_cols (right boundary)
-    sub     $s5, $s0, $s2        # s5 = frame_rows - window_rows (bottom boundary)
-
-    # Initialize registers
-    ori     $a3, $zero, 9999     # a3 = min SAD initially large
-    ori     $t0, $zero, 0        # t0 = current row index
-    ori     $t1, $zero, 0        # t1 = current col index
-    ori     $s6, $zero, 0        # s6 = left boundary
-    ori     $s7, $zero, 0        # s7 = top boundary
-
-Traversal_Loop:
-    # if s6 > s4 then end
-    slt $t9, $s4, $s6
-    bne $t9, $zero, End_Traversal
-
-    # if s7 > s5 then end
-    slt $t9, $s5, $s7
-    bne $t9, $zero, End_Traversal
-
-    # Move Right
-    jal Compute_SAD_CallR
-
-Move_Right_Loop:
-    slt $t9, $s4, $t1
-    bne $t9, $zero, Update_TopBoundary
-
-    addi $t1, $t1, 1      # Move right
-    slt $t9, $s4, $t1
-    beq $t9, $zero, Compute_SAD_CallR
-
-Right:
-    j Move_Right_Loop
-
-Update_TopBoundary:
-    addi $s7, $s7, 1      # Move top boundary down
-    addi $t1, $t1, -1     # correct overstep
-
-    # Move Down
-Move_Down_Loop:
-    slt $t9, $s5, $t0
-    bne $t9, $zero, Update_RightBoundary
-
-    addi $t0, $t0, 1      # Move down
-    slt $t9, $s5, $t0
-    beq $t9, $zero, Compute_SAD_CallD
-
-Down:
-    j Move_Down_Loop
-
-Update_RightBoundary:
-    addi $s4, $s4, -1     # Move right boundary left
-    addi $t0, $t0, -1     # correct overstep
-
-    # Move Left
-Move_Left_Loop:
-    slt $t9, $t1, $s6
-    bne $t9, $zero, Update_BottomBoundary
-
-    addi $t1, $t1, -1     # Move left
-    slt $t9, $t1, $s6
-    beq $t9, $zero, Compute_SAD_CallL
-
-Left:
-    j Move_Left_Loop
-
-Update_BottomBoundary:
-    addi $s5, $s5, -1     # Move bottom boundary up
-    addi $t1, $t1, 1      # correct overstep
-
-    # Move Up
-Move_Up_Loop:
-    slt $t9, $t0, $s7
-    bne $t9, $zero, Update_LeftBoundary
-
-    addi $t0, $t0, -1     # Move up
-    slt $t9, $t0, $s7
-    beq $t9, $zero, Compute_SAD_CallU
-
-Up:
-    j Move_Up_Loop
-
-Update_LeftBoundary:
-    addi $s6, $s6, 1      # Move left boundary right
-    addi $t0, $t0, 1      # correct overstep
-
-    j Traversal_Loop
-
-
-Compute_SAD_CallR:
-    jal Compute_SAD
-    j Right
-
-Compute_SAD_CallD:
-    jal Compute_SAD
-    j Down
-
-Compute_SAD_CallL:
-    jal Compute_SAD
-    j Left
-
-Compute_SAD_CallU:
-    jal Compute_SAD
-    j Up
-
-
-End_Traversal:
-    lw  $ra, 0($sp)        # Restore $ra
-    addi $sp, $sp, 4
-    jr  $ra                 # Return to caller
-
-
-Compute_SAD:
-    # t8 = current SAD = 0
-    addu    $t8, $zero, $zero
-
-    # Calculate frame_ptr = a1 + ((t0*s1 + t1)*4)
-    # Replace mul with mult/mflo
-    mult    $t0, $s1
-    mflo    $t6
-    add     $t6, $t6, $t1
-    sll     $t6, $t6, 2
-    add     $t2, $a1, $t6
-
-    # t3 = window pointer = a2
-    addu    $t3, $zero, $a2
-
-    # t4 = window row index = 0
-    addu    $t4, $zero, $zero
-
-Compute_SAD_Row_Loop:
-    slt $t9, $t4, $s2
-    beq $t9, $zero, Compute_SAD_Done
-
-    # t5 = column index = 0
-    addu    $t5, $zero, $zero
-
-Compute_SAD_Col_Loop:
-    slt $t9, $t5, $s3
-    beq $t9, $zero, Next_Row
-
-    lw      $t6, 0($t2)      # frame val
-    lw      $t7, 0($t3)      # window val
-
-    sub     $t6, $t6, $t7
-    bgez    $t6, Add_To_Sum
-    sub     $t6, $zero, $t6
-
-Add_To_Sum:
-    add     $t8, $t8, $t6
-
-    addi    $t2, $t2, 4
-    addi    $t3, $t3, 4
-    addi    $t5, $t5, 1
-    j       Compute_SAD_Col_Loop
-
-Next_Row:
-    sll     $t6, $s1, 2          # frame_cols*4
-    sll     $t7, $s3, 2          # window_cols*4
-    sub     $t6, $t6, $t7
-    add     $t2, $t2, $t6
-    addi    $t4, $t4, 1
-    j       Compute_SAD_Row_Loop
-
-Compute_SAD_Done:
-    # if t8 < a3, update min SAD
-    slt $t9, $t8, $a3
-    bne $t9, $zero, Update_Min_Sad
-    jr      $ra
-
-Update_Min_Sad:
-    addu    $a3, $zero, $t8    # a3 = t8
-    addu    $v0, $zero, $t0    # v0 = t0
-    addu    $v1, $zero, $t1    # v1 = t1
-    jr      $ra
+# SAD:
+SAD:
+        mul     $t1, $s0, $t0       # 0x72084802
+        add     $t2, $s1, $t1       # 0x02295020
+        ori     $t3, $zero, 0       # 0x340b0000
+        ori     $t4, $zero, 0       # 0x340c0000
+        lw      $t6, 8($a0)         # 0x8c8e0008
+        lw      $t7, 12($a0)        # 0x8c8f000c
+ver_loop: # 0x018e082a
+        slt     $at, $t4, $t6
+        beq     $at, $zero, exit_sad_loop
+        nop
+        ori     $t5, $zero, 0       # 0x340d0000
+hor_loop: # 0x01af082a
+        slt     $at, $t5, $t7
+        beq     $at, $zero, exit_hor
+        nop
+        mul     $t1, $t4, $t0       # 0x71884802
+        add     $t1, $t5, $t1       # 0x01a94820
+        add     $t1, $t2, $t1       # 0x01494820
+        sll     $t1, $t1, 2         # 0x00094880
+        add     $t1, $a1, $t1       # 0x00a94820
+        lw      $t8, 0($t1)         # 0x8d380000
+        mul     $t1, $t4, $t7       # 0x718f4802
+        add     $t1, $t5, $t1       # 0x01a94820
+        sll     $t1, $t1, 2         # 0x00094880
+        add     $t1, $a2, $t1       # 0x00c94820
+        lw      $t9, 0($t1)         # 0x8d390000
+        sub     $t1, $t8, $t9       # 0x03194822
+        bgez    $t1, positive_num   # 0x05210002
+        nop
+        sub     $t1, $zero, $t1     # 0x00094822
+positive_num:
+        add     $t3, $t3, $t1       # 0x01695820
+        j       hor_loop            # 0x08000096
+        addi    $t5, $t5, 1         # 0x21ad0001
+exit_hor:
+        j       ver_loop            # 0x08000092
+        addi    $t4, $t4, 1         # 0x218c0001
+exit_sad_loop:
+        add     $s7, $t3, $zero     # 0x0160b820
+        slt     $at, $s7, $s6       # 0x02f6082a
+        beq     $at, $zero, return_to_VBSME
+        nop
+        add     $s6, $s7, $zero     # 0x02e0b020
+        add     $v0, $s0, $zero     # 0x02001020
+        add     $v1, $s1, $zero     # 0x02201820
+return_to_VBSME:
+        jr      $ra                 # 0x03e00008
+        nop

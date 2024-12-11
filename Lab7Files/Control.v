@@ -48,24 +48,25 @@ module Control(
         JRSelect = 1'b0;
 
 
-        if (ControlHazard) begin
-            // Hazard detected: Insert a bubble by setting control signals to zero
-            ALUOp = 5'b00000;
-            ToBranch = 1'b0;
-            RegDst = 1'b0;
-            ALUSrcA = 2'b00;
-            ALUSrcB = 2'b00;
-            RegWrite = 1'b0;
-            MemWrite = 1'b0;
-            MemRead = 1'b0;
-            MemToReg = 2'b01;
-            MemByte = 1'b0;
-            MemHalf = 1'b0;
-            JorBranch = 1'b0;
-            JalSel = 1'b0;
-            JSrc = 1'b0;
-            JRSelect = 1'b0;
-        end else if (Instruction == 32'b0) begin
+//        if (ControlHazard) begin
+//            // Hazard detected: Insert a bubble by setting control signals to zero
+//            ALUOp = 5'b00000;
+//            ToBranch = 1'b0;
+//            RegDst = 1'b0;
+//            ALUSrcA = 2'b00;
+//            ALUSrcB = 2'b00;
+//            RegWrite = 1'b0;
+//            MemWrite = 1'b0;
+//            MemRead = 1'b0;
+//            MemToReg = 2'b01;
+//            MemByte = 1'b0;
+//            MemHalf = 1'b0;
+//            JorBranch = 1'b0;
+//            JalSel = 1'b0;
+//            JSrc = 1'b0;
+//            JRSelect = 1'b0;
+//        end else 
+        if (Instruction == 32'b0) begin
             // NOP
         end else if (Instruction[31:26] == 6'b000000) begin
             // R-type
