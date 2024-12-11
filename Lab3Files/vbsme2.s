@@ -494,18 +494,6 @@ main:
     addi    $sp, $sp, -4    # Make space on stack
     sw      $ra, 0($sp)     # Save return address
          
-    # Start test 0
-    ############################################################
-    la      $a0, asize0     # 1st parameter: address of asize0[0]
-    la      $a1, frame0     # 2nd parameter: address of frame0[0]
-    la      $a2, window0    # 3rd parameter: address of window0[0] 
-   
-    jal     vbsme           # call function
-    jal     print_result    # print results to console
-    
-    ############################################################
-    # End of test 1   
-
     # Start test 1 
     ############################################################
     la      $a0, asize1     # 1st parameter: address of asize1[0]
@@ -703,13 +691,13 @@ print_result:
     # Print newline.
     la      $a0, newline          # Load value for printing
     li      $v0, 4                # Load the system call numbers
-    syscall
    
     jr      $ra                   #function return
 
 #####################################################################
 ### vbsme
 #####################################################################
+
 
 # vbsme.s 
 # motion estimation is a routine in h.264 video codec that 
@@ -774,6 +762,16 @@ print_result:
 
 .text
 .globl  vbsme
+
+# Your program must follow circular search pattern.  
+
+# Preconditions:
+#   1st parameter (a0) address of the first element of the dimension info (address of asize[0])
+#   2nd parameter (a1) address of the first element of the frame array (address of frame[0][0])
+#   3rd parameter (a2) address of the first element of the window array (address of window[0][0])
+# Postconditions:   
+#   result (v0) x coordinate of the block in the frame with the minimum SAD
+#          (v1) y coordinate of the block in the frame with the minimum SAD
 
 vbsme:
 
@@ -898,7 +896,7 @@ Compute_SAD_CallU:
 End_Traversal:
     lw      $ra, 0($sp)         # Restore return address
     addi    $sp, $sp, 4         # Restore stack pointer
-    syscall                     # Exit the program
+    jr  $ra                 # Return from vbsme
 
 Compute_SAD:
     move    $t8, $zero           # Initialize current SAD to 0
