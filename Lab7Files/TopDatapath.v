@@ -89,21 +89,16 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
     
     //wire [5:0] OpCode = wire11[31:26];
 
-    // Hazard Detection Unit instantiation
-    HazardDetectionUnit HDU (
-        .ID_EX_RegWrite(ID_EX_RegWrite),
-        .ID_EX_RegisterRd(ID_EX_RegisterRd),
-        .EX_MEM_RegWrite(EX_MEM_RegWrite),
-        .EX_MEM_RegisterRd(EX_MEM_RegisterRd),
-        .MEM_WB_RegWrite(MEM_WB_RegWrite),
-        .MEM_WB_RegisterRd(MEM_WB_RegisterRd),
-        .IF_ID_RegisterRs(IF_ID_RegisterRs),
-        .IF_ID_RegisterRt(IF_ID_RegisterRt),
-        .PCWrite(HDU_PCWrite),
-        .IF_ID_Write(HDU_IF_ID_Write),
-        .ControlHazard(HDU_ControlHazard)
-        //.OpCode(OpCode)
-    );
+HazardDetectionUnit HDU (
+    .ID_EX_MemRead(MemReadWire1),    // from the ID/EX pipeline register stage
+    .ID_EX_RegisterRt(wire27),       // Rt from ID_EX stage
+    .IF_ID_RegisterRs(IF_ID_RegisterRs),
+    .IF_ID_RegisterRt(IF_ID_RegisterRt),
+    .PCWrite(HDU_PCWrite),
+    .IF_ID_Write(HDU_IF_ID_Write),
+    .ControlHazard(HDU_ControlHazard)
+);
+
     
 
     // ------------------------Instruction Fetch Stage------------------------
@@ -152,7 +147,7 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
         .outWire2(wire9),
         .outWire3(wire10),
         .outWire4(wire11),
-        .Flush1(JSrcWire)
+        .Flush1(PCSrcWire)
     );
     
 
