@@ -438,10 +438,11 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
         .EX_MEM_RegisterRd(wire41),
         .MEM_WB_RegWrite(RegWriteWire3),
         .MEM_WB_RegisterRd(wire45),
-        .ID_EX_RegisterRs(IF_ID_RegisterRs),
-        .ID_EX_RegisterRt(wire27),
+        .ID_EX_RegisterRs(ID_EX_RegisterRs),  // From the ID/EX pipeline register
+        .ID_EX_RegisterRt(ID_EX_RegisterRt),
         .ForwardA(ForwardA),
         .ForwardB(ForwardB)
     );
+
 
 endmodule

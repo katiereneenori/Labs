@@ -24,8 +24,8 @@ module HazardDetectionUnit(
     // New control hazard detection:
     wire control_hazard = BranchTaken || JumpTaken;
 
-    assign PCWrite     = ~load_use_hazard; // no control hazard influence here
-    assign IF_ID_Write = ~load_use_hazard; // no control hazard influence here
+    assign PCWrite = ~load_use_hazard || control_hazard;
+    assign IF_ID_Write = ~load_use_hazard && ~control_hazard;
     assign Flush1      = control_hazard;   // Flush when branch/jump taken
     
 
