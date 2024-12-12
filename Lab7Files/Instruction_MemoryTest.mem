@@ -1,154 +1,208 @@
 23bdfffc	//	main:			addi	$sp, $sp, -4 ->	main:			addi	$sp, $sp, -4
 afbf0000	//				sw	$ra, 0($sp) ->				sw	$ra, 0($sp)
-34040060	//				ori	$a0, $zero, 96 ->				ori	$a0, $zero, 96
-34050070	//				ori	$a1, $zero, 112 ->				ori	$a1, $zero, 112
-34060470	//				ori	$a2, $zero, 1136 ->				ori	$a2, $zero, 1136
-0c00003b	//				jal	vbsme ->				jal	vbsme
-340404b0	//				ori	$a0, $zero, 1200 ->				ori	$a0, $zero, 1200
-340504c0	//				ori	$a1, $zero, 1216 ->				ori	$a1, $zero, 1216
-340608c0	//				ori	$a2, $zero, 2240 ->				ori	$a2, $zero, 2240
-0c00003b	//				jal	vbsme ->				jal	vbsme
-34040940	//				ori	$a0, $zero, 2368 ->				ori	$a0, $zero, 2368
-34050950	//				ori	$a1, $zero, 2384 ->				ori	$a1, $zero, 2384
-34060d50	//				ori	$a2, $zero, 3408 ->				ori	$a2, $zero, 3408
-0c00003b	//				jal	vbsme ->				jal	vbsme
-34040dd0	//				ori	$a0, $zero, 3536 ->				ori	$a0, $zero, 3536
-34050de0	//				ori	$a1, $zero, 3552 ->				ori	$a1, $zero, 3552
-340611e0	//				ori	$a2, $zero, 4576 ->				ori	$a2, $zero, 4576
-0c00003b	//				jal	vbsme ->				jal	vbsme
-34041220	//				ori	$a0, $zero, 4640 ->				ori	$a0, $zero, 4640
-34051230	//				ori	$a1, $zero, 4656 ->				ori	$a1, $zero, 4656
-34062230	//				ori	$a2, $zero, 8752 ->				ori	$a2, $zero, 8752
-0c00003b	//				jal	vbsme ->				jal	vbsme
-34042430	//				ori	$a0, $zero, 9264 ->				ori	$a0, $zero, 9264
-34052440	//				ori	$a1, $zero, 9280 ->				ori	$a1, $zero, 9280
-34063440	//				ori	$a2, $zero, 13376 ->				ori	$a2, $zero, 13376
-0c00003b	//				jal	vbsme ->				jal	vbsme
-34043480	//				ori	$a0, $zero, 13440 ->				ori	$a0, $zero, 13440
-34053490	//				ori	$a1, $zero, 13456 ->				ori	$a1, $zero, 13456
-34064490	//				ori	$a2, $zero, 17552 ->				ori	$a2, $zero, 17552
-0c00003b	//				jal	vbsme ->				jal	vbsme
-34044510	//				ori	$a0, $zero, 17680 ->				ori	$a0, $zero, 17680
-34054520	//				ori	$a1, $zero, 17696 ->				ori	$a1, $zero, 17696
-34064920	//				ori	$a2, $zero, 18720 ->				ori	$a2, $zero, 18720
-0c00003b	//				jal	vbsme ->				jal	vbsme
-340449a0	//				ori	$a0, $zero, 18848 ->				ori	$a0, $zero, 18848
-340549b0	//				ori	$a1, $zero, 18864 ->				ori	$a1, $zero, 18864
-34064db0	//				ori	$a2, $zero, 19888 ->				ori	$a2, $zero, 19888
-0c00003b	//				jal	vbsme ->				jal	vbsme
-34044df0	//				ori	$a0, $zero, 19952 ->				ori	$a0, $zero, 19952
-34054e00	//				ori	$a1, $zero, 19968 ->				ori	$a1, $zero, 19968
-34065200	//				ori	$a2, $zero, 20992 ->				ori	$a2, $zero, 20992
-0c00003b	//				jal	vbsme ->				jal	vbsme
-34045300	//				ori	$a0, $zero, 21248 ->				ori	$a0, $zero, 21248
-34055310	//				ori	$a1, $zero, 21264 ->				ori	$a1, $zero, 21264
-34066310	//				ori	$a2, $zero, 25360 ->				ori	$a2, $zero, 25360
-0c00003b	//				jal	vbsme ->				jal	vbsme
-34046710	//				ori	$a0, $zero, 26384 ->				ori	$a0, $zero, 26384
-34056720	//				ori	$a1, $zero, 26400 ->				ori	$a1, $zero, 26400
-34066b20	//				ori	$a2, $zero, 27424 ->				ori	$a2, $zero, 27424
-0c00003b	//				jal	vbsme ->				jal	vbsme
-34046b60	//				ori	$a0, $zero, 27488 ->				ori	$a0, $zero, 27488
-34056b70	//				ori	$a1, $zero, 27504 ->				ori	$a1, $zero, 27504
-34067b70	//				ori	$a2, $zero, 31600 ->				ori	$a2, $zero, 31600
-0c00003b	//				jal	vbsme ->				jal	vbsme
-34047bb0	//				ori	$a0, $zero, 31664 ->				ori	$a0, $zero, 31664
-34057bc0	//				ori	$a1, $zero, 31680 ->				ori	$a1, $zero, 31680
-34067c00	//				ori	$a2, $zero, 31744 ->				ori	$a2, $zero, 31744
-0c00003b	//				jal	vbsme ->				jal	vbsme
-0800003a	//	end_program:		j	end_program ->	end_program:		j	end_program
-34020000	//	vbsme:			ori	$v0, $zero, 0 ->	vbsme:			ori	$v0, $zero, 0
-34030000	//				ori	$v1, $zero, 0 ->				ori	$v1, $zero, 0
-34100000	//				ori	$s0, $zero, 0 ->				ori	$s0, $zero, 0
-34110000	//				ori	$s1, $zero, 0 ->				ori	$s1, $zero, 0
-8c880008	//				lw	$t0, 8($a0) ->				lw	$t0, 8($a0)
-8c89000c	//				lw	$t1, 12($a0) ->				lw	$t1, 12($a0)
-34120000	//				ori	$s2, $zero, 0 ->				ori	$s2, $zero, 0
-8c930000	//				lw	$s3, 0($a0) ->				lw	$s3, 0($a0)
-02689822	//				sub	$s3, $s3, $t0 ->				sub	$s3, $s3, $t0
-8c940004	//				lw	$s4, 4($a0) ->				lw	$s4, 4($a0)
-0289a022	//				sub	$s4, $s4, $t1 ->				sub	$s4, $s4, $t1
-34150000	//				ori	$s5, $zero, 0 ->				ori	$s5, $zero, 0
-34167fff	//				ori	$s6, $zero, 32767 ->				ori	$s6, $zero, 32767
-02c0b820	//				add	$s7, $s6, $zero ->				add	$s7, $s6, $zero
-23bdfffc	//				addi	$sp, $sp, -4 ->				addi	$sp, $sp, -4
-afbf0000	//				sw	$ra, 0($sp) ->				sw	$ra, 0($sp)
-0272082a	//	outer_loop:		slt	$at, $s3, $s2 ->	outer_loop:		slt	$at, $s3, $s2
-14200023	//				bne	$at, $zero, exit_VBSME ->				bne	$at, $zero, exit_VBSME
-0295082a	//				slt	$at, $s4, $s5 ->				slt	$at, $s4, $s5
-14200021	//				bne	$at, $zero, exit_VBSME ->				bne	$at, $zero, exit_VBSME
-0291082a	//	top_loop:		slt	$at, $s4, $s1 ->	top_loop:		slt	$at, $s4, $s1
-14200003	//				bne	$at, $zero, exit_top ->				bne	$at, $zero, exit_top
-0c000073	//				jal	SAD ->				jal	SAD
-22310001	//				addi	$s1, $s1, 1 ->				addi	$s1, $s1, 1
-0800004f	//				j	top_loop ->				j	top_loop
-22520001	//	exit_top:		addi	$s2, $s2, 1 ->	exit_top:		addi	$s2, $s2, 1
-22100001	//				addi	$s0, $s0, 1 ->				addi	$s0, $s0, 1
-2231ffff	//				addi	$s1, $s1, -1 ->				addi	$s1, $s1, -1
-0270082a	//	right_loop:		slt	$at, $s3, $s0 ->	right_loop:		slt	$at, $s3, $s0
-14200003	//				bne	$at, $zero, exit_right ->				bne	$at, $zero, exit_right
-0c000073	//				jal	SAD ->				jal	SAD
-22100001	//				addi	$s0, $s0, 1 ->				addi	$s0, $s0, 1
-08000057	//				j	right_loop ->				j	right_loop
-2294ffff	//	exit_right:		addi	$s4, $s4, -1 ->	exit_right:		addi	$s4, $s4, -1
-2210ffff	//				addi	$s0, $s0, -1 ->				addi	$s0, $s0, -1
-2231ffff	//				addi	$s1, $s1, -1 ->				addi	$s1, $s1, -1
-0235082a	//	bottom_loop:		slt	$at, $s1, $s5 ->	bottom_loop:		slt	$at, $s1, $s5
-14200003	//				bne	$at, $zero, exit_bottom ->				bne	$at, $zero, exit_bottom
-0c000073	//				jal	SAD ->				jal	SAD
-2231ffff	//				addi	$s1, $s1, -1 ->				addi	$s1, $s1, -1
-0800005f	//				j	bottom_loop ->				j	bottom_loop
-2273ffff	//	exit_bottom:		addi	$s3, $s3, -1 ->	exit_bottom:		addi	$s3, $s3, -1
-2210ffff	//				addi	$s0, $s0, -1 ->				addi	$s0, $s0, -1
-22310001	//				addi	$s1, $s1, 1 ->				addi	$s1, $s1, 1
-0212082a	//	left_loop:		slt	$at, $s0, $s2 ->	left_loop:		slt	$at, $s0, $s2
-14200003	//				bne	$at, $zero, exit_left ->				bne	$at, $zero, exit_left
-0c000073	//				jal	SAD ->				jal	SAD
-2210ffff	//				addi	$s0, $s0, -1 ->				addi	$s0, $s0, -1
-08000067	//				j	left_loop ->				j	left_loop
-22b50001	//	exit_left:		addi	$s5, $s5, 1 ->	exit_left:		addi	$s5, $s5, 1
-22100001	//				addi	$s0, $s0, 1 ->				addi	$s0, $s0, 1
-22310001	//				addi	$s1, $s1, 1 ->				addi	$s1, $s1, 1
-0800004b	//				j	outer_loop ->				j	outer_loop
-8fbf0000	//	exit_VBSME:		lw	$ra, 0($sp) ->	exit_VBSME:		lw	$ra, 0($sp)
+34040000	//				ori	$a0, $zero, 0 ->				ori	$a0, $zero, 0
+34050010	//				ori	$a1, $zero, 16 ->				ori	$a1, $zero, 16
+34060410	//				ori	$a2, $zero, 1040 ->				ori	$a2, $zero, 1040
+0c00004c	//				jal	vbsme ->				jal	vbsme
+00000000	//				nop ->				nop
+34040450	//				ori	$a0, $zero, 1104 ->				ori	$a0, $zero, 1104
+34050460	//				ori	$a1, $zero, 1120 ->				ori	$a1, $zero, 1120
+34060860	//				ori	$a2, $zero, 2144 ->				ori	$a2, $zero, 2144
+0c00004c	//				jal	vbsme ->				jal	vbsme
+00000000	//				nop ->				nop
+340408e0	//				ori	$a0, $zero, 2272 ->				ori	$a0, $zero, 2272
+340508f0	//				ori	$a1, $zero, 2288 ->				ori	$a1, $zero, 2288
+34060cf0	//				ori	$a2, $zero, 3312 ->				ori	$a2, $zero, 3312
+0c00004c	//				jal	vbsme ->				jal	vbsme
+00000000	//				nop ->				nop
+34040d70	//				ori	$a0, $zero, 3440 ->				ori	$a0, $zero, 3440
+34050d80	//				ori	$a1, $zero, 3456 ->				ori	$a1, $zero, 3456
+34061180	//				ori	$a2, $zero, 4480 ->				ori	$a2, $zero, 4480
+0c00004c	//				jal	vbsme ->				jal	vbsme
+00000000	//				nop ->				nop
+340411c0	//				ori	$a0, $zero, 4544 ->				ori	$a0, $zero, 4544
+340511d0	//				ori	$a1, $zero, 4560 ->				ori	$a1, $zero, 4560
+340621d0	//				ori	$a2, $zero, 8656 ->				ori	$a2, $zero, 8656
+0c00004c	//				jal	vbsme ->				jal	vbsme
+00000000	//				nop ->				nop
+340423d0	//				ori	$a0, $zero, 9168 ->				ori	$a0, $zero, 9168
+340523e0	//				ori	$a1, $zero, 9184 ->				ori	$a1, $zero, 9184
+340633e0	//				ori	$a2, $zero, 13280 ->				ori	$a2, $zero, 13280
+0c00004c	//				jal	vbsme ->				jal	vbsme
+00000000	//				nop ->				nop
+34043420	//				ori	$a0, $zero, 13344 ->				ori	$a0, $zero, 13344
+34053430	//				ori	$a1, $zero, 13360 ->				ori	$a1, $zero, 13360
+34064430	//				ori	$a2, $zero, 17456 ->				ori	$a2, $zero, 17456
+0c00004c	//				jal	vbsme ->				jal	vbsme
+00000000	//				nop ->				nop
+340444b0	//				ori	$a0, $zero, 17584 ->				ori	$a0, $zero, 17584
+340544c0	//				ori	$a1, $zero, 17600 ->				ori	$a1, $zero, 17600
+340648c0	//				ori	$a2, $zero, 18624 ->				ori	$a2, $zero, 18624
+0c00004c	//				jal	vbsme ->				jal	vbsme
+00000000	//				nop ->				nop
+34044940	//				ori	$a0, $zero, 18752 ->				ori	$a0, $zero, 18752
+34054950	//				ori	$a1, $zero, 18768 ->				ori	$a1, $zero, 18768
+34064d50	//				ori	$a2, $zero, 19792 ->				ori	$a2, $zero, 19792
+0c00004c	//				jal	vbsme ->				jal	vbsme
+00000000	//				nop ->				nop
+34044d90	//				ori	$a0, $zero, 19856 ->				ori	$a0, $zero, 19856
+34054da0	//				ori	$a1, $zero, 19872 ->				ori	$a1, $zero, 19872
+340651a0	//				ori	$a2, $zero, 20896 ->				ori	$a2, $zero, 20896
+0c00004c	//				jal	vbsme ->				jal	vbsme
+00000000	//				nop ->				nop
+340452a0	//				ori	$a0, $zero, 21152 ->				ori	$a0, $zero, 21152
+340552b0	//				ori	$a1, $zero, 21168 ->				ori	$a1, $zero, 21168
+340662b0	//				ori	$a2, $zero, 25264 ->				ori	$a2, $zero, 25264
+0c00004c	//				jal	vbsme ->				jal	vbsme
+00000000	//				nop ->				nop
+340466b0	//				ori	$a0, $zero, 26288 ->				ori	$a0, $zero, 26288
+340566c0	//				ori	$a1, $zero, 26304 ->				ori	$a1, $zero, 26304
+34066ac0	//				ori	$a2, $zero, 27328 ->				ori	$a2, $zero, 27328
+0c00004c	//				jal	vbsme ->				jal	vbsme
+00000000	//				nop ->				nop
+34046b00	//				ori	$a0, $zero, 27392 ->				ori	$a0, $zero, 27392
+34056b10	//				ori	$a1, $zero, 27408 ->				ori	$a1, $zero, 27408
+34067b10	//				ori	$a2, $zero, 31504 ->				ori	$a2, $zero, 31504
+0c00004c	//				jal	vbsme ->				jal	vbsme
+00000000	//				nop ->				nop
+34047b50	//				ori	$a0, $zero, 31568 ->				ori	$a0, $zero, 31568
+34057b60	//				ori	$a1, $zero, 31584 ->				ori	$a1, $zero, 31584
+34067ba0	//				ori	$a2, $zero, 31648 ->				ori	$a2, $zero, 31648
+0c00004c	//				jal	vbsme ->				jal	vbsme
+00000000	//				nop ->				nop
+8fbf0000	//				lw	$ra, 0($sp) ->				lw	$ra, 0($sp)
 23bd0004	//				addi	$sp, $sp, 4 ->				addi	$sp, $sp, 4
 03e00008	//				jr	$ra ->				jr	$ra
-8c880004	//	SAD:			lw	$t0, 4($a0) ->	SAD:			lw	$t0, 4($a0)
-72084802	//				mul	$t1, $s0, $t0 ->				mul	$t1, $s0, $t0
-02295020	//				add	$t2, $s1, $t1 ->				add	$t2, $s1, $t1
-340b0000	//				ori	$t3, $zero, 0 ->				ori	$t3, $zero, 0
-340c0000	//				ori	$t4, $zero, 0 ->				ori	$t4, $zero, 0
-8c8e0008	//				lw	$t6, 8($a0) ->				lw	$t6, 8($a0)
-8c8f000c	//				lw	$t7, 12($a0) ->				lw	$t7, 12($a0)
-018e082a	//	ver_loop:		slt	$at, $t4, $t6 ->	ver_loop:		slt	$at, $t4, $t6
-10200017	//				beq	$at, $zero, exit_sad_loop ->				beq	$at, $zero, exit_sad_loop
-340d0000	//				ori	$t5, $zero, 0 ->				ori	$t5, $zero, 0
-01af082a	//	hor_loop:		slt	$at, $t5, $t7 ->	hor_loop:		slt	$at, $t5, $t7
-10200012	//				beq	$at, $zero, exit_hor ->				beq	$at, $zero, exit_hor
-71884802	//				mul	$t1, $t4, $t0 ->				mul	$t1, $t4, $t0
-01a94820	//				add	$t1, $t5, $t1 ->				add	$t1, $t5, $t1
-01494820	//				add	$t1, $t2, $t1 ->				add	$t1, $t2, $t1
-00094880	//				sll	$t1, $t1, 2 ->				sll	$t1, $t1, 2
-00a94820	//				add	$t1, $a1, $t1 ->				add	$t1, $a1, $t1
-8d380000	//				lw	$t8, 0($t1) ->				lw	$t8, 0($t1)
-718f4802	//				mul	$t1, $t4, $t7 ->				mul	$t1, $t4, $t7
-01a94820	//				add	$t1, $t5, $t1 ->				add	$t1, $t5, $t1
-00094880	//				sll	$t1, $t1, 2 ->				sll	$t1, $t1, 2
-00c94820	//				add	$t1, $a2, $t1 ->				add	$t1, $a2, $t1
-8d390000	//				lw	$t9, 0($t1) ->				lw	$t9, 0($t1)
-03194822	//				sub	$t1, $t8, $t9 ->				sub	$t1, $t8, $t9
-05210002	//				bgez	$t1, positive_num ->				bgez	$t1, positive_num
 00000000	//				nop ->				nop
-00094822	//				sub	$t1, $0, $t1 ->				sub	$t1, $0, $t1
-01695820	//	positive_num:		add	$t3, $t3, $t1 ->	positive_num:		add	$t3, $t3, $t1
+34020000	//	vbsme:			ori	$v0, $zero, 0 ->	vbsme:			ori	$v0, $zero, 0
+34030000	//				ori	$v1, $zero, 0 ->				ori	$v1, $zero, 0
+23bdfffc	//				addi	$sp, $sp, -4 ->				addi	$sp, $sp, -4
+afbf0000	//				sw	$ra, 0($sp) ->				sw	$ra, 0($sp)
+8c900000	//				lw	$s0, 0($a0) ->				lw	$s0, 0($a0)
+8c910004	//				lw	$s1, 4($a0) ->				lw	$s1, 4($a0)
+8c920008	//				lw	$s2, 8($a0) ->				lw	$s2, 8($a0)
+8c93000c	//				lw	$s3, 12($a0) ->				lw	$s3, 12($a0)
+0233a022	//				sub	$s4, $s1, $s3 ->				sub	$s4, $s1, $s3
+0212a822	//				sub	$s5, $s0, $s2 ->				sub	$s5, $s0, $s2
+3407270f	//				ori	$a3, $zero, 9999 ->				ori	$a3, $zero, 9999
+34080000	//				ori	$t0, $zero, 0 ->				ori	$t0, $zero, 0
+34090000	//				ori	$t1, $zero, 0 ->				ori	$t1, $zero, 0
+34160000	//				ori	$s6, $zero, 0 ->				ori	$s6, $zero, 0
+34170000	//				ori	$s7, $zero, 0 ->				ori	$s7, $zero, 0
+0296c82a	//	Traversal_Loop:		slt	$t9, $s4, $s6 ->	Traversal_Loop:		slt	$t9, $s4, $s6
+17200044	//				bne	$t9, $zero, End_Traversal ->				bne	$t9, $zero, End_Traversal
+00000000	//				nop ->				nop
+02b7c82a	//				slt	$t9, $s5, $s7 ->				slt	$t9, $s5, $s7
+17200041	//				bne	$t9, $zero, End_Traversal ->				bne	$t9, $zero, End_Traversal
+00000000	//				nop ->				nop
+0c000091	//				jal	Compute_SAD_CallR ->				jal	Compute_SAD_CallR
+00000000	//				nop ->				nop
+0289c82a	//	Move_Right_Loop:	slt	$t9, $s4, $t1 ->	Move_Right_Loop:	slt	$t9, $s4, $t1
+17200007	//				bne	$t9, $zero, Update_TopBoundary ->				bne	$t9, $zero, Update_TopBoundary
+00000000	//				nop ->				nop
+21290001	//				addi	$t1, $t1, 1 ->				addi	$t1, $t1, 1
+0289c82a	//				slt	$t9, $s4, $t1 ->				slt	$t9, $s4, $t1
+13200028	//				beq	$t9, $zero, Compute_SAD_CallR ->				beq	$t9, $zero, Compute_SAD_CallR
+00000000	//				nop ->				nop
+08000063	//	Right:			j	Move_Right_Loop ->	Right:			j	Move_Right_Loop
+00000000	//				nop ->				nop
+22f70001	//	Update_TopBoundary:	addi	$s7, $s7, 1 ->	Update_TopBoundary:	addi	$s7, $s7, 1
+2129ffff	//				addi	$t1, $t1, -1 ->				addi	$t1, $t1, -1
+02a8c82a	//	Move_Down_Loop:		slt	$t9, $s5, $t0 ->	Move_Down_Loop:		slt	$t9, $s5, $t0
+17200007	//				bne	$t9, $zero, Update_RightBoundary ->				bne	$t9, $zero, Update_RightBoundary
+00000000	//				nop ->				nop
+21080001	//				addi	$t0, $t0, 1 ->				addi	$t0, $t0, 1
+02a8c82a	//				slt	$t9, $s5, $t0 ->				slt	$t9, $s5, $t0
+13200021	//				beq	$t9, $zero, Compute_SAD_CallD ->				beq	$t9, $zero, Compute_SAD_CallD
+00000000	//				nop ->				nop
+0800006e	//	Down:			j	Move_Down_Loop ->	Down:			j	Move_Down_Loop
+00000000	//				nop ->				nop
+2294ffff	//	Update_RightBoundary:	addi	$s4, $s4, -1 ->	Update_RightBoundary:	addi	$s4, $s4, -1
+2108ffff	//				addi	$t0, $t0, -1 ->				addi	$t0, $t0, -1
+0136c82a	//	Move_Left_Loop:		slt	$t9, $t1, $s6 ->	Move_Left_Loop:		slt	$t9, $t1, $s6
+17200007	//				bne	$t9, $zero, Update_BottomBoundary ->				bne	$t9, $zero, Update_BottomBoundary
+00000000	//				nop ->				nop
+2129ffff	//				addi	$t1, $t1, -1 ->				addi	$t1, $t1, -1
+0136c82a	//				slt	$t9, $t1, $s6 ->				slt	$t9, $t1, $s6
+1320001a	//				beq	$t9, $zero, Compute_SAD_CallL ->				beq	$t9, $zero, Compute_SAD_CallL
+00000000	//				nop ->				nop
+08000079	//	Left:			j	Move_Left_Loop ->	Left:			j	Move_Left_Loop
+00000000	//				nop ->				nop
+22b5ffff	//	Update_BottomBoundary:	addi	$s5, $s5, -1 ->	Update_BottomBoundary:	addi	$s5, $s5, -1
+21290001	//				addi	$t1, $t1, 1 ->				addi	$t1, $t1, 1
+0117c82a	//	Move_Up_Loop:		slt	$t9, $t0, $s7 ->	Move_Up_Loop:		slt	$t9, $t0, $s7
+17200007	//				bne	$t9, $zero, Update_LeftBoundary ->				bne	$t9, $zero, Update_LeftBoundary
+00000000	//				nop ->				nop
+2108ffff	//				addi	$t0, $t0, -1 ->				addi	$t0, $t0, -1
+0117c82a	//				slt	$t9, $t0, $s7 ->				slt	$t9, $t0, $s7
+13200013	//				beq	$t9, $zero, Compute_SAD_CallU ->				beq	$t9, $zero, Compute_SAD_CallU
+00000000	//				nop ->				nop
+08000084	//	Up:			j	Move_Up_Loop ->	Up:			j	Move_Up_Loop
+00000000	//				nop ->				nop
+22d60001	//	Update_LeftBoundary:	addi	$s6, $s6, 1 ->	Update_LeftBoundary:	addi	$s6, $s6, 1
+21080001	//				addi	$t0, $t0, 1 ->				addi	$t0, $t0, 1
+0800005b	//				j	Traversal_Loop ->				j	Traversal_Loop
+00000000	//				nop ->				nop
+0c0000a5	//	Compute_SAD_CallR:	jal	Compute_SAD ->	Compute_SAD_CallR:	jal	Compute_SAD
+00000000	//				nop ->				nop
+0800006a	//				j	Right ->				j	Right
+00000000	//				nop ->				nop
+0c0000a5	//	Compute_SAD_CallD:	jal	Compute_SAD ->	Compute_SAD_CallD:	jal	Compute_SAD
+00000000	//				nop ->				nop
+08000075	//				j	Down ->				j	Down
+00000000	//				nop ->				nop
+0c0000a5	//	Compute_SAD_CallL:	jal	Compute_SAD ->	Compute_SAD_CallL:	jal	Compute_SAD
+00000000	//				nop ->				nop
+08000080	//				j	Left ->				j	Left
+00000000	//				nop ->				nop
+0c0000a5	//	Compute_SAD_CallU:	jal	Compute_SAD ->	Compute_SAD_CallU:	jal	Compute_SAD
+00000000	//				nop ->				nop
+0800008b	//				j	Up ->				j	Up
+00000000	//				nop ->				nop
+8fbf0000	//	End_Traversal:		lw	$ra, 0($sp) ->	End_Traversal:		lw	$ra, 0($sp)
+23bd0004	//				addi	$sp, $sp, 4 ->				addi	$sp, $sp, 4
+03e00008	//				jr	$ra ->				jr	$ra
+00000000	//				nop ->				nop
+0000c020	//	Compute_SAD:		add	$t8, $zero, $zero ->	Compute_SAD:		add	$t8, $zero, $zero
+71117002	//				mul	$t6, $t0, $s1 ->				mul	$t6, $t0, $s1
+01c97020	//				add	$t6, $t6, $t1 ->				add	$t6, $t6, $t1
+000e7080	//				sll	$t6, $t6, 2 ->				sll	$t6, $t6, 2
+00ae5020	//				add	$t2, $a1, $t6 ->				add	$t2, $a1, $t6
+00c05820	//				add	$t3, $a2, $zero ->				add	$t3, $a2, $zero
+00006020	//				add	$t4, $zero, $zero ->				add	$t4, $zero, $zero
+0192c82a	//	Compute_SAD_Row_Loop:	slt	$t9, $t4, $s2 ->	Compute_SAD_Row_Loop:	slt	$t9, $t4, $s2
+13200018	//				beq	$t9, $zero, Compute_SAD_Done ->				beq	$t9, $zero, Compute_SAD_Done
+00000000	//				nop ->				nop
+00006820	//				add	$t5, $zero, $zero ->				add	$t5, $zero, $zero
+01b3c82a	//	Compute_SAD_Col_Loop:	slt	$t9, $t5, $s3 ->	Compute_SAD_Col_Loop:	slt	$t9, $t5, $s3
+1320000d	//				beq	$t9, $zero, Next_Row ->				beq	$t9, $zero, Next_Row
+00000000	//				nop ->				nop
+8d4e0000	//				lw	$t6, 0($t2) ->				lw	$t6, 0($t2)
+8d6f0000	//				lw	$t7, 0($t3) ->				lw	$t7, 0($t3)
+01cf7022	//				sub	$t6, $t6, $t7 ->				sub	$t6, $t6, $t7
+05c10002	//				bgez	$t6, Add_To_Sum ->				bgez	$t6, Add_To_Sum
+00000000	//				nop ->				nop
+000e7022	//				sub	$t6, $zero, $t6 ->				sub	$t6, $zero, $t6
+030ec020	//	Add_To_Sum:		add	$t8, $t8, $t6 ->	Add_To_Sum:		add	$t8, $t8, $t6
+214a0004	//				addi	$t2, $t2, 4 ->				addi	$t2, $t2, 4
+216b0004	//				addi	$t3, $t3, 4 ->				addi	$t3, $t3, 4
 21ad0001	//				addi	$t5, $t5, 1 ->				addi	$t5, $t5, 1
-0800007d	//				j	hor_loop ->				j	hor_loop
-218c0001	//	exit_hor:		addi	$t4, $t4, 1 ->	exit_hor:		addi	$t4, $t4, 1
-0800007a	//				j	ver_loop ->				j	ver_loop
-0160b820	//	exit_sad_loop:		add	$s7, $t3, $zero ->	exit_sad_loop:		add	$s7, $t3, $zero
-02f6082a	//				slt	$at, $s7, $s6 ->				slt	$at, $s7, $s6
-10200003	//				beq	$at, $zero, return_to_VBSME ->				beq	$at, $zero, return_to_VBSME
-02e0b020	//				add	$s6, $s7, $zero ->				add	$s6, $s7, $zero
-02001020	//				add	$v0, $s0, $zero ->				add	$v0, $s0, $zero
-02201820	//				add	$v1, $s1, $zero ->				add	$v1, $s1, $zero
-03e00008	//	return_to_VBSME:	jr	$ra ->	return_to_VBSME:	jr	$ra
+080000b0	//				j	Compute_SAD_Col_Loop ->				j	Compute_SAD_Col_Loop
+00000000	//				nop ->				nop
+00117080	//	Next_Row:		sll	$t6, $s1, 2 ->	Next_Row:		sll	$t6, $s1, 2
+00137880	//				sll	$t7, $s3, 2 ->				sll	$t7, $s3, 2
+01cf7022	//				sub	$t6, $t6, $t7 ->				sub	$t6, $t6, $t7
+014e5020	//				add	$t2, $t2, $t6 ->				add	$t2, $t2, $t6
+218c0001	//				addi	$t4, $t4, 1 ->				addi	$t4, $t4, 1
+080000ac	//				j	Compute_SAD_Row_Loop ->				j	Compute_SAD_Row_Loop
+00000000	//				nop ->				nop
+0307c82a	//	Compute_SAD_Done:	slt	$t9, $t8, $a3 ->	Compute_SAD_Done:	slt	$t9, $t8, $a3
+17200003	//				bne	$t9, $zero, Update_Min_Sad ->				bne	$t9, $zero, Update_Min_Sad
+00000000	//				nop ->				nop
+03e00008	//				jr	$ra ->				jr	$ra
+00000000	//				nop ->				nop
+03003820	//	Update_Min_Sad:		add	$a3, $t8, $zero ->	Update_Min_Sad:		add	$a3, $t8, $zero
+01001020	//				add	$v0, $t0, $zero ->				add	$v0, $t0, $zero
+01201820	//				add	$v1, $t1, $zero ->				add	$v1, $t1, $zero
+03e00008	//				jr	$ra ->				jr	$ra
+00000000	//				nop ->				nop
