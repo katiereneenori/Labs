@@ -1,62 +1,30 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Team Members: Katie Dionne & Tanner Shartel
-// Overall percent effort of each team member: 50%/50%
-// 
-// ECE369A - Computer Architecture
-// Create Date: 11/10/2024 10:17:12 AM
-// Design Name: 
-// Module Name: HazardDetectionUnit
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+// HazardDetectionUnit
+// Flushes only IF/ID when a control hazard (branch or jump) occurs in ID.
+////////////////////////////////////////////////////////////////////////////////
 
 module HazardDetectionUnit(
-    input       ID_EX_RegWrite,
-    input [4:0] ID_EX_RegisterRd,
-    input       EX_MEM_RegWrite,
-    input [4:0] EX_MEM_RegisterRd,
-    input       MEM_WB_RegWrite,
-    input [4:0] MEM_WB_RegisterRd,
-    input [4:0] IF_ID_RegisterRs,
-    input [4:0] IF_ID_RegisterRt,
-    //input [5:0] OpCode,
-    output      PCWrite,
-    output      IF_ID_Write,
-    output      ControlHazard
+    input        ID_EX_MemRead,
+    input [4:0]  ID_EX_RegisterRt,
+    input [4:0]  IF_ID_RegisterRs,
+    input [4:0]  IF_ID_RegisterRt,
+    input        BranchTaken,
+    input        JumpTaken,
+    output       PCWrite,
+    output       IF_ID_Write,
+    output       Flush1
 );
 
-    wire hazard_ID_EX;
-    wire hazard_EX_MEM;
-    wire hazard_MEM_WB;
+    wire load_use_hazard = ID_EX_MemRead &&
+                           ((ID_EX_RegisterRt == IF_ID_RegisterRs) ||
+                            (ID_EX_RegisterRt == IF_ID_RegisterRt));
 
-    assign hazard_ID_EX = ID_EX_RegWrite && (ID_EX_RegisterRd != 0) &&
-                          ((ID_EX_RegisterRd == IF_ID_RegisterRs) ||
-                           (ID_EX_RegisterRd == IF_ID_RegisterRt));
-                           //|| (OpCode == 6'b000011);
+    wire control_hazard = BranchTaken || JumpTaken;
 
-    assign hazard_EX_MEM = EX_MEM_RegWrite && (EX_MEM_RegisterRd != 0) &&
-                           ((EX_MEM_RegisterRd == IF_ID_RegisterRs) ||
-                            (EX_MEM_RegisterRd == IF_ID_RegisterRt));
-                            //|| (OpCode == 6'b000011);
-
-    assign hazard_MEM_WB = MEM_WB_RegWrite && (MEM_WB_RegisterRd != 0) &&
-                           ((MEM_WB_RegisterRd == IF_ID_RegisterRs) ||
-                            (MEM_WB_RegisterRd == IF_ID_RegisterRt));
-                            //|| (OpCode == 6'b000011);
-
-    assign ControlHazard = hazard_ID_EX || hazard_EX_MEM || hazard_MEM_WB;
-
-    assign PCWrite = ~ControlHazard;
-    assign IF_ID_Write = ~ControlHazard;
+    // If a control hazard (branch/jump) occurs, we flush the IF/ID register and update PC.
+    assign PCWrite = ~load_use_hazard || control_hazard;
+    assign IF_ID_Write = ~load_use_hazard && ~control_hazard;
+    assign Flush1 = control_hazard;
 
 endmodule
