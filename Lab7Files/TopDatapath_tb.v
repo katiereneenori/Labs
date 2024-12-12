@@ -73,7 +73,6 @@ module TopDatapath_tb;
         
         // End Simulation after a fixed time
         #25000;        // Run simulation for 25,000 ns
-        $finish;
     end
 
     always @(posedge Clk) begin
