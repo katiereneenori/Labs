@@ -24,6 +24,7 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
     wire [1:0] ForwardA, ForwardB;
     wire [31:0] ForwardedA, ForwardedB;
 
+
     // Internal wires
     wire [31:0] wire1, wire3, wire4, wire6, wire7, wire8, wire9, wire10, wire11,
                  wire14, wire15, wire16, wire17, wire18, wire21, wire22, wire23,
@@ -293,7 +294,7 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
         .outWire28(wire28),
         .outWireRs(ID_EX_RegisterRs),
         .outJSrc1(JSrcWire1),
-        .Flush(1'b0) // No flush from here (only IF flush now)
+        .Flush(Flush_ID_EX)
     );
 
     // Execution Stage logic (no more branch decision here):
@@ -425,14 +426,14 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
     );
 
     Mux32Bit4To1 MemToRegMux(
-        .inA(wire43),
-        .inB(wire44),
-        .inC(wire48),
+        .inA(wire43),       // Memory read data
+        .inB(wire44),       // ALU result
+        .inC(PCPlus8),      // PC+8 for JAL
         .inD(zeroOperand),
         .sel(MemToRegWire3),
         .out(wire13)
     );
-
+    
     Mux5Bit2To1 JalSelMux(
         .inA(wire45),
         .inB(returnAddr),

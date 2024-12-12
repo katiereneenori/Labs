@@ -15,16 +15,16 @@
 module IF_ID(
     input        Clk,
     input        Reset,
-    input        IF_ID_Write,     // Added control signal for stalling
+    input        IF_ID_Write,
     input [31:0] inWire2,
     input [31:0] inWire3,
     input [31:0] inWire4,
-    input        Flush1, Flush2,
+    input        Flush1,
     output reg [31:0] outWire2,
     output reg [31:0] outWire3,
     output reg [31:0] outWire4
 );
-    
+
     always @(posedge Clk or posedge Reset) begin
         if (Reset || Flush1) begin
             outWire2 <= 32'd0;
@@ -35,12 +35,8 @@ module IF_ID(
             outWire2 <= inWire2;
             outWire3 <= inWire3;
             outWire4 <= inWire4;
-        end else begin
-            // Hold current values (stall) when IF_ID_Write is deasserted
-            outWire2 <= outWire2;
-            outWire3 <= outWire3;
-            outWire4 <= outWire4;
         end
+        // If IF_ID_Write is deasserted (stall), we hold the previous values
     end
 
 endmodule

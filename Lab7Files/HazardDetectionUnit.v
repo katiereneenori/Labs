@@ -13,18 +13,29 @@ module HazardDetectionUnit(
     input        JumpTaken,
     output       PCWrite,
     output       IF_ID_Write,
-    output       Flush1
+    output       Flush1,
+    output       Flush_ID_EX
 );
 
+    wire control_hazard = BranchTaken || JumpTaken;
     wire load_use_hazard = ID_EX_MemRead &&
                            ((ID_EX_RegisterRt == IF_ID_RegisterRs) ||
                             (ID_EX_RegisterRt == IF_ID_RegisterRt));
 
-    wire control_hazard = BranchTaken || JumpTaken;
+    // Control Hazard (branch/jump taken in ID):
+    // - Flush IF/ID to remove the instruction after branch
+    // - PCWrite = 1 so that we move to branch target now
+    // - IF_ID_Write = 0 to prevent writing a new incorrect instruction in this cycle
+    //
+    // Load-Use Hazard:
+    // - Stall by disabling PCWrite and IF_ID_Write (both 0)
+    // - Do not flush. Just wait one cycle.
 
-    // If a control hazard (branch/jump) occurs, we flush the IF/ID register and update PC.
-    assign PCWrite = ~load_use_hazard || control_hazard;
-    assign IF_ID_Write = ~load_use_hazard && ~control_hazard;
-    assign Flush1 = control_hazard;
+    assign Flush1 = control_hazard;     // Flush IF/ID only on control hazard
+    assign Flush_ID_EX = 1'b0;          // Do not flush ID/EX on control hazards now
+
+    assign PCWrite = control_hazard ? 1'b1 : ~load_use_hazard;
+    assign IF_ID_Write = control_hazard ? 1'b0 : ~load_use_hazard;
 
 endmodule
+
