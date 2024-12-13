@@ -37,8 +37,24 @@ module TopDatapath_tb;
 
     // Setup waveform dumping
     initial begin
+<<<<<<< HEAD
         $dumpfile("TopDatapath_tb.vcd");
         $dumpvars(0, TopDatapath_tb);
+=======
+        // Initialize waveform dump
+        $dumpfile("TopDatapath_tb.vcd"); // Name of the dump file
+        $dumpvars(0, TopDatapath_tb);    // Dump all variables in the testbench hierarchy
+
+        // Enhanced Monitoring for PC, Instruction, and WriteData
+        $monitor(
+            "Time: %0dns | PC: %0d | Instruction: 0x%08h | WriteData: %0d", 
+            $time, wire2, uut.IM.Instruction, $signed(wire13)
+        );
+        
+        // End Simulation after a fixed time
+        #25000;        // Run simulation for 25,000 ns
+        $finish;
+>>>>>>> parent of 3ca3e89 (dsfsadgasghdrhtrsegh edf)
     end
 
     // Main monitor: prints PC, Instruction, WriteData, v0, and v1

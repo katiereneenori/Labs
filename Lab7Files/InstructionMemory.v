@@ -59,7 +59,11 @@ module InstructionMemory(Address, Instruction);
         end
 
       
+<<<<<<< HEAD
   //      $readmemh("private_instruction_memory_lab6.mem", memory);       
+=======
+   //     $readmemh("private_instruction_memory_lab6.mem", memory);       
+>>>>>>> parent of 3ca3e89 (dsfsadgasghdrhtrsegh edf)
         $readmemh("Instruction_Memory.mem", memory);
      //           $readmemh("IM_pseudo.mem", memory);
 
