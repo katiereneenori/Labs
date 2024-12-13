@@ -19,7 +19,6 @@
 *.bin
 *.ltx
 *.elf
-*.mem
 
 # Ignore synthesis and implementation reports
 *.html

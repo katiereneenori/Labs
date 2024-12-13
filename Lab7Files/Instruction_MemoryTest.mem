@@ -1,0 +1,139 @@
+23bdfffc	//	main:			addi	$sp, $sp, -4 ->	main:			addi	$sp, $sp, -4
+afbf0000	//				sw	$ra, 0($sp) ->				sw	$ra, 0($sp)
+34040000	//				ori	$a0, $zero, 0 ->				ori	$a0, $zero, 0
+34050010	//				ori	$a1, $zero, 16 ->				ori	$a1, $zero, 16
+34060050	//				ori	$a2, $zero, 80 ->				ori	$a2, $zero, 80
+0c000007	//				jal	vbsme ->				jal	vbsme
+00000000	//				nop ->				nop
+34020000	//	vbsme:			ori	$v0, $zero, 0 ->	vbsme:			ori	$v0, $zero, 0
+34030000	//				ori	$v1, $zero, 0 ->				ori	$v1, $zero, 0
+23bdfffc	//				addi	$sp, $sp, -4 ->				addi	$sp, $sp, -4
+afbf0000	//				sw	$ra, 0($sp) ->				sw	$ra, 0($sp)
+8c900000	//				lw	$s0, 0($a0) ->				lw	$s0, 0($a0)
+8c910004	//				lw	$s1, 4($a0) ->				lw	$s1, 4($a0)
+8c920008	//				lw	$s2, 8($a0) ->				lw	$s2, 8($a0)
+8c93000c	//				lw	$s3, 12($a0) ->				lw	$s3, 12($a0)
+0233a022	//				sub	$s4, $s1, $s3 ->				sub	$s4, $s1, $s3
+0212a822	//				sub	$s5, $s0, $s2 ->				sub	$s5, $s0, $s2
+3407270f	//				ori	$a3, $zero, 9999 ->				ori	$a3, $zero, 9999
+34080000	//				ori	$t0, $zero, 0 ->				ori	$t0, $zero, 0
+34090000	//				ori	$t1, $zero, 0 ->				ori	$t1, $zero, 0
+34160000	//				ori	$s6, $zero, 0 ->				ori	$s6, $zero, 0
+34170000	//				ori	$s7, $zero, 0 ->				ori	$s7, $zero, 0
+0296c82a	//	Traversal_Loop:		slt	$t9, $s4, $s6 ->	Traversal_Loop:		slt	$t9, $s4, $s6
+17200044	//				bne	$t9, $zero, End_Traversal ->				bne	$t9, $zero, End_Traversal
+00000000	//				nop ->				nop
+02b7c82a	//				slt	$t9, $s5, $s7 ->				slt	$t9, $s5, $s7
+17200041	//				bne	$t9, $zero, End_Traversal ->				bne	$t9, $zero, End_Traversal
+00000000	//				nop ->				nop
+0c00004c	//				jal	Compute_SAD_CallR ->				jal	Compute_SAD_CallR
+00000000	//				nop ->				nop
+0289c82a	//	Move_Right_Loop:	slt	$t9, $s4, $t1 ->	Move_Right_Loop:	slt	$t9, $s4, $t1
+17200007	//				bne	$t9, $zero, Update_TopBoundary ->				bne	$t9, $zero, Update_TopBoundary
+00000000	//				nop ->				nop
+21290001	//				addi	$t1, $t1, 1 ->				addi	$t1, $t1, 1
+0289c82a	//				slt	$t9, $s4, $t1 ->				slt	$t9, $s4, $t1
+13200028	//				beq	$t9, $zero, Compute_SAD_CallR ->				beq	$t9, $zero, Compute_SAD_CallR
+00000000	//				nop ->				nop
+0800001e	//	Right:			j	Move_Right_Loop ->	Right:			j	Move_Right_Loop
+00000000	//				nop ->				nop
+22f70001	//	Update_TopBoundary:	addi	$s7, $s7, 1 ->	Update_TopBoundary:	addi	$s7, $s7, 1
+2129ffff	//				addi	$t1, $t1, -1 ->				addi	$t1, $t1, -1
+02a8c82a	//	Move_Down_Loop:		slt	$t9, $s5, $t0 ->	Move_Down_Loop:		slt	$t9, $s5, $t0
+17200007	//				bne	$t9, $zero, Update_RightBoundary ->				bne	$t9, $zero, Update_RightBoundary
+00000000	//				nop ->				nop
+21080001	//				addi	$t0, $t0, 1 ->				addi	$t0, $t0, 1
+02a8c82a	//				slt	$t9, $s5, $t0 ->				slt	$t9, $s5, $t0
+13200021	//				beq	$t9, $zero, Compute_SAD_CallD ->				beq	$t9, $zero, Compute_SAD_CallD
+00000000	//				nop ->				nop
+08000029	//	Down:			j	Move_Down_Loop ->	Down:			j	Move_Down_Loop
+00000000	//				nop ->				nop
+2294ffff	//	Update_RightBoundary:	addi	$s4, $s4, -1 ->	Update_RightBoundary:	addi	$s4, $s4, -1
+2108ffff	//				addi	$t0, $t0, -1 ->				addi	$t0, $t0, -1
+0136c82a	//	Move_Left_Loop:		slt	$t9, $t1, $s6 ->	Move_Left_Loop:		slt	$t9, $t1, $s6
+17200007	//				bne	$t9, $zero, Update_BottomBoundary ->				bne	$t9, $zero, Update_BottomBoundary
+00000000	//				nop ->				nop
+2129ffff	//				addi	$t1, $t1, -1 ->				addi	$t1, $t1, -1
+0136c82a	//				slt	$t9, $t1, $s6 ->				slt	$t9, $t1, $s6
+1320001a	//				beq	$t9, $zero, Compute_SAD_CallL ->				beq	$t9, $zero, Compute_SAD_CallL
+00000000	//				nop ->				nop
+08000034	//	Left:			j	Move_Left_Loop ->	Left:			j	Move_Left_Loop
+00000000	//				nop ->				nop
+22b5ffff	//	Update_BottomBoundary:	addi	$s5, $s5, -1 ->	Update_BottomBoundary:	addi	$s5, $s5, -1
+21290001	//				addi	$t1, $t1, 1 ->				addi	$t1, $t1, 1
+0117c82a	//	Move_Up_Loop:		slt	$t9, $t0, $s7 ->	Move_Up_Loop:		slt	$t9, $t0, $s7
+17200007	//				bne	$t9, $zero, Update_LeftBoundary ->				bne	$t9, $zero, Update_LeftBoundary
+00000000	//				nop ->				nop
+2108ffff	//				addi	$t0, $t0, -1 ->				addi	$t0, $t0, -1
+0117c82a	//				slt	$t9, $t0, $s7 ->				slt	$t9, $t0, $s7
+13200013	//				beq	$t9, $zero, Compute_SAD_CallU ->				beq	$t9, $zero, Compute_SAD_CallU
+00000000	//				nop ->				nop
+0800003f	//	Up:			j	Move_Up_Loop ->	Up:			j	Move_Up_Loop
+00000000	//				nop ->				nop
+22d60001	//	Update_LeftBoundary:	addi	$s6, $s6, 1 ->	Update_LeftBoundary:	addi	$s6, $s6, 1
+21080001	//				addi	$t0, $t0, 1 ->				addi	$t0, $t0, 1
+08000016	//				j	Traversal_Loop ->				j	Traversal_Loop
+00000000	//				nop ->				nop
+0c000060	//	Compute_SAD_CallR:	jal	Compute_SAD ->	Compute_SAD_CallR:	jal	Compute_SAD
+00000000	//				nop ->				nop
+08000025	//				j	Right ->				j	Right
+00000000	//				nop ->				nop
+0c000060	//	Compute_SAD_CallD:	jal	Compute_SAD ->	Compute_SAD_CallD:	jal	Compute_SAD
+00000000	//				nop ->				nop
+08000030	//				j	Down ->				j	Down
+00000000	//				nop ->				nop
+0c000060	//	Compute_SAD_CallL:	jal	Compute_SAD ->	Compute_SAD_CallL:	jal	Compute_SAD
+00000000	//				nop ->				nop
+0800003b	//				j	Left ->				j	Left
+00000000	//				nop ->				nop
+0c000060	//	Compute_SAD_CallU:	jal	Compute_SAD ->	Compute_SAD_CallU:	jal	Compute_SAD
+00000000	//				nop ->				nop
+08000046	//				j	Up ->				j	Up
+00000000	//				nop ->				nop
+8fbf0000	//	End_Traversal:		lw	$ra, 0($sp) ->	End_Traversal:		lw	$ra, 0($sp)
+23bd0004	//				addi	$sp, $sp, 4 ->				addi	$sp, $sp, 4
+03e00008	//				jr	$ra ->				jr	$ra
+00000000	//				nop ->				nop
+0000c020	//	Compute_SAD:		add	$t8, $zero, $zero ->	Compute_SAD:		add	$t8, $zero, $zero
+71117002	//				mul	$t6, $t0, $s1 ->				mul	$t6, $t0, $s1
+01c97020	//				add	$t6, $t6, $t1 ->				add	$t6, $t6, $t1
+000e7080	//				sll	$t6, $t6, 2 ->				sll	$t6, $t6, 2
+00ae5020	//				add	$t2, $a1, $t6 ->				add	$t2, $a1, $t6
+00c05820	//				add	$t3, $a2, $zero ->				add	$t3, $a2, $zero
+00006020	//				add	$t4, $zero, $zero ->				add	$t4, $zero, $zero
+0192c82a	//	Compute_SAD_Row_Loop:	slt	$t9, $t4, $s2 ->	Compute_SAD_Row_Loop:	slt	$t9, $t4, $s2
+13200018	//				beq	$t9, $zero, Compute_SAD_Done ->				beq	$t9, $zero, Compute_SAD_Done
+00000000	//				nop ->				nop
+00006820	//				add	$t5, $zero, $zero ->				add	$t5, $zero, $zero
+01b3c82a	//	Compute_SAD_Col_Loop:	slt	$t9, $t5, $s3 ->	Compute_SAD_Col_Loop:	slt	$t9, $t5, $s3
+1320000d	//				beq	$t9, $zero, Next_Row ->				beq	$t9, $zero, Next_Row
+00000000	//				nop ->				nop
+8d4e0000	//				lw	$t6, 0($t2) ->				lw	$t6, 0($t2)
+8d6f0000	//				lw	$t7, 0($t3) ->				lw	$t7, 0($t3)
+01cf7022	//				sub	$t6, $t6, $t7 ->				sub	$t6, $t6, $t7
+05c10002	//				bgez	$t6, Add_To_Sum ->				bgez	$t6, Add_To_Sum
+00000000	//				nop ->				nop
+000e7022	//				sub	$t6, $zero, $t6 ->				sub	$t6, $zero, $t6
+030ec020	//	Add_To_Sum:		add	$t8, $t8, $t6 ->	Add_To_Sum:		add	$t8, $t8, $t6
+214a0004	//				addi	$t2, $t2, 4 ->				addi	$t2, $t2, 4
+216b0004	//				addi	$t3, $t3, 4 ->				addi	$t3, $t3, 4
+21ad0001	//				addi	$t5, $t5, 1 ->				addi	$t5, $t5, 1
+0800006b	//				j	Compute_SAD_Col_Loop ->				j	Compute_SAD_Col_Loop
+00000000	//				nop ->				nop
+00117080	//	Next_Row:		sll	$t6, $s1, 2 ->	Next_Row:		sll	$t6, $s1, 2
+00137880	//				sll	$t7, $s3, 2 ->				sll	$t7, $s3, 2
+01cf7022	//				sub	$t6, $t6, $t7 ->				sub	$t6, $t6, $t7
+014e5020	//				add	$t2, $t2, $t6 ->				add	$t2, $t2, $t6
+218c0001	//				addi	$t4, $t4, 1 ->				addi	$t4, $t4, 1
+08000067	//				j	Compute_SAD_Row_Loop ->				j	Compute_SAD_Row_Loop
+00000000	//				nop ->				nop
+0307c82a	//	Compute_SAD_Done:	slt	$t9, $t8, $a3 ->	Compute_SAD_Done:	slt	$t9, $t8, $a3
+17200003	//				bne	$t9, $zero, Update_Min_Sad ->				bne	$t9, $zero, Update_Min_Sad
+00000000	//				nop ->				nop
+03e00008	//				jr	$ra ->				jr	$ra
+00000000	//				nop ->				nop
+03003820	//	Update_Min_Sad:		add	$a3, $t8, $zero ->	Update_Min_Sad:		add	$a3, $t8, $zero
+01001020	//				add	$v0, $t0, $zero ->				add	$v0, $t0, $zero
+01201820	//				add	$v1, $t1, $zero ->				add	$v1, $t1, $zero
+03e00008	//				jr	$ra ->				jr	$ra
+00000000	//				nop ->				nop
