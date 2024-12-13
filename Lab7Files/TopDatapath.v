@@ -79,8 +79,6 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
     wire [4:0] MEM_WB_RegisterRd = wire45;       // Destination register from MEM_WB
     wire MEM_WB_RegWrite = RegWriteWire3;        // RegWrite signal from MEM_WB
     
-    //wire [5:0] OpCode = wire11[31:26];
-
     // Hazard Detection Unit instantiation
     HazardDetectionUnit HDU (
         .ID_EX_RegWrite(ID_EX_RegWrite),
@@ -94,17 +92,9 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
         .PCWrite(HDU_PCWrite),
         .IF_ID_Write(HDU_IF_ID_Write),
         .ControlHazard(HDU_ControlHazard)
-        //.OpCode(OpCode)
     );
 
     // ------------------------Instruction Fetch Stage------------------------
-
-    /*Mux32Bit2To1 JorBranchMux(
-        .inA(wire6),
-        .inB(wire7),
-        .out(wire5),
-        .sel(JorBranchWire2)
-    );*/
 
     Mux3To1PCSrc PCSrcMux( // 3x1 mux -- PCSrc and JSrc control signal
         .inA(wire3),
@@ -133,18 +123,20 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
         .Instruction(wire4)
     );
 
+    // NOTE: We now also flush IF_ID when PCSrcWire is high (branch decided at MEM)
     IF_ID IF_IDRegFile(
         .Clk(Clk),
         .Reset(Reset),
-        .IF_ID_Write(HDU_IF_ID_Write), // Modified to include IF_ID_Write from HDU
+        .IF_ID_Write(HDU_IF_ID_Write),
         .inWire2(wire2),
         .inWire3(wire3),
         .inWire4(wire4),
+        // Combine original flush conditions (JSrcWire, JSrcWire1) with PCSrcWire
+        .Flush1(JSrcWire | PCSrcWire), // Changed line: OR PCSrcWire with existing JSrcWire
+        .Flush2(JSrcWire1 | PCSrcWire),// Changed line: OR PCSrcWire with existing JSrcWire1
         .outWire2(wire9),
         .outWire3(wire10),
-        .outWire4(wire11),
-        .Flush1(JSrcWire),
-        .Flush2(JSrcWire1)
+        .outWire4(wire11)
     );
 
     // ------------------------Instruction Decode Stage------------------------
@@ -237,18 +229,16 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
         .out(JAddressWire),
         .sel(JRSelectWire),
         .RegAddress(wire14)
-        //.AddressToAdd(wire2)
     );
 
-    // Modified to compute ID_EX_RegisterRd for HDU
     Mux5Bit2To1 ID_EX_RegisterRdMux(
-        .inA(wire27),       // rt from ID_EX (for I-type instructions)
-        .inB(wire28),       // rd from ID_EX (for R-type instructions)
-        .sel(RegDstWire1),  // RegDst control signal from ID_EX
+        .inA(wire27),
+        .inB(wire28),
+        .sel(RegDstWire1),
         .out(ID_EX_RegisterRd)
     );
 
-    // Modified to pass control signals with hazard handling
+    // NOTE: ID_EX flush also includes PCSrcWire now
     ID_EX ID_EXRegFile(
         .Clk(Clk),
         .Reset(Reset),
@@ -272,11 +262,10 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
         .inWire9(wire9),
         .inWire15(wire15),
         .inWire17(wire11),
-        //.inWire17(wire18),
         .inWire18(wire18),
-        .inWire10(wire10),          // Pass the full PC+4
-        .inWire27(wire11[20:16]),   // rt
-        .inWire28(wire11[15:11]),   // rd
+        .inWire10(wire10),
+        .inWire27(wire11[20:16]),
+        .inWire28(wire11[15:11]),
         // Outputs
         .outALUOp(ALUOpWire1),
         .outToBranch(ToBranchWire1),
@@ -291,16 +280,17 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
         .outALUSrcB(ALUSrcBWire1),
         .outJorBranch(JorBranchWire1),
         .outMemToReg(MemToRegWire1),
-        .outWire10(wire46),  // New wire carrying PC+4
+        .outWire10(wire46),
         .outWire16(wire21),
         .outWire14(wire22),
         .outWire9(wire23),
         .outWire15(wire24),
         .outWire17(wire25),
         .outWire18(wire26),
-        .outWire27(wire27),        // rt
-        .outWire28(wire28),         // rd
-        .Flush(toFlush),     // flush subsequent instruction when branching dependency
+        .outWire27(wire27),
+        .outWire28(wire28),
+        // OR PCSrcWire with toFlush to ensure flushing if branch decided at MEM stage
+        .Flush(toFlush | PCSrcWire), // Changed line: OR PCSrcWire
         .JSrc1(JSrcWire),
         .outJSrc1(JSrcWire1)
     );
@@ -314,7 +304,7 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
     );
 
     Adder offsetAdder(
-        .inA(wire46), // Use full PC+4 from ID_EX
+        .inA(wire46),
         .inB(wire29),
         .AddResult(wire30)
     );
@@ -326,14 +316,6 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
         .sel(ALUSrcAWire1),
         .out(wire31)
     );
-
-//    Mux32Bit3To1 ALUSrcAMux(
-//        .inA(wire22),
-//        .inB(wire24),
-//        .inC(wire21),
-//        .sel(ALUSrcAWire1),
-//        .out(wire31)
-//    );
 
     Mux32Bit3To1 ALUSrcBMux(
         .inA(wire24),
@@ -358,6 +340,7 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
         .Zero(wire35)
     );
 
+    // NOTE: Add a Flush input to EX_MEM and connect PCSrcWire to it
     EX_MEM EX_MEMRegFile(
         .Clk(Clk),
         .Reset(Reset),
@@ -370,12 +353,13 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
         .inJalSel(JalSelWire1),
         .inJorBranch(JorBranchWire1),
         .inMemToReg(MemToRegWire1),
-        .inWire46(wire46), // PC+4
+        .inWire46(wire46),
         .inWire30(wire30),
         .inWire35(wire35),
         .inWire34(wire34),
         .inWire24(wire24),
         .inWire33(wire33),
+        .Flush(PCSrcWire), // Changed line: New flush input tied to PCSrcWire
         .outToBranch(ToBranchWire2),
         .outRegWrite(RegWriteWire2),
         .outMemWrite(MemWriteWire2),
@@ -385,7 +369,7 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
         .outJalSel(JalSelWire2),
         .outJorBranch(JorBranchWire2),
         .outMemToReg(MemToRegWire2),
-        .outWire46(wire47), // PC+4 passed to EX_MEM
+        .outWire46(wire47),
         .outWire30(wire6),
         .outWire35(wire38),
         .outWire34(wire7),
@@ -423,30 +407,28 @@ module TopDatapath(Clk, Reset, wire2, wire13, v0, v1);
         .outRegWrite(RegWriteWire3),
         .outJalSel(JalSelWire3),
         .outMemToReg(MemToRegWire3),
-        .inWire46(wire47), // PC+4 from EX_MEM
+        .inWire46(wire47),
         .inWire8(wire8),
         .inWire7(wire7),
         .inWire41(wire41),
-        .outWire46(wire48),    // PC+4 passed to MEM_WB
+        .outWire46(wire48),
         .outWire8(wire43),
         .outWire7(wire44),
         .outWire41(wire45)
     );
 
-    // Correct WriteRegMux using wire45 from MEM_WB stage
     Mux5Bit2To1 WriteRegMux (
-        .inA(wire45),            // Write register from MEM_WB pipeline register
-        .inB(returnAddr),        // $ra (register 31) for jal instruction
-        .sel(JalSelWire3),       // JalSel control signal from MEM_WB stage
-        .out(wire49)             // Output to RegisterFile.WriteRegister
+        .inA(wire45),
+        .inB(returnAddr),
+        .sel(JalSelWire3),
+        .out(wire49)
     );
 
-    // Updated MemToRegMux to use full PC+4 (wire48)
     Mux32Bit3To1 MemToRegMux(
-        .inA(wire43),    // Data from memory (lw)
-        .inB(wire44),    // ALU result
-        .inC(wire48),    // PC+4 for jal
-        .out(wire13),    // WriteData
+        .inA(wire43),
+        .inB(wire44),
+        .inC(wire48),
+        .out(wire13),
         .sel(MemToRegWire3)
     );
 

@@ -17,6 +17,17 @@
 # window: search window with k*l number of pixel values
 #
 # $v0 is for row / $v1 is for column
+
+# test 0 For the 4x4 frame size and 2X2 window size
+# small size for validation and debugging purpose
+# The result should be 0, 2
+asize0:  .word    4,  4,  2, 2    #i, j, k, l
+frame0:  .word    0,  0,  1,  2, 
+         .word    0,  0,  3,  4
+         .word    0,  0,  0,  0
+         .word    0,  0,  0,  0, 
+window0: .word    1,  2, 
+         .word    3,  4, 
 # test 1 For the 16X16 frame size and 4X4 window size
 # The result should be 12, 12
 asize1:  .word    16, 16, 4, 4    #i, j, k, l
@@ -478,10 +489,21 @@ newline: .asciiz     "\n"
 
 .globl main
 
-main:
-
+main: 
     addi    $sp, $sp, -4    # Make space on stack
     sw      $ra, 0($sp)     # Save return address
+
+    # Start test 0 
+    ############################################################
+    la      $a0, asize0     # 1st parameter: address of asize0[0]
+    la      $a1, frame0     # 2nd parameter: address of frame0[0]
+    la      $a2, window0    # 3rd parameter: address of window0[0] 
+   
+    jal     vbsme           # call function
+    jal     print_result    # print results to console
+    
+    ############################################################
+    # End of test 0   
          
     # Start test 1 
     ############################################################
@@ -490,8 +512,7 @@ main:
     la      $a2, window1    # 3rd parameter: address of window1[0] 
    
     jal     vbsme           # call function
-	nop
-    #jal     print_result    # print results to console
+    jal     print_result    # print results to console
     
     ############################################################
     # End of test 1   
@@ -504,8 +525,7 @@ main:
     la      $a2, window2    # 3rd parameter: address of window2[0] 
    
     jal     vbsme           # call function
-	nop
-    #jal     print_result    # print results to console
+    jal     print_result    # print results to console
     ############################################################
     # End of test 2   
                     
@@ -514,11 +534,10 @@ main:
     ############################################################
     la      $a0, asize3     # 1st parameter: address of asize3[0]
     la      $a1, frame3     # 2nd parameter: address of frame3[0]
-    la      $a2, window3    # 3rd parameter: address of window3[0] 
+    la      $a2, window3    # 3rd parameter: address of window3[0]
 
     jal     vbsme           # call function
-	nop
-    #jal     print_result    # print results to console 
+    jal     print_result    # print results to console 
     ############################################################
     # End of test 3   
       
@@ -527,11 +546,10 @@ main:
     ############################################################
     la      $a0, asize4     # 1st parameter: address of asize4[0]
     la      $a1, frame4     # 2nd parameter: address of frame4[0]
-    la      $a2, window4    # 3rd parameter: address of window4[0] 
+    la      $a2, window4    # 3rd parameter: address of window4[0]
 
     jal     vbsme           # call function
-	nop
-    #jal     print_result    # print results to console
+    jal     print_result    # print results to console
     ############################################################
     # End of test 4   
    
@@ -543,8 +561,7 @@ main:
     la      $a2, window5    # 3rd parameter: address of window5[0] 
 
     jal     vbsme           # call function
-	nop
-    #jal     print_result    # print results to console
+    jal     print_result    # print results to console
     ############################################################
     # End of test 5
 
@@ -553,11 +570,10 @@ main:
     ############################################################
     la      $a0, asize6     # 1st parameter: address of asize6[0]
     la      $a1, frame6     # 2nd parameter: address of frame6[0]
-    la      $a2, window6    # 3rd parameter: address of window6[0] 
+    la      $a2, window6    # 3rd parameter: address of window6[0]
 
     jal     vbsme           # call function
-	nop
-    #jal     print_result    # print results to console
+    jal     print_result    # print results to console
     ############################################################
     # End of test 6
    
@@ -569,8 +585,7 @@ main:
     la      $a2, window7    # 3rd parameter: address of window7[0] 
 
     jal     vbsme           # call function
-	nop
-    #jal     print_result    # print results to console
+    jal     print_result    # print results to console
     ############################################################
     # End of test 7   
    
@@ -579,11 +594,10 @@ main:
     ############################################################
     la      $a0, asize8     # 1st parameter: address of asize8[0]
     la      $a1, frame8     # 2nd parameter: address of frame8[0]
-    la      $a2, window8    # 3rd parameter: address of window8[0] 
+    la      $a2, window8    # 3rd parameter: address of window8[0]
 
     jal     vbsme           # call function
-	nop
-    #jal     print_result    # print results to console
+    jal     print_result    # print results to console
     ############################################################
     # End of test 8   
    
@@ -592,11 +606,10 @@ main:
     ############################################################
     la      $a0, asize9     # 1st parameter: address of asize9[0]
     la      $a1, frame9     # 2nd parameter: address of frame9[0]
-    la      $a2, window9    # 3rd parameter: address of window9[0] 
+    la      $a2, window9    # 3rd parameter: address of window9[0]
 
     jal     vbsme           # call function
-	nop
-    #jal     print_result    # print results to console
+    jal     print_result    # print results to console
     ############################################################
     # End of test 9      
    
@@ -605,11 +618,10 @@ main:
     ############################################################
     la      $a0, asize10        # 1st parameter: address of asize10[0]
     la      $a1, frame10        # 2nd parameter: address of frame10[0]
-    la      $a2, window10       # 3rd parameter: address of window10[0]   
+    la      $a2, window10       # 3rd parameter: address of window10[0]
 
     jal     vbsme               # call function
-	nop
-    #jal     print_result        # print results to console
+    jal     print_result        # print results to console
     ############################################################
     # End of test 10  
    
@@ -621,8 +633,7 @@ main:
     la      $a2, window11    # 3rd parameter: address of window11[0]   
 
     jal     vbsme           # call function
-	nop
-    #jal     print_result    # print results to console
+    jal     print_result    # print results to console
     ############################################################
     # End of test 11  
    
@@ -634,8 +645,7 @@ main:
     la      $a2, window12    # 3rd parameter: address of window12[0]   
 
     jal     vbsme           # call function
-	nop
-    #jal     print_result    # print results to console
+    jal     print_result    # print results to console
     ############################################################
     # End of test 12  
    
@@ -644,11 +654,10 @@ main:
     ############################################################
     la      $a0, asize13     # 1st parameter: address of asize13[0]
     la      $a1, frame13     # 2nd parameter: address of frame13[0]
-    la      $a2, window13    # 3rd parameter: address of window13[0]   
+    la      $a2, window13    # 3rd parameter: address of window13[0]
 
     jal     vbsme           # call function
-	nop
-    #jal     print_result    # print results to console
+    jal     print_result    # print results to console
     ############################################################
     # End of test 13  
    
@@ -660,15 +669,42 @@ main:
     la      $a2, window14    # 3rd parameter: address of window14[0]   
 
     jal     vbsme           # call function
-	nop
-    #jal     print_result    # print results to console
+    jal     print_result    # print results to console
     ############################################################
     # End of test 14     
    
     lw      $ra, 0($sp)         # Restore return address
     addi    $sp, $sp, 4         # Restore stack pointer
     jr      $ra                 # Return
-	nop
+
+################### Print Result ####################################
+print_result:
+    # Printing $v0
+    add     $a0, $v0, $zero     # Load $v0 for printing
+    li      $v0, 1              # Load the system call numbers
+    syscall
+   
+    # Print newline.
+    la      $a0, newline          # Load value for printing
+    li      $v0, 4                # Load the system call numbers
+    syscall
+   
+    # Printing $v1
+    add     $a0, $v1, $zero      # Load $v1 for printing
+    li      $v0, 1                # Load the system call numbers
+    syscall
+
+    # Print newline.
+    la      $a0, newline          # Load value for printing
+    li      $v0, 4                # Load the system call numbers
+    syscall
+   
+    # Print newline.
+    la      $a0, newline          # Load value for printing
+    li      $v0, 4                # Load the system call numbers
+    syscall
+   
+    jr      $ra                   #function return
 
 #####################################################################
 ### vbsme
@@ -749,8 +785,7 @@ main:
 #   result (v0) x coordinate of the block in the frame with the minimum SAD
 #          (v1) y coordinate of the block in the frame with the minimum SAD
 
-vbsme:
-
+vbsme:  
     li      $v0, 0          # Reset $v0 and $v1 (Set x-coordinate to 0)
     li      $v1, 0          # Set y-coordinate to 0
 
@@ -769,7 +804,7 @@ vbsme:
     sub     $s5, $s0, $s2    # Bottom boundary s5 = frame_rows - window_rows
 
     # Initialize
-    li $a3, 9999    # use $a3 to store min SAD (instead of $30)
+    li $30, 9999
     li $t0, 0
     li $t1, 0
     li $s6, 0
@@ -777,31 +812,31 @@ vbsme:
 
 Traversal_Loop:
     # Check termination conditions: if s6 > s4 or s7 > s5 then end
+    # bgt $s6, $s4, End_Traversal
     slt $t9, $s4, $s6
     bne $t9, $zero, End_Traversal
-	nop
 
+    # bgt $s7, $s5, End_Traversal
     slt $t9, $s5, $s7
     bne $t9, $zero, End_Traversal
-	nop
 
     # Move Right
     jal Compute_SAD_CallR
-	nop
 
 Move_Right_Loop:
+    # bgt $t1, $s4, Update_TopBoundary
     slt $t9, $s4, $t1
     bne $t9, $zero, Update_TopBoundary
-	nop
 
     addi $t1, $t1, 1      # Increment column index (move right)
+    
+    # ble $t1, $s4, Compute_SAD_CallR
+    # t1 <= s4 means s4 >= t1:
     slt $t9, $s4, $t1
     beq $t9, $zero, Compute_SAD_CallR
-	nop
 
 Right:
     j Move_Right_Loop
-	nop
 
 Update_TopBoundary:
     addi $s7, $s7, 1      # Move top boundary down
@@ -809,18 +844,18 @@ Update_TopBoundary:
 
     # Move Down
 Move_Down_Loop:
+    # bgt $t0, $s5, Update_RightBoundary
     slt $t9, $s5, $t0
     bne $t9, $zero, Update_RightBoundary
-	nop
 
     addi $t0, $t0, 1      # Increment row index (move down)
+    
+    # ble $t0, $s5, Compute_SAD_CallD
     slt $t9, $s5, $t0
     beq $t9, $zero, Compute_SAD_CallD
-	nop
 
 Down:
     j Move_Down_Loop
-	nop
 
 Update_RightBoundary:
     addi $s4, $s4, -1     # Move right boundary left
@@ -828,18 +863,18 @@ Update_RightBoundary:
 
     # Move Left
 Move_Left_Loop:
+    # blt $t1, $s6, Update_BottomBoundary (t1 < s6)
     slt $t9, $t1, $s6
     bne $t9, $zero, Update_BottomBoundary
-	nop
 
     addi $t1, $t1, -1     # Decrement column index (move left)
+    
+    # bge $t1, $s6, Compute_SAD_CallL (t1 >= s6)
     slt $t9, $t1, $s6
     beq $t9, $zero, Compute_SAD_CallL
-	nop
 
 Left:
     j Move_Left_Loop
-	nop
 
 Update_BottomBoundary:
     addi $s5, $s5, -1     # Move bottom boundary up
@@ -847,57 +882,47 @@ Update_BottomBoundary:
 
     # Move Up
 Move_Up_Loop:
+    # blt $t0, $s7, Update_LeftBoundary (t0 < s7)
     slt $t9, $t0, $s7
     bne $t9, $zero, Update_LeftBoundary
-	nop
 
     addi $t0, $t0, -1     # Decrement row index (move up)
+    
+    # bge $t0, $s7, Compute_SAD_CallU (t0 >= s7)
     slt $t9, $t0, $s7
     beq $t9, $zero, Compute_SAD_CallU
-	nop
 
 Up:
     j Move_Up_Loop
-	nop
 
 Update_LeftBoundary:
     addi $s6, $s6, 1      # Move left boundary right
     addi $t0, $t0, 1      # correct overstep
 
     j Traversal_Loop
-	nop
 
 
 Compute_SAD_CallR:
     jal Compute_SAD
-	nop
     j Right
-	nop
 
 Compute_SAD_CallD:
     jal Compute_SAD
-	nop
     j Down
-	nop
 
 Compute_SAD_CallL:
     jal Compute_SAD
-	nop
     j Left
-	nop
 
 Compute_SAD_CallU:
     jal Compute_SAD
-	nop
     j Up
-	nop
 
 
 End_Traversal:
-    lw      $ra, 0($sp)         # Restore return address
-    addi    $sp, $sp, 4         # Restore stack pointer
+    lw  $ra, 0($sp)        # Restore return address
+    addi $sp, $sp, 4
     jr  $ra                 # Return from vbsme
-	nop
 
 Compute_SAD:
     move    $t8, $zero           # Initialize current SAD to 0
@@ -916,21 +941,19 @@ Compute_SAD:
 Compute_SAD_Row_Loop:
     slt $t9, $t4, $s2
     beq $t9, $zero, Compute_SAD_Done
-	nop
 
     move    $t5, $zero           # column index = 0
 
 Compute_SAD_Col_Loop:
     slt $t9, $t5, $s3
     beq $t9, $zero, Next_Row
-	nop
 
     lw      $t6, 0($t2)          # frame val
     lw      $t7, 0($t3)          # window val
 
+    # Calculate absolute difference
     sub     $t6, $t6, $t7
     bgez    $t6, Add_To_Sum
-	nop
     sub     $t6, $zero, $t6
 
 Add_To_Sum:
@@ -940,7 +963,6 @@ Add_To_Sum:
     addi    $t3, $t3, 4
     addi    $t5, $t5, 1
     j       Compute_SAD_Col_Loop
-	nop
 
 Next_Row:
     sll     $t6, $s1, 2          # frame_cols * 4
@@ -949,18 +971,14 @@ Next_Row:
     add     $t2, $t2, $t6
     addi    $t4, $t4, 1
     j       Compute_SAD_Row_Loop
-	nop
 
 Compute_SAD_Done:
-    slt $t9, $t8, $a3
+    slt $t9, $t8, $30
     bne $t9, $zero, Update_Min_Sad
-	nop
     jr      $ra
-	nop
 
 Update_Min_Sad:
-    move    $a3, $t8
+    move    $30, $t8
     move    $v0, $t0
     move    $v1, $t1
     jr      $ra
-	nop

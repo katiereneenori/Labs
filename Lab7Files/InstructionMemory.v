@@ -59,8 +59,8 @@ module InstructionMemory(Address, Instruction);
         end
 
       
-  //      $readmemh("private_instruction_memory_lab6.mem", memory);       
-        $readmemh("Instruction_MemoryTest.mem", memory);
+   //     $readmemh("private_instruction_memory_lab6.mem", memory);       
+        $readmemh("Instruction_Memory.mem", memory);
      //           $readmemh("IM_pseudo.mem", memory);
 
         
